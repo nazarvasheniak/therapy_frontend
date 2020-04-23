@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "therapy-frontend"
+    }
+  },
+  "defaultProject": "therapy-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
