@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $: any;
 
 @Component({
 	selector: 'app-signin',
@@ -12,6 +13,6 @@ export class SignInComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
+        $("#phone").mask("+7 (999) 999-99-99");
     }
 }
