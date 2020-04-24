@@ -6,12 +6,12 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-    
+
     constructor() {
 
     }
 
     ngOnInit(): void {
-        
+
     }
 }
