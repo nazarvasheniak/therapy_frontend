@@ -28,6 +28,21 @@ header {
                 line-height: 130.08%;
                 color: #ffffff;
             }
+
+            &.button-header {
+                display: flex;
+                align-items: center;
+
+                .back-button {
+                    img {
+                        vertical-align: middle;
+                    }
+                }
+
+                h1 {
+                    margin-left: 18px;
+                }
+            }
         }
 
         .form-footer {
@@ -41,6 +56,10 @@ header {
 
                 a {
                     color: #32A776;
+                }
+
+                .counter {
+                    text-decoration: underline;
                 }
             }
         }
@@ -91,6 +110,14 @@ header {
                     }
                 }
             }
+        }
+
+        .info-block {
+            margin-top: 18px;
+            font-size: 14px;
+            line-height: 130.08%;
+            text-align: center;
+            color: #6F9BA5;
         }
     }
 }
