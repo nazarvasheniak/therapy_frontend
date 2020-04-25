@@ -1,0 +1,96 @@
+header {
+    text-align: center;
+}
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+
+    form {
+        width: 402px;
+        margin-top: 55px;
+        background-color: #335C65;
+        border-radius: 10px;
+        padding-top: 39px;
+        padding-bottom: 39px;
+        padding-left: 59px;
+        padding-right: 59px;
+        box-sizing: border-box;
+
+        .form-header {
+            padding-top: 11px;
+            padding-bottom: 11px;
+
+            h1 {
+                font-style: normal;
+                font-weight: 500;
+                font-size: 30px;
+                line-height: 130.08%;
+                color: #ffffff;
+            }
+        }
+
+        .form-footer {
+            margin-top: 18px;
+            font-size: 14px;
+            line-height: 130.08%;
+            text-align: center;
+            
+            span {
+                color: #6F9BA5;
+
+                a {
+                    color: #32A776;
+                }
+            }
+        }
+
+        .form-group {
+            margin-top: 18px;
+
+            input {
+                width: 100%;
+                padding-top: 23px;
+                padding-bottom: 13px;
+                padding-left: 16px;
+                background: rgba(255, 255, 255, 0.12);
+                box-sizing: border-box;
+                border: 1px solid #5B868F;
+                border-radius: 10px;
+                font-size: 32px;
+                color: #98BDC3;
+
+                &::placeholder {
+                    color: #98BDC3;
+                }
+            }
+
+            &.horizontal {
+                display: flex;
+
+                input {
+                    padding-left: 25px;
+                    padding-right: 25px;
+                    padding-top: 22px;
+                    padding-bottom: 19px;
+                    border: 1px solid #567D85;
+                    border-radius: 0;
+
+                    &:first-child {
+                        border-top-left-radius: 10px;
+                        border-bottom-left-radius: 10px;
+                    }
+
+                    &:last-child {
+                        border-top-right-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                    }
+
+                    &::placeholder {
+                        color: #547B83;
+                    }
+                }
+            }
+        }
+    }
+}

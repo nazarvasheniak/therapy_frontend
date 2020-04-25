@@ -1,0 +1,30 @@
+<div class="auth-wrapper">
+    <header>
+        <div class="logo">
+            <img src="../../../assets/images/logo-white.svg" alt="Корневая Терапия" />
+        </div>
+    </header>
+    
+    <div class="form-wrapper">
+        <form>
+            <div class="form-header">
+                <h1>Код из СМС</h1>
+            </div>
+
+            <div class="form-group horizontal">
+                <input type="text" #digit1 placeholder="0" maxlength="1" (input)="nextDigit($event, 1)" />
+                <input type="text" #digit2 placeholder="0" maxlength="1" (input)="nextDigit($event, 2)" />
+                <input type="text" #digit3 placeholder="0" maxlength="1" (input)="nextDigit($event, 3)" />
+                <input type="text" #digit4 placeholder="0" maxlength="1" (input)="nextDigit($event, 4)" />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="button-disabled">Продолжить</button>
+            </div>
+
+            <div class="form-footer">
+                <span> Ещё нет аккаунта? <a href="#">Зарегистрироваться</a></span>
+            </div>
+        </form>
+    </div>
+</div>
