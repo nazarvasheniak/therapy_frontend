@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -13,7 +14,9 @@ export class SignInComponent implements OnInit {
 
     public signInForm: FormGroup;
 
-    constructor(private authService: AuthService) {
+    constructor(
+        private authService: AuthService,
+        private router: Router) {
 
     }
 
@@ -52,7 +55,11 @@ export class SignInComponent implements OnInit {
             })
             .subscribe(
                 data => {
-                    alert(data.message);
+                    this.router.navigate(['/sign-in/confirm'], {
+                        queryParams: {
+                            id: data.userID
+                        }
+                    });
                     return;
                 },
                 fail => {

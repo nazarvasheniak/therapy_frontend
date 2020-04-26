@@ -6,9 +6,9 @@
     </header>
     
     <div class="form-wrapper">
-        <form>
+        <form [formGroup]="confirmAuthForm" (ngSubmit)="submit(confirmAuthForm)">
             <div class="form-header button-header">
-                <span class="back-button">
+                <span class="back-button" (click)="backToAuth()">
                     <img src="../../../assets/images/ellipse-arrow-left.svg" alt="Назад" />
                 </span>
 
@@ -20,10 +20,10 @@
             </div>
 
             <div class="form-group horizontal">
-                <input type="text" #digit1 placeholder="0" maxlength="1" (input)="nextDigit($event, 1)" />
-                <input type="text" #digit2 placeholder="0" maxlength="1" (input)="nextDigit($event, 2)" />
-                <input type="text" #digit3 placeholder="0" maxlength="1" (input)="nextDigit($event, 3)" />
-                <input type="text" #digit4 placeholder="0" maxlength="1" (input)="nextDigit($event, 4)" />
+                <input type="text" #digit1 formControlName="digit1" placeholder="0" maxlength="1" (input)="nextDigit($event, 1)" />
+                <input type="text" #digit2 formControlName="digit2" placeholder="0" maxlength="1" (input)="nextDigit($event, 2)" />
+                <input type="text" #digit3 formControlName="digit3" placeholder="0" maxlength="1" (input)="nextDigit($event, 3)" />
+                <input type="text" #digit4 formControlName="digit4" placeholder="0" maxlength="1" (input)="nextDigit($event, 4)" />
             </div>
 
             <div class="form-group">

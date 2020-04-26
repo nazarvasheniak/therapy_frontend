@@ -6,8 +6,8 @@ import 'rxjs/add/operator/map';
 import { BaseHttpService } from '../../common/services/base-http.service';
 import { LocalStorageHelper } from '../../common/helpers';
 import { Router } from '@angular/router';
-import { SignInRequest } from '../../common/models/request';
-import { ResponseModel } from '../../common/models/response';
+import { SignInRequest, SignInConfirmRequest } from '../../common/models/request';
+import { ResponseModel, SignInResponse, SignInConfirmResponse } from '../../common/models/response';
 
 @Injectable()
 export class AuthService extends BaseHttpService {
@@ -46,7 +46,7 @@ export class AuthService extends BaseHttpService {
     }
 
     // Save token to localStorage
-    /* private saveToken(response: AuthResponse): AuthResponse {
+    private saveToken(response: SignInConfirmResponse): SignInConfirmResponse {
         if (!response) return;
         
         if (response.token) {
@@ -55,9 +55,14 @@ export class AuthService extends BaseHttpService {
         }
 
         return response;
-    } */
+    }
 
     public signIn(request: SignInRequest) {
-        return this.post<ResponseModel>(`${this.apiUrl}/auth/sign-in`, request);
+        return this.post<SignInResponse>(`${this.apiUrl}/auth/sign-in`, request);
+    }
+
+    public signInConfirm(request: SignInConfirmRequest) {
+        return this.post<SignInConfirmResponse>(`${this.apiUrl}/auth/sign-in/confirm`, request)
+            .map(response => this.saveToken(response));
     }
 }

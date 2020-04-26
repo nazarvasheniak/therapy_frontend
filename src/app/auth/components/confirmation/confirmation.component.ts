@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../services';
 
 @Component({
 	selector: 'app-auth-confirmation',
@@ -12,10 +15,57 @@ export class ConfirmationComponent implements OnInit {
     @ViewChild("digit3") digit3: ElementRef;
     @ViewChild("digit4") digit4: ElementRef;
 
-    constructor() {}
+    public confirmAuthForm: FormGroup;
+    public userID: number;
+
+    constructor(
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
+        private authService: AuthService
+    ) {
+        this.activatedRoute.queryParams
+            .subscribe(params => {
+                if (!params['id']) {
+                    alert('id error');
+                    return;
+                }
+
+                this.userID = Number(params['id']);
+            })
+    }
 
     ngOnInit(): void {
+        this.createConfirmAuthForm();
+    }
 
+    private createConfirmAuthForm(): void {
+        this.confirmAuthForm = new FormGroup({
+            digit1: new FormControl(null, [Validators.required]),
+            digit2: new FormControl(null, [Validators.required]),
+            digit3: new FormControl(null, [Validators.required]),
+            digit4: new FormControl(null, [Validators.required])
+        });
+    }
+
+    public submit(form: FormGroup) {
+        if (form.invalid) {
+            alert("Заполните все поля");
+            return;
+        }
+
+        const code = `${form.value['digit1']}${form.value['digit2']}${form.value['digit3']}${form.value['digit4']}`;
+
+        this.authService.signInConfirm({
+            userID: this.userID,
+            code: code
+        })
+        .subscribe(result => {
+            console.log(result);
+        });
+    }
+    
+    public backToAuth() {
+        this.router.navigate(['/sign-in']);
     }
 
     public nextDigit(event, currentDigit: number) {
