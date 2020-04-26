@@ -59,10 +59,10 @@ header {
                 -moz-transition: all .4s;
                 -o-transition: all .4s;
                 transition: all .4s;
-                cursor: text;
             }
 
-            input {
+            input,
+            textarea {
                 width: 100%;
                 padding-top: 23px;
                 padding-bottom: 13px;
@@ -84,6 +84,10 @@ header {
                     letter-spacing: 0.06em;
                     text-transform: uppercase;
                 }
+            }
+
+            textarea {
+                padding-bottom: 65px;
             }
         }
     }

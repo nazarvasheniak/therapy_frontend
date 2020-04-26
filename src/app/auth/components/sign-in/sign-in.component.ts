@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services';
 import { Router } from '@angular/router';
@@ -11,6 +11,8 @@ declare var $: any;
 	styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
+
+    @ViewChild("phone") phone: ElementRef;
 
     public signInForm: FormGroup;
 
@@ -73,5 +75,9 @@ export class SignInComponent implements OnInit {
         if (!value) return value;
 
         return value.replace(/-/g, "").replace(/ /g, "").replace("(", "").replace(")", "");
+    }
+
+    public labelClick() {
+        this.phone.nativeElement.focus();
     }
 }
