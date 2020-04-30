@@ -469,3 +469,100 @@
         }
     }
 }
+
+.license {
+    padding-top: 48px;
+    padding-bottom: 64px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FAFFF8 100%);
+    border: 0.5px solid #D4E8D7;
+    box-sizing: border-box;
+
+    .coat-of-arms {
+        text-align: center;
+    }
+
+    .license-head {
+        margin-top: 24px;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 34px;
+        color: #162B1E;
+        text-align: center;
+    }
+
+    .license-image {
+        margin-top: 37px;
+        text-align: center;
+    }
+
+    .license-bottom {
+        margin-top: 50px;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 22px;
+        color: #9BA6A0;
+        text-align: center;
+    }
+}
+
+.present {
+    padding-top: 48px;
+    padding-bottom: 64px;
+    background-color: #1B3940;
+
+    .flex-row {
+        align-items: center;
+    }
+
+    .present-image {
+        border: 2px solid #21A26C;
+        box-sizing: border-box;
+        border-radius: 12px;
+        position: relative;
+
+        .present-icon {
+            position: absolute;
+            left: calc(50% - 46.5px);
+            top: calc(25% + 23.25px);
+        }
+    }
+
+    .present-image > img {
+        //box-shadow: inset 0px 4px 20px #FFF3E9;
+        border-radius: 10px;
+        padding-top: 11px;
+        padding-bottom: 9px;
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+
+    .present-info {
+        margin-left: 58px;
+        
+        .present-head {
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 45px;
+            color: #FFFFFF;
+        }
+
+        .present-subhead {
+            margin-top: 23px;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 26px;
+            color: #80B6A9;
+        }
+
+        .present-text {
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 29px;
+            color: #FFFFFF;
+        }
+
+        .present-button {
+            margin-top: 24px;
+        }
+    }
+}
