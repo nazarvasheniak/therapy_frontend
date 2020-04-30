@@ -244,3 +244,55 @@
         }
     }
 }
+
+.webinar-checklist {
+    position: relative;
+    padding-top: 115px;
+    padding-bottom: 123px;
+
+    .webinar-checklist-head {
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 60px;
+        color: #162B1E;
+    }
+
+    .webinar-checklist-content {
+        margin-top: 52px;
+
+        .list-right {
+            margin-left: 36px;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            margin-top: 32px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            .icon {
+                margin-right: 14px;
+            }
+
+            .text {
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 22px;
+                color: #364D47;
+            }
+        }
+
+        .webinar-checklist-button {
+            margin-top: 52px;
+        }
+    }
+
+    .webinar-checklist-image {
+        position: absolute;
+        top: 70px;
+        right: 0;
+    }
+}
