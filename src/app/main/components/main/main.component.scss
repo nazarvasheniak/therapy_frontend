@@ -379,3 +379,93 @@
         }
     }
 }
+
+.reviews {
+    padding-top: 48px;
+    padding-bottom: 64px;
+
+    .reviews-head {
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 60px;
+        color: #162B1E;
+    }
+
+    .video-reviews {
+        margin-top: 28px;
+
+        .video-review-player {
+            position: relative;
+
+            .play-button {
+                position: absolute;
+                left: calc(50% - 36px);
+                top: calc(25% + 54px);
+            }
+        }
+
+        .review-content {
+            margin-left: 55px;
+
+            .reviews-switcher {
+                margin-top: 15px;
+
+                nav {
+                    ul {
+                        li {
+                            display: inline-block;
+                            /* margin-left: 6px;
+                            margin-right: 6px; */
+                            cursor: pointer;
+
+                            &:first-child {
+                                margin-left: 0;
+                            }
+
+                            &:last-child {
+                                margin-right: 0;
+                            }
+
+                            img {
+                                padding: 6px;
+                                border-radius: 32px;
+                            }
+
+                            &.active {
+                                img {
+                                    border: 1px solid #5DB892;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .review-text {
+                margin-top: 14px;
+                
+                .reviewer-specialization {
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: #21A26C;
+                }
+
+                .reviewer-name {
+                    font-weight: bold;
+                    font-size: 24px;
+                    line-height: 34px;
+                    color: #000000;          
+                }
+
+                .review-text {
+                    max-width: 505px;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: #414141;
+                }
+            }
+        }
+    }
+}
