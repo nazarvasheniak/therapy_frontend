@@ -1,0 +1,37 @@
+header {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+
+    .login-wrapper {
+        .login-button {
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 121.5%;
+            letter-spacing: 0.135em;
+            color: #25A46E;
+            text-transform: uppercase;
+            border: 0.5px solid #5DB892;
+            box-sizing: border-box;
+            box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+            background: transparent;
+            backdrop-filter: blur(25px);
+            /* Note: backdrop-filter has minimal browser support */
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            outline: none;
+            cursor: pointer;
+
+            .icon {
+                margin-right: 16px;
+            }
+        }
+    }
+}
