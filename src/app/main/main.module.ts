@@ -4,11 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
 import { HeaderComponent } from '../layout/header/header.component';
+import { FooterComponent } from '../layout/footer/footer.component';
 
 @NgModule({
     declarations: [
         MainComponent,
-        HeaderComponent
+        HeaderComponent,
+        FooterComponent
     ],
     imports: [
         CommonModule,

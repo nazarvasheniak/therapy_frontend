@@ -8,6 +8,12 @@ header {
     position: relative;
     z-index: 1;
 
+    .logo-wrapper {
+        img {
+            max-width: none;
+        }
+    }
+
     .nav-wrapper {
         nav {
             ul {
@@ -61,5 +67,11 @@ header {
                 margin-right: 16px;
             }
         }
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .nav-wrapper {
+        display: none;
     }
 }
