@@ -96,17 +96,20 @@ body {
 }
 
 button.scroll-top {
-    font-weight: normal;
+    font-weight: bold;
     font-size: 14px;
-    line-height: 14px;
-    color: #C2D0C9;
-    border: 1px solid #C2D0C9;
+    line-height: 17px;
+    color: #A7C0B5;
+    border: 0;
     box-sizing: border-box;
     border-radius: 10px;
-    padding: 12px 15px;
+    //padding: 12px 15px;
     display: flex;
     align-items: center;
     background: transparent;
+    letter-spacing: 0.135em;
+    text-transform: uppercase;
+    cursor: pointer;
 
     img {
         margin-right: 16px;
