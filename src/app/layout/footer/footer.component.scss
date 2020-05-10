@@ -3,7 +3,7 @@ footer {
     padding-bottom: 69px;
 
     > .container {
-        .flex-row {
+        > .flex-row {
             justify-content: space-between;
         }
     }
@@ -145,6 +145,29 @@ footer {
 
                 .gotop-wrapper {
                     margin-left: 38px;
+
+                    button {
+                        outline: none;
+                    }
+                }
+
+                .social-mobile {
+                    margin-top: 20px;
+                    display: flex;
+                    align-items: center;
+    
+                    a {
+                        margin-left: 12px;
+                        margin-right: 12px;
+    
+                        &:first-child {
+                            margin-left: 0;
+                        }
+    
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
                 }
             }
 
@@ -160,6 +183,109 @@ footer {
                     text-align: right;
                     text-decoration-line: underline;
                     color: #C2D0C9;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 1199px) {
+    footer {
+        .footer-left {
+            .navigation {
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 992px) {
+    footer {
+        .footer-right {
+            .links {
+                .buttons {
+                    .social-mobile {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    footer {
+        .footer-right {
+            .contacts {
+                .social  {
+                    display: none;
+                }
+            }
+
+            .links {
+                margin-left: -40px;
+
+                .buttons {
+                    flex-direction: column;
+                    align-items: flex-end;
+
+                    .login-wrapper {
+                        display: none;
+                    }
+
+                    .gotop-wrapper {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    footer {
+        padding-top: 44px;
+        padding-bottom: 54px;
+
+        > .container {
+            > .flex-row {
+                flex-direction: column-reverse;
+            }
+        }
+
+        .footer-left {
+            .company {
+                margin-top: 31px;
+            }
+        }
+
+        .footer-right {
+            > .flex-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contacts {
+                .phone {
+                    justify-content: flex-start;
+                }
+            }
+
+            .links {
+                margin-left: 0;
+
+                .buttons {
+                    align-items: flex-start;
+                    margin-top: 28px;
+                }
+
+                .privacy {
+                    margin-top: 22px;
+
+                    a {
+                        text-align: left;
+                    }
                 }
             }
         }

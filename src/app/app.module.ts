@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CabinetModule } from './cabinet/cabinet.module';
 import { MainModule } from './main/main.module';
-import { HeaderComponent } from './layout/header/header.component';
 
 @NgModule({
 	declarations: [

@@ -6,8 +6,13 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
-    
-    constructor() {
 
-    }
+	constructor() {
+
+	}
+
+	scrollTop(): void {
+		const element = document.querySelector(".main-banner");
+		if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	}
 }

@@ -5,12 +5,18 @@ import { RouterModule } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
 import { HeaderComponent } from '../layout/header/header.component';
 import { FooterComponent } from '../layout/footer/footer.component';
+import { ModalComponent } from '../layout/modal/modal.component';
+import { WebinarModalComponent } from './components/webinar-modal/webinar-modal.component';
+import { SafePipe } from '../common/pipes';
 
 @NgModule({
     declarations: [
         MainComponent,
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        ModalComponent,
+        WebinarModalComponent,
+        SafePipe
     ],
     imports: [
         CommonModule,
