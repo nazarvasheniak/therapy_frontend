@@ -300,13 +300,6 @@ a {
             z-index: 1;
             margin-top: 50px;
             margin-left: 15px;
-
-            .present-text {
-                
-                .content {
-                    
-                }
-            }
         }
     }
 
@@ -729,12 +722,6 @@ a {
 
         .video-review-player {
             position: relative;
-
-            .play-button {
-                position: absolute;
-                left: calc(50% - 36px);
-                top: calc(25% + 54px);
-            }
         }
 
         .review-content {
@@ -935,6 +922,36 @@ a {
     }
 }
 
+@media screen and (min-width: 300px) {
+    .webinar-presenter {
+        .webinar-presenter-videos {
+            .video-wrapper {
+                height: 200px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .webinar-presenter {
+        .webinar-presenter-videos {
+            .video-wrapper {
+                height: 250px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 460px) {
+    .webinar-presenter {
+        .webinar-presenter-videos {
+            .video-wrapper {
+                height: 300px;
+            }
+        }
+    }
+}
+
 @media screen and (min-width: 576px) {
     .main-banner {
         .main-banner-mobile {
@@ -980,6 +997,14 @@ a {
         .present-info {
             .present-button-mobile {
                 display: none;
+            }
+        }
+    }
+
+    .webinar-presenter {
+        .webinar-presenter-videos {
+            .video-wrapper {
+                height: 375px;
             }
         }
     }
@@ -1044,12 +1069,6 @@ a {
             flex-direction: column;
         }
 
-        .webinar-presenter-checklist {
-            .list-wrapper {
-
-            }
-        }
-
         .webinar-presenter-videos {
             margin-top: 40px;
 
@@ -1109,10 +1128,25 @@ a {
 
     .reviews {
         .video-reviews {
+            
+            .video-review-player {
+                width: 530px;
+                height: 300px;
+            }
+
             .review-content {
                 .consultations-counter {
                     display: none;
                 }
+            }
+        }
+    }
+
+    .webinar-presenter {
+        .webinar-presenter-videos {
+            .video-wrapper {
+                width: 355px;
+                height: 200px;
             }
         }
     }
@@ -1194,6 +1228,24 @@ a {
             display: none;
         }
     }
+
+    .webinar-presenter {
+        .webinar-presenter-videos {
+            .video-wrapper {
+                width: 500px;
+                height: 280px;
+            }
+        }
+    }
+
+    .reviews {
+        .video-reviews {
+            .video-review-player {
+                width: 610px;
+                height: 343px;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -1208,7 +1260,7 @@ a {
             display: none;
         }
     }
-
+    
     .webinar-presenter {
         .webinar-presenter-card {
             .card-content {

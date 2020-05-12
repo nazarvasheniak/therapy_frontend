@@ -115,6 +115,7 @@ footer {
             .buttons {
                 display: flex;
                 align-items: center;
+                justify-content: flex-end;
 
                 .login-wrapper {
                     .login-button {
@@ -144,7 +145,7 @@ footer {
                 }
 
                 .gotop-wrapper {
-                    margin-left: 38px;
+                    /* margin-left: 38px; */
 
                     button {
                         outline: none;
