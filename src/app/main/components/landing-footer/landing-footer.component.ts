@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'app-footer',
-	templateUrl: './footer.component.html',
-	styleUrls: ['./footer.component.scss']
+	selector: 'landing-footer',
+	templateUrl: './landing-footer.component.html',
+	styleUrls: ['./landing-footer.component.scss']
 })
-export class FooterComponent {
+export class LandingFooterComponent {
 
 	constructor() {
 

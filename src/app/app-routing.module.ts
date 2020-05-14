@@ -5,6 +5,7 @@ import { ConfirmationComponent } from './auth/components/confirmation/confirmati
 import { SignUpComponent } from './auth/components/sign-up/sign-up.component';
 import { ProfileComponent } from './cabinet/components/profile/profile.component';
 import { LandingComponent } from './main/components/landing/landing.component';
+import { MainComponent } from './main/components/main/main.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
 	{ path: 'sign-in', component: SignInComponent },
 	{ path: 'sign-in/confirm', component: ConfirmationComponent },
 	{ path: 'profile', component: ProfileComponent },
-	{ path: '', component: LandingComponent }
+	{ path: 'landing', component: LandingComponent },
+	{ path: '', component: MainComponent }
 ];
 
 @NgModule({

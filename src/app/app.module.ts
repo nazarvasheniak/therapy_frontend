@@ -8,10 +8,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CabinetModule } from './cabinet/cabinet.module';
 import { MainModule } from './main/main.module';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -20,7 +21,11 @@ import { MainModule } from './main/main.module';
 		BrowserAnimationsModule,
 		AuthModule,
 		CabinetModule,
-		MainModule
+		MainModule,
+		LayoutModule
+	],
+	exports: [
+		
 	],
 	providers: [
 		

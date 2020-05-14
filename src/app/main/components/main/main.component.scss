@@ -1,0 +1,48 @@
+section {
+    background-image: url(../../../../assets/images/main-bg.svg);
+    background-repeat: repeat;
+}
+
+.button-green {
+    letter-spacing: 0.135em;
+
+    .icon {
+        vertical-align: bottom;
+    }
+}
+
+.main-banner {
+    padding-bottom: 93px;
+    
+    .main-banner-image {
+        display: flex;
+        justify-content: center;
+    }
+
+    .main-banner-head {
+        margin-top: 28px;
+        text-align: center;
+
+        h1 {
+            font-weight: bold;
+            font-size: 46px;
+            line-height: 55px;
+            color: #162B1E;
+        }
+    }
+
+    .main-banner-text {
+        margin-top: 24px;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 32px;
+        text-align: center;
+        color: #364D47;
+    }
+
+    .main-banner-button  {
+        display: flex;
+        justify-content: center;
+        margin-top: 24px;
+    }
+}
