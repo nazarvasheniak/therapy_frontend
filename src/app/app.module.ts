@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CabinetModule } from './cabinet/cabinet.module';
 import { MainModule } from './main/main.module';
 import { LayoutModule } from './layout/layout.module';
+import { AuthService } from './common/services/auth.service';
 
 @NgModule({
 	declarations: [
@@ -28,7 +29,7 @@ import { LayoutModule } from './layout/layout.module';
 		
 	],
 	providers: [
-		
+		AuthService
 	],
 	bootstrap: [AppComponent]
 })

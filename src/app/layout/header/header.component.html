@@ -10,12 +10,23 @@
                 <li><a href="#">Отзывы клиентов</a></li>
                 <li><a href="#">Выбрать специалиста</a></li>
                 <li><a href="#">Статьи</a></li>
-                <li>
+                <li *ngIf="!isLoggedIn">
                     <div class="login-wrapper">
                         <button type="button" class="login-button" [routerLink]="['/sign-in']">
                             <img class="icon" src="../../../assets/images/icon-key.svg" alt="" />
                             Войти
                         </button>
+                    </div>
+                </li>
+                <li *ngIf="isLoggedIn">
+                    <div class="profile-badge-wrapper">
+                        <div class="avatar">
+                            А
+                        </div>
+
+                        <div class="username">
+                            Ольга
+                        </div>
                     </div>
                 </li>
             </ul>

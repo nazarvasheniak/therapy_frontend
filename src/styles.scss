@@ -65,6 +65,22 @@ body {
     width: 50%;
 }
 
+.button-transparent {
+    padding-top: 16.5px;
+    padding-bottom: 16.5px;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #495E4F;
+    border: 1px solid #DAEAE5;
+    box-sizing: border-box;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+}
+
 .button-green {
     padding-top: 25.5px;
     padding-bottom: 25.5px;

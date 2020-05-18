@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './services';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RouterModule } from '@angular/router';
@@ -20,7 +19,7 @@ import { RouterModule } from '@angular/router';
         RouterModule
     ],
     providers: [
-        AuthService
+        
     ]
 })
 export class AuthModule { }
