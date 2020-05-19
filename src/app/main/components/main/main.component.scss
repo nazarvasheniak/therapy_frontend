@@ -13,7 +13,7 @@ section {
 
 .main-banner {
     padding-bottom: 93px;
-    
+
     .main-banner-image {
         display: flex;
         justify-content: center;
@@ -44,5 +44,96 @@ section {
         display: flex;
         justify-content: center;
         margin-top: 24px;
+    }
+}
+
+.how-it-works {
+    background: #ffffff;
+    padding-top: 60px;
+    padding-bottom: 132px;
+
+    .flex-row {
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 53px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    .text-block {
+        .section-head {
+            font-weight: bold;
+            font-size: 48px;
+            line-height: 58px;
+            color: #10363C;
+        }
+
+        .block-head {
+            margin-top: 32px;
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            font-size: 32px;
+            line-height: 38px;
+            color: #10363C;
+
+            .badge {
+                width: 32px;
+                height: 32px;
+                margin-right: 14px;
+                background: #5DB892;
+                border: 0.5px solid #35956C;
+                box-sizing: border-box;
+                border-radius: 10px;
+                color: #ffffff;
+                font-size: 16px;
+                line-height: 16px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .block-text {
+            margin-top: 20px;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 27px;
+            color: #5D787C;
+        }
+
+        .block-button {
+            margin-top: 31px;
+
+            button {
+                padding-left: 16px;
+            }
+        }
+    }
+}
+
+.video-reviews {
+    padding-top: 53px;
+    padding-bottom: 49px;
+
+    .section-head {
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 58px;
+        color: #10363C;
+        text-align: center;        
+    }
+
+    .reviews-slider {
+        margin-top: 49px;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding-top: 26px;
+        padding-bottom: 26px;
+        padding-left: 50px;
+        padding-right: 26px;
     }
 }

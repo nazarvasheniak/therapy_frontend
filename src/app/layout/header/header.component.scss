@@ -78,6 +78,45 @@ header {
                             }
                         }
                     }
+
+                    .profile-badge-wrapper {
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+
+                        .avatar {
+                            width: 40px;
+                            height: 40px;
+                            background: #77D8AF;
+                            border: 1px solid #6AC9A1;
+                            box-sizing: border-box;
+                            font-weight: 500;
+                            font-size: 20px;
+                            line-height: 20px;
+                            color: #FFFFFF;
+                            border-radius: 20px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin-right: -23px;
+                            z-index: 1;
+                        }
+
+                        .username {
+                            background: #ECF4F1;
+                            border: 1px solid #CEE4DB;
+                            box-sizing: border-box;
+                            border-radius: 10px;
+                            font-weight: normal;
+                            font-size: 16px;
+                            line-height: 16px;
+                            color: #005264;
+                            padding-top: 10px;
+                            padding-bottom: 10px;
+                            padding-left: 33px;
+                            padding-right: 13px;
+                        }
+                    }
                 }
             }
         }

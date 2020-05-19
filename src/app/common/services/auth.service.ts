@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
-import { BaseHttpService } from '../../common/services/base-http.service';
-import { LocalStorageHelper } from '../../common/helpers';
-import { Router } from '@angular/router';
-import { SignInRequest, SignInConfirmRequest } from '../../common/models/request';
-import { ResponseModel, SignInResponse, SignInConfirmResponse } from '../../common/models/response';
+import { BaseHttpService } from './base-http.service';
+import { LocalStorageHelper } from '../helpers';
+import { SignInRequest, SignInConfirmRequest } from '../models/request';
+import { ResponseModel, SignInResponse, SignInConfirmResponse } from '../models/response';
 
 @Injectable()
 export class AuthService extends BaseHttpService {

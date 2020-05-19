@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../../services';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/common/services/auth.service';
 
 declare var $: any;
 
