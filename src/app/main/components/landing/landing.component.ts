@@ -28,7 +28,8 @@ export class LandingComponent implements OnInit {
     ngOnInit(): void {
         setTimeout(() => {
             this.isShowMainBannerPresent = true;
-        }, 1000);
+        }, 1300);
+        
 
         this.reviews = [
             {

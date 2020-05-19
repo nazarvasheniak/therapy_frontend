@@ -77,22 +77,24 @@ body {
     letter-spacing: 0.05em;
     color: #ffffff;
     text-transform: uppercase;
-    background: linear-gradient(180deg, #32A776 0%, #049A5B 50.52%, #06A562 100%);
-    background-size: 1px 144px;
-    border: 0.5px solid rgba(255, 255, 255, 0.8);
+    background: linear-gradient(180deg, #11D26A 0%, #027437 100%);
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
+    background-size: 1px 140px;
+    background-position: 30px;
     box-sizing: border-box;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
     border-radius: 16px;
     outline: none;
     cursor: pointer;
-    transition: .5s ease;
+    transition: .3s ease;
 
     &:hover {
-        background-position: 72px;
+        background-position: 10px -3px;
     }
 
     &:active {
-        background: #049A5B;
+        transition:.1s;
+        background-position: 90px;
     }
 }
 
