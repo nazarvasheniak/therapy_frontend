@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 declare var $: any;
@@ -10,9 +10,13 @@ declare var $: any;
 })
 export class WebinarModalComponent implements OnInit {
 
+    @ViewChild("name") name: ElementRef;
+    @ViewChild("email") email: ElementRef;
+    @ViewChild("phone") phone: ElementRef;
+
     public webinarForm: FormGroup;
 
-    constructor(private el: ElementRef) { }
+    constructor() { }
 
     ngOnInit(): void {
         this.initWebinarForm()
