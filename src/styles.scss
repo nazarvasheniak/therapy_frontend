@@ -151,6 +151,17 @@ button.scroll-top {
     }
 }
 
+.scroll-down {
+    background: url(./assets/images/ic_scroll_down.svg);
+    width:25px;
+    height:128px;
+    position: absolute;
+    animation:scroll-down 2s infinite, fadeInUp 0.9s;
+    margin-left: 35px;
+    bottom:40px;
+    z-index:2;
+}
+
 // this makes the .modal visible
 .show {
     display: block;
@@ -160,6 +171,11 @@ button.scroll-top {
     display: none;
 }
 
+@media screen and (max-width: 1310px) {
+    .scroll-down {
+        right:35px
+    }
+}
 @media screen and (min-width: 1200px) {
     .container {
         width: 1200px;
@@ -181,6 +197,12 @@ button.scroll-top {
 @media screen and (min-width: 576px) and (max-width: 767px) {
     .container {
         width: 540px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .scroll-down {
+        display:none;
     }
 }
 
