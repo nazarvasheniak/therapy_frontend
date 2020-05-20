@@ -31,11 +31,20 @@ export class WebinarModalComponent implements OnInit {
         });
 
         $("#phone").mask("+7 (999) 999-99-99");
+
+        this.webinarForm.controls['email'].valueChanges
+            .subscribe(value => {
+                if (!value || value == "") {
+                    this.email.nativeElement.classList.remove('filled');
+                } else {
+                    this.email.nativeElement.classList.add('filled');
+                }
+            });
     }
 
     close() {
-        let webinarModal = document.getElementById('webinar-modal')
-        webinarModal.classList.remove('show')
+        let webinarModal = document.getElementById('webinar-modal');
+        webinarModal.classList.remove('show');
         webinarModal.classList.add('hidden');
     }
 

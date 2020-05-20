@@ -78,9 +78,9 @@
 
                 &.error {
                     label {
-                        &.valid {
+                        /* &.valid {
                             display: none;
-                        }
+                        } */
 
                         &.error {
                             display: inline-block;
@@ -137,7 +137,8 @@
                     }
     
                     &:focus + label,
-                    &:valid + label {
+                    &:valid + label,
+                    &.filled + label {
                         top: 7px;
                         font-size: 8px;
                         letter-spacing: 0.06em;

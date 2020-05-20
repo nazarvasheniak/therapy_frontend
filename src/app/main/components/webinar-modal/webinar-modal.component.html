@@ -17,23 +17,20 @@
                     }">
                         <input #name type="text" formControlName="name" required />
                         <label class="valid" (click)="labelClick('name')">Имя</label>
-                        <label class="error">Поле заполнено некорректно</label>
                     </div>
     
                     <div class="form-group" [ngClass] = "{
                         'error': webinarForm.controls['email'].hasError('required') && webinarForm.controls['email'].touched
                     }">
-                        <input #email type="text" formControlName="email" required />
+                        <input #email type="email" formControlName="email" required />
                         <label class="valid" (click)="labelClick('email')">E-mail</label>
-                        <label class="error">Поле заполнено некорректно</label>
                     </div>
     
                     <div class="form-group" [ngClass] = "{
                         'error': webinarForm.controls['phone'].hasError('required') && webinarForm.controls['phone'].touched
                     }">
-                        <input #phone type="text" id="phone" formControlName="phone" (keyup)="inputEvent('phone', $event)" required />
+                        <input #phone type="phone" id="phone" formControlName="phone" (keyup)="inputEvent('phone', $event)" required />
                         <label class="valid" (click)="labelClick('phone')">Телефон</label>
-                        <label class="error">Поле заполнено некорректно</label>
                     </div>
     
                     <div class="form-group-checkbox">
