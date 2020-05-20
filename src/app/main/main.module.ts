@@ -10,6 +10,8 @@ import { WebinarModalComponent } from './components/webinar-modal/webinar-modal.
 import { SafePipe } from '../common/pipes';
 import { MainComponent } from './components/main/main.component';
 import { LayoutModule } from '../layout/layout.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VideoReviewsComponent } from './components/video-reviews/video-reviews.component';
 
 @NgModule({
     declarations: [
@@ -19,6 +21,7 @@ import { LayoutModule } from '../layout/layout.module';
         LandingFooterComponent,
         ModalComponent,
         WebinarModalComponent,
+        VideoReviewsComponent,
         SafePipe
     ],
     imports: [
@@ -26,7 +29,8 @@ import { LayoutModule } from '../layout/layout.module';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        LayoutModule
+        LayoutModule,
+        NgbModule
     ],
     providers: [
         

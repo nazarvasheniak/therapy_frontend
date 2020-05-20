@@ -18,14 +18,14 @@
                         </button>
                     </div>
                 </li>
-                <li *ngIf="isLoggedIn">
+                <li *ngIf="isLoggedIn && user">
                     <div class="profile-badge-wrapper">
                         <div class="avatar">
-                            А
+                            {{ getAvatar() }}
                         </div>
 
                         <div class="username">
-                            Ольга
+                            {{ user.firstName }}
                         </div>
                     </div>
                 </li>

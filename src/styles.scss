@@ -15,6 +15,13 @@ body {
     background-image: url(./assets/images/bg.svg);
     background-repeat: repeat;
 }
+.carousel-control-prev,
+.carousel-control-next {
+    width: 58px !important;
+    height: 58px !important;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+}
 
 .auth-wrapper {
     background: #254951;
@@ -182,3 +189,5 @@ button.scroll-top {
         width: auto;
     }
 }
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

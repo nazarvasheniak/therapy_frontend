@@ -10,6 +10,7 @@ import { CabinetModule } from './cabinet/cabinet.module';
 import { MainModule } from './main/main.module';
 import { LayoutModule } from './layout/layout.module';
 import { AuthService } from './common/services/auth.service';
+import { UsersService } from './common/services';
 
 @NgModule({
 	declarations: [
@@ -29,7 +30,8 @@ import { AuthService } from './common/services/auth.service';
 		
 	],
 	providers: [
-		AuthService
+		AuthService,
+		UsersService
 	],
 	bootstrap: [AppComponent]
 })
