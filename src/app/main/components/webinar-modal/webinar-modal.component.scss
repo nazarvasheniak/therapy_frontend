@@ -78,9 +78,9 @@
 
                 &.error {
                     label {
-                        /* &.valid {
+                        &.valid {
                             display: none;
-                        } */
+                        }
 
                         &.error {
                             display: inline-block;
@@ -100,10 +100,10 @@
                     left: 16px;
                     font-size: 16px;
                     color: #C4C4C4;
-                    -webkit-transition: all .4s;
-                    -moz-transition: all .4s;
-                    -o-transition: all .4s;
-                    transition: all .4s;
+                    -webkit-transition: all .2s ease;
+                    -moz-transition: all .2s ease;
+                    -o-transition: all .2s ease;
+                    transition: all .2s ease;
                     cursor: text;
 
                     &.error {
@@ -115,7 +115,10 @@
                         color: #FF5353;
                     }
                 }
-    
+
+                input[type=phone] {
+                    letter-spacing: 0.1em;
+                }
                 input {
                     width: 100%;
                     padding-top: 23px;
@@ -132,18 +135,26 @@
                         color: #98BDC3;
                     }
 
-                    &:valid {
+                    &:focus {
                         border: 1px solid #85CFA3;
                     }
-    
-                    &:focus + label,
-                    &:valid + label,
-                    &.filled + label {
-                        top: 7px;
+                    
+                    &:focus + label {
+                        -webkit-transform: translateY(-14px);
+                        -ms-transform: translateY(-14px);
+                        transform: translateY(-14px);
                         font-size: 8px;
                         letter-spacing: 0.06em;
                         text-transform: uppercase;
                     }
+                }
+                input:not(:placeholder-shown) + label {
+                    -webkit-transform: translateY(-14px);
+                        -ms-transform: translateY(-14px);
+                        transform: translateY(-14px);
+                    font-size: 8px;
+                    letter-spacing: 0.06em;
+                    text-transform: uppercase;
                 }
             }
 
@@ -155,13 +166,22 @@
                 align-items: center;
 
                 input {
-                    position: absolute;
-                    width: 0;
-                    height: 0;
-                    opacity: 0;
-                    left: 50%;
+                    cursor:pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    -webkit-appearance:none;
+                    outline: none;
+                    min-width: 24px;
+                    max-width: 24px;
+                    height: 24px;
+                    border: 1px solid #AFAFAF;
+                    border-radius: 6px;
 
-                    &:checked ~ .custom-checkbox {
+                    &:checked ~ label > a, &:checked ~ label {
+                        color:#2AA571;
+                    }
+                    &:checked {
                         border: 1px solid #2AA571;
 
                         &::after {
@@ -187,11 +207,17 @@
 
                 label,
                 label > a {
+                    transition:.3s ease;
+                    cursor:pointer;
                     font-weight: normal;
                     font-size: 12px;
                     line-height: 16px;
                     letter-spacing: -0.02em;
                     color: #AFAFAF;
+                }
+
+                label > a:hover {
+                    opacity:.6
                 }
 
                 .custom-checkbox {
@@ -206,6 +232,7 @@
 
         button[type='submit'] {
             width: 100%;
+            margin-top: 18px;
 
             &:disabled {
                 background: #E7E7E7;

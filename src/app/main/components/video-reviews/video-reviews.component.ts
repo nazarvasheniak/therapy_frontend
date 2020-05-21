@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
+import { SwiperDirective } from 'ngx-swiper-wrapper';
 
 @Component({
     selector: 'video-reviews',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
     styleUrls: ['./video-reviews.component.scss']
 })
 export class VideoReviewsComponent {
-    images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+
+    currentSlide = 0;
+
+    constructor() {
+    }
 }
