@@ -35,11 +35,21 @@ export class WebinarModalComponent implements OnInit {
             phone: new FormControl(null)
         });
 
-        $("#phone").mask("+7 (999) 999-99-99");
+        $("#phone").mask("+7 (999) 999-99-99", { autoclear: false });
     }
 
     inputEvent(name: string, value: string) {
         this.webinarModalForm.controls[name].setValue(value);
+
+        value = value.replace(/-/g, "").replace("(", "").replace(")", "").replace(/ /g, "").replace(/_/g, "");
+
+        if (value.length != 12) {
+            this.webinarModalForm.controls[name].setErrors({
+                invalid: true
+            });
+        }
+
+        console.log(this.webinarModalForm);
     }
 
     submitWebinarModalForm(form: FormGroup) {

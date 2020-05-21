@@ -72,6 +72,12 @@
         margin-top: 18px;
 
         .form-wrapper {
+            form:invalid button {
+                opacity: .3;
+                filter: grayscale(1) brightness(1.2) contrast(1);
+                border: 0.5px solid #E7E7E7;
+                box-shadow: none;
+            } 
             .form-group {
                 position: relative;
                 margin-top: 18px;
@@ -119,6 +125,7 @@
                 input[type=phone] {
                     letter-spacing: 0.1em;
                 }
+            
                 input {
                     width: 100%;
                     padding-top: 23px;
@@ -130,7 +137,7 @@
                     font-size: 16px;
                     color: #131313;
                     outline: none;
-    
+                    
                     &::placeholder {
                         color: #98BDC3;
                     }
@@ -233,12 +240,6 @@
         button[type='submit'] {
             width: 100%;
             margin-top: 18px;
-
-            &:disabled {
-                background: #E7E7E7;
-                border: none;
-                box-shadow: none;
-            }
         }
     }
 
