@@ -10,7 +10,7 @@ import { CabinetModule } from './cabinet/cabinet.module';
 import { MainModule } from './main/main.module';
 import { LayoutModule } from './layout/layout.module';
 import { AuthService } from './common/services/auth.service';
-import { UsersService } from './common/services';
+import { UsersService, PublicService } from './common/services';
 
 @NgModule({
 	declarations: [
@@ -31,7 +31,8 @@ import { UsersService } from './common/services';
 	],
 	providers: [
 		AuthService,
-		UsersService
+		UsersService,
+		PublicService
 	],
 	bootstrap: [AppComponent]
 })

@@ -11,10 +11,10 @@
     
         <div class="modal-content">
             <div class="form-wrapper">
-                <form action="asfaf">
+                <form [formGroup]="webinarModalForm" (ngSubmit)="submitWebinarModalForm(webinarModalForm)" ngNativeValidate>
                     <div class="form-group">
-                        <input #name type="text" formControlName="name"  placeholder="&nbsp;" required />
-                        <label class="valid" (click)="labelClick('name')">Имя</label>
+                        <input #first_name type="text" formControlName="first_name"  placeholder="&nbsp;" required />
+                        <label class="valid" (click)="labelClick('first_name')">Имя</label>
                     </div>
     
                     <div class="form-group">
@@ -23,7 +23,7 @@
                     </div>
     
                     <div class="form-group">
-                        <input #phone type="phone" data-mask="00 - 00 - 00" id="phone" formControlName="phone" placeholder="&nbsp;" required />
+                        <input #phone type="phone" id="phone" formControlName="phone" (keyup)="inputEvent('phone', $event.target.value)" placeholder="&nbsp;" required />
                         <label class="valid" (click)="labelClick('phone')">Телефон</label>
                     </div>
     

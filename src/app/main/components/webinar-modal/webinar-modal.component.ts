@@ -1,4 +1,8 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Inject } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { PublicService } from 'src/app/common/services';
+import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 
 declare var $: any;
 
@@ -9,14 +13,45 @@ declare var $: any;
 })
 export class WebinarModalComponent implements OnInit {
 
-    @ViewChild("name") name: ElementRef;
+    @ViewChild("first_name") first_name: ElementRef;
     @ViewChild("email") email: ElementRef;
     @ViewChild("phone") phone: ElementRef;
 
-    constructor() { }
+    webinarModalForm: FormGroup;
+
+    constructor(
+        private publicService: PublicService,
+        @Inject(DOCUMENT) private document: Document
+    ) { }
 
     ngOnInit(): void {
-        $("#phone").mask("+7 (999) 999-99-99", {autoclear: false});
+        this.initWebinarModalForm();
+    }
+    
+    private initWebinarModalForm() {
+        this.webinarModalForm = new FormGroup({
+            first_name: new FormControl(null),
+            email: new FormControl(null),
+            phone: new FormControl(null)
+        });
+
+        $("#phone").mask("+7 (999) 999-99-99");
+    }
+
+    inputEvent(name: string, value: string) {
+        this.webinarModalForm.controls[name].setValue(value);
+    }
+
+    submitWebinarModalForm(form: FormGroup) {
+        const request = new FormData();
+        request.append('formParams[first_name]', form.value['name']);
+        request.append('formParams[email]', form.value['email']);
+        request.append('formParams[phone]', form.value['phone']);
+
+        this.publicService.sendWebinarForm(request)
+            .subscribe(res => {
+                this.document.location.href = res.data.redirectUrl;
+            });
     }
 
     close() {
