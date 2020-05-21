@@ -23,6 +23,13 @@ export class ConfirmationComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private authService: AuthService
     ) {
+        this.authService.isLoggedIn
+            .subscribe(logged => {
+                if (logged) {
+                    this.router.navigate(['/']);
+                }
+            });
+
         this.activatedRoute.queryParams
             .subscribe(params => {
                 if (!params['id']) {
@@ -60,7 +67,9 @@ export class ConfirmationComponent implements OnInit {
             code: code
         })
         .subscribe(result => {
-            console.log(result);
+            if (result.success) {
+                this.router.navigate(['/']);
+            }
         });
     }
     

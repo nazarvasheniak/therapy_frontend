@@ -19,7 +19,13 @@ export class SignInComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private router: Router) {
-
+            
+        this.authService.isLoggedIn
+            .subscribe(logged => {
+                if (logged) {
+                    this.router.navigate(['/']);
+                }
+            });
     }
 
     ngOnInit(): void {

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/common/services';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-signup',
@@ -10,8 +12,16 @@ export class SignUpComponent implements OnInit {
 
     public signUpForm: FormGroup;
 
-    constructor() {
-
+    constructor(
+        private authService: AuthService,
+        private router: Router
+    ) {
+        this.authService.isLoggedIn
+            .subscribe(logged => {
+                if (logged) {
+                    this.router.navigate(['/']);
+                }
+            });
     }
 
     ngOnInit(): void {
