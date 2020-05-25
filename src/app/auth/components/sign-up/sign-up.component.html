@@ -12,27 +12,27 @@
             </div>
 
             <div class="form-group">
-                <input type="text" formControlName="firstName" />
+                <input type="text" formControlName="firstName" required />
                 <label>Имя</label>
             </div>
 
             <div class="form-group">
-                <input type="text" formControlName="lastName" />
+                <input type="text" formControlName="lastName" required />
                 <label>Фамилия</label>
             </div>
 
             <div class="form-group">
-                <input type="text" formControlName="phoneNumber" />
+                <input #phoneNumber id="phoneNumber" type="text" formControlName="phoneNumber" (keyup)="inputEvent($event)" required />
                 <label>Телефон</label>
             </div>
 
             <div class="form-group">
-                <input type="text" formControlName="email" />
+                <input type="text" formControlName="email" required />
                 <label>E-Mail</label>
             </div>
 
             <div class="form-group">
-                <textarea formControlName="problem"></textarea>
+                <textarea formControlName="problem" required></textarea>
                 <label>Какая у вас проблема?</label>
             </div>
 

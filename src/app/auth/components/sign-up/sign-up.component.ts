@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/common/services';
 import { Router } from '@angular/router';
+import { SignUpRequest } from 'src/app/common/models/request';
+
+declare var $: any;
 
 @Component({
 	selector: 'app-signup',
@@ -36,9 +39,45 @@ export class SignUpComponent implements OnInit {
             email: new FormControl(null, [Validators.required]),
             problem: new FormControl(null, [Validators.required])
         });
+
+        $("#phoneNumber").mask("+7 (999) 999-99-99", { autoclear: false });
+    }
+
+    public inputEvent(event) {
+        this.signUpForm.controls['phoneNumber'].setValue(event.target.value);
+    }
+
+    private normalizePhoneNumber(value: string): string {
+        if (!value) return value;
+
+        return value.replace(/-/g, "").replace(/ /g, "").replace("(", "").replace(")", "");
     }
 
     public submit(form: FormGroup) {
-        
+        const phone = this.normalizePhoneNumber(form.value['phoneNumber']);
+
+        if (!phone) {
+            alert('error');
+            return;
+        }
+
+        if (phone.includes('_')) {
+            alert('length error');
+            return;
+        }
+
+        const request: SignUpRequest = form.value;
+        request.phoneNumber = phone;
+
+        this.authService.signUp(request)
+            .subscribe(res => {
+                if (!res.success) {
+                    alert(res.message);
+
+                    return;
+                }
+
+                this.router.navigate(['/sign-in']);
+            });
     }
 }

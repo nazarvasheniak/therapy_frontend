@@ -29,8 +29,6 @@ export class SignInComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        $("#phone").mask("+7 (999) 999-99-99");
-
         this.createSignInForm();
     }
 
@@ -38,6 +36,8 @@ export class SignInComponent implements OnInit {
         this.signInForm = new FormGroup({
             phone: new FormControl(null, [Validators.required])
         });
+
+        $("#phone").mask("+7 (999) 999-99-99", { autoclear: false });
     }
 
     public inputEvent(event) {

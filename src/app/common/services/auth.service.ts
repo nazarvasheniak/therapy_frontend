@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 import { BaseHttpService } from './base-http.service';
 import { LocalStorageHelper } from '../helpers';
-import { SignInRequest, SignInConfirmRequest } from '../models/request';
+import { SignInRequest, SignInConfirmRequest, SignUpRequest } from '../models/request';
 import { ResponseModel, SignInResponse, SignInConfirmResponse } from '../models/response';
 
 @Injectable()
@@ -55,6 +55,10 @@ export class AuthService extends BaseHttpService {
         }
 
         return response;
+    }
+
+    public signUp(request: SignUpRequest) {
+        return this.post<ResponseModel>(`${this.apiUrl}/auth/sign-up`, request);
     }
 
     public signIn(request: SignInRequest) {
