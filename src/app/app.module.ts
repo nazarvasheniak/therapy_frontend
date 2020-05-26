@@ -11,6 +11,7 @@ import { MainModule } from './main/main.module';
 import { LayoutModule } from './layout/layout.module';
 import { AuthService } from './common/services/auth.service';
 import { UsersService, PublicService } from './common/services';
+import { SpecialistsModule } from './specialists/specialists.module';
 
 @NgModule({
 	declarations: [
@@ -24,7 +25,8 @@ import { UsersService, PublicService } from './common/services';
 		AuthModule,
 		CabinetModule,
 		MainModule,
-		LayoutModule
+		LayoutModule,
+		SpecialistsModule
 	],
 	exports: [
 		
