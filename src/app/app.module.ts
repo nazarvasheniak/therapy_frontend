@@ -12,6 +12,7 @@ import { LayoutModule } from './layout/layout.module';
 import { AuthService } from './common/services/auth.service';
 import { UsersService, PublicService } from './common/services';
 import { SpecialistsModule } from './specialists/specialists.module';
+import { ArticlesModule } from './articles/articles.module';
 
 @NgModule({
 	declarations: [
@@ -26,7 +27,8 @@ import { SpecialistsModule } from './specialists/specialists.module';
 		CabinetModule,
 		MainModule,
 		LayoutModule,
-		SpecialistsModule
+		SpecialistsModule,
+		ArticlesModule
 	],
 	exports: [
 		
