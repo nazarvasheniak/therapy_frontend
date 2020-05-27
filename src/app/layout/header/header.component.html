@@ -8,7 +8,7 @@
             <ul>
                 <li><a href="#">Как это работает</a></li>
                 <li><a href="#">Отзывы клиентов</a></li>
-                <li><a href="#">Выбрать специалиста</a></li>
+                <li><a [routerLink]="['/specialists']">Выбрать специалиста</a></li>
                 <li><a href="#">Статьи</a></li>
                 <li *ngIf="!isLoggedIn">
                     <div class="login-wrapper">

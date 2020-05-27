@@ -7,6 +7,7 @@ import { ProfileComponent } from './cabinet/components/profile/profile.component
 import { LandingComponent } from './main/components/landing/landing.component';
 import { MainComponent } from './main/components/main/main.component';
 import { SpecialistsComponent } from './specialists/components/specialists/specialists.component';
+import { SpecialistComponent } from './specialists/components/specialist/specialist.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
 	{ path: 'profile', component: ProfileComponent },
 	{ path: 'landing', component: LandingComponent },
 	{ path: '', component: MainComponent },
-	{ path: 'specialists', component: SpecialistsComponent }
+	{ path: 'specialists', component: SpecialistsComponent },
+	{ path: 'specialist', component: SpecialistComponent }
 ];
 
 @NgModule({

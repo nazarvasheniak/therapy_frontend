@@ -50,8 +50,12 @@ body {
     }
 }
 
-.container {
+.container,
+.article-container {
     margin: 0 auto;
+}
+
+.container {
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -181,11 +185,19 @@ button.scroll-top {
     .container {
         width: 1200px;
     }
+
+    .article-container {
+        width: 802px;
+    }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
     .container {
         width: 960px;
+    }
+
+    .article-container {
+        width: 720px;
     }
 }
 
@@ -193,10 +205,18 @@ button.scroll-top {
     .container {
         width: 720px;
     }
+
+    .article-container {
+        width: 720px;
+    }
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) {
     .container {
+        width: 540px;
+    }
+
+    .article-container {
         width: 540px;
     }
 }
@@ -209,6 +229,10 @@ button.scroll-top {
 
 @media screen and (max-width: 575px) {
     .container {
+        width: auto;
+    }
+
+    .article-container {
         width: auto;
     }
 }
