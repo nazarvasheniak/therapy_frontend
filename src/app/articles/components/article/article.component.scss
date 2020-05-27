@@ -1,0 +1,66 @@
+.article-head {
+    border-bottom: 0.5px solid #AABFB4;
+    padding-bottom: 24px;
+
+    .article-info {
+        margin-top: 32px;
+        display: flex;
+        align-items: center;
+
+        .article-title {
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 32px;
+            color: #162B1E;
+        }
+
+        .article-likes {
+            margin-left: 40px;
+            font-family: Poppins;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 14px;
+            color: #D40026;
+            display: flex;
+            align-items: center;
+
+            > img {
+                margin-left: 8.4px;
+            }
+        }
+
+
+        .article-comments {
+            margin-left: 24px;
+            font-family: Poppins;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 14px;
+            color: #A9A9A9;
+            display: flex;
+            align-items: center;
+
+            > img {
+                margin-left: 8.8px;
+            }
+        }
+
+        .article-date {
+            font-family: 'Poppins', sans-serif;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 14px;
+            color: #9EACA9;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 0;
+
+            > img {
+                margin-right: 9px;
+            }
+        }
+    }
+}

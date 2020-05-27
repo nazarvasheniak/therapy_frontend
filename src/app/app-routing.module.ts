@@ -9,6 +9,7 @@ import { MainComponent } from './main/components/main/main.component';
 import { SpecialistsComponent } from './specialists/components/specialists/specialists.component';
 import { SpecialistComponent } from './specialists/components/specialist/specialist.component';
 import { ArticlesComponent } from './articles/components/articles/articles.component';
+import { ArticleComponent } from './articles/components/article/article.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
 	{ path: '', component: MainComponent },
 	{ path: 'specialists', component: SpecialistsComponent },
 	{ path: 'specialist', component: SpecialistComponent },
-	{ path:'articles', component: ArticlesComponent }
+	{ path:'articles', component: ArticlesComponent },
+	{ path: 'article', component: ArticleComponent }
 ];
 
 @NgModule({
