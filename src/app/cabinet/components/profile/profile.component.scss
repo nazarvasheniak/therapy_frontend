@@ -1,0 +1,426 @@
+.content-wrapper {
+    display: flex;
+
+    content {
+        width: 954px;
+        background: #ffffff;
+        margin-left: 30px;
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        border-radius: 14px;
+
+        .problems-list {
+            .problem-block {
+                margin-top: 16px;
+                background: #F6FBF8;
+                border: 1px solid #CEEADC;
+                box-sizing: border-box;
+                padding-left: 24px;
+                padding-right: 24px;
+                padding-top: 24px;
+                padding-bottom: 24px;
+                border-radius: 10px;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+
+                .block-head {
+                    font-weight: normal;
+                    font-size: 12px;
+                    line-height: 17px;
+                    text-transform: uppercase;
+                    color: #BBD6C8;
+                    
+                }
+
+                .problem-title {
+                    margin-top: 5px;
+                    font-weight: normal;
+                    font-size: 24px;
+                    line-height: 24px;
+                    color: #005264;
+                }
+
+                .problem-assets {
+                    margin-top: 24px;
+                    display: flex;
+                    align-items: center;
+
+                    .problem-asset {
+                        background: #FFFFFF;
+                        border: 1px solid #E3F2EB;
+                        box-sizing: border-box;
+                        box-shadow: 0px 4px 20px #E2EEE7;
+                        border-radius: 10px;
+                        padding-top: 21px;
+                        padding-bottom: 21px;
+                        padding-left: 24px;
+                        padding-right: 16px;
+                        margin-left: 16px;
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+
+                        &:first-child {
+                            margin-left: 0;
+                        }
+
+                        &.empty {
+                            cursor: default;
+
+                            .asset-info {
+                                .title {
+                                    color: #CDD8D1;
+                                }
+
+                                .count {
+                                    color: #CDD8D1;
+                                }
+                            }
+                        }
+
+                        .asset-icon {
+                            width: 48px;
+                            height: 48px;
+                        }
+
+                        .asset-info {
+                            margin-left: 21px;
+
+                            .title {
+                                font-weight: normal;
+                                font-size: 12px;
+                                line-height: 17px;
+                                letter-spacing: 0.1em;
+                                text-transform: uppercase;
+                                color: #B6C5BC;
+                            }
+
+                            .count {
+                                font-family: Poppins;
+                                font-style: normal;
+                                font-weight: 300;
+                                font-size: 32px;
+                                line-height: 32px;
+                                color: #005264;
+                                margin-top: 3px;
+                            }
+                        }
+
+                        .asset-button {
+                            margin-left: 2px;
+                            margin-top: 20px;
+                        }
+                    }
+                }
+
+                .session-block {
+                    background: #FFFFFF;
+                    border: 1px solid #E3F2EB;
+                    box-sizing: border-box;
+                    box-shadow: 0px 4px 20px #E2EEE7;
+                    border-radius: 10px;
+                    padding-top: 20px;
+                    padding-bottom: 20px;
+                    margin-top: 16px;
+
+                    .session-block-head {
+                        border-bottom: 1px solid #E2F1EA;
+                        padding-bottom: 20px;
+
+                        .content-wrapper {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding-left: 24px;
+                            padding-right: 24px;
+
+                            .session-block-title {
+                                display: flex;
+                                align-items: center;
+                                font-weight: normal;
+                                font-size: 24px;
+                                line-height: 24px;
+                                color: #005264;
+
+                                .session-date {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: center;
+                                    align-items: center;
+                                    background: #F6FBF8;
+                                    border: 1px solid #DBF8E6;
+                                    box-sizing: border-box;
+                                    width: 54px;
+                                    height: 54px;
+                                    border-radius: 28px;
+                                    margin-right: 13px;
+    
+                                    .day {
+                                        font-family: Poppins;
+                                        font-style: normal;
+                                        font-weight: 300;
+                                        font-size: 22px;
+                                        line-height: 22px;
+                                        color: #005264;
+                                    }
+    
+                                    .month {
+                                        margin-top: 4px;
+                                        font-weight: normal;
+                                        font-size: 10px;
+                                        line-height: 10px;
+                                        letter-spacing: 0.18em;
+                                        text-transform: uppercase;
+                                        color: #9EACA9;
+                                    }
+                                }
+                            }
+    
+                            .session-specialist {
+                                display: flex;
+                                align-items: center;
+    
+                                .specialist-photo {
+                                    width: 43px;
+                                    height: 43px;
+                                }
+    
+                                .specialist-name {
+                                    margin-left: 10px;
+                                    font-weight: 500;
+                                    font-size: 16px;
+                                    line-height: 16px;
+                                    color: #005264;
+                                }
+    
+                                .specialist-rating {
+                                    margin-left: 10px;
+                                    display: flex;
+                                    align-items: center;
+                                    font-weight: normal;
+                                    font-size: 14px;
+                                    line-height: 16px;
+                                    color: #DEBA39;
+    
+                                    > .icon {
+                                        margin-right: 3px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .session-block-bottom {
+                        padding-top: 20px;
+
+                        .content-wrapper {
+                            display: flex;
+                            align-items: center;
+                            padding-left: 24px;
+                            padding-right: 24px;
+
+                            .session-deposit {
+                                display: flex;
+                                align-items: center;
+                                font-weight: normal;
+                                font-size: 16px;
+                                line-height: 16px;
+                                color: #BED4CB;
+                                
+                                .session-deposit-balance {
+                                    margin-left: 6px;
+                                    display: flex;
+                                    align-items: center;
+                                    font-family: Poppins;
+                                    font-style: normal;
+                                    font-weight: normal;
+                                    font-size: 16px;
+                                    line-height: 16px;
+                                    color: #BED4CB;
+
+                                    .icon {
+                                        margin-right: 6px;
+                                    }
+                                }
+                            }
+
+                            .session-actions {
+                                margin-left: auto;
+                                margin-right: 0;
+                                display: flex;
+                                align-items: center;
+
+                                &.session-actions-type-2 {
+                                    margin-left: 0;
+                                    margin-right: auto;
+
+                                    .session-action {
+                                        margin-left: 40px;
+
+                                        &:first-child {
+                                            margin-left: 0;
+                                        }
+
+                                        > .button-green {
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            padding-left: 24px;
+                                            padding-right: 24px;
+                                            padding-top: 0;
+                                            padding-bottom: 0;
+                                            height: 68px;
+                                            border-radius: 10px;
+                                            letter-spacing: 0.135em;
+                                            outline: none;
+
+                                            .icon {
+                                                margin-right: 16px;
+                                            }
+                                        }
+
+                                        > .button-transparent {
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            padding-left: 0;
+                                            padding-right: 0;
+                                            padding-top: 0;
+                                            padding-bottom: 0;
+                                            border: 0;
+                                            outline: none;
+                                            font-weight: bold;
+                                            font-size: 14px;
+                                            line-height: 17px;
+                                            letter-spacing: 0.135em;
+                                            color: #32A776;
+                                            text-transform: uppercase;
+                                            
+                                            .icon {
+                                                width: 20px;
+                                                height: 20px;
+                                                margin-right: 16px;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .session-action {
+                                    cursor: pointer;
+
+                                    &.reject {
+                                        font-weight: normal;
+                                        font-size: 16px;
+                                        line-height: 22px;
+                                        text-decoration-line: underline;
+                                        color: #139E64;
+                                        margin-right: 24px;
+                                    }
+
+                                    &.resolve {
+                                        > button {
+                                            padding-top: 18px;
+                                            padding-bottom: 18px;
+                                            padding-left: 20px;
+                                            padding-right: 20px;
+                                            font-weight: bold;
+                                            font-size: 16px;
+                                            line-height: 16px;
+                                            letter-spacing: normal;
+                                            text-transform: none;
+                                            border-radius: 10px;
+                                            color: #FFFFFF;                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .session-block-content {
+                        .content-wrapper {
+                            padding-left: 24px;
+                            padding-right: 24px;
+
+                            .session-actions {
+                                display: flex;
+                                align-items: center;
+
+                                .session-action {
+                                    margin-right: 40px;
+
+                                    &:last-child {
+                                        margin-right: 0;
+                                    }
+
+                                    > .button-green {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        padding-left: 24px;
+                                        padding-right: 24px;
+                                        padding-top: 0;
+                                        padding-bottom: 0;
+                                        height: 68px;
+                                        border-radius: 10px;
+                                        letter-spacing: 0.135em;
+                                        outline: none;
+        
+                                        .icon {
+                                            width: 20px;
+                                            height: 20px;
+                                            margin-right: 16px;
+                                        }
+                                    }
+
+                                    &.info {
+                                        display: flex;
+                                        align-items: center;
+
+                                        .icon-info {
+                                            width: 20px;
+                                            height: 20px;
+                                            margin-right: 16px;
+                                        }
+    
+                                        .info-text {
+                                            max-width: 315px;
+                                            font-weight: normal;
+                                            font-size: 14px;
+                                            line-height: 20px;
+                                            color: #CDD8D1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .new-problem {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 16px;
+
+            .new-problem-button {
+                width: 64px;
+                height: 64px;
+                background: #E9F9EF;
+                border: 0.5px solid #A0DFB9;
+                box-sizing: border-box;
+                border-radius: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -39,4 +39,8 @@ export class HeaderComponent {
 	getAvatar() {
 		return StringHelper.getFirstLetter(this.user.lastName);
 	}
+
+	getPhone() {
+		return StringHelper.formatPhone(this.user.phoneNumber);
+	}
 }

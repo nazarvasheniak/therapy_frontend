@@ -10,6 +10,7 @@
                 <li><a href="#">Отзывы клиентов</a></li>
                 <li><a [routerLink]="['/specialists']">Выбрать специалиста</a></li>
                 <li><a [routerLink]="['/articles']">Статьи</a></li>
+
                 <li *ngIf="!isLoggedIn">
                     <div class="login-wrapper">
                         <button type="button" class="login-button" [routerLink]="['/sign-in']">
@@ -18,6 +19,15 @@
                         </button>
                     </div>
                 </li>
+
+                <li class="user-phone" *ngIf="isLoggedIn && user">
+                    <span>
+                        <img src="../../../assets/images/icon-phone.svg" />
+
+                        {{ getPhone() }}
+                    </span>
+                </li>
+
                 <li *ngIf="isLoggedIn && user">
                     <div class="profile-badge-wrapper">
                         <div class="avatar">

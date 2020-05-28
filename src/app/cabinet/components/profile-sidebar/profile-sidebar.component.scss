@@ -1,0 +1,116 @@
+aside {
+    width: 234px;
+
+    .sidebar-nav {
+        background: #ffffff;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        padding-left: 23px;
+        padding-right: 23px;
+        border-radius: 14px;
+
+        nav {
+            ul {
+                li {
+                    margin-top: 28px;
+    
+                    &:first-child {
+                        margin-top: 0;
+                    }
+    
+                    a {
+                        display: flex;
+                        align-items: center;
+                        font-weight: normal;
+                        font-size: 16px;
+                        line-height: 19px;
+                        color: #005264;
+                        text-decoration: none;
+                        cursor: pointer;
+    
+                        > svg {
+                            margin-right: 12px;
+                        }
+    
+                        &.active {
+                            color: #32A776;
+    
+                            > svg {
+                                circle,
+                                path {
+                                    stroke: #32A776;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .sidebar-finances {
+        margin-top: 16px;
+        background: #ffffff;
+        padding-top: 20px;
+        padding-bottom: 22px;
+        padding-left: 23px;
+        padding-right: 23px;
+        border-radius: 14px;
+
+        .finances-head {
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 17px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #B6C5BC;
+        }
+
+        .balance-row {
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+
+            .balance {
+                font-family: Poppins;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 24px;
+                line-height: 24px;
+                color: #005264;
+            }
+
+            .balance-lock {
+                display: flex;
+                align-items: center;
+                margin-left: 15.63px;
+                font-family: Poppins;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 16px;
+                color: #BED4CB;
+
+                > img {
+                    margin-right: 7.63px;
+                }
+            }
+        }
+        .pay-button {
+            margin-top: 16px;
+
+            button {
+                padding-top: 10px;
+                padding-bottom: 9px;
+                padding-left: 12px;
+                padding-right: 12px;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 16px;
+                color: #FFFFFF;
+                text-transform: none;
+                border-radius: 10px;
+            }
+        }
+    }
+}
