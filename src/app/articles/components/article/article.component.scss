@@ -64,3 +64,266 @@
         }
     }
 }
+
+.article-content {
+    margin-top: 24px;
+    padding-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.5px solid #AABFB4;
+
+    .article-text {
+        width: 496px;
+        margin-right: 24px;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 22px;
+        color: #364D47;
+    }
+
+    .article-sidebar {
+        width: 282px;
+
+        .author-block {
+            background: #ffffff;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+
+            .content-wrapper {
+                padding-top: 16px;
+                padding-bottom: 13px;
+                padding-left: 20px;
+                padding-right: 20px;
+
+                .title {
+                    font-weight: normal;
+                    font-size: 12px;
+                    line-height: 17px;
+                    letter-spacing: 0.05em;
+                    text-transform: uppercase;
+                    color: #9EACA9;
+                }
+    
+                .author-name {
+                    margin-top: 3px;
+                    cursor: pointer;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 22px;
+                    text-decoration-line: underline;
+                    color: #000000;
+                }
+    
+                .author-info {
+                    margin-top: 18px;
+                    display: flex;
+                    align-items: center;
+    
+                    .author-price {
+                        margin-left: 16px;
+                        width: 67px;
+                        height: 27px;
+                        background: rgba(255, 255, 255, 0.95);
+                        border: 1px solid rgba(0, 0, 0, 0.06);
+                        box-sizing: border-box;
+                        backdrop-filter: blur(20px);
+                        /* Note: backdrop-filter has minimal browser support */
+                        border-radius: 100px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-family: Poppins;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 17px;
+                        text-align: center;
+                        color: #32A776;                    
+                    }
+    
+                    .author-rating {
+                        margin-left: 16px;
+                        display: flex;
+                        align-items: center;
+                        font-family: Poppins;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 16px;
+                        line-height: 18px;
+                        color: #DEBA39;
+    
+                        .icon-star {
+                            margin-right: 7px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .signup-button {
+            > button {
+                background: #ffffff;
+                border: 0;
+                border-bottom-left-radius: 16px;
+                border-bottom-right-radius: 16px;
+                width: 100%;
+                height: 48px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+                font-size: 14px;
+                line-height: 17px;
+                letter-spacing: 0.135em;
+                color: #32A776;       
+                text-transform: uppercase;
+                outline: none;
+                cursor: pointer;
+                
+                &:hover {
+                    background: linear-gradient(180deg, #32A776 0%, #049A5B 100%);
+                    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+}
+
+.article-comments {
+    padding-top: 32px;
+
+    .article-comments-head {
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 24px;
+        color: #162B1E;
+        padding-bottom: 22px;
+    }
+
+    .article-comments-list {
+        .article-comment {
+            margin-top: 32px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            .comment-head {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .comment-author {
+                    display: flex;
+                    align-items: center;
+
+                    .avatar {
+                        margin-right: 10px;
+                        width: 24px;
+                        height: 24px;
+                        background: #5EDD9D;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: normal;
+                        font-size: 12px;
+                        line-height: 12px;
+                        color: #FFFFFF;
+                        border-radius: 12px;
+                    }
+
+                    .name {
+                        font-weight: normal;
+                        font-size: 14px;
+                        line-height: 14px;
+                        color: #9EACA9;
+                    }
+                }
+
+                .comment-date {
+                    display: flex;
+                    align-items: center;
+                    font-family: 'Poppins', sans-serif;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 14px;
+                    color: #9EACA9;
+                    
+                    .icon {
+                        width: 16px;
+                        height: 16px;
+                        margin-right: 9px;
+                    }
+                }
+            }
+
+            .comment-text {
+                margin-top: 20px;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 22px;
+                color: #364D47;
+
+                .reply-link {
+                    color: #364D47;
+                }
+            }
+
+            .reply-button {
+                margin-top: 8px;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 20px;
+                text-decoration-line: underline;
+                color: #168F5C;
+                cursor: pointer;
+            }
+
+            .comment-replies {
+                margin-top: 32px;
+                border-left: 1px solid #CDDAD3;
+                padding-left: 24px;
+            }
+        }
+    }
+
+    .article-add-comment {
+        margin-top: 32px;
+
+        .comment-area {
+            textarea {
+                min-width: 519px;
+                min-height: 115px;
+                background: #F6FBF8;
+                border: 1px solid #D1E2DB;
+                box-sizing: border-box;
+                border-radius: 10px;
+                resize: none;
+                outline: none;
+                padding-top: 23px;
+                padding-left: 16px;
+                padding-right: 16px;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 22px;
+                color: #364D47;
+
+                &::placeholder {
+                    color: #BDD2D1;
+                }
+            }
+        }
+
+        .submit-button {
+            margin-top: 16px;
+
+            > button {
+                letter-spacing: 0.135em;
+                padding: 24px;
+            }
+        }
+    }
+}
