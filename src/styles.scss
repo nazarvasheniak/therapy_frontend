@@ -242,5 +242,10 @@ button.scroll-top {
     background-repeat: repeat;
 }
 
+.swiper-button-prev,
+.swiper-button-next {
+    display: none !important;
+}
+
 /* Importing Bootstrap SCSS file. */
 //@import '~bootstrap/scss/_carousel.scss';

@@ -126,59 +126,7 @@ section {
         text-align: center;        
     }
 
-    .reviews-slider {
+    .section-content {
         margin-top: 49px;
-        background: #FFFFFF;
-        box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        padding-top: 26px;
-        padding-bottom: 26px;
-        padding-left: 50px;
-        padding-right: 26px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .review-content {
-            max-width: 281px;
-
-            .reviewer {
-                display: flex;
-                align-items: center;
-
-                .reviewer-photo {
-                    margin-right: 19px;
-                    width: 48px;
-                    height: 48px;
-                }
-
-                .reviewer-name {
-                    font-weight: bold;
-                    font-size: 18px;
-                    line-height: 25px;
-                    color: #000000;
-                    max-width: 123px;
-                }
-            }
-
-            .review-text {
-                margin-top: 31px;
-                font-weight: normal;
-                font-size: 16px;
-                line-height: 22px;
-                color: #000000;
-            }
-
-            .social {
-                margin-top: 35px;
-            }
-        }
-
-        .review-video {
-            .video-wrapper {
-                width: 519px;
-                height: 292px;
-            }
-        }
     }
 }
