@@ -5,5 +5,5 @@ export class Specialist {
     public id: number;
     public price: number;
     public user: User;
-    public Photo: File;
+    public photo: File;
 }

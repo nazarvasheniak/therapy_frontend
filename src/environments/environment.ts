@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-	//apiEndpoint: "http://185.43.5.164:5000/api",
-	apiEndpoint: "http://localhost:5000/api",
+	apiEndpoint: "http://185.43.5.164:5000/api",
+	//apiEndpoint: "http://localhost:5000/api",
 	production: false
 };
 
