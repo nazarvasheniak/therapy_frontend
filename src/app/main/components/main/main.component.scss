@@ -130,3 +130,223 @@ section {
         margin-top: 49px;
     }
 }
+
+section.specialists {
+    background: #ffffff;
+    padding-top: 71px;
+    padding-bottom: 108px;
+
+    .section-head {
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 58px;
+        color: #162B1E;
+        display: flex;
+        align-items: center;
+        
+        > a {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 24px;
+            text-decoration-line: underline;
+            color: #32A776;
+            margin-left: 32px;
+        }
+    }
+
+    .section-content {
+        margin-top: 49px;
+    }
+
+    .video-reviews {
+        margin-top: 28px;
+
+        .video-review-player {
+            position: relative;
+        }
+
+        .review-content {
+            margin-left: 55px;
+
+            .reviews-switcher {
+                margin-top: 15px;
+
+                nav {
+                    ul {
+                        li {
+                            display: inline-block;
+                            /* margin-left: 6px;
+                            margin-right: 6px; */
+                            cursor: pointer;
+
+                            &:first-child {
+                                margin-left: 0;
+                            }
+
+                            &:last-child {
+                                margin-right: 0;
+                            }
+
+                            img {
+                                padding: 6px;
+                                border-radius: 32px;
+                                width: 62px;
+                                height: 62px;
+                            }
+
+                            &.active {
+                                img {
+                                    border: 1px solid #5DB892;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .review-text {
+                margin-top: 14px;
+                
+                .reviewer-specialization {
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: #21A26C;
+                }
+
+                .reviewer-name {
+                    font-weight: bold;
+                    font-size: 24px;
+                    line-height: 34px;
+                    color: #000000;          
+                }
+
+                .review-text {
+                    max-width: 505px;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: #414141;
+                }
+            }
+
+            .consultations-counter {
+                display: inline-block;
+                margin-top: 27px;
+                margin-bottom: 54px;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 22px;
+                color: #156B47;
+                box-sizing: border-box;
+                border: 1px solid #C5E6D8;
+                border-radius: 16px;
+
+                .title,
+                .title-mobile {
+                    display: inline-block;
+                    padding-top: 19px;
+                    padding-bottom: 19px;
+                    padding-left: 20px;
+                    padding-right: 22px;
+                }
+
+                .counter {
+                    display: inline-block;
+                    padding-top: 19px;
+                    padding-bottom: 19px;
+                    padding-left: 22px;
+                    padding-right: 20px;
+                    border-left: 1px solid #C5E6D8;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    section.specialists {
+        .video-reviews {
+            .review-content {
+                .consultations-counter {
+                    .title {
+                        display: none;
+                    }
+                }
+            }
+
+            .video-review-player {
+                .play-button {
+                    top: 27%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 576px) {
+    section.specialists {
+        .video-reviews {
+            .review-content {
+                .consultations-counter {
+                    .title-mobile {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    section.specialists {
+        .video-reviews {
+            .flex-row {
+                flex-direction: column-reverse;
+            }
+
+            .video-review-player {
+                .video-image {
+                    width: 100%;
+                }
+            }
+
+            .review-content {
+                margin-left: 0;
+
+                .reviews-switcher {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 992px) {
+    section.specialists {
+        .video-reviews {
+            
+            .video-review-player {
+                width: 530px;
+                height: 300px;
+            }
+
+            .review-content {
+                .consultations-counter {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    section.specialists {
+        .video-reviews {
+            .video-review-player {
+                width: 610px;
+                height: 343px;
+            }
+        }
+    }
+}

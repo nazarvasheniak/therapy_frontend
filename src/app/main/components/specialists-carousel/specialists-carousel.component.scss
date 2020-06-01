@@ -1,0 +1,12 @@
+specialists-carousel-item {
+    width: 282px !important;
+    margin-left: 30px;
+
+    &:first-child {
+        margin-left: 0;
+    }
+}
+
+.swiper-container {
+    overflow-x: unset !important;
+}

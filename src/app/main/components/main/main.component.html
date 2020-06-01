@@ -158,3 +158,74 @@
         </div>
     </div>
 </section>
+
+<!-- Specialists -->
+<section class="specialists">
+    <div class="container">
+        <div class="section-head">
+            Специалисты
+
+            <a [routerLink]="['/specialists']">Смотреть всех</a>
+        </div>
+    </div>
+
+    <div class="section-content" *ngIf="specialists">
+        <specialists-carousel [specialists]="specialists"></specialists-carousel>
+
+        <div class="container">
+            <div class="video-reviews">
+                <div class="flex-row">
+                    <!-- <div class="video-review-player">
+                        <a href="#" class="play-button">
+                            <img src="../../../../assets/images/icon-play.svg" />
+                        </a>
+    
+                        <img class="video-image" src="../../../../assets/images/video-review-1.png" />
+                    </div> -->
+    
+                    <div class="video-review-player wow fadeInUp" data-wow-delay="0.3s" [innerHtml]="activeReview.videoLink"></div>
+    
+                    <div class="review-content">
+                        <div class="reviews-switcher wow fadeInUp" data-wow-delay="0.6s">
+                            <nav>
+                                <ul>
+                                    <li *ngFor="let review of reviews" [ngClass]="{ 'active': review == activeReview }" (click)="switchReview(review)">
+                                        <img src="{{ review.image }}" />
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+    
+                        <div class="review-text wow fadeInUp" data-wow-delay="0.7s">
+                            <div class="reviewer-specialization">
+                                Корневой терапевт
+                            </div>
+    
+                            <div class="reviewer-name">
+                                {{ activeReview.name }}
+                            </div>
+    
+                            <div class="review-text">
+                                {{ activeReview.text }}
+                            </div>
+                        </div>
+    
+                        <div class="consultations-counter">
+                            <div class="title">
+                                Проведено консультаций
+                            </div>
+    
+                            <div class="title-mobile">
+                                Консультаций
+                            </div>
+    
+                            <div class="counter">
+                                281
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

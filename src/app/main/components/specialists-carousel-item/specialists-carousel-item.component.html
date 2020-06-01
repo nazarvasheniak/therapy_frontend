@@ -1,0 +1,41 @@
+<div class="specialists-carousel-item">
+    <div class="specialist-photo">
+        <img [src]="specialist.photo.url" />
+    </div>
+
+    <div class="specialist-content">
+        <div class="info">
+            <div class="name">
+                {{ specialist.user.firstName }} {{ specialist.user.lastName }}
+            </div>
+
+            <div class="rating">
+                <div class="score">
+                    <div class="icon-star">
+                        <img src="../../../../assets/images/star.svg" />
+                    </div>
+
+                    5
+                </div>
+
+                <div class="reviews">
+                    <div class="reviews-counter positive">
+                        271
+                    </div>
+    
+                    <div class="reviews-counter neutral">
+                        2
+                    </div>
+    
+                    <div class="reviews-counter negative">
+                        18
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="choose-button">
+            <button type="button">Выбрать</button>
+        </div>
+    </div>
+</div>

@@ -20,7 +20,6 @@ export class LandingComponent implements OnInit {
     public isShowMainBannerPresent = false;
 
     public reviews: Review[];
-
     public activeReview: Review;
 
     constructor(private domSanitizer: DomSanitizer) { }
@@ -73,7 +72,6 @@ export class LandingComponent implements OnInit {
 
     switchReview(review: Review) {
         this.activeReview = review;
-        console.log(this.activeReview)
     }
 
     private normalizePhoneNumber(value: string): string {

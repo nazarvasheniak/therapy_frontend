@@ -1,0 +1,115 @@
+.specialists-carousel-item {
+    width: 282px;
+
+    .specialist-photo {
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        height: 263px;
+        overflow: hidden;
+        
+        > img {
+            display: block;
+        }
+    }
+
+    .specialist-content {
+        background: #FAFFFC;
+        box-sizing: border-box;
+        border: 1px solid #D6EDE2;
+        border-radius: 0px 0px 16px 16px;
+
+        .info {
+            padding-top: 10px;
+            padding-bottom: 15px;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+            padding-left: 16px;
+            padding-right: 16px;
+
+            .name {
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 25px;
+                text-decoration-line: underline;
+                color: #000000;
+            }
+
+            .rating {
+                margin-top: 11px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .score {
+                    display: flex;
+                    align-items: center;
+                    font-family: Poppins;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 18px;
+                    color: #DEBA39;
+                    
+                    .icon-star {
+                        margin-right: 7px;
+                    }
+                }
+
+                .reviews {
+                    display: flex;
+                    align-items: center;
+    
+                    .reviews-counter {
+                        font-family: 'Poppins', sans-serif;
+                        font-weight: normal;
+                        font-size: 16px;
+                        line-height: 22px;
+                        text-decoration-line: underline;
+                        margin-left: 14px;
+    
+                        &:first-child {
+                            margin-left: 0;
+                        }
+    
+                        &.positive {
+                            color: #32A776;
+                        }
+    
+                        &.neutral {
+                            color: #9EACA9;
+                        }
+    
+                        &.negative {
+                            color: #AE2424;
+                        }
+                    }
+                }
+            }
+        }
+
+        .choose-button {
+            button {
+                width: 100%;
+                padding-top: 15px;
+                padding-bottom: 16px;
+                font-weight: bold;
+                font-size: 14px;
+                line-height: 17px;
+                letter-spacing: 0.135em;
+                color: #32A776;
+                background: #FAFFFC;
+                border-radius: 0px 0px 16px 16px;
+                border: none;
+                text-transform: uppercase;
+                cursor: pointer;
+                //transition: .3s ease;
+    
+                &:hover {
+                    background: linear-gradient(180deg, #32A776 0%, #049A5B 100%);
+                    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+                    color: #FFFFFF;
+                    //transition: .3s ease;
+                }
+            }
+        }
+    }
+}
