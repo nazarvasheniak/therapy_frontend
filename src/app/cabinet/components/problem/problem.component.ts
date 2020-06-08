@@ -14,6 +14,7 @@ export class ProblemComponent implements OnInit {
     
     public sessions: Session[];
     public activeSession: Session;
+    public lastSession: Session;
 
     constructor(
         private patientService: PatientService
@@ -36,9 +37,14 @@ export class ProblemComponent implements OnInit {
 
                 this.sessions = res.data;
                 this.activeSession = res.data.find(x => x.status == SessionStatus.Started);
+                
+                if (res.data.length && (res.data[0].status == SessionStatus.Success || res.data[0].status == SessionStatus.Refund)) {
+                    this.lastSession = res.data[0];
+                }
 
                 console.log(this.sessions);
                 console.log(this.activeSession);
+                console.log(this.lastSession);
             });
     }
 }

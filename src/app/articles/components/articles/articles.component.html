@@ -38,8 +38,8 @@
 
         <!-- Page Content -->
         <div class="page-content">
-            <div class="articles-list">
-                <article>
+            <div class="articles-list" *ngIf="articles">
+                <article *ngFor="let article of articles">
                     <div class="article-image">
                         <img src="../../../../assets/images/article-1.png" />
                     </div>
@@ -49,219 +49,27 @@
                             <span class="icon">
                                 <img src="../../../../assets/images/icon-calendar.svg" alt="" />
                             </span>
-    
-                            02 мар 2020
+                            
+                            {{ article.date | date: 'dd MMM yyy' }}
                         </div>
 
-                        <div class="article-title" [routerLink]="['/article']">
-                            Как прекрасна эта жизнь!
-                        </div>
-
-                        <div class="article-short-text">
-                            Значимость этих проблем настолько очевидна, что новая модель организационной деятельности требуют от нас анализа соответствующий условий активизации.
-                        </div>
-
-                        <div class="article-actions">
-                            <div class="article-full" [routerLink]="['/article']">
-                                Читать полностью
-                            </div>
-
-                            <div class="article-author">
-                                <img src="../../../../assets/images/article-author.png" />
-
-                                Олег Мартынов
-                            </div>
-
-                            <div class="article-likes">
-                                17
-
-                                <img src="../../../../assets/images/icon-like.svg" />
-                            </div>
-
-                            <div class="article-comments">
-                                28
-
-                                <img src="../../../../assets/images/icon-comment.svg" />
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <article>
-                    <div class="article-image">
-                        <img src="../../../../assets/images/article-1.png" />
-                    </div>
-
-                    <div class="article-content">
-                        <div class="article-date">
-                            <span class="icon">
-                                <img src="../../../../assets/images/icon-calendar.svg" alt="" />
-                            </span>
-    
-                            02 мар 2020
-                        </div>
-
-                        <div class="article-title" [routerLink]="['/article']">
-                            Как прекрасна эта жизнь!
+                        <div class="article-title" [routerLink]="['/articles', article.id]">
+                            {{ article.title }}
                         </div>
 
                         <div class="article-short-text">
-                            Значимость этих проблем настолько очевидна, что новая модель организационной деятельности требуют от нас анализа соответствующий условий активизации.
+                            {{ article.shortText }}
                         </div>
 
                         <div class="article-actions">
-                            <div class="article-full" [routerLink]="['/article']">
+                            <div class="article-full" [routerLink]="['/articles', article.id]">
                                 Читать полностью
                             </div>
 
-                            <div class="article-author">
-                                <img src="../../../../assets/images/article-author.png" />
+                            <div class="article-author" [routerLink]="['/specialists', article.author.id]">
+                                <img [src]="article.author.photo.url" />
 
-                                Олег Мартынов
-                            </div>
-
-                            <div class="article-likes">
-                                17
-
-                                <img src="../../../../assets/images/icon-like.svg" />
-                            </div>
-
-                            <div class="article-comments">
-                                28
-
-                                <img src="../../../../assets/images/icon-comment.svg" />
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <article>
-                    <div class="article-image">
-                        <img src="../../../../assets/images/article-1.png" />
-                    </div>
-
-                    <div class="article-content">
-                        <div class="article-date">
-                            <span class="icon">
-                                <img src="../../../../assets/images/icon-calendar.svg" alt="" />
-                            </span>
-    
-                            02 мар 2020
-                        </div>
-
-                        <div class="article-title" [routerLink]="['/article']">
-                            Как прекрасна эта жизнь!
-                        </div>
-
-                        <div class="article-short-text">
-                            Значимость этих проблем настолько очевидна, что новая модель организационной деятельности требуют от нас анализа соответствующий условий активизации.
-                        </div>
-
-                        <div class="article-actions">
-                            <div class="article-full" [routerLink]="['/article']">
-                                Читать полностью
-                            </div>
-
-                            <div class="article-author">
-                                <img src="../../../../assets/images/article-author.png" />
-
-                                Олег Мартынов
-                            </div>
-
-                            <div class="article-likes">
-                                17
-
-                                <img src="../../../../assets/images/icon-like.svg" />
-                            </div>
-
-                            <div class="article-comments">
-                                28
-
-                                <img src="../../../../assets/images/icon-comment.svg" />
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <article>
-                    <div class="article-image">
-                        <img src="../../../../assets/images/article-1.png" />
-                    </div>
-
-                    <div class="article-content">
-                        <div class="article-date">
-                            <span class="icon">
-                                <img src="../../../../assets/images/icon-calendar.svg" alt="" />
-                            </span>
-    
-                            02 мар 2020
-                        </div>
-
-                        <div class="article-title" [routerLink]="['/article']">
-                            Как прекрасна эта жизнь!
-                        </div>
-
-                        <div class="article-short-text">
-                            Значимость этих проблем настолько очевидна, что новая модель организационной деятельности требуют от нас анализа соответствующий условий активизации.
-                        </div>
-
-                        <div class="article-actions">
-                            <div class="article-full" [routerLink]="['/article']">
-                                Читать полностью
-                            </div>
-
-                            <div class="article-author">
-                                <img src="../../../../assets/images/article-author.png" />
-
-                                Олег Мартынов
-                            </div>
-
-                            <div class="article-likes">
-                                17
-
-                                <img src="../../../../assets/images/icon-like.svg" />
-                            </div>
-
-                            <div class="article-comments">
-                                28
-
-                                <img src="../../../../assets/images/icon-comment.svg" />
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <article>
-                    <div class="article-image">
-                        <img src="../../../../assets/images/article-1.png" />
-                    </div>
-
-                    <div class="article-content">
-                        <div class="article-date">
-                            <span class="icon">
-                                <img src="../../../../assets/images/icon-calendar.svg" alt="" />
-                            </span>
-    
-                            02 мар 2020
-                        </div>
-
-                        <div class="article-title" [routerLink]="['/article']">
-                            Как прекрасна эта жизнь!
-                        </div>
-
-                        <div class="article-short-text">
-                            Значимость этих проблем настолько очевидна, что новая модель организационной деятельности требуют от нас анализа соответствующий условий активизации.
-                        </div>
-
-                        <div class="article-actions">
-                            <div class="article-full" [routerLink]="['/article']">
-                                Читать полностью
-                            </div>
-
-                            <div class="article-author">
-                                <img src="../../../../assets/images/article-author.png" />
-
-                                Олег Мартынов
+                                {{ article.author.user.firstName }} {{ article.author.user.lastName }}
                             </div>
 
                             <div class="article-likes">

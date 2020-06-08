@@ -9,7 +9,7 @@
     <div class="specialist-info">
 
         <!-- Specialist Name -->
-        <div class="specialist-name" [routerLink]="['/specialist']">
+        <div class="specialist-name" [routerLink]="['/specialists', specialist.id]">
             {{ specialist.user.firstName }} {{ specialist.user.lastName }}
         </div>
 
@@ -21,21 +21,21 @@
                 </div>
 
                 <div class="counter">
-                    5
+                    {{ rating }}
                 </div>
             </div>
 
             <div class="reviews">
-                <div class="reviews-counter positive">
-                    271
+                <div class="reviews-counter positive" *ngIf="positiveReviews && positiveReviews.length">
+                    {{ positiveReviews.length }}
                 </div>
 
-                <div class="reviews-counter neutral">
-                    2
+                <div class="reviews-counter neutral" *ngIf="neutralReviews && neutralReviews.length">
+                    {{ neutralReviews.length }}
                 </div>
 
-                <div class="reviews-counter negative">
-                    18
+                <div class="reviews-counter negative" *ngIf="negativeReviews && negativeReviews.length">
+                    {{ negativeReviews.length }}
                 </div>
             </div>
         </div>

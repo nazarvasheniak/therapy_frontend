@@ -1,0 +1,87 @@
+<div class="article-container">
+
+    <!-- Head -->
+    <div class="article-head">
+
+        <!-- Image -->
+        <div class="article-image">
+            <img src="../../../../assets/images/article-1-big.png" />
+        </div>
+
+        <!-- Info -->
+        <div class="article-info">
+
+            <!-- Title -->
+            <div class="article-title">
+                {{ article.title }}
+            </div>
+
+            <!-- Likes -->
+            <div class="article-likes">
+                17
+
+                <img src="../../../../assets/images/icon-like.svg" />
+            </div>
+
+            <!-- Comments -->
+            <div class="article-comments">
+                4
+
+                <img src="../../../../assets/images/icon-comment.svg" />
+            </div>
+
+            <!-- Date -->
+            <div class="article-date">
+                <img src="../../../../assets/images/icon-calendar.svg" />
+
+                {{ article.date | date: 'dd MMM yyy' }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="article-content">
+
+        <!-- Article Text -->
+        <div class="article-text" [innerHTML]="article.text"></div>
+
+        <!-- Article Sidebar -->
+        <div class="article-sidebar">
+
+            <!-- Author -->
+            <div class="author-block">
+                <div class="content-wrapper">
+
+                    <div class="title">Автор</div>
+
+                    <div class="author-name" [routerLink]="['/specialists', article.author.id]">
+                        {{ article.author.user.firstName }} {{ article.author.user.lastName }}
+                    </div>
+
+                    <div class="author-info">
+                        <div class="author-photo">
+                            <img [src]="article.author.photo.url" />
+                        </div>
+
+                        <div class="author-price">
+                            {{ article.author.price | number:'':'fr' }} ₽
+                        </div>
+
+                        <div class="author-rating">
+                            <div class="icon-star">
+                                <img src="../../../../assets/images/star.svg" />
+                            </div>
+
+                            {{ authorRating }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sign Up Button -->
+            <div class="signup-button">
+                <button type="button">Записаться</button>
+            </div>
+        </div>
+    </div>
+</div>

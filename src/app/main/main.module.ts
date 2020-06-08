@@ -7,7 +7,7 @@ import { LandingHeaderComponent } from './components/landing-header/landing-head
 import { LandingFooterComponent } from './components/landing-footer/landing-footer.component';
 import { ModalComponent } from '../layout/modal/modal.component';
 import { WebinarModalComponent } from './components/webinar-modal/webinar-modal.component';
-import { SafePipe } from '../common/pipes';
+import { SafePipe, FilterArticlesPipe } from '../common/pipes';
 import { MainComponent } from './components/main/main.component';
 import { LayoutModule } from '../layout/layout.module';
 //import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +19,8 @@ import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { SpecialistsCarouselComponent } from './components/specialists-carousel/specialists-carousel.component';
 import { SpecialistsCarouselItemComponent } from './components/specialists-carousel-item/specialists-carousel-item.component';
+import { ArticlesCarouselComponent } from './components/articles-carousel/articles-carousel.component';
+import { ArticlesCarouselItemComponent } from './components/articles-carousel-item/articles-carousel-item.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     direction: 'horizontal',
@@ -36,7 +38,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
         VideoReviewsComponent,
         SpecialistsCarouselComponent,
         SpecialistsCarouselItemComponent,
-        SafePipe
+        ArticlesCarouselComponent,
+        ArticlesCarouselItemComponent,
+        SafePipe,
+        FilterArticlesPipe
     ],
     imports: [
         CommonModule,

@@ -8,37 +8,37 @@
         <div class="article-container">
 
             <!-- Specialist Block -->
-            <div class="specialist-block">
+            <div class="specialist-block" *ngIf="specialist">
 
                 <!-- Photo -->
                 <div class="specialist-photo">
-                    <img src="../../../../assets/images/photo2.png" />
+                    <img [src]="specialist.photo.url" />
                 </div>
 
                 <!-- Info -->
                 <div class="specialist-info">
                     <div class="specialist-name">
-                        Антон Явлинский
+                        {{ specialist.user.firstName }} {{ specialist.user.lastName }}
                     </div>
 
                     <div class="specialist-stat">
                         <div class="price">
-                            1 400 ₽
+                            {{ specialist.price | number:'':'fr' }} ₽
                         </div>
 
-                        <div class="rating">
-                            <div class="rating-stars">
-
-                            </div>
+                        <div class="rating" *ngIf="rating">
+                            <div class="rating-stars" [innerHTML]="getRatingStars()"></div>
 
                             <div class="rating-score">
-
+                                {{ rating }}
                             </div>
                         </div>
+                    </div>
 
-                        <div class="description">
-                            С другой стороны консультация с широким активом представляет собой интересный эксперимент проверки систем массового участия. Разнообразный и богатый опыт новая модель организационной деятельности обеспечивает широкому кругу участие.
-                        </div>
+                    <div class="specialist-description">
+                        С другой стороны консультация с широким активом представляет собой интересный эксперимент
+                        проверки систем массового участия. Разнообразный и богатый опыт новая модель организационной
+                        деятельности обеспечивает широкому кругу участие.
                     </div>
 
                     <div class="choose-button">
@@ -53,23 +53,23 @@
     </div>
 
     <!-- Reviews -->
-    <div class="reviews">
+    <div class="reviews" *ngIf="positiveReviews && neutralReviews && negativeReviews">
         <div class="reviews-head">
             <div class="article-container">
                 <div class="reviews-switcher">
-                    <div class="switch active">
+                    <div class="switch" [ngClass]="{'active': activeReviewsTab == 1}" (click)="changeReviewsTab(1)">
                         Положительные отзывы
-                        <div class="count">5</div>
+                        <div class="count">{{ positiveReviews.length }}</div>
                     </div>
 
-                    <div class="switch">
+                    <div class="switch" [ngClass]="{'active': activeReviewsTab == 2}" (click)="changeReviewsTab(2)">
                         Нейтральные отзывы
-                        <div class="count">1</div>
+                        <div class="count">{{ neutralReviews.length }}</div>
                     </div>
 
-                    <div class="switch">
+                    <div class="switch" [ngClass]="{'active': activeReviewsTab == 3}" (click)="changeReviewsTab(3)">
                         Отрицательные отзывы
-                        <div class="count">0</div>
+                        <div class="count">{{ negativeReviews.length }}</div>
                     </div>
                 </div>
             </div>
@@ -77,130 +77,89 @@
 
         <div class="reviews-content">
             <div class="article-container">
-                <div class="review-block">
-                    <div class="review-block-head">
-                        <div class="reviewer-name">
-                            Марк Твен
+
+                <div class="reviews-list" *ngIf="activeReviewsTab == 1">
+                    <div class="review-block" *ngFor="let review of positiveReviews">
+                        <div class="review-block-head">
+                            <div class="reviewer-name">
+                                {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}
+                            </div>
+    
+                            <div class="review-score">
+    
+                            </div>
                         </div>
-
-                        <div class="review-score">
-
+    
+                        <div class="review-text">
+                            {{ review.text }}
                         </div>
-                    </div>
-
-                    <div class="review-text">
-                        С другой стороны консультация с широким активом представляет собой интересный эксперимент проверки систем массового участия. Разнообразный и богатый опыт новая модель организационной деятельности обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений развития. Задача организации, в особенности же постоянный количественный рост и сфера нашей активности требуют от нас анализа новых предложений.
-                    </div>
-
-                    <div class="review-date">
-                        <span class="icon">
-                            <img src="../../../../assets/images/icon-calendar.svg" alt="" />
-                        </span>
-
-                        02 мар 2020
+    
+                        <div class="review-date">
+                            <span class="icon">
+                                <img src="../../../../assets/images/icon-calendar.svg" alt="" />
+                            </span>
+    
+                            {{ review.session.date | date: 'dd MMM yyy' }}
+                        </div>
                     </div>
                 </div>
 
-                <div class="review-block">
-                    <div class="review-block-head">
-                        <div class="reviewer-name">
-                            Марк Твен
+                <div class="reviews-list" *ngIf="activeReviewsTab == 2">
+                    <div class="review-block" *ngFor="let review of neutralReviews">
+                        <div class="review-block-head">
+                            <div class="reviewer-name">
+                                {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}
+                            </div>
+    
+                            <div class="review-score">
+    
+                            </div>
                         </div>
-
-                        <div class="review-score">
-
+    
+                        <div class="review-text">
+                            {{ review.text }}
                         </div>
-                    </div>
-
-                    <div class="review-text">
-                        С другой стороны консультация с широким активом представляет собой интересный эксперимент проверки систем массового участия. Разнообразный и богатый опыт новая модель организационной деятельности обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений развития. Задача организации, в особенности же постоянный количественный рост и сфера нашей активности требуют от нас анализа новых предложений.
-                    </div>
-
-                    <div class="review-date">
-                        <span class="icon">
-                            <img src="../../../../assets/images/icon-calendar.svg" alt="" />
-                        </span>
-
-                        02 мар 2020
+    
+                        <div class="review-date">
+                            <span class="icon">
+                                <img src="../../../../assets/images/icon-calendar.svg" alt="" />
+                            </span>
+    
+                            {{ review.session.date | date: 'dd MMM yyy' }}
+                        </div>
                     </div>
                 </div>
 
-                <div class="review-block">
-                    <div class="review-block-head">
-                        <div class="reviewer-name">
-                            Марк Твен
+                <div class="reviews-list" *ngIf="activeReviewsTab == 3">
+                    <div class="review-block" *ngFor="let review of negativeReviews">
+                        <div class="review-block-head">
+                            <div class="reviewer-name">
+                                {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}
+                            </div>
+    
+                            <div class="review-score">
+    
+                            </div>
                         </div>
-
-                        <div class="review-score">
-
+    
+                        <div class="review-text">
+                            {{ review.text }}
                         </div>
-                    </div>
-
-                    <div class="review-text">
-                        С другой стороны консультация с широким активом представляет собой интересный эксперимент проверки систем массового участия. Разнообразный и богатый опыт новая модель организационной деятельности обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений развития. Задача организации, в особенности же постоянный количественный рост и сфера нашей активности требуют от нас анализа новых предложений.
-                    </div>
-
-                    <div class="review-date">
-                        <span class="icon">
-                            <img src="../../../../assets/images/icon-calendar.svg" alt="" />
-                        </span>
-
-                        02 мар 2020
-                    </div>
-                </div>
-
-                <div class="review-block">
-                    <div class="review-block-head">
-                        <div class="reviewer-name">
-                            Марк Твен
+    
+                        <div class="review-date">
+                            <span class="icon">
+                                <img src="../../../../assets/images/icon-calendar.svg" alt="" />
+                            </span>
+    
+                            {{ review.session.date | date: 'dd MMM yyy' }}
                         </div>
-
-                        <div class="review-score">
-
-                        </div>
-                    </div>
-
-                    <div class="review-text">
-                        С другой стороны консультация с широким активом представляет собой интересный эксперимент проверки систем массового участия. Разнообразный и богатый опыт новая модель организационной деятельности обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений развития. Задача организации, в особенности же постоянный количественный рост и сфера нашей активности требуют от нас анализа новых предложений.
-                    </div>
-
-                    <div class="review-date">
-                        <span class="icon">
-                            <img src="../../../../assets/images/icon-calendar.svg" alt="" />
-                        </span>
-
-                        02 мар 2020
-                    </div>
-                </div>
-
-                <div class="review-block">
-                    <div class="review-block-head">
-                        <div class="reviewer-name">
-                            Марк Твен
-                        </div>
-
-                        <div class="review-score">
-
-                        </div>
-                    </div>
-
-                    <div class="review-text">
-                        С другой стороны консультация с широким активом представляет собой интересный эксперимент проверки систем массового участия. Разнообразный и богатый опыт новая модель организационной деятельности обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений развития. Задача организации, в особенности же постоянный количественный рост и сфера нашей активности требуют от нас анализа новых предложений.
-                    </div>
-
-                    <div class="review-date">
-                        <span class="icon">
-                            <img src="../../../../assets/images/icon-calendar.svg" alt="" />
-                        </span>
-
-                        02 мар 2020
                     </div>
                 </div>
 
                 <!-- Pagination -->
-            <div class="reviews-pagination">
-                <app-pagination></app-pagination>
-            </div>
+                <div class="reviews-pagination">
+                    <app-pagination></app-pagination>
+                </div>
             </div>
         </div>
     </div>

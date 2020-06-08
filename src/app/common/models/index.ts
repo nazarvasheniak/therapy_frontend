@@ -5,3 +5,4 @@ export * from './file.model';
 export * from './specialist.model';
 export * from './session.model';
 export * from './review.model';
+export * from './article.model';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SpecialistsService } from 'src/app/common/services';
-import { Specialist } from 'src/app/common/models';
+import { SpecialistsService, ArticlesService } from 'src/app/common/services';
+import { Specialist, Article } from 'src/app/common/models';
 import { Review } from '../../models';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -15,15 +15,19 @@ export class MainComponent implements OnInit {
 	public reviews: Review[];
     public activeReview: Review;
 
+    public articles: Article[];
+
 	constructor(
-		private specialistsService: SpecialistsService,
+        private specialistsService: SpecialistsService,
+        private articlesService: ArticlesService,
 		private domSanitizer: DomSanitizer
 	) {
 
 	}
 
 	ngOnInit(): void {
-		this.loadSpecialists();
+        this.loadSpecialists();
+        this.loadArticles();
 
 		this.reviews = [
             {
@@ -70,5 +74,18 @@ export class MainComponent implements OnInit {
 				
 				this.specialists = res.data;
 			});
-	}
+    }
+    
+    private loadArticles() {
+        this.articlesService.getArticles()
+            .subscribe(res => {
+                if (!res.success) {
+                    alert(res.message);
+
+                    return;
+                }
+
+                this.articles = res.data;
+            });
+    }
 }

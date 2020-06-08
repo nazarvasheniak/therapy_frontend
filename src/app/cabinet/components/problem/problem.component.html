@@ -266,7 +266,8 @@
 
         <div class="problem-asset problem-sessions" *ngIf="sessions" [ngClass]="{ 'empty': !sessions.length }">
             <div class="asset-icon">
-                <img src="../../../../assets/images/icon-session-empty.svg" />
+                <img *ngIf="!sessions.length" src="../../../../assets/images/icon-session-empty.svg" />
+                <img *ngIf="sessions.length" src="../../../../assets/images/icon-session.svg" />
             </div>
 
             <div class="asset-info">
@@ -280,6 +281,7 @@
         </div>
     </div>
 
+    <!-- Not Sessions -->
     <div class="session-block" *ngIf="sessions && !sessions.length">
         <div class="session-block-content empty">
             <div class="content-wrapper">
@@ -302,6 +304,126 @@
                         <div class="info-text">
                             Нужно будет внести средства на счет, которые будут находится в депозите до конца сессии.
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Session -->
+    <div class="session-block" *ngIf="activeSession">
+        <div class="session-block-head">
+            <div class="content-wrapper">
+
+                <div class="session-block-title">
+                    Активная сессия
+                </div>
+
+                <div class="session-specialist" [routerLink]="['/specialists', activeSession.specialist.id]">
+
+                    <div class="specialist-photo">
+                        <img [src]="activeSession.specialist.photo.url" />
+                    </div>
+
+                    <div class="specialist-name">
+                        {{ activeSession.specialist.user.firstName }} {{ activeSession.specialist.user.lastName }}
+                    </div>
+
+                    <div class="specialist-rating">
+                        <div class="icon">
+                            <img src="../../../../assets/images/star.svg" />
+                        </div>
+
+                        4
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="session-block-bottom">
+            <div class="content-wrapper">
+                <div class="session-deposit">
+                    В депозите
+
+                    <div class="session-deposit-balance">
+                        <div class="icon">
+                            <img src="../../../../assets/images/icon-lock-2.svg" />
+                        </div>
+
+                        {{ activeSession.reward | number:'':'fr' }} ₽
+                    </div>
+                </div>
+
+                <div class="session-actions">
+                    <div class="session-action reject">
+                        Сессия не помогла, вернуть деньги
+                    </div>
+
+                    <div class="session-action resolve">
+                        <button type="button" class="button-green">Сессия помогла</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Last Session -->
+    <div class="session-block" *ngIf="lastSession">
+        <div class="session-block-head">
+            <div class="content-wrapper">
+
+                <div class="session-block-title">
+
+                    <div class="session-date">
+                        <div class="day">{{ lastSession.date | date: 'dd' }}</div>
+                        <div class="month">{{ lastSession.date | date: 'MMM' }}</div>
+                    </div>
+
+                    Последняя сессия
+                </div>
+
+                <div class="session-specialist" [routerLink]="['/specialists', lastSession.specialist.id]">
+
+                    <div class="specialist-photo">
+                        <img [src]="lastSession.specialist.photo.url" />
+                    </div>
+
+                    <div class="specialist-name">
+                        {{ lastSession.specialist.user.firstName }} {{ lastSession.specialist.user.lastName }}
+                    </div>
+
+                    <div class="specialist-rating">
+                        <div class="icon">
+                            <img src="../../../../assets/images/star.svg" />
+                        </div>
+
+                        4
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="session-block-bottom">
+            <div class="content-wrapper">
+                <div class="session-actions session-actions-type-2">
+                    <div class="session-action">
+                        <button type="button" class="button-green">
+                            <div class="icon">
+                                <img src="../../../../assets/images/icon-check.svg" />
+                            </div>
+
+                            Записаться еще раз
+                        </button>
+                    </div>
+
+                    <div class="session-action">
+                        <button type="button" class="button-transparent">
+                            <div class="icon">
+                                <img src="../../../../assets/images/icon-target-green.svg" />
+                            </div>
+
+                            Выбрать другого специалиста
+                        </button>
                     </div>
                 </div>
             </div>

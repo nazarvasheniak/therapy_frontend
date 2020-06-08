@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,10 +10,16 @@ import { CabinetModule } from './cabinet/cabinet.module';
 import { MainModule } from './main/main.module';
 import { LayoutModule } from './layout/layout.module';
 import { AuthService } from './common/services/auth.service';
-import { UsersService, PublicService, PatientService, SpecialistsService } from './common/services';
+import { UsersService, PublicService, PatientService, SpecialistsService, ArticlesService } from './common/services';
 import { SpecialistsModule } from './specialists/specialists.module';
 import { ArticlesModule } from './articles/articles.module';
 import { CabinetSpecialistModule } from './cabinet-specialist/cabinet-specialist.module';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import localeRu from '@angular/common/locales/ru';
+
+registerLocaleData(localeFr, 'fr');
+registerLocaleData(localeRu);
 
 @NgModule({
 	declarations: [
@@ -36,11 +42,13 @@ import { CabinetSpecialistModule } from './cabinet-specialist/cabinet-specialist
 		
 	],
 	providers: [
+		{ provide: LOCALE_ID, useValue: 'ru' },
 		AuthService,
 		UsersService,
 		PublicService,
 		PatientService,
-		SpecialistsService
+		SpecialistsService,
+		ArticlesService
 	],
 	bootstrap: [AppComponent]
 })

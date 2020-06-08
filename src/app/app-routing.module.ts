@@ -20,9 +20,9 @@ const routes: Routes = [
 	{ path: 'landing', component: LandingComponent },
 	{ path: '', component: MainComponent },
 	{ path: 'specialists', component: SpecialistsComponent },
-	{ path: 'specialist', component: SpecialistComponent },
+	{ path: 'specialists/:id', component: SpecialistComponent },
 	{ path:'articles', component: ArticlesComponent },
-	{ path: 'article', component: ArticleComponent }
+	{ path: 'articles/:id', component: ArticleComponent }
 ];
 
 @NgModule({

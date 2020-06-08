@@ -247,5 +247,41 @@ button.scroll-top {
     display: none !important;
 }
 
+.articles-carousel {
+    .swiper-wrapper {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.carousel-switcher {
+    .swiper-prev,
+    .swiper-next {
+        position: absolute;
+        top: 25%;
+        width: 58px;
+        height: 58px;
+        border-radius: 28px;
+        background: #FFFFFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .swiper-prev {
+        left: 0;
+    }
+
+    .swiper-next {
+        right: 0;
+    }
+}
+
+.article-inner-image {
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
 /* Importing Bootstrap SCSS file. */
 //@import '~bootstrap/scss/_carousel.scss';

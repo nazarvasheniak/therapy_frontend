@@ -8,7 +8,8 @@
         height: 274px;
 
         > img {
-            display: block;
+            width: 100%;
+            height: 100%;
         }
     }
 
@@ -25,6 +26,8 @@
 
         .specialist-stat {
             margin-top: 16px;
+            display: flex;
+            align-items: center;
 
             .price {
                 font-weight: 500;
@@ -45,17 +48,39 @@
             }
 
             .rating {
+                margin-left: 17px;
+                display: flex;
+                align-items: center;
 
-            }
+                .rating-stars {
+                    img {
+                        width: 16px;
+                        height: 16px;
+                        margin-left: 2px;
 
-            .description {
-                max-width: 530px;
-                margin-top: 16px;
-                font-weight: normal;
-                font-size: 16px;
-                line-height: 22px;
-                color: #364D47;
+                        &:first-child {
+                            margin-left: 0;
+                        }
+                    }
+                }
+
+                .rating-score {
+                    margin-left: 12px;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 18px;
+                    color: #C0BEB4;
+                }
             }
+        }
+
+        .specialist-description {
+            max-width: 530px;
+            margin-top: 16px;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 22px;
+            color: #364D47;
         }
 
         .choose-button {
@@ -137,50 +162,52 @@
     .reviews-content {
         margin-top: 24px;
 
-        .review-block {
-            background: #ffffff;
-            border-radius: 10px;
-            padding-top: 26px;
-            padding-bottom: 24px;
-            padding-left: 22px;
-            padding-right: 22px;
-            margin-top: 20px;
-
-            &:first-child {
-                margin-top: 0;
-            }
-
-            .review-block-head {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-
-                .reviewer-name {
-                    font-weight: 500;
-                    font-size: 22px;
-                    line-height: 22px;
-                    color: #162B1E;
-                }
-            }
-
-            .review-text {
+        .reviews-list {
+            .review-block {
+                background: #ffffff;
+                border-radius: 10px;
+                padding-top: 26px;
+                padding-bottom: 24px;
+                padding-left: 22px;
+                padding-right: 22px;
                 margin-top: 20px;
-                font-weight: normal;
-                font-size: 16px;
-                line-height: 22px;
-                color: #364D47;
-            }
-
-            .review-date {
-                margin-top: 24px;
-                display: flex;
-                align-items: center;
-                font-size: 14px;
-                line-height: 14px;
-                color: #9EACA9;
-
-                .icon {
-                    margin-right: 9px;
+    
+                &:first-child {
+                    margin-top: 0;
+                }
+    
+                .review-block-head {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+    
+                    .reviewer-name {
+                        font-weight: 500;
+                        font-size: 22px;
+                        line-height: 22px;
+                        color: #162B1E;
+                    }
+                }
+    
+                .review-text {
+                    margin-top: 20px;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: #364D47;
+                }
+    
+                .review-date {
+                    margin-top: 24px;
+                    display: flex;
+                    align-items: center;
+                    font-size: 14px;
+                    line-height: 14px;
+                    color: #9EACA9;
+    
+                    .icon {
+                        margin-right: 9px;
+                    }
                 }
             }
         }

@@ -1,5 +1,4 @@
 .problem-block {
-    margin-top: 16px;
     background: #F6FBF8;
     border: 1px solid #CEEADC;
     box-sizing: border-box;
@@ -8,10 +7,7 @@
     padding-top: 24px;
     padding-bottom: 24px;
     border-radius: 10px;
-
-    &:first-child {
-        margin-top: 0;
-    }
+    margin-bottom: 16px;
 
     .block-head {
         font-weight: normal;
@@ -169,10 +165,21 @@
                 .session-specialist {
                     display: flex;
                     align-items: center;
+                    cursor: pointer;
+                    outline: none;
 
                     .specialist-photo {
                         width: 43px;
                         height: 43px;
+                        border: 1px solid #32A776;
+                        border-radius: 100px;
+                        padding: 3.58px;
+
+                        > img {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 100px;
+                        }
                     }
 
                     .specialist-name {

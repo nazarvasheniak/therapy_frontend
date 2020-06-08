@@ -264,6 +264,35 @@ section.specialists {
     }
 }
 
+section.articles {
+    background: #F0F6F3;
+    padding-top: 68px;
+    padding-bottom: 54px;
+    overflow: hidden;
+
+    .section-head {
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 58px;
+        color: #162B1E;
+        display: flex;
+        align-items: center;
+        
+        > a {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 24px;
+            text-decoration-line: underline;
+            color: #32A776;
+            margin-left: 32px;
+        }
+    }
+
+    .section-content {
+        margin-top: 32px;
+    }
+}
+
 @media screen and (max-width: 575px) {
     section.specialists {
         .video-reviews {

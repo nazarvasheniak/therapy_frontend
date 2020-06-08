@@ -1,4 +1,4 @@
-import { SafeResourceUrl, SafeHtml } from '@angular/platform-browser';
+import { SafeHtml } from '@angular/platform-browser';
 
 export class Review {
     public image: string;

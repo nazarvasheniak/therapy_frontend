@@ -5,7 +5,7 @@
 
     <div class="specialist-content">
         <div class="info">
-            <div class="name">
+            <div class="name" [routerLink]="['/specialists', specialist.id]">
                 {{ specialist.user.firstName }} {{ specialist.user.lastName }}
             </div>
 
@@ -15,20 +15,20 @@
                         <img src="../../../../assets/images/star.svg" />
                     </div>
 
-                    5
+                    {{ rating }}
                 </div>
 
                 <div class="reviews">
-                    <div class="reviews-counter positive">
-                        271
+                    <div class="reviews-counter positive" *ngIf="positiveReviews && positiveReviews.length">
+                        {{ positiveReviews.length }}
                     </div>
     
-                    <div class="reviews-counter neutral">
-                        2
+                    <div class="reviews-counter neutral" *ngIf="neutralReviews && neutralReviews.length">
+                        {{ neutralReviews.length }}
                     </div>
     
-                    <div class="reviews-counter negative">
-                        18
+                    <div class="reviews-counter negative" *ngIf="negativeReviews && negativeReviews.length">
+                        {{ negativeReviews.length }}
                     </div>
                 </div>
             </div>
