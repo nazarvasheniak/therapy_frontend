@@ -1,4 +1,4 @@
-<header>
+<header class="header-desktop">
     <div class="logo-wrapper" [routerLink]="['/']">
         <img src="../../../assets/images/logo-color.svg" alt="Корневая террапия" />
     </div>
@@ -20,7 +20,7 @@
                     </div>
                 </li>
 
-                <li class="user-phone" *ngIf="isLoggedIn && user">
+                <li class="user-phone" *ngIf="isLoggedIn && user && isCabinetRoute()">
                     <span>
                         <img src="../../../assets/images/icon-phone.svg" />
 
@@ -29,7 +29,17 @@
                 </li>
 
                 <li *ngIf="isLoggedIn && user">
-                    <div class="profile-badge-wrapper" [routerLink]="['/profile']">
+                    <div class="profile-badge-wrapper" *ngIf="user.role == 1" [routerLink]="['/profile']">
+                        <div class="avatar">
+                            {{ getAvatar() }}
+                        </div>
+
+                        <div class="username">
+                            {{ user.firstName }}
+                        </div>
+                    </div>
+
+                    <div class="profile-badge-wrapper" *ngIf="user.role == 2 || user.role == 3" [routerLink]="['/profile-specialist']">
                         <div class="avatar">
                             {{ getAvatar() }}
                         </div>
@@ -39,6 +49,61 @@
                         </div>
                     </div>
                 </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<header class="header-mobile">
+    <div class="header-content">
+        <div class="logo-wrapper" [routerLink]="['/']">
+            <img src="../../../assets/images/logo-color.svg" alt="Корневая террапия" />
+        </div>
+    
+        <div class="nav-wrapper">
+            <div class="login-wrapper" *ngIf="!isLoggedIn">
+                <button type="button" class="login-button" [routerLink]="['/sign-in']">
+                    <img class="icon" src="../../../assets/images/icon-key.svg" alt="" />
+                    Войти
+                </button>
+            </div>
+    
+            <div class="profile-badge-wrapper" *ngIf="isLoggedIn && user && user.role == 1" [routerLink]="['/profile']">
+                <div class="avatar">
+                    {{ getAvatar() }}
+                </div>
+    
+                <div class="username">
+                    {{ user.firstName }}
+                </div>
+            </div>
+
+            <div class="profile-badge-wrapper" *ngIf="isLoggedIn && user && (user.role == 2 || user.role == 3)" [routerLink]="['/profile-specialist']">
+                <div class="avatar">
+                    {{ getAvatar() }}
+                </div>
+    
+                <div class="username">
+                    {{ user.firstName }}
+                </div>
+            </div>
+    
+            <div class="nav-button-wrapper">
+                <div class="nav-button" (click)="toggleMobileNav()" [ngClass]="{'active': isMobileNavExpanden}">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-expand-nav" [ngClass]="{'expanded': isMobileNavExpanden}">
+        <nav>
+            <ul>
+                <li><a href="#">Как это работает</a></li>
+                <li><a href="#">Отзывы клиентов</a></li>
+                <li><a [routerLink]="['/specialists']">Выбрать специалиста</a></li>
+                <li><a [routerLink]="['/articles']">Статьи</a></li>
             </ul>
         </nav>
     </div>

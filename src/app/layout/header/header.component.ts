@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService, UsersService } from 'src/app/common/services';
 import { User } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-header',
@@ -12,10 +13,13 @@ export class HeaderComponent {
 	
 	public isLoggedIn: boolean;
 	public user: User;
+
+	public isMobileNavExpanden = false;
 	
     constructor(
 		private authService: AuthService,
-		private usersService: UsersService
+		private usersService: UsersService,
+		private router: Router
 	) {
 		this.authService
 			.isLoggedIn
@@ -42,5 +46,17 @@ export class HeaderComponent {
 
 	getPhone() {
 		return StringHelper.formatPhone(this.user.phoneNumber);
+	}
+
+	isCabinetRoute() {
+		if (this.router.url.includes('profile')) {
+			return true;
+		}
+
+		return false;
+	}
+
+	toggleMobileNav() {
+		this.isMobileNavExpanden = !this.isMobileNavExpanden;
 	}
 }

@@ -1,9 +1,50 @@
+.container {
+    position: relative;
+}
+
+.button-back {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+
+    > button {
+        border: 0.5px solid rgba(56, 154, 113, 0.5);
+        box-sizing: border-box;
+        border-radius: 10px;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 17px;
+        text-transform: uppercase;
+        color: #5BAA89;
+        height: 34px;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 10.5px;
+        padding-right: 12px;
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+
+            > img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
 .specialist-block {
     display: flex;
     align-items: center;
     padding-bottom: 40px;
 
     .specialist-photo {
+        flex: 0 0 226px;
         width: 226px;
         height: 274px;
 
@@ -216,5 +257,17 @@
             display: inline-block;
             margin-top: 24px;
         }
+    }
+}
+
+@media screen and(max-width: 991px) {
+    .container {
+        margin-top: 66px;
+        margin-left: 35px;
+        margin-right: 35px;
+    }
+
+    .button-back {
+        top: -66px;
     }
 }

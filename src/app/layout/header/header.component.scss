@@ -1,11 +1,5 @@
 header {
-    padding-left: 30px;
-    padding-right: 30px;
     padding-top: 30px;
-    padding-bottom: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     position: relative;
     z-index: 1;
     background-image: url(../../../assets/images/main-bg.svg);
@@ -13,11 +7,88 @@ header {
 
     .logo-wrapper {
         cursor: pointer;
+        outline: none;
         
         img {
             max-width: none;
         }
     }
+
+    .login-wrapper {
+        .login-button {
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 121.5%;
+            letter-spacing: 0.135em;
+            color: #25A46E;
+            text-transform: uppercase;
+            border: 0.5px solid #5DB892;
+            box-sizing: border-box;
+            box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+            background: transparent;
+            backdrop-filter: blur(25px);
+            /* Note: backdrop-filter has minimal browser support */
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            outline: none;
+            cursor: pointer;
+
+            .icon {
+                margin-right: 16px;
+            }
+        }
+    }
+
+    .profile-badge-wrapper {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        outline: none;
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: #77D8AF;
+            border: 1px solid #6AC9A1;
+            box-sizing: border-box;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 20px;
+            color: #FFFFFF;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: -23px;
+            z-index: 1;
+        }
+
+        .username {
+            background: #ECF4F1;
+            border: 1px solid #CEE4DB;
+            box-sizing: border-box;
+            border-radius: 10px;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 16px;
+            color: #005264;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 33px;
+            padding-right: 13px;
+        }
+    }
+}
+
+header.header-desktop {
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     .nav-wrapper {
         nav {
@@ -55,33 +126,6 @@ header {
                         }
                     }
 
-                    .login-wrapper {
-                        .login-button {
-                            font-weight: bold;
-                            font-size: 14px;
-                            line-height: 121.5%;
-                            letter-spacing: 0.135em;
-                            color: #25A46E;
-                            text-transform: uppercase;
-                            border: 0.5px solid #5DB892;
-                            box-sizing: border-box;
-                            box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
-                            background: transparent;
-                            backdrop-filter: blur(25px);
-                            /* Note: backdrop-filter has minimal browser support */
-                            border-radius: 16px;
-                            display: flex;
-                            align-items: center;
-                            padding: 20px;
-                            outline: none;
-                            cursor: pointer;
-                
-                            .icon {
-                                margin-right: 16px;
-                            }
-                        }
-                    }
-
                     &.user-phone {
                         span {
                             display: flex;
@@ -98,43 +142,94 @@ header {
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+}
 
-                    .profile-badge-wrapper {
-                        display: flex;
-                        align-items: center;
-                        cursor: pointer;
+header.header-mobile {
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 46px;
 
-                        .avatar {
-                            width: 40px;
-                            height: 40px;
-                            background: #77D8AF;
-                            border: 1px solid #6AC9A1;
-                            box-sizing: border-box;
-                            font-weight: 500;
-                            font-size: 20px;
-                            line-height: 20px;
-                            color: #FFFFFF;
-                            border-radius: 20px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            margin-right: -23px;
-                            z-index: 1;
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            
+            .nav-button-wrapper {
+                margin-left: 32px;
+    
+                .nav-button {
+                    cursor: pointer;
+                    outline: none;
+    
+                    > .line {
+                        width: 24px;
+                        height: 1px;
+                        background: #005264;
+                        transition: .2s;
+    
+                        &:last-child {
+                            margin-top: 12px;
+                        }
+                    }
+
+                    &.active {
+                        > .line {
+                            
+                            &:first-child {
+                                transform: rotate(45deg);
+                            }
+
+                            &:last-child {
+                                transform: rotate(-45deg);
+                                margin-top: -1px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .header-expand-nav {
+        max-height: 0;
+        transition: max-height 0.2s ease-out;
+        overflow: hidden;
+
+        &.expanded {
+            max-height: 375px;
+            transition: max-height 0.2s ease-in;
+            padding-bottom: 75px;
+        }
+
+        nav {
+            ul {
+                li {
+                    margin-top: 48px;
+
+                    a {
+                        font-weight: normal;
+                        font-size: 14px;
+                        line-height: 17px;
+                        color: #7EA59E;
+                        letter-spacing: 0.05em;
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        transition: all .2s;
+
+                        &:hover {
+                            color: #99D3C9;
                         }
 
-                        .username {
-                            background: #ECF4F1;
-                            border: 1px solid #CEE4DB;
-                            box-sizing: border-box;
-                            border-radius: 10px;
-                            font-weight: normal;
-                            font-size: 16px;
-                            line-height: 16px;
-                            color: #005264;
-                            padding-top: 10px;
-                            padding-bottom: 10px;
-                            padding-left: 33px;
-                            padding-right: 13px;
+                        &:active {
+                            color: #639289;
                         }
                     }
                 }
@@ -143,18 +238,14 @@ header {
     }
 }
 
-@media screen and (max-width: 575px) {
-    header {
-        .login-wrapper {
-            display: none;
-        }
+@media screen and (max-width: 1199px) {
+    header.header-desktop {
+        display: none;
     }
 }
 
-@media screen and (max-width: 1199px) {
-    header {
-        .nav-wrapper {
-            display: none;
-        }
+@media screen and (min-width: 1200px) {
+    header.header-mobile {
+        display: none;
     }
 }

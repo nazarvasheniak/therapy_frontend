@@ -111,6 +111,105 @@ section {
                 padding-left: 16px;
             }
         }
+
+        .pay-systems {
+            margin-top: 32px;
+            display: flex;
+            align-items: center;
+
+            .pay-system {
+                margin-left: 32px;
+                cursor: pointer;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+
+                &.qiwi {
+                    path {
+                        fill: #EFF0EF;
+                        transition: fill .2s ease;
+                    }
+
+                    &:hover {
+                        path {
+                            &:first-child {
+                                fill: #2A303B;
+                            }
+
+                            &:last-child {
+                                fill: #F57D14;
+                            }
+                        }
+                    }
+                }
+
+                &.visa {
+                    path {
+                        fill: #EFF0EF;
+                        transition: fill .2s ease;
+                    }
+
+                    &:hover {
+                        path {
+                            fill: #00579F;
+
+                            &:last-child {
+                                fill: #FAA61A;
+                            }
+                        }
+                    }
+                }
+
+                &.mastercard {
+                    path {
+                        fill: #EFF0EF;
+                        transition: fill .2s ease;
+                    }
+
+                    &:hover {
+                        path {
+                            &:nth-child(1) {
+                                fill: #231F20;
+                            }
+
+                            &:nth-child(2) {
+                                fill: #FF5F00;
+                            }
+
+                            &:nth-child(3) {
+                                fill: #EB001B;
+                            }
+
+                            &:nth-child(4) {
+                                fill: #F79E1B;
+                            }
+
+                            &:nth-child(5) {
+                                fill: #F79E1B;
+                            }
+                        }
+                    }
+                }
+
+                &.mir {
+                    path {
+                        fill: #EFF0EF;
+                        transition: fill .2s ease;
+                    }
+
+                    &:hover {
+                        path {
+                            fill: #4DB45F;
+
+                            &:first-child {
+                                fill: url(#paint0);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -269,6 +368,7 @@ section.articles {
     padding-top: 68px;
     padding-bottom: 54px;
     overflow: hidden;
+    position: relative;
 
     .section-head {
         font-weight: bold;
@@ -290,6 +390,75 @@ section.articles {
 
     .section-content {
         margin-top: 32px;
+    }
+}
+
+.subscribe-block {
+    background: #F0F6F3;
+    padding-bottom: 54px;
+
+    .subscribe-block-inner {
+        background: #ffffff;
+        box-shadow: 0px 4px 20px #EAF3E5;
+        border-radius: 12px;
+        padding-top: 44px;
+        padding-bottom: 45px;
+        padding-left: 39px;
+        padding-right: 47px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .subscribe-info {
+            display: flex;
+            align-items: center;
+
+            .subscribe-text {
+                margin-left: 30px;
+
+                .subscribe-text-top {
+                    font-weight: bold;
+                    font-size: 24px;
+                    line-height: 29px;
+                    color: #10363C;
+                }
+
+                .subscribe-text-bottom {
+                    margin-top: 10px;
+                    font-weight: normal;
+                    font-size: 18px;
+                    line-height: 22px;
+                    color: #91A59C;                    
+                }
+            }
+        }
+
+        .subscribe-form {
+            display: flex;
+            align-items: center;
+
+            .subscribe-input {
+                input {
+                    width: 294px;
+                    background: #FFFFFF;
+                    border: 1px solid #E4EFEA;
+                    box-sizing: border-box;
+                    border-radius: 16px;
+                    padding-top: 26px;
+                    padding-bottom: 20px;
+                    padding-left: 26px;
+                    font-weight: normal;
+                    font-size: 18px;
+                    line-height: 22px;
+                    color: #ABB3AF;
+                    outline: none;
+                }
+            }
+
+            .subscribe-button {
+                margin-left: 30px;
+            }
+        }
     }
 }
 
@@ -328,6 +497,41 @@ section.articles {
 }
 
 @media screen and (max-width: 991px) {
+    .container {
+        padding-left: 35px;
+        padding-right: 35px;
+        margin: 0;
+    }
+
+    .main-banner {
+        padding-bottom: 132px;
+
+        .main-banner-head {
+            h1 {
+                font-size: 38px;
+                line-height: 46px;
+            }
+        }
+    }
+
+    section.how-it-works {
+        .container {
+            > .flex-row {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+            }
+        }
+
+        .image-block {
+            margin-left: auto;
+        }
+
+        .text-block {
+            margin-top: 46px;
+        }
+    }
+
     section.specialists {
         .video-reviews {
             .flex-row {

@@ -10,6 +10,10 @@ import { SpecialistsComponent } from './specialists/components/specialists/speci
 import { SpecialistComponent } from './specialists/components/specialist/specialist.component';
 import { ArticlesComponent } from './articles/components/articles/articles.component';
 import { ArticleComponent } from './articles/components/article/article.component';
+import { ProfileSpecialistArticlesComponent } from './cabinet-specialist/components/profile-specialist-articles/profile-specialist-articles.component';
+import { ProfileSpecialistComponent } from './cabinet-specialist/components/profile-specialist/profile-specialist.component';
+import { ProfileSpecialistCreateArticleComponent } from './cabinet-specialist/components/profile-specialist-create-article/profile-specialist-create-article.component';
+import { ProfileSpecialistEditArticleComponent } from './cabinet-specialist/components/profile-specialist-edit-article/profile-specialist-edit-article.component';
 
 
 const routes: Routes = [
@@ -17,6 +21,10 @@ const routes: Routes = [
 	{ path: 'sign-in', component: SignInComponent },
 	{ path: 'sign-in/confirm', component: ConfirmationComponent },
 	{ path: 'profile', component: ProfileComponent },
+	{ path: 'profile-specialist', component: ProfileSpecialistComponent },
+	{ path: 'profile-specialist/articles', component: ProfileSpecialistArticlesComponent },
+	{ path: 'profile-specialist/articles/create', component: ProfileSpecialistCreateArticleComponent },
+	{ path: 'profile-specialist/articles/:id', component: ProfileSpecialistEditArticleComponent },
 	{ path: 'landing', component: LandingComponent },
 	{ path: '', component: MainComponent },
 	{ path: 'specialists', component: SpecialistsComponent },

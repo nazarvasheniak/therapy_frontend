@@ -1,0 +1,50 @@
+aside {
+    width: 234px;
+
+    .sidebar-nav {
+        background: #ffffff;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        padding-left: 23px;
+        padding-right: 23px;
+        border-radius: 14px;
+
+        nav {
+            ul {
+                li {
+                    margin-top: 28px;
+    
+                    &:first-child {
+                        margin-top: 0;
+                    }
+    
+                    a {
+                        display: flex;
+                        align-items: center;
+                        font-weight: normal;
+                        font-size: 16px;
+                        line-height: 19px;
+                        color: #005264;
+                        text-decoration: none;
+                        cursor: pointer;
+    
+                        > svg {
+                            margin-right: 12px;
+                        }
+    
+                        &.active {
+                            color: #32A776;
+    
+                            > svg {
+                                circle,
+                                path {
+                                    stroke: #32A776;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

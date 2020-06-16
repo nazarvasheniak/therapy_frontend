@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, HostListener, OnInit, Input } from '@angular/core';
 import { Article, User } from 'src/app/common/models';
 import { UserRole } from 'src/app/common/enums';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 declare var $: any;
 
@@ -15,6 +16,8 @@ export class ArticlesCarouselComponent implements OnInit {
 
     public activeArticle: Article;
     public prevArticle: Article;
+
+    public isLoading = false;
 
     constructor() {
 

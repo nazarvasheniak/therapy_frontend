@@ -40,38 +40,58 @@
         <div class="page-content">
             <div class="articles-list" *ngIf="articles">
                 <article *ngFor="let article of articles">
-                    <div class="article-image">
-                        <img src="../../../../assets/images/article-1.png" />
+                    <div class="article-top">
+                        <div class="article-image">
+                            <div class="image-block">
+                                <img src="../../../../assets/images/article-1.png" />
+                            </div>
+                        </div>
+
+                        <div class="article-content">
+                            <div class="article-date">
+                                <span class="icon">
+                                    <img src="../../../../assets/images/icon-calendar.svg" alt="" />
+                                </span>
+
+                                {{ article.date | date: 'dd MMM yyy' }}
+                            </div>
+
+                            <div class="article-title" [routerLink]="['/articles', article.id]">
+                                {{ article.title }}
+                            </div>
+
+                            <div class="article-short-text">
+                                {{ article.shortText }}
+                            </div>
+
+                            <div class="article-actions">
+                                <div class="article-full" [routerLink]="['/articles', article.id]">
+                                    Читать полностью
+                                </div>
+
+                                <div class="article-author" [routerLink]="['/specialists', article.author.id]">
+                                    <img [src]="article.author.photo.url" />
+
+                                    {{ article.author.user.firstName }} {{ article.author.user.lastName }}
+                                </div>
+
+                                <div class="article-likes">
+                                    17
+
+                                    <img src="../../../../assets/images/icon-like.svg" />
+                                </div>
+
+                                <div class="article-comments">
+                                    28
+
+                                    <img src="../../../../assets/images/icon-comment.svg" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="article-content">
-                        <div class="article-date">
-                            <span class="icon">
-                                <img src="../../../../assets/images/icon-calendar.svg" alt="" />
-                            </span>
-                            
-                            {{ article.date | date: 'dd MMM yyy' }}
-                        </div>
-
-                        <div class="article-title" [routerLink]="['/articles', article.id]">
-                            {{ article.title }}
-                        </div>
-
-                        <div class="article-short-text">
-                            {{ article.shortText }}
-                        </div>
-
-                        <div class="article-actions">
-                            <div class="article-full" [routerLink]="['/articles', article.id]">
-                                Читать полностью
-                            </div>
-
-                            <div class="article-author" [routerLink]="['/specialists', article.author.id]">
-                                <img [src]="article.author.photo.url" />
-
-                                {{ article.author.user.firstName }} {{ article.author.user.lastName }}
-                            </div>
-
+                    <div class="article-bottom">
+                        <div class="likes-block">
                             <div class="article-likes">
                                 17
 
@@ -82,6 +102,18 @@
                                 28
 
                                 <img src="../../../../assets/images/icon-comment.svg" />
+                            </div>
+                        </div>
+
+                        <div class="actions-block">
+                            <div class="article-author" [routerLink]="['/specialists', article.author.id]">
+                                <img [src]="article.author.photo.url" />
+
+                                {{ article.author.user.firstName }} {{ article.author.user.lastName }}
+                            </div>
+
+                            <div class="article-full" [routerLink]="['/articles', article.id]">
+                                Читать полностью
                             </div>
                         </div>
                     </div>

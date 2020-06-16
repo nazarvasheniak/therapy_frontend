@@ -1,30 +1,34 @@
-@media screen and (min-width: 1200px) {
-    .container {
-        width: 1248px;
+.container {
+    padding: 0;
+}
+
+.article-likes {
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 14px;
+    color: #D40026;
+    cursor: pointer;
+
+    > img {
+        margin-left: 8.4px;
     }
 }
 
-@media screen and (min-width: 992px) and (max-width: 1199px) {
-    .container {
-        width: 960px;
-    }
-}
+.article-comments {
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 14px;
+    color: #A9A9A9;
+    cursor: pointer;
 
-@media screen and (min-width: 768px) and (max-width: 991px) {
-    .container {
-        width: 720px;
-    }
-}
-
-@media screen and (min-width: 576px) and (max-width: 767px) {
-    .container {
-        width: 540px;
-    }
-}
-
-@media screen and (max-width: 575px) {
-    .container {
-        width: auto;
+    > img {
+        margin-left: 8.8px;
     }
 }
 
@@ -113,110 +117,89 @@
     .articles-list {
         article {
             margin-top: 40px;
-            display: flex;
-            align-items: center;
 
             &:first-child {
                 margin-top: 0;
             }
 
-            .article-content {
-                margin-left: 40px;
+            .article-top {
+                display: flex;
+                align-items: center;
 
-                .article-date {
-                    font-family: 'Poppins', sans-serif;
-                    font-weight: normal;
-                    font-size: 14px;
-                    line-height: 14px;
-                    color: #9EACA9;
-                    display: flex;
-                    align-items: center;
-
-                    .icon {
-                        margin-right: 9px;
-                    }
-                }
-
-                .article-title {
-                    margin-top: 18px;
-                    font-weight: normal;
-                    font-size: 32px;
-                    line-height: 32px;
-                    text-decoration-line: underline;
-                    color: #162B1E;
-                    cursor: pointer;
-                }
-
-                .article-short-text {
-                    max-width: 663px;
-                    margin-top: 20px;
-                    font-weight: normal;
-                    font-size: 16px;
-                    line-height: 22px;
-                    color: #364D47;
-                }
-
-                .article-actions {
-                    margin-top: 20px;
-                    display: flex;
-                    align-items: center;
-
-                    .article-full {
-                        font-weight: bold;
-                        font-size: 16px;
-                        line-height: 16px;
-                        text-decoration-line: underline;
-                        color: #219653;
-                        cursor: pointer;
-                    }
-
-                    .article-author {
+                .article-content {
+                    margin-left: 40px;
+    
+                    .article-date {
+                        font-family: 'Poppins', sans-serif;
+                        font-weight: normal;
+                        font-size: 14px;
+                        line-height: 14px;
+                        color: #9EACA9;
                         display: flex;
                         align-items: center;
-                        margin-left: 32px;
-                        font-weight: 500;
+    
+                        .icon {
+                            margin-right: 9px;
+                        }
+                    }
+    
+                    .article-title {
+                        margin-top: 18px;
+                        font-weight: normal;
+                        font-size: 32px;
+                        line-height: 32px;
+                        text-decoration-line: underline;
+                        color: #162B1E;
+                        cursor: pointer;
+                    }
+    
+                    .article-short-text {
+                        max-width: 663px;
+                        margin-top: 20px;
+                        font-weight: normal;
                         font-size: 16px;
                         line-height: 22px;
                         color: #364D47;
-                        cursor: pointer;
-
-                        > img {
-                            width: 32px;
-                            height: 32px;
-                            border-radius: 100px;
-                            margin-right: 12px;
-                        }
                     }
-
-                    .article-likes {
+    
+                    .article-actions {
+                        margin-top: 20px;
                         display: flex;
                         align-items: center;
-                        margin-left: 32px;
-                        font-family: Poppins;
-                        font-weight: 500;
-                        font-size: 14px;
-                        line-height: 14px;
-                        color: #D40026;
-                        cursor: pointer;
-
-                        > img {
-                            margin-left: 8.4px;
+    
+                        .article-full {
+                            font-weight: bold;
+                            font-size: 16px;
+                            line-height: 16px;
+                            text-decoration-line: underline;
+                            color: #219653;
+                            cursor: pointer;
                         }
-                    }
-
-                    .article-comments {
-                        display: flex;
-                        align-items: center;
-                        margin-left: 24px;
-                        font-family: Poppins;
-                        font-weight: 500;
-                        font-size: 14px;
-                        line-height: 14px;
-                        color: #A9A9A9;
-                        cursor: pointer;
-
-                        > img {
-                            margin-left: 8.8px;
+    
+                        .article-author {
+                            display: flex;
+                            align-items: center;
+                            margin-left: 32px;
+                            font-weight: 500;
+                            font-size: 16px;
+                            line-height: 22px;
+                            color: #364D47;
+                            cursor: pointer;
+    
+                            > img {
+                                width: 32px;
+                                height: 32px;
+                                border-radius: 100px;
+                                margin-right: 12px;
+                            }
+                        }
+    
+                        .article-likes {
+                            margin-left: 32px;
+                        }
+    
+                        .article-comments {
+                            margin-left: 24px;
                         }
                     }
                 }
@@ -227,5 +210,127 @@
     .articles-pagination {
         display: inline-block;
         margin-top: 32px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        width: 1248px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .page-content {
+        .articles-list {
+            article {
+                .article-bottom {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        width: 960px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .container {
+        width: auto;
+        margin-left: 35px;
+        margin-right: 35px;
+    }
+
+    .page-head {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-bottom: 24px;
+
+        .page-filters {
+            margin-top: 24px;
+        }
+    }
+
+    .page-content {
+        .articles-list {
+            article {
+                .article-top {
+                    .article-content {
+                        .article-actions {
+                            display: none;
+                        }
+                    }
+                }
+
+                .article-bottom {
+                    display: flex;
+                    align-items: center;
+
+                    .likes-block {
+                        width: 203px;
+                        margin-top: 26px;
+                        display: flex;
+                        justify-content: center;
+
+                        .article-likes {
+                            margin-right: 12px;
+                        }
+
+                        .article-comments {
+                            margin-left: 12px;
+                        }
+                    }
+
+                    .actions-block {
+                        display: flex;
+                        align-items: center;
+                        margin-left: 40px;
+                        margin-top: 26px;
+
+                        .article-author {
+                            display: flex;
+                            align-items: center;
+                            font-weight: 500;
+                            font-size: 16px;
+                            line-height: 22px;
+                            color: #364D47;
+                            cursor: pointer;
+    
+                            > img {
+                                width: 32px;
+                                height: 32px;
+                                border-radius: 100px;
+                                margin-right: 12px;
+                            }
+                        }
+
+                        .article-full {
+                            font-weight: bold;
+                            font-size: 16px;
+                            line-height: 16px;
+                            text-decoration-line: underline;
+                            color: #219653;
+                            cursor: pointer;
+                            margin-left: 53px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .article-image {
+        .image-block {
+            width: 203px;
+
+            > img {
+                width: 100%;
+                height: 100%;
+            }
+        }
     }
 }

@@ -1,0 +1,173 @@
+.content-wrapper {
+    display: flex;
+
+    content {
+        width: 954px;
+        background: #ffffff;
+        margin-left: 30px;
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        border-radius: 14px;
+
+        .page-top {
+            display: flex;
+            align-items: center;
+
+            .button-back {
+                > button {
+                    border: 0.5px solid rgba(56, 154, 113, 0.5);
+                    box-sizing: border-box;
+                    border-radius: 10px;
+                    background: transparent;
+                    display: flex;
+                    align-items: center;
+                    font-weight: 500;
+                    font-size: 12px;
+                    line-height: 17px;
+                    text-transform: uppercase;
+                    color: #5BAA89;
+                    height: 34px;
+                    padding-top: 0;
+                    padding-bottom: 0;
+                    padding-left: 10.5px;
+                    padding-right: 12px;
+            
+                    .icon {
+                        width: 20px;
+                        height: 20px;
+                        margin-right: 8px;
+            
+                        > img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+
+            .page-head {
+                margin-left: 24px;
+
+                h2 {
+                    font-weight: 500;
+                    font-size: 24px;
+                    line-height: 34px;
+                    color: #005264;
+                }
+            }
+        }
+
+        .page-content {
+            margin-top: 20px;
+
+            .article-title {
+                input {
+                    width: 100%;
+                    background: #F6FBF8;
+                    border: 1px solid #D1E2DB;
+                    box-sizing: border-box;
+                    border-radius: 10px;
+                    padding-top: 21px;
+                    padding-bottom: 10px;
+                    padding-left: 16px;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 16px;
+                    color: #BDD2D1;
+                    outline: none;                    
+                }
+            }
+
+            .article-preview-image {
+                margin-top: 16px;
+                border: 1px dashed #D1E2DB;
+                box-sizing: border-box;
+                border-radius: 10px;
+                text-align: center;
+                padding-top: 54px;
+                padding-bottom: 54px;
+
+                .article-preview-image-caption {
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: #BDD2D1;
+                    max-width: 322px;
+                    margin: 0 auto;
+                }
+
+                .article-preview-image-button {
+                    margin-top: 24px;
+
+                    > button {
+                        border: 1px dashed #BDD2D1;
+                        box-sizing: border-box;
+                        border-radius: 10px;
+                        background: transparent;
+                        font-weight: normal;
+                        font-size: 16px;
+                        line-height: 16px;
+                        height: 40px;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        color: #BDD2D1;
+                        cursor: pointer;
+                        outline: none;
+                    }
+                }
+            }
+
+            .article-preview-image-uploaded {
+                margin-top: 16px;
+                border-radius: 10px;
+
+                .preview-image {
+                    max-height: 218px;
+
+                    > img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+
+            .article-short-text {
+                margin-top: 16px;
+
+                textarea {
+                    background: #F6FBF8;
+                    border: 1px solid #D1E2DB;
+                    box-sizing: border-box;
+                    border-radius: 10px;
+                    width: 100%;
+                    height: 104px;
+                    padding-left: 16px;
+                    padding-top: 23px;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 16px;
+                    color: #BDD2D1;
+                    outline: none;
+                    resize: vertical;
+                }
+            }
+
+            .article-text-editor {
+                margin-top: 16px;
+            }
+
+            .article-submit {
+                margin-top: 16px;
+
+                > button {
+                    border-radius: 10px;
+                    padding-top: 24px;
+                    padding-bottom: 24px;
+                    letter-spacing: 0.135em;
+                }
+            }
+        }
+    }
+}

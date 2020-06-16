@@ -1,0 +1,101 @@
+<div class="page-wrapper">
+
+    <!-- Header -->
+    <app-header></app-header>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <profile-specialist-sidebar></profile-specialist-sidebar>
+
+            <content>
+                <div class="page-top">
+                    <div class="page-head">
+                        <h2>Статьи</h2>
+
+                        <div class="new-article">
+                            <div class="new-article-button" [routerLink]="['create']">
+                                <img src="../../../../assets/images/icon-plus.svg" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page-filters">
+                        <div class="page-filter count">
+                            <div class="filter-title">
+                                На странице
+                            </div>
+
+                            <div class="filter-values">
+                                <div class="filter-value active">5</div>
+                                <div class="filter-value">10</div>
+                                <div class="filter-value">15</div>
+                                <div class="filter-value">30</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-content">
+                    <div class="articles-list" *ngIf="articles">
+                        <article *ngFor="let article of articles">
+                            <div class="article-content">
+                                <div class="article-title">
+                                    {{ article.title }}
+                                </div>
+
+                                <div class="article-short-text">
+                                    {{ article.shortText }}
+                                </div>
+
+                                <div class="article-actions">
+                                    <div class="article-date">
+                                        <span class="icon">
+                                            <img _ngcontent-plx-c72="" src="../../../../assets/images/icon-calendar.svg" alt="">
+                                        </span>
+
+                                        {{ article.date | date: 'dd.MM.yyy' }}
+                                    </div>
+
+                                    <div class="article-likes-comments">
+                                        <div class="article-likes">
+                                            17
+
+                                            <span class="icon">
+                                                <img src="../../../../assets/images/icon-like-transparent.svg" />
+                                            </span>
+                                        </div>
+
+                                        <div class="article-comments">
+                                            28
+
+                                            <span class="icon">
+                                                <img src="../../../../assets/images/icon-comment-transparent.svg" />
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="article-edit-actions">
+                                        <div class="action-edit" [routerLink]="['/profile-specialist/articles', article.id]">
+                                            Редактировать
+                                        </div>
+
+                                        <div class="action-delete">
+                                            Удалить
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="article-photo">
+                                <img src="../../../../assets/images/article-1.png" />
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+</div>

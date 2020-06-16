@@ -1,0 +1,68 @@
+<div class="page-wrapper">
+
+    <!-- Header -->
+    <app-header></app-header>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <profile-specialist-sidebar></profile-specialist-sidebar>
+
+            <content>
+                <div class="page-top">
+                    <div class="button-back">
+                        <button class="button-transparent" [routerLink]="['/profile-specialist/articles']">
+                            <div class="icon">
+                                <img src="../../../../assets/images/icon-arrow-left.svg" />
+                            </div>
+            
+                            Назад
+                        </button>
+                    </div>
+
+                    <div class="page-head">
+                        <h2>Новая статья</h2>
+                    </div>
+                </div>
+
+                <div class="page-content" *ngIf="articleForm">
+                    <input hidden type="file" #previewImage (change)="setPreviewImage($event)" />
+
+                    <div class="article-title">
+                        <input type="text" placeholder="Название" (input)="onChange('title', $event.target.value)" />
+                    </div>
+
+                    <div class="article-preview-image" *ngIf="!articleForm.value['previewImage']">
+                        <div class="article-preview-image-caption">
+                            Добавьте изображение, которое будет отображаться в качестве обложки статьи
+                        </div>
+
+                        <div class="article-preview-image-button">
+                            <button type="button" (click)="previewImage.click()">+  Добавить превью</button> 
+                        </div>
+                    </div>
+
+                    <div class="article-preview-image-uploaded" *ngIf="articleForm.value['previewImage']">
+                        <div class="preview-image">
+                            <img [src]="articleForm.value['previewImage']" />
+                        </div>
+                    </div>
+
+                    <div class="article-short-text">
+                        <textarea placeholder="Краткое описание" (input)="onChange('shortText', $event.target.value)"></textarea>
+                    </div>
+
+                    <div class="article-text-editor">
+                        <div [froalaEditor]="editorOptions" [(froalaModel)]="editorContent"></div>
+                    </div>
+
+                    <div class="article-submit">
+                        <button type="button" class="button-green" (click)="submitArticle()">Опубликовать</button>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+</div>
