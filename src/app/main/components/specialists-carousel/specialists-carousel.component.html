@@ -1,5 +1,5 @@
 <div class="swiper">
-    <swiper [config]="config">
+    <swiper [config]="config" [index]="currentSlide">
         <specialists-carousel-item style="width: 282px;" *ngFor="let specialist of specialists" [specialist]="specialist"></specialists-carousel-item>
     </swiper>
 </div>

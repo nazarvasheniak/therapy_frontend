@@ -31,7 +31,20 @@ section {
         }
     }
 
-    .main-banner-text {
+    .main-banner-head-mobile {
+        margin-top: 28px;
+        text-align: center;
+
+        h1 {
+            font-weight: bold;
+            font-size: 26px;
+            line-height: 31px;
+            color: #162B1E;
+        }
+    }
+
+    .main-banner-text,
+    .main-banner-text-mobile {
         margin-top: 24px;
         font-weight: normal;
         font-size: 18px;
@@ -213,6 +226,101 @@ section {
     }
 }
 
+.how-it-works-mobile {
+    background: #ffffff;
+    padding-top: 90px;
+    padding-bottom: 96px;
+
+    .how-it-works-block {
+        margin-top: 32px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        .image-block {
+            width: 512px;
+            height: 512px;
+            margin: 0 auto;
+
+            > img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .text-block {
+            margin-top: 32px;
+
+            .block-head {
+                font-weight: bold;
+                font-size: 48px;
+                line-height: 58px;
+                color: #10363C;
+            }
+
+            .block-title {
+                margin-top: 32px;
+                display: flex;
+                align-items: center;
+                font-weight: normal;
+                font-size: 32px;
+                line-height: 38px;
+                color: #10363C;
+
+                .block-num {
+                    width: 32px;
+                    height: 32px;
+                    margin-right: 14px;
+                    background: #5DB892;
+                    border: 0.5px solid #35956C;
+                    box-sizing: border-box;
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 16px;
+                    text-align: center;
+                    color: #FFFFFF;
+                }
+            }
+
+            .block-text {
+                margin-top: 20px;
+                font-weight: normal;
+                font-size: 18px;
+                line-height: 27px;
+                color: #5D787C;
+            }
+
+            .block-button {
+                margin-top: 30px;
+            }
+
+            .block-buttons {
+                margin-top: 32px;
+
+                .block-buttons-inner {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .pay-button {
+                        margin-left: 32px;
+                        cursor: pointer;
+
+                        &:first-child {
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 .video-reviews {
     padding-top: 53px;
     padding-bottom: 49px;
@@ -227,6 +335,26 @@ section {
 
     .section-content {
         margin-top: 49px;
+    }
+}
+
+.video-reviews-mobile {
+    padding-top: 52px;
+    padding-bottom: 59px;
+
+    .section-head {
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 58px;
+        color: #10363C;
+        text-align: center;        
+    }
+
+    .section-content {
+        margin-top: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 520px;
     }
 }
 
@@ -250,6 +378,34 @@ section.specialists {
             text-decoration-line: underline;
             color: #32A776;
             margin-left: 32px;
+        }
+
+        .swiper-controls {
+            margin-left: auto;
+            margin-right: 0;
+            display: flex;
+            align-items: center;
+
+            .swiper-prev,
+            .swiper-next {
+                width: 58px;
+                height: 58px;
+                border-radius: 28px;
+                background: #FFFFFF;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+            }
+
+            .swiper-prev {
+                margin-right: 11px;
+            }
+
+            .swiper-next {
+                margin-left: 11px;
+            }
         }
     }
 
@@ -326,6 +482,24 @@ section.specialists {
                     font-size: 16px;
                     line-height: 22px;
                     color: #414141;
+                }
+            }
+
+            .appointment {
+                margin-top: 32px;
+                cursor: pointer;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 17px;
+                letter-spacing: 0.135em;
+                color: #32A776;       
+                text-transform: uppercase;
+                outline: none;
+                display: flex;
+                align-items: center;
+                
+                > img {
+                    margin-left: 19px;
                 }
             }
 
@@ -462,42 +636,121 @@ section.articles {
     }
 }
 
-@media screen and (max-width: 575px) {
-    section.specialists {
-        .video-reviews {
-            .review-content {
-                .consultations-counter {
-                    .title {
-                        display: none;
-                    }
+.subscribe-block-mobile {
+    background: #F0F6F3;
+    padding-bottom: 46px;
+
+    .subscribe-block-inner {
+        background: #ffffff;
+        box-shadow: 0px 4px 20px #EAF3E5;
+        border-radius: 12px;
+        padding-top: 44px;
+        padding-bottom: 45px;
+        padding-left: 39px;
+        padding-right: 47px;
+        display: flex;
+        flex-direction: column;
+
+        .subscribe-info {
+            display: flex;
+            align-items: center;
+
+            .subscribe-icon {
+                width: 110px;
+                height: 73px;
+                flex: 0 0 110px;
+
+                > img {
+                    width: 100%;
+                    height: 100%;
                 }
             }
 
-            .video-review-player {
-                .play-button {
-                    top: 27%;
+            .subscribe-text {
+                margin-left: 30px;
+
+                .subscribe-text-top {
+                    font-weight: bold;
+                    font-size: 24px;
+                    line-height: 29px;
+                    color: #10363C;
                 }
+
+                .subscribe-text-bottom {
+                    margin-top: 10px;
+                    font-weight: normal;
+                    font-size: 18px;
+                    line-height: 22px;
+                    color: #91A59C;                    
+                }
+            }
+        }
+
+        .subscribe-form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 51px;
+
+            .subscribe-input {
+                input {
+                    width: 294px;
+                    background: #FFFFFF;
+                    border: 1px solid #E4EFEA;
+                    box-sizing: border-box;
+                    border-radius: 16px;
+                    padding-top: 26px;
+                    padding-bottom: 20px;
+                    padding-left: 26px;
+                    font-weight: normal;
+                    font-size: 18px;
+                    line-height: 22px;
+                    color: #ABB3AF;
+                    outline: none;
+                }
+            }
+
+            .subscribe-button {
+                margin-left: 30px;
             }
         }
     }
 }
 
 @media screen and (min-width: 576px) {
-    section.specialists {
-        .video-reviews {
-            .review-content {
-                .consultations-counter {
-                    .title-mobile {
-                        display: none;
-                    }
-                }
-            }
+    .main-banner {
+        .main-banner-head-mobile {
+            display: none;
+        }
+
+        .main-banner-text-mobile {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 710px) {
+    .video-reviews-mobile {
+        padding-top: 38px;
+        padding-bottom: 47px;
+
+        .section-head {
+            font-size: 32px;
+            line-height: 38px;
+            text-align: left;
+        }
+
+        .section-content {
+            margin-top: 36px;
+            
         }
     }
 }
 
 @media screen and (max-width: 991px) {
-    .container {
+    .container,
+    .container-fluid {
         padding-left: 35px;
         padding-right: 35px;
         margin: 0;
@@ -515,40 +768,93 @@ section.articles {
     }
 
     section.how-it-works {
-        .container {
-            > .flex-row {
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
-            }
+        display: none;
+    }
+
+    section.video-reviews {
+        display: none;
+    }
+
+    .subscribe-block {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .container,
+    .container-fluid {
+        padding-left: 19px;
+        padding-right: 19px;
+        margin: 0;
+    }
+
+    .main-banner {
+        .main-banner-head {
+            display: none;
         }
 
-        .image-block {
-            margin-left: auto;
-        }
-
-        .text-block {
-            margin-top: 46px;
+        .main-banner-text {
+            display: none;
         }
     }
 
     section.specialists {
         .video-reviews {
-            .flex-row {
-                flex-direction: column-reverse;
-            }
-
-            .video-review-player {
-                .video-image {
-                    width: 100%;
+            .review-content {
+                .consultations-counter {
+                    .title {
+                        display: none;
+                    }
                 }
             }
 
-            .review-content {
-                margin-left: 0;
+            .video-review-player {
+                .play-button {
+                    top: 27%;
+                }
+            }
+        }
+    }
 
-                .reviews-switcher {
-                    margin-top: 0;
+    .how-it-works-mobile {
+        padding-top: 60px;
+        padding-bottom: 64px;
+
+        .how-it-works-block {
+            margin-top: 48px;
+
+            &:first-child {
+                margin-top: 0;
+
+                .text-block {
+                    margin-top: 48px;
+    
+                    .block-title {
+                        margin-top: 0;
+                    }
+                }
+            }
+
+            .image-block {
+                width: 282px;
+                height: 282px;
+            }
+
+            .text-block {
+                margin-top: 48px;
+
+                .block-head {
+                    margin-bottom: 25px;
+                    font-size: 32px;
+                    line-height: 38px;
+                }
+
+                .block-title {
+                    margin-top: 48px;
+                }
+
+                .blok-text {
+                    margin-top: 24px;
                 }
             }
         }
@@ -556,6 +862,18 @@ section.articles {
 }
 
 @media screen and (min-width: 992px) {
+    section.how-it-works-mobile {
+        display: none;
+    }
+
+    section.video-reviews-mobile {
+        display: none;
+    }
+
+    .subscribe-block-mobile {
+        display: none;
+    }
+
     section.specialists {
         .video-reviews {
             
@@ -568,6 +886,22 @@ section.articles {
                 .consultations-counter {
                     display: none;
                 }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .subscribe-block {
+        .subscribe-block-inner {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+
+            .subscribe-form {
+                width: 100%;
+                margin-top: 51px;
+                justify-content: center;
             }
         }
     }

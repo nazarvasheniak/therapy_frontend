@@ -8,6 +8,7 @@ import { Component, AfterViewInit } from '@angular/core';
 export class VideoReviewsComponent implements AfterViewInit {
 
     slidesCount: number;
+    slides = [];
     currentSlide: number = 0;
 
     constructor() {
@@ -16,6 +17,7 @@ export class VideoReviewsComponent implements AfterViewInit {
 
     ngAfterViewInit() {
         this.slidesCount = document.querySelector(".swiper-wrapper").childElementCount;
+        document.querySelector(".swiper-wrapper").childNodes.forEach(item => this.slides.push(item));
 
         document.querySelector(".swiper-button-prev").addEventListener('click', () => {
             this.prevSlide();
@@ -44,5 +46,9 @@ export class VideoReviewsComponent implements AfterViewInit {
         }
 
         this.currentSlide--;
+    }
+
+    setSlide(index: number) {
+        this.currentSlide = index;
     }
 }

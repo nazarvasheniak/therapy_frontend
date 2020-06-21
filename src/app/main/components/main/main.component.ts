@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SpecialistsService, ArticlesService } from 'src/app/common/services';
 import { Specialist, Article } from 'src/app/common/models';
 import { Review } from '../../models';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SpecialistsCarouselComponent } from '../specialists-carousel/specialists-carousel.component';
 
 @Component({
 	selector: 'app-main',
 	templateUrl: './main.component.html',
-	styleUrls: ['./main.component.scss']
+    styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
 
@@ -16,6 +17,8 @@ export class MainComponent implements OnInit {
     public activeReview: Review;
 
     public articles: Article[];
+
+    @ViewChild(SpecialistsCarouselComponent) specialistsCarousel: SpecialistsCarouselComponent;
 
 	constructor(
         private specialistsService: SpecialistsService,
@@ -77,15 +80,26 @@ export class MainComponent implements OnInit {
     }
     
     private loadArticles() {
-        this.articlesService.getArticles()
-            .subscribe(res => {
-                if (!res.success) {
-                    alert(res.message);
+        this.articlesService.getArticles({
+            pageNumber: 1,
+            pageSize: 100000
+        })
+        .subscribe(res => {
+            if (!res.success) {
+                alert(res.message);
 
-                    return;
-                }
+                return;
+            }
 
-                this.articles = res.data;
-            });
+            this.articles = res.data;
+        });
+    }
+
+    specialistsCarouselPrevSlide() {
+        this.specialistsCarousel.prevSlide();
+    }
+
+    specialistsCarouselNextSlide() {
+        this.specialistsCarousel.nextSlide();
     }
 }

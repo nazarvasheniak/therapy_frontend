@@ -6,3 +6,5 @@ export * from './specialist.model';
 export * from './session.model';
 export * from './review.model';
 export * from './article.model';
+export * from './article-like.model';
+export * from './article-comment.model';

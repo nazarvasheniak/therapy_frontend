@@ -9,10 +9,14 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 14px;
-    color: #D40026;
+    color: #A9A9A9;
     cursor: pointer;
 
-    > img {
+    &.liked {
+        color: #D40026;
+    }
+
+    > svg {
         margin-left: 8.4px;
     }
 }
@@ -88,7 +92,7 @@
             }
 
             &.sorter {
-                width: 262px;
+                width: 281px;
                 
                 .filter-values {
                     width: 100%;
@@ -97,9 +101,14 @@
 
                     > div {
                         cursor: pointer;
+                        display: flex;
+                        align-items: center;
+
+                        > svg {
+                            margin-left: 10px;
+                        }
 
                         &.active {
-                            cursor: default;
                             color: #005264;
                         }
                     }

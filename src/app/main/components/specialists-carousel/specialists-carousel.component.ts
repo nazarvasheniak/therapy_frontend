@@ -15,6 +15,8 @@ export class SpecialistsCarouselComponent implements AfterViewInit {
         slidesOffsetAfter: 0
     };
 
+    currentSlide = 0;
+
     constructor() {
 
     }
@@ -28,10 +30,39 @@ export class SpecialistsCarouselComponent implements AfterViewInit {
     setSliderOffset() {
         let element = document.querySelector("section.specialists .container");
         let style = window.getComputedStyle(element);
-        let marginLeft = parseFloat(style.marginLeft) + 15;
-        let marginRight = parseFloat(style.marginRight) + 15;
+
+        let marginLeft = 0;
+        let marginRight = 0;
+
+        if (window.innerWidth > 991) {
+            marginLeft = parseFloat(style.marginLeft);
+            marginRight = parseFloat(style.marginRight);
+        } else {
+            marginLeft = parseFloat(style.paddingLeft);
+            marginRight = parseFloat(style.paddingRight);
+        }
         
         this.config.slidesOffsetBefore = marginLeft;
         this.config.slidesOffsetAfter = marginRight;
+    }
+
+    nextSlide() {
+        if (this.currentSlide == (this.specialists.length - 1)) {
+            this.currentSlide = 0;
+
+            return;
+        }
+
+        this.currentSlide++;
+    }
+
+    prevSlide() {
+        if (this.currentSlide == 0) {
+            this.currentSlide = this.specialists.length - 1;
+
+            return;
+        }
+
+        this.currentSlide--;
     }
 }
