@@ -167,17 +167,23 @@ export class ArticlesComponent implements OnInit {
 
 		this.sorter = sorter;
 		this.sortBy = SortBy.ASC;
+
+		this.sortArticles(this.articles);
 	}
 
 	toggleSortDirection() {
 		if (this.sortBy == SortBy.ASC) {
 			this.sortBy = SortBy.DESC;
 
+			this.sortArticles(this.articles);
+
 			return;
 		}
 
 		if (this.sortBy == SortBy.DESC) {
 			this.sortBy = SortBy.ASC;
+
+			this.sortArticles(this.articles);
 
 			return;
 		}

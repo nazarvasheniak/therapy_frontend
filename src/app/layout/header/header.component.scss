@@ -151,7 +151,6 @@ header.header-desktop {
 header.header-mobile {
     padding-left: 35px;
     padding-right: 35px;
-    padding-bottom: 46px;
 
     .header-content {
         display: flex;
@@ -230,6 +229,38 @@ header.header-mobile {
 
                         &:active {
                             color: #639289;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    header.header-mobile {
+        padding-left: 19px;
+        padding-right: 19px;
+
+        .header-content {
+            .nav-wrapper {
+                .login-wrapper,
+                .profile-badge-wrapper {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 576px) {
+    header.header-mobile {
+        .header-expand-nav {
+            nav {
+                ul {
+                    li {
+                        &:last-child {
+                            display: none;
                         }
                     }
                 }

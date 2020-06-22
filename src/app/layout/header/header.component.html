@@ -104,6 +104,39 @@
                 <li><a href="#">Отзывы клиентов</a></li>
                 <li><a [routerLink]="['/specialists']">Выбрать специалиста</a></li>
                 <li><a [routerLink]="['/articles']">Статьи</a></li>
+
+                <li *ngIf="!isLoggedIn">
+                    <div class="login-wrapper">
+                        <button type="button" class="login-button" [routerLink]="['/sign-in']">
+                            <img class="icon" src="../../../assets/images/icon-key.svg" alt="" />
+                            Войти
+                        </button>
+                    </div>
+                </li>
+
+                <li *ngIf="isLoggedIn && user && user.role == 1">
+                    <div class="profile-badge-wrapper" [routerLink]="['/profile']">
+                        <div class="avatar">
+                            {{ getAvatar() }}
+                        </div>
+            
+                        <div class="username">
+                            {{ user.firstName }}
+                        </div>
+                    </div>
+                </li>
+
+                <li *ngIf="isLoggedIn && user && (user.role == 2 || user.role == 3)">
+                    <div class="profile-badge-wrapper" [routerLink]="['/profile-specialist']">
+                        <div class="avatar">
+                            {{ getAvatar() }}
+                        </div>
+            
+                        <div class="username">
+                            {{ user.firstName }}
+                        </div>
+                    </div>
+                </li>
             </ul>
         </nav>
     </div>
