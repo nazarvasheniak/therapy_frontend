@@ -233,3 +233,18 @@
         }
     }
 }
+
+@media screen and (max-width: 480px) {
+    .reviews-slider {
+        .slide-wrapper {
+            .review-video {
+                .video-wrapper {
+                    max-width: 460px;
+                    max-height: 250px;
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+}

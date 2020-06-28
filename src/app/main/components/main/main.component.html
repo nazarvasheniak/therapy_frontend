@@ -426,17 +426,19 @@
     <div class="section-content" *ngIf="specialists">
         <specialists-carousel [specialists]="specialists"></specialists-carousel>
 
+        <div class="swiper-controls">
+            <div class="swiper-prev" (click)="specialistsCarouselPrevSlide()">
+                <img src="../../../../assets/images/swiper-prev.svg" />
+            </div>
+            
+            <div class="swiper-next" (click)="specialistsCarouselNextSlide()">
+                <img src="../../../../assets/images/swiper-next.svg" />
+            </div>
+        </div>
+
         <div class="container">
             <div class="video-reviews">
                 <div class="flex-row">
-                    <!-- <div class="video-review-player">
-                        <a href="#" class="play-button">
-                            <img src="../../../../assets/images/icon-play.svg" />
-                        </a>
-    
-                        <img class="video-image" src="../../../../assets/images/video-review-1.png" />
-                    </div> -->
-
                     <div class="video-review-player" [innerHtml]="activeReview.videoLink"></div>
 
                     <div class="review-content">
@@ -486,10 +488,10 @@
 
             <a [routerLink]="['/articles']">Смотреть все</a>
         </div>
+    </div>
 
-        <div class="section-content" *ngIf="articles">
-            <articles-carousel [articles]="articles"></articles-carousel>
-        </div>
+    <div class="section-content" *ngIf="articles">
+        <articles-carousel [articles]="articles"></articles-carousel>
     </div>
 </section>
 

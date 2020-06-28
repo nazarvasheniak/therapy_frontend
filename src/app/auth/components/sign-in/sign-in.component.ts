@@ -12,6 +12,8 @@ declare var $: any;
 })
 export class SignInComponent implements OnInit {
 
+    public isLoading = false;
+
     @ViewChild("phone") phone: ElementRef;
 
     public signInForm: FormGroup;
@@ -45,15 +47,19 @@ export class SignInComponent implements OnInit {
     }
 
     public submit(form: FormGroup): void {
+        this.isLoading = true;
+
         const phone = this.normalizePhoneNumber(form.value['phone']);
 
         if (!phone) {
             alert('error');
+            this.isLoading = false;
             return;
         }
 
         if (phone.includes('_')) {
             alert('length error');
+            this.isLoading = false;
             return;
         }
 
@@ -72,6 +78,7 @@ export class SignInComponent implements OnInit {
                 },
                 fail => {
                     alert(fail.error.message);
+                    this.isLoading = false;
                     return;
                 }
             )

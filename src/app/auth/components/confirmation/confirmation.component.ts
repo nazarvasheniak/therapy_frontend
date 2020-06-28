@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/common/services/auth.service';
 })
 export class ConfirmationComponent implements OnInit {
 
+    public isLoading = false;
+
     @ViewChild("digit1") digit1: ElementRef;
     @ViewChild("digit2") digit2: ElementRef;
     @ViewChild("digit3") digit3: ElementRef;
@@ -38,7 +40,7 @@ export class ConfirmationComponent implements OnInit {
                 }
 
                 this.userID = Number(params['id']);
-            })
+            });
     }
 
     ngOnInit(): void {
@@ -55,8 +57,11 @@ export class ConfirmationComponent implements OnInit {
     }
 
     public submit(form: FormGroup) {
+        this.isLoading = true;
+
         if (form.invalid) {
             alert("Заполните все поля");
+            this.isLoading = false;
             return;
         }
 

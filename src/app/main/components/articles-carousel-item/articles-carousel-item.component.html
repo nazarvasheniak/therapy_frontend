@@ -18,14 +18,14 @@
 
             <!-- Likes -->
             <div class="article-likes">
-                17
+                {{ article.likes.length }}
 
                 <img src="../../../../assets/images/icon-like.svg" />
             </div>
 
             <!-- Comments -->
             <div class="article-comments">
-                4
+                {{ article.comments.length }}
 
                 <img src="../../../../assets/images/icon-comment.svg" />
             </div>
@@ -81,6 +81,43 @@
             <!-- Sign Up Button -->
             <div class="signup-button">
                 <button type="button">Записаться</button>
+            </div>
+        </div>
+
+        <!--Article Bottom Bar -->
+        <div class="article-bottom-bar">
+            <div class="article-bottom-bar-inner">
+                <div class="author-block">
+                    <div class="author-photo">
+                        <img [src]="article.author.photo.url" />
+                    </div>
+
+                    <div class="author-name">
+                        <div class="title">Автор</div>
+
+                        <div class="name" [routerLink]="['/specialists', article.author.id]">
+                            {{ article.author.user.firstName }} {{ article.author.user.lastName }}
+                        </div>
+                    </div>
+
+                    <div class="author-info">
+                        <div class="author-price">
+                            {{ article.author.price | number:'':'fr' }} ₽
+                        </div>
+    
+                        <div class="author-rating">
+                            <div class="icon-star">
+                                <img src="../../../../assets/images/star.svg" />
+                            </div>
+    
+                            {{ authorRating }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="signup-button">
+                    <button type="button">Записаться</button>
+                </div>
             </div>
         </div>
     </div>

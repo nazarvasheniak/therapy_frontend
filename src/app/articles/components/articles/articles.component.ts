@@ -30,38 +30,37 @@ export class ArticlesComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.loadArticles();
+		this.loadArticles(1, 5);
 	}
 
-	private loadArticles() {
-		this.articlesService.getArticles({
-			pageNumber: this.pageNumber,
-			pageSize: this.pageSize
-		})
-		.subscribe(res => {
-			if (!res.success) {
-				alert(res.message);
+	private loadArticles(pageNumber: number, pageSize: number) {
+		this.articlesService.getArticles({ pageNumber, pageSize })
+			.subscribe(res => {
+				if (!res.success) {
+					alert(res.message);
 
-				return;
-			}
+					return;
+				}
 
-			this.pageNumber = res.currentPage;
-			this.pageSize = res.pageSize;
-			this.totalPages = res.totalPages;
+				this.pageNumber = res.currentPage;
+				this.pageSize = res.pageSize;
+				this.totalPages = res.totalPages;
 
-			if (!this.sorter) {
-				this.sorter = ArticlesSorter.Date;
-				this.sortBy = SortBy.ASC;
+				if (!this.sorter) {
+					this.sorter = ArticlesSorter.Date;
+					this.sortBy = SortBy.ASC;
 
-				this.articles = res.data.sort((a, b) => {
-					return new Date(a.date).getTime() - new Date(b.date).getTime();
-				});
+					this.articles = res.data.sort((a, b) => {
+						return new Date(a.date).getTime() - new Date(b.date).getTime();
+					});
 
-				return;
-			}
+					window.scroll(0,0);
 
-			this.sortArticles(res.data);
-		});
+					return;
+				}
+
+				this.sortArticles(res.data);
+			});
 	}
 
 	private sortByLikes(articles: Article[], sortBy: SortBy) {
@@ -103,6 +102,8 @@ export class ArticlesComponent implements OnInit {
 					return new Date(a.date).getTime() - new Date(b.date).getTime();
 				});
 
+				window.scroll(0,0);
+
 				return;
 			}
 			
@@ -110,6 +111,8 @@ export class ArticlesComponent implements OnInit {
 				this.articles = articles.sort((a, b) => {
 					return new Date(b.date).getTime() - new Date(a.date).getTime();
 				});
+
+				window.scroll(0,0);
 
 				return;
 			}
@@ -120,11 +123,15 @@ export class ArticlesComponent implements OnInit {
 		if (this.sorter == ArticlesSorter.Likes) {
 			this.articles = this.sortByLikes(articles, this.sortBy);
 
+			window.scroll(0,0);
+
 			return;
 		}
 
 		if (this.sorter == ArticlesSorter.Comments) {
 			this.articles = this.sortByComments(articles, this.sortBy);
+
+			window.scroll(0,0);
 
 			return;
 		}
@@ -143,19 +150,16 @@ export class ArticlesComponent implements OnInit {
 				}
 
 				
-				this.loadArticles();
+				this.loadArticles(this.pageNumber, this.pageSize);
 			});
 	}
 
-	setPageSize(value) {
-		this.pageSize = Number(value);
-		this.pageNumber = 1;
-		this.loadArticles();
+	setPageSize(value: number) {
+		this.loadArticles(1, Number(value));
 	}
 
 	setPageNumber(value: number) {
-		this.pageNumber = value;
-		this.loadArticles();
+		this.loadArticles(value, this.pageSize);
 	}
 
 	setSorter(sorter: ArticlesSorter) {

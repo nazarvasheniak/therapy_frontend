@@ -1,5 +1,9 @@
 <div class="specialists-carousel-item">
     <div class="specialist-photo">
+        <div class="author-price">
+            {{ specialist.price | number:'':'fr' }} ₽
+        </div>
+        
         <img [src]="specialist.photo.url" />
     </div>
 

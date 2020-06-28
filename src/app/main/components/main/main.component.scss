@@ -271,6 +271,7 @@ section {
                 .block-num {
                     width: 32px;
                     height: 32px;
+                    flex: 0 0 32px;
                     margin-right: 14px;
                     background: #5DB892;
                     border: 0.5px solid #35956C;
@@ -363,6 +364,29 @@ section.specialists {
     padding-top: 71px;
     padding-bottom: 108px;
 
+    .swiper-controls {
+        .swiper-prev,
+        .swiper-next {
+            width: 58px;
+            height: 58px;
+            border-radius: 28px;
+            background: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+        }
+
+        .swiper-prev {
+            margin-right: 11px;
+        }
+
+        .swiper-next {
+            margin-left: 11px;
+        }
+    }
+
     .section-head {
         font-weight: bold;
         font-size: 48px;
@@ -385,32 +409,18 @@ section.specialists {
             margin-right: 0;
             display: flex;
             align-items: center;
-
-            .swiper-prev,
-            .swiper-next {
-                width: 58px;
-                height: 58px;
-                border-radius: 28px;
-                background: #FFFFFF;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-                box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
-            }
-
-            .swiper-prev {
-                margin-right: 11px;
-            }
-
-            .swiper-next {
-                margin-left: 11px;
-            }
         }
     }
 
     .section-content {
         margin-top: 49px;
+
+        .swiper-controls {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
 
     .video-reviews {
@@ -718,32 +728,72 @@ section.articles {
     }
 }
 
-@media screen and (min-width: 576px) {
-    .main-banner {
-        .main-banner-head-mobile {
-            display: none;
-        }
 
-        .main-banner-text-mobile {
-            display: none;
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 1200px) {
+    section.specialists {
+        .video-reviews {
+            .video-review-player {
+                width: 610px;
+                height: 343px;
+            }
         }
     }
 }
 
-@media screen and (max-width: 710px) {
-    .video-reviews-mobile {
-        padding-top: 38px;
-        padding-bottom: 47px;
+@media screen and (max-width: 1199px) {
+    .subscribe-block {
+        .subscribe-block-inner {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
 
-        .section-head {
-            font-size: 32px;
-            line-height: 38px;
-            text-align: left;
+            .subscribe-form {
+                width: 100%;
+                margin-top: 51px;
+                justify-content: center;
+            }
         }
+    }
+}
 
-        .section-content {
-            margin-top: 36px;
+@media screen and (min-width: 992px) {
+    section.how-it-works-mobile {
+        display: none;
+    }
+
+    section.video-reviews-mobile {
+        display: none;
+    }
+
+    .subscribe-block-mobile {
+        display: none;
+    }
+
+    section.specialists {
+        .video-reviews {
             
+            .video-review-player {
+                width: 530px;
+                height: 300px;
+            }
+
+            .review-content {
+                .consultations-counter {
+                    display: none;
+                }
+            }
         }
     }
 }
@@ -775,8 +825,118 @@ section.articles {
         display: none;
     }
 
+    section.specialists {
+        padding-bottom: 0 !important;
+
+        .container {
+            width: 100%;
+        }
+
+        .video-reviews {
+            padding-top: 0;
+            padding-bottom: 60px;
+            margin-top: 89px;
+
+            .flex-row {
+                flex-direction: column;
+            }
+
+            .video-review-player {
+                height: 392px
+            }
+
+            .review-content {
+                margin-left: 0;
+
+                .reviews-switcher {
+                    margin-top: 44px;
+                }
+            }
+        }
+    }
+
     .subscribe-block {
         display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    section.articles {
+        padding-top: 53px;
+        padding-bottom: 0;
+
+        .article-container {
+            width: 100%;
+            margin: 0;
+            padding-left: 35px;
+            padding-right: 35px;
+        }
+    }
+}
+
+@media screen and (min-width: 711px) {
+    section.specialists {
+        .section-content {
+            .swiper-controls {
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 710px) {
+    .video-reviews-mobile {
+        padding-top: 38px;
+        padding-bottom: 47px;
+
+        .section-head {
+            font-size: 32px;
+            line-height: 38px;
+            text-align: left;
+        }
+
+        .section-content {
+            margin-top: 36px;
+        }
+    }
+}
+
+@media screen and (max-width: 710px) {
+    section.specialists {
+        padding-top: 43px;
+        padding-bottom: 55px;
+
+        .section-head {
+            font-size: 32px;
+            line-height: 38px;
+            flex-direction: column;
+            align-items: flex-start;
+
+            > a {
+                margin-left: 0;
+                margin-top: 16px;
+            }
+
+            .swiper-controls {
+                display: none;
+            }
+        }
+
+        .section-content {
+            margin-top: 31px;
+        }
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .main-banner {
+        .main-banner-head-mobile {
+            display: none;
+        }
+
+        .main-banner-text-mobile {
+            display: none;
+        }
     }
 }
 
@@ -789,6 +949,10 @@ section.articles {
     }
 
     .main-banner {
+        padding-bottom: 87px;
+        padding-left: 19px;
+        padding-right: 19px;
+
         .main-banner-head {
             display: none;
         }
@@ -800,18 +964,8 @@ section.articles {
 
     section.specialists {
         .video-reviews {
-            .review-content {
-                .consultations-counter {
-                    .title {
-                        display: none;
-                    }
-                }
-            }
-
             .video-review-player {
-                .play-button {
-                    top: 27%;
-                }
+                height: 290px;
             }
         }
     }
@@ -859,60 +1013,82 @@ section.articles {
             }
         }
     }
-}
 
-@media screen and (min-width: 992px) {
-    section.how-it-works-mobile {
-        display: none;
-    }
+    section.articles {
+        padding-top: 34px;
 
-    section.video-reviews-mobile {
-        display: none;
+        .article-container {
+            padding-left: 19px;
+            padding-right: 19px;
+        }
+
+        .section-head {
+            font-size: 32px;
+            line-height: 38px;
+            align-items: flex-start;
+            flex-direction: column;
+
+            > a {
+                margin-left: 0;
+                margin-top: 16px;
+            }
+        }
     }
 
     .subscribe-block-mobile {
-        display: none;
-    }
+        .subscribe-block-inner {
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-bottom: 16px;
+            padding-top: 25px;
 
-    section.specialists {
-        .video-reviews {
-            
-            .video-review-player {
-                width: 530px;
-                height: 300px;
+            .subscribe-info {
+                flex-direction: column;
+
+                .subscribe-text {
+                    margin-left: 0;
+                    text-align: center;
+
+                    .subscribe-text-bottom {
+                        font-size: 16px;
+                        margin-top: 13px;
+                    }
+                }
             }
 
-            .review-content {
-                .consultations-counter {
-                    display: none;
+            .subscribe-form {
+                margin-top: 22px;
+                flex-direction: column;
+
+                .subscribe-input {
+                    width: 100%;
+
+                    > input {
+                        width: 100%;
+                    }
+                }
+
+                .subscribe-button {
+                    margin-top: 18px;
+                    margin-left: 0;
+                    width: 100%;
+
+                    > button {
+                        width: 100%;
+                    }
                 }
             }
         }
     }
 }
 
-@media screen and (max-width: 1199px) {
-    .subscribe-block {
-        .subscribe-block-inner {
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
-
-            .subscribe-form {
-                width: 100%;
-                margin-top: 51px;
-                justify-content: center;
-            }
-        }
-    }
-}
-
-@media screen and (min-width: 1200px) {
+@media screen and (max-width: 480px) {
     section.specialists {
         .video-reviews {
+            margin-top: 30px;
+
             .video-review-player {
-                width: 610px;
-                height: 343px;
+                height: 188px;
             }
         }
     }

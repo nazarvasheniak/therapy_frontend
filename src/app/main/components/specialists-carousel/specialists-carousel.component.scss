@@ -10,3 +10,9 @@ specialists-carousel-item {
 .swiper-container {
     overflow-x: unset !important;
 }
+
+@media screen and (max-width: 710px) {
+    specialists-carousel-item {
+        margin-left: 10px;
+    }
+}

@@ -21,7 +21,6 @@ export class PaginationComponent implements OnChanges {
 		
 		this.currentPage = increased;
 		this.onChanged.emit(increased);
-		window.scroll(0,0);
     }
 
 	constructor() {

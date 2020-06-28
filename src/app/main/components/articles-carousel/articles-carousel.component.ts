@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, HostListener, OnInit, Input } from '@angular/core';
+import { Component, AfterViewInit, HostListener, OnInit, Input, ViewChild, AfterViewChecked } from '@angular/core';
 import { Article, User } from 'src/app/common/models';
 import { UserRole } from 'src/app/common/enums';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { SwiperComponent, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 declare var $: any;
 
@@ -10,17 +11,24 @@ declare var $: any;
     templateUrl: './articles-carousel.component.html',
     styleUrls: ['./articles-carousel.component.scss']
 })
-export class ArticlesCarouselComponent implements OnInit {
+export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
 
     @Input('articles') articles: Article[];
+    @ViewChild('articlesSwitcherMobile') articlesSwitcherMobile: SwiperComponent;
 
     public activeArticle: Article;
     public prevArticle: Article;
 
     public isLoading = false;
 
-    constructor() {
+    articlesSwitcherConfig: SwiperConfigInterface = {
+        centeredSlides: true
+    }
 
+    articlesSwitcherCurrentSlide = 0;
+
+    constructor() {
+        
     }
 
     public setActiveArticle(article: Article) {
@@ -33,6 +41,8 @@ export class ArticlesCarouselComponent implements OnInit {
         } else {
             this.prevArticle = null;
         }
+
+        this.articlesSwitcherCurrentSlide = activeIndex;
     }
 
     public toggleNextArticle() {
@@ -62,5 +72,12 @@ export class ArticlesCarouselComponent implements OnInit {
 
     ngOnInit() {
         this.setActiveArticle(this.articles[0]);
+    }
+
+    ngAfterViewChecked() {
+        this.articlesSwitcherMobile.indexChange
+            .subscribe(slide => {
+                this.setActiveArticle(this.articles[slide]);
+            });
     }
 }

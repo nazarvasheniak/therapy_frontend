@@ -90,7 +90,102 @@
         }
     }
 
+    .articles-switcher-mobile {
+        .article-item {
+            width: 272px;
+            padding: 24px;
+            margin-left: 5px;
+            margin-right: 5px;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            box-shadow: 0px 4px 16px #EAEFED;
+            border-radius: 16px;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            .article-author {
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 17px;
+                color: #9EACA9;                
+            }
+
+            .article-title {
+                margin-top: 8px;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 24px;
+                color: #162B1E;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        }
+
+        .swiper-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 22px;
+
+            .button-prev,
+            .button-next {
+                width: 58px;
+                height: 58px;
+                flex: 0 0 58px;
+                border-radius: 28px;
+                background: #FFFFFF;
+                box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .button-prev {
+                margin-right: 12px;
+            }
+
+            .button-next {
+                margin-left: 12px;
+            }
+        }
+    }
+
     .article-body {
         margin-top: 41px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .articles-carousel {
+        .articles-switcher {
+            left: calc(25% - 333px);
+
+            &.active-first {
+                left: calc(25% - 93px);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .articles-carousel {
+        .articles-switcher-mobile {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .articles-carousel {
+        .articles-switcher {
+            display: none;
+        }
     }
 }

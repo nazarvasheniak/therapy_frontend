@@ -13,6 +13,8 @@ declare var $: any;
 })
 export class SignUpComponent implements OnInit {
 
+    public isLoading = false;
+
     public signUpForm: FormGroup;
 
     constructor(
@@ -54,15 +56,19 @@ export class SignUpComponent implements OnInit {
     }
 
     public submit(form: FormGroup) {
+        this.isLoading = true;
+
         const phone = this.normalizePhoneNumber(form.value['phoneNumber']);
 
         if (!phone) {
             alert('error');
+            this.isLoading = false;
             return;
         }
 
         if (phone.includes('_')) {
             alert('length error');
+            this.isLoading = false;
             return;
         }
 
@@ -73,10 +79,12 @@ export class SignUpComponent implements OnInit {
             .subscribe(res => {
                 if (!res.success) {
                     alert(res.message);
+                    this.isLoading = false;
 
                     return;
                 }
-
+                
+                this.isLoading = false;
                 this.router.navigate(['/sign-in']);
             });
     }

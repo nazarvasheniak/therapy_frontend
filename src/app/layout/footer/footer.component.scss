@@ -220,6 +220,12 @@ footer {
 }
 
 @media screen and (max-width: 991px) {
+    .container {
+        width: 100%;
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
     footer {
         .footer-right {
             .contacts {
@@ -294,5 +300,12 @@ footer {
                 }
             }
         }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .container {
+        padding-left: 19px;
+        padding-right: 19px;
     }
 }

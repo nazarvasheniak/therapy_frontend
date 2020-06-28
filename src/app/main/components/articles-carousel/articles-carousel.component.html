@@ -1,40 +1,66 @@
 <div class="articles-carousel">
-    <div class="articles-switcher" *ngIf="articles && activeArticle" [ngClass]="{'active-first': !prevArticle}">
-        <div class="article-item" *ngIf="activeArticle != articles[0]">
-            <div class="article-author">
-                {{ prevArticle.author.user.firstName }} {{ prevArticle.author.user.lastName }}
+    <div class="article-container">
+        <div class="articles-switcher" *ngIf="articles && activeArticle" [ngClass]="{'active-first': !prevArticle}">
+            <div class="article-item" *ngIf="activeArticle != articles[0]">
+                <div class="article-author">
+                    {{ prevArticle.author.user.firstName }} {{ prevArticle.author.user.lastName }}
+                </div>
+
+                <div class="article-title">
+                    {{ prevArticle.title }}
+                </div>
             </div>
 
-            <div class="article-title">
-                {{ prevArticle.title }}
+            <div class="article-item article-item-active">
+                <div class="button-prev" (click)="togglePrevArticle()">
+                    <img src="../../../../assets/images/swiper-prev.svg" />
+                </div>
+
+                <div class="article-author">
+                    {{ activeArticle.author.user.firstName }} {{ activeArticle.author.user.lastName }}
+                </div>
+
+                <div class="article-title">
+                    {{ activeArticle.title }}
+                </div>
+
+                <div class="button-next" (click)="toggleNextArticle()">
+                    <img src="../../../../assets/images/swiper-next.svg" />
+                </div>
+            </div>
+
+            <div class="article-item" *ngFor="let article of articles | filterArticles:articles.indexOf(activeArticle)">
+                <div class="article-author">
+                    {{ article.author.user.firstName }} {{ article.author.user.lastName }}
+                </div>
+
+                <div class="article-title">
+                    {{ article.title }}
+                </div>
             </div>
         </div>
+    </div>
 
-        <div class="article-item article-item-active">
+    <div class="articles-switcher-mobile" *ngIf="articles && activeArticle">
+        <swiper #articlesSwitcherMobile [config]="articlesSwitcherConfig" [index]="articlesSwitcherCurrentSlide">
+            <div class="article-item" *ngFor="let article of articles">
+                <div class="article-author">
+                    {{ article.author.user.firstName }} {{ article.author.user.lastName }}
+                </div>
+    
+                <div class="article-title">
+                    {{ article.title }}
+                </div>
+            </div>
+        </swiper>
+
+        <div class="swiper-controls">
             <div class="button-prev" (click)="togglePrevArticle()">
                 <img src="../../../../assets/images/swiper-prev.svg" />
             </div>
 
-            <div class="article-author">
-                {{ activeArticle.author.user.firstName }} {{ activeArticle.author.user.lastName }}
-            </div>
-
-            <div class="article-title">
-                {{ activeArticle.title }}
-            </div>
-
             <div class="button-next" (click)="toggleNextArticle()">
                 <img src="../../../../assets/images/swiper-next.svg" />
-            </div>
-        </div>
-
-        <div class="article-item" *ngFor="let article of articles | filterArticles:articles.indexOf(activeArticle)">
-            <div class="article-author">
-                {{ article.author.user.firstName }} {{ article.author.user.lastName }}
-            </div>
-
-            <div class="article-title">
-                {{ article.title }}
             </div>
         </div>
     </div>
