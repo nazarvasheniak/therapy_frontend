@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BaseHttpService } from './base-http.service';
 import { HttpClient } from '@angular/common/http';
 import { DataResponse, ListResponse, ResponseModel } from '../models/response';
-import { Article } from '../models';
-import { CreateUpdateArticleRequest, GetList } from '../models/request';
+import { Article, ArticleComment } from '../models';
+import { CreateUpdateArticleRequest, GetList, CreateArticleCommentRequest } from '../models/request';
 
 @Injectable()
 export class ArticlesService extends BaseHttpService {
@@ -33,5 +33,9 @@ export class ArticlesService extends BaseHttpService {
 
     public likeArticle(id: number) {
         return this.post<ResponseModel>(`${this.apiUrl}/articles/${id}/like`, {});
+    }
+
+    public commentArticle(request: CreateArticleCommentRequest, id: number) {
+        return this.post<DataResponse<ArticleComment>>(`${this.apiUrl}/articles/${id}/comment`, request);
     }
 }

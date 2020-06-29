@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticlesService } from 'src/app/common/services';
-import { Article } from 'src/app/common/models';
+import { Article, User, ArticleComment } from 'src/app/common/models';
+import { StringHelper } from 'src/app/common/helpers';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-article',
@@ -10,7 +12,11 @@ import { Article } from 'src/app/common/models';
 })
 export class ArticleComponent implements OnInit {
 
+	public commentForm: FormGroup;
+
 	public article: Article;
+	public replyID: number;
+	public commentText: string;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -35,6 +41,14 @@ export class ArticleComponent implements OnInit {
 			});
 	}
 
+	private initCommentForm() {
+		this.commentForm = new FormGroup({
+			isReply: new FormControl(false, [Validators.required]),
+			parentCommentID: new FormControl(0),
+			text: new FormControl(null, [Validators.required])
+		});
+	}
+
 	private loadArticle(id: number) {
 		this.articlesService.getArticle(id)
 			.subscribe(res => {
@@ -45,6 +59,91 @@ export class ArticleComponent implements OnInit {
 				}
 
 				this.article = res.data;
+				this.initCommentForm();
+			});
+	}
+
+	likeArticle() {
+		this.articlesService
+			.likeArticle(this.article.id)
+			.subscribe(res => {
+				if (!res.success) {
+					alert(res.message);
+
+					return;
+				}
+
+				
+				this.loadArticle(this.article.id);
+			});
+	}
+
+	get comments() {
+		return this.article.comments.filter(x => !x.isReply);
+	}
+
+	getReplies(commentID: number) {
+		let result: ArticleComment[] = [];
+
+		result.push(...this.getCommentReplies(commentID));
+
+		result.forEach(replie => {
+			result.push(...this.getCommentReplies(replie.id));
+		});
+
+		return result;
+	}
+
+	private getCommentReplies(commentID: number) {
+		return this.article.comments.filter(x => x.parentComment.id == commentID);
+	}
+
+	getAvatar(user: User) {
+		return StringHelper.getFirstLetter(user.firstName);
+	}
+
+	showReply(id: number) {
+		this.replyID = id;
+
+		setTimeout(() => {
+			this.replyID = null;
+		}, 2000);
+	}
+
+	setReply(parentCommentID: number) {
+		this.commentForm.controls['isReply'].setValue(true);
+		this.commentForm.controls['parentCommentID'].setValue(parentCommentID);
+	}
+
+	cancelReply() {
+		this.commentForm.controls['isReply'].setValue(false);
+		this.commentForm.controls['parentCommentID'].setValue(0);
+	}
+
+	getParentComment(parentCommentID: number) {
+		return this.article.comments.find(x => x.id == parentCommentID);
+	}
+
+	submitComment() {
+		this.commentForm.controls['text'].setValue(this.commentText);
+
+		if (this.commentForm.invalid) {
+			alert('form invalid');
+
+			return;
+		}
+
+		this.articlesService
+			.commentArticle(this.commentForm.value, this.article.id)
+			.subscribe(res => {
+				if (!res.success) {
+					alert(res.message);
+
+					return;
+				}
+
+				this.commentText = null;
+				this.loadArticle(this.article.id);
 			});
 	}
 }

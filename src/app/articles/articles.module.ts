@@ -4,6 +4,7 @@ import { LayoutModule } from '../layout/layout.module';
 import { RouterModule } from '@angular/router';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { ArticleComponent } from './components/article/article.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -13,7 +14,8 @@ import { ArticleComponent } from './components/article/article.component';
     imports: [
         CommonModule,
         RouterModule,
-        LayoutModule
+        LayoutModule,
+        FormsModule
     ],
     providers: [
         

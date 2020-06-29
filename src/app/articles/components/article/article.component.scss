@@ -21,11 +21,15 @@
             font-weight: 500;
             font-size: 14px;
             line-height: 14px;
-            color: #D40026;
+            color: #A9A9A9;
             display: flex;
             align-items: center;
 
-            > img {
+            &.liked {
+                color: #D40026;
+            }
+
+            > svg {
                 margin-left: 8.4px;
             }
         }
@@ -226,6 +230,14 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                transition: .2s ease-in;
+
+                &.reply {
+                    transition: .2s ease-out;
+                    background: #364d471f;
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                }
 
                 .comment-author {
                     display: flex;
@@ -273,11 +285,19 @@
             }
 
             .comment-text {
-                margin-top: 20px;
+                padding-top: 20px;
                 font-weight: normal;
                 font-size: 16px;
                 line-height: 22px;
                 color: #364D47;
+                transition: .2s ease-in;
+
+                &.reply {
+                    transition: .2s ease-out;
+                    background: #364d471f;
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                }
 
                 .reply-link {
                     color: #364D47;
@@ -306,7 +326,46 @@
         margin-top: 32px;
 
         .comment-area {
+            display: flex;
+            flex-direction: column;
+
+            .reply-article {
+                display: flex;
+                align-items: center;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 14px;
+                color: #005264;
+
+                a {
+                    cursor: pointer;
+                }
+
+                .reply-cancel {
+                    margin-top: 1px;
+                    margin-left: 4px;
+                    cursor: pointer;
+
+                    .line {
+                        display: block;
+                        width: 12px;
+                        height: 1px;
+                        background: #005264;
+
+                        &:first-child {
+                            transform: rotate(45deg);
+                        }
+
+                        &:last-child {
+                            margin-top: -1px;
+                            transform: rotate(-45deg);
+                        }
+                    }
+                }
+            }
+
             textarea {
+                margin-top: 15px;
                 min-width: 519px;
                 min-height: 115px;
                 background: #F6FBF8;
