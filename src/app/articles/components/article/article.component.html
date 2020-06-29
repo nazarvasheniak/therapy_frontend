@@ -123,70 +123,80 @@
                     <!-- Comment -->
                     <div class="article-comment" *ngFor="let comment of comments">
 
-                        <!-- Comment Head -->
-                        <div class="comment-head" [ngClass]="{'reply': replyID == comment.id}">
-                            <div class="comment-author">
-                                <div class="avatar">
-                                    {{ getAvatar(comment.author) }}
+                        <div class="comment-content">
+
+                            <div class="reply-background" *ngIf="replyID == comment.id" [@replyAnimation]></div>
+
+                            <!-- Comment Head -->
+                            <div class="comment-head">
+                                <div class="comment-author">
+                                    <div class="avatar">
+                                        {{ getAvatar(comment.author) }}
+                                    </div>
+
+                                    <div class="name">
+                                        {{ comment.author.firstName }} {{ comment.author.lastName }}
+                                    </div>
                                 </div>
 
-                                <div class="name">
-                                    {{ comment.author.firstName }} {{ comment.author.lastName }}
+                                <div class="comment-date">
+                                    <div class="icon">
+                                        <img src="../../../../assets/images/icon-calendar.svg" />
+                                    </div>
+
+                                    {{ comment.date | date: 'dd MMM yyy' : '+3' }} в {{ comment.date | date: 'HH:mm' : '+6' }}
                                 </div>
                             </div>
 
-                            <div class="comment-date">
-                                <div class="icon">
-                                    <img src="../../../../assets/images/icon-calendar.svg" />
-                                </div>
-
-                                {{ comment.date | date: 'dd MMM yyy' : '+3' }} в {{ comment.date | date: 'HH:mm' : '+6' }}
+                            <!-- Comment Text -->
+                            <div class="comment-text" [ngClass]="{'reply': replyID == comment.id}">
+                                {{ comment.text }}
                             </div>
-                        </div>
 
-                        <!-- Comment Text -->
-                        <div class="comment-text" [ngClass]="{'reply': replyID == comment.id}">
-                            {{ comment.text }}
-                        </div>
-
-                        <!-- Reply Button -->
-                        <div class="reply-button" (click)="setReply(comment.id)">
-                            Ответить
+                            <!-- Reply Button -->
+                            <div class="reply-button" (click)="setReply(comment.id)">
+                                Ответить
+                            </div>
                         </div>
 
                         <!-- Comment Replies -->
                         <div class="comment-replies">
                             <div class="article-comment" *ngFor="let replie of getReplies(comment.id)">
 
-                                <!-- Comment Head -->
-                                <div class="comment-head" [ngClass]="{'reply': replyID == replie.id}">
-                                    <div class="comment-author">
-                                        <div class="avatar" style="background: #5E7ADD;">
-                                            {{ getAvatar(replie.author) }}
+                                <div class="comment-content">
+
+                                    <div class="reply-background" *ngIf="replyID == replie.id"></div>
+
+                                    <!-- Comment Head -->
+                                    <div class="comment-head">
+                                        <div class="comment-author">
+                                            <div class="avatar" style="background: #5E7ADD;">
+                                                {{ getAvatar(replie.author) }}
+                                            </div>
+            
+                                            <div class="name">
+                                                {{ replie.author.firstName }} {{ replie.author.lastName }}
+                                            </div>
                                         </div>
-        
-                                        <div class="name">
-                                            {{ replie.author.firstName }} {{ replie.author.lastName }}
+            
+                                        <div class="comment-date">
+                                            <div class="icon">
+                                                <img src="../../../../assets/images/icon-calendar.svg" />
+                                            </div>
+                                            
+                                            {{ replie.date | date: 'dd MMM yyy' : '+3' }} в {{ replie.date | date: 'HH:mm' : '+6' }}
                                         </div>
                                     </div>
-        
-                                    <div class="comment-date">
-                                        <div class="icon">
-                                            <img src="../../../../assets/images/icon-calendar.svg" />
-                                        </div>
-                                        
-                                        {{ replie.date | date: 'dd MMM yyy' : '+3' }} в {{ replie.date | date: 'HH:mm' : '+6' }}
+            
+                                    <!-- Comment Text -->
+                                    <div class="comment-text">
+                                        <a (click)="showReply(replie.parentComment.id)" class="reply-link">{{ replie.parentComment.author.firstName }}</a>, {{ replie.text }}
                                     </div>
-                                </div>
-        
-                                <!-- Comment Text -->
-                                <div class="comment-text" [ngClass]="{'reply': replyID == replie.id}">
-                                    <a (click)="showReply(replie.parentComment.id)" class="reply-link">{{ replie.parentComment.author.firstName }}</a>, {{ replie.text }}
-                                </div>
-        
-                                <!-- Reply Button -->
-                                <div class="reply-button" (click)="setReply(replie.id)">
-                                    Ответить
+            
+                                    <!-- Reply Button -->
+                                    <div class="reply-button" (click)="setReply(replie.id)">
+                                        Ответить
+                                    </div>
                                 </div>
                             </div>
                         </div>

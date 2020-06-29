@@ -226,92 +226,97 @@
                 margin-top: 0;
             }
 
-            .comment-head {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                transition: .2s ease-in;
+            .comment-content {
+                position: relative;
 
-                &.reply {
-                    transition: .2s ease-out;
-                    background: #364d471f;
-                    border-top-left-radius: 10px;
-                    border-top-right-radius: 10px;
+                .reply-background {
+                    position: absolute;
+                    top: -15px;
+                    left: -15px;
+                    width: calc(100% + 30px);
+                    height: calc(100% + 30px);
+                    background: #F8FFFB;
+                    border-radius: 6px;
+                    padding: 15px;
                 }
 
-                .comment-author {
+                .comment-head {
                     display: flex;
                     align-items: center;
-
-                    .avatar {
-                        margin-right: 10px;
-                        width: 24px;
-                        height: 24px;
-                        background: #5EDD9D;
+                    justify-content: space-between;
+                    position: relative;
+                    z-index: 1;
+    
+                    .comment-author {
                         display: flex;
                         align-items: center;
-                        justify-content: center;
-                        font-weight: normal;
-                        font-size: 12px;
-                        line-height: 12px;
-                        color: #FFFFFF;
-                        border-radius: 12px;
+    
+                        .avatar {
+                            margin-right: 10px;
+                            width: 24px;
+                            height: 24px;
+                            background: #5EDD9D;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-weight: normal;
+                            font-size: 12px;
+                            line-height: 12px;
+                            color: #FFFFFF;
+                            border-radius: 12px;
+                        }
+    
+                        .name {
+                            font-weight: normal;
+                            font-size: 14px;
+                            line-height: 14px;
+                            color: #9EACA9;
+                        }
                     }
-
-                    .name {
+    
+                    .comment-date {
+                        display: flex;
+                        align-items: center;
+                        font-family: 'Poppins', sans-serif;
+                        font-style: normal;
                         font-weight: normal;
                         font-size: 14px;
                         line-height: 14px;
                         color: #9EACA9;
+                        
+                        .icon {
+                            width: 16px;
+                            height: 16px;
+                            margin-right: 9px;
+                        }
                     }
                 }
-
-                .comment-date {
-                    display: flex;
-                    align-items: center;
-                    font-family: 'Poppins', sans-serif;
-                    font-style: normal;
+    
+                .comment-text {
+                    padding-top: 20px;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: #364D47;
+                    position: relative;
+                    z-index: 1;
+    
+                    .reply-link {
+                        color: #364D47;
+                    }
+                }
+    
+                .reply-button {
+                    margin-top: 8px;
                     font-weight: normal;
                     font-size: 14px;
-                    line-height: 14px;
-                    color: #9EACA9;
-                    
-                    .icon {
-                        width: 16px;
-                        height: 16px;
-                        margin-right: 9px;
-                    }
+                    line-height: 20px;
+                    text-decoration-line: underline;
+                    color: #168F5C;
+                    cursor: pointer;
+                    position: relative;
+                    z-index: 1;
                 }
-            }
-
-            .comment-text {
-                padding-top: 20px;
-                font-weight: normal;
-                font-size: 16px;
-                line-height: 22px;
-                color: #364D47;
-                transition: .2s ease-in;
-
-                &.reply {
-                    transition: .2s ease-out;
-                    background: #364d471f;
-                    border-bottom-left-radius: 10px;
-                    border-bottom-right-radius: 10px;
-                }
-
-                .reply-link {
-                    color: #364D47;
-                }
-            }
-
-            .reply-button {
-                margin-top: 8px;
-                font-weight: normal;
-                font-size: 14px;
-                line-height: 20px;
-                text-decoration-line: underline;
-                color: #168F5C;
-                cursor: pointer;
             }
 
             .comment-replies {

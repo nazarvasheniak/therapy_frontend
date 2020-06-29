@@ -4,9 +4,24 @@ import { ArticlesService } from 'src/app/common/services';
 import { Article, User, ArticleComment } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
 	selector: 'app-article',
+	animations: [
+		trigger(
+			'replyAnimation', [
+			transition(':enter', [
+				style({ opacity: 0 }),
+				animate('200ms', style({ opacity: 1 }))
+			]),
+			transition(':leave', [
+				style({ opacity: 1 }),
+				animate('200ms', style({ opacity: 0 }))
+			])
+		]
+		)
+	],
 	templateUrl: './article.component.html',
 	styleUrls: ['./article.component.scss']
 })
@@ -73,7 +88,7 @@ export class ArticleComponent implements OnInit {
 					return;
 				}
 
-				
+
 				this.loadArticle(this.article.id);
 			});
 	}
@@ -111,11 +126,13 @@ export class ArticleComponent implements OnInit {
 	}
 
 	setReply(parentCommentID: number) {
+		this.replyID = parentCommentID;
 		this.commentForm.controls['isReply'].setValue(true);
 		this.commentForm.controls['parentCommentID'].setValue(parentCommentID);
 	}
 
 	cancelReply() {
+		this.replyID = null;
 		this.commentForm.controls['isReply'].setValue(false);
 		this.commentForm.controls['parentCommentID'].setValue(0);
 	}
