@@ -51,6 +51,8 @@
         > img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
         }
     }
 
@@ -161,40 +163,50 @@
         padding-bottom: 20px;
 
         .reviews-switcher {
-            display: flex;
-            align-items: center;
+            display: block;
+            position: relative;
 
-            .switch {
+            > ul {
                 display: flex;
                 align-items: center;
-                font-weight: 500;
-                font-size: 16px;
-                line-height: 22px;
-                color: #C1D3CA;
-                margin-left: 40px;
-                cursor: pointer;
+                list-style: none;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
 
-                &:first-child {
-                    margin-left: 0;
-                }
-
-                &.active {
-                    cursor: default;
-                    color: #389A71;
-
-                    .count {
-                        color: #389A71;
-                    }
-                }
-                
-                .count {
-                    font-family: Poppins;
-                    font-style: normal;
+                > li {
+                    display: flex;
+                    align-items: center;
                     font-weight: 500;
-                    font-size: 20px;
-                    line-height: 28px;
+                    font-size: 16px;
+                    line-height: 22px;
                     color: #C1D3CA;
-                    margin-left: 12px;
+                    margin-left: 40px;
+                    cursor: pointer;
+                    list-style:none;
+                    white-space: nowrap;
+    
+                    &:first-child {
+                        margin-left: 0;
+                    }
+    
+                    &.active {
+                        cursor: default;
+                        color: #389A71;
+    
+                        .count {
+                            color: #389A71;
+                        }
+                    }
+                    
+                    .count {
+                        font-family: Poppins;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 20px;
+                        line-height: 28px;
+                        color: #C1D3CA;
+                        margin-left: 12px;
+                    }
                 }
             }
         }
@@ -265,9 +277,29 @@
         width: 100%;
         margin-left: 0;
         margin-right: 0;
-        margin-top: 112px;
+        margin-top: 80px;
         padding-left: 35px;
         padding-right: 35px;
+    }
+
+    .reviews-switcher {
+        > ul {
+            > li {
+                &:first-child {
+                    margin-left: 35px !important;
+                }
+            }
+        }
+    }
+
+    .reviews {
+        .reviews-content {
+            .article-container {
+                width: 100%;
+                padding-left: 35px;
+                padding-right: 35px;
+            }
+        }
     }
 
     .article-container {
@@ -279,5 +311,65 @@
     .button-back {
         top: -66px;
         left: 35px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .container {
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+
+    .reviews-switcher {
+        > ul {
+            > li {
+                &:first-child {
+                    margin-left: 19px !important;
+                }
+            }
+        }
+    }
+
+    .button-back {
+        left: 19px;
+    }
+
+    .specialist-block {
+        align-items: flex-start;
+        flex-direction: column;
+
+        .specialist-photo {
+            flex: 0;
+            width: 100%;
+            height: 342px;
+        }
+
+        .specialist-info {
+            margin-left: 0;
+            margin-top: 24px;
+        }
+    }
+
+    .reviews {
+        .reviews-content {
+            .article-container {
+                padding-left: 19px;
+                padding-right: 19px;
+            }
+
+            .reviews-list {
+                .review-block {
+                    .review-block-head {
+                        flex-direction: column-reverse;
+                        justify-content: flex-start;
+                        align-items: flex-start;
+
+                        .reviewer-name {
+                            margin-top: 10px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
