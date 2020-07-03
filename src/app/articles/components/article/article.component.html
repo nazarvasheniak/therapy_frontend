@@ -210,6 +210,15 @@
                                     <div class="comment-text">
                                         <a (click)="showReply(replie.parentComment.id)" class="reply-link">{{ replie.parentComment.author.firstName }}</a>, {{ replie.text }}
                                     </div>
+
+                                    <!-- Comment date mobile -->
+                                    <div class="comment-date comment-date-mobile">
+                                        <div class="icon">
+                                            <img src="../../../../assets/images/icon-calendar.svg" />
+                                        </div>
+
+                                        {{ comment.date | date: 'dd MMM yyy' : '+3' }} в {{ comment.date | date: 'HH:mm' : '+6' }}
+                                    </div>
             
                                     <!-- Reply Button -->
                                     <div class="reply-button" (click)="setReply(replie.id)">

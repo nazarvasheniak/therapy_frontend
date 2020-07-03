@@ -3,7 +3,7 @@ import { BaseHttpService } from './base-http.service';
 import { HttpClient } from '@angular/common/http';
 import { DataResponse, ListResponse } from '../models/response';
 import { Specialist, Review } from '../models';
-import { GetList } from '../models/request';
+import { GetList, GetReviews } from '../models/request';
 
 @Injectable()
 export class SpecialistsService extends BaseHttpService {
@@ -17,5 +17,9 @@ export class SpecialistsService extends BaseHttpService {
 
     public getSpecialist(specialistID: number) {
         return this.get<DataResponse<Specialist>>(`${this.apiUrl}/specialists/${specialistID}`);
+    }
+
+    public getSpecialistReviews(query: GetReviews, specialistID: number) {
+        return this.get<ListResponse<Review>>(`${this.apiUrl}/specialists/${specialistID}/reviews?type=${query.type}&pageSize=${query.pageSize}&pageNumber=${query.pageNumber}`);
     }
 }
