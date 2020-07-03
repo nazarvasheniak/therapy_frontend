@@ -67,16 +67,19 @@ export class MainComponent implements OnInit {
     }
 
 	private loadSpecialists() {
-		this.specialistsService.getSpecialists()
-			.subscribe(res => {
-				if (!res.success) {
-					alert(res.message);
+		this.specialistsService.getSpecialists({
+            pageNumber: 1,
+            pageSize: 100000
+        })
+        .subscribe(res => {
+            if (!res.success) {
+                alert(res.message);
 
-					return;
-				}
-				
-				this.specialists = res.data;
-			});
+                return;
+            }
+            
+            this.specialists = res.data;
+        });
     }
     
     private loadArticles() {

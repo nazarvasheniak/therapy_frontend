@@ -3,7 +3,16 @@
      <!-- Header -->
      <app-header></app-header>
 
-     <div class="container">
+     <div class="container" style="position: relative;">
+        <div class="button-back">
+            <button class="button-transparent" [routerLink]="['/articles']">
+                <div class="icon">
+                    <img src="../../../../assets/images/icon-arrow-left.svg">
+                </div> 
+                Назад 
+            </button>
+        </div>
+
         <div class="article-container" *ngIf="article">
 
             <!-- Head -->
@@ -151,6 +160,15 @@
                             <!-- Comment Text -->
                             <div class="comment-text" [ngClass]="{'reply': replyID == comment.id}">
                                 {{ comment.text }}
+                            </div>
+
+                            <!-- Comment date mobile -->
+                            <div class="comment-date comment-date-mobile">
+                                <div class="icon">
+                                    <img src="../../../../assets/images/icon-calendar.svg" />
+                                </div>
+
+                                {{ comment.date | date: 'dd MMM yyy' : '+3' }} в {{ comment.date | date: 'HH:mm' : '+6' }}
                             </div>
 
                             <!-- Reply Button -->

@@ -18,8 +18,6 @@ export class SpecialistComponent implements OnInit {
 	public positiveReviews: Review[];
     public neutralReviews: Review[];
     public negativeReviews: Review[];
-    
-    public rating: number;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -48,8 +46,8 @@ export class SpecialistComponent implements OnInit {
 		this.activeReviewsTab = tab;
 	}
 
-	getRatingStars() {
-		return ViewHelper.buildRatingStars(this.rating);
+	getRatingStars(rating: number) {
+		return ViewHelper.buildRatingStars(rating);
 	}
 
 	private loadSpecialist(id: number) {
@@ -63,36 +61,9 @@ export class SpecialistComponent implements OnInit {
 
 				this.specialist = res.data;
 				
-				this.loadReviews();
-				this.loadRating();
+				this.positiveReviews = this.specialist.reviews.filter(x => x.score > 4);
+                this.neutralReviews = this.specialist.reviews.filter(x => x.score == 3);
+				this.negativeReviews = this.specialist.reviews.filter(x => x.score < 3);
 			});
 	}
-
-	private loadReviews() {
-        this.specialistsService.getSpecialistReviews(this.specialist.id)
-            .subscribe(res => {
-                if (!res.success) {
-                    alert(res.message);
-
-                    return;
-                }
-
-                this.positiveReviews = res.data.filter(x => x.score > 4);
-                this.neutralReviews = res.data.filter(x => x.score == 3);
-                this.negativeReviews = res.data.filter(x => x.score < 3);
-            });
-    }
-
-    private loadRating() {
-        this.specialistsService.getSpecialistRating(this.specialist.id)
-            .subscribe(res => {
-                if (!res.success) {
-                    alert(res.message);
-
-                    return;
-                }
-
-                this.rating = res.data;
-            });
-    }
 }

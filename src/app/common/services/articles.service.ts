@@ -15,8 +15,8 @@ export class ArticlesService extends BaseHttpService {
         return this.get<ListResponse<Article>>(`${this.apiUrl}/articles?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}`);
     }
 
-    public getMyArticles() {
-        return this.get<DataResponse<Article[]>>(`${this.apiUrl}/articles/my`);
+    public getMyArticles(query: GetList) {
+        return this.get<ListResponse<Article>>(`${this.apiUrl}/articles/my?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}`);
     }
 
     public getArticle(id: number) {

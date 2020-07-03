@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, UsersService, ArticlesService } from 'src/app/common/services';
 import { UserRole } from 'src/app/common/enums';
 import { Article } from 'src/app/common/models';
+import { PaginationComponent } from 'src/app/layout/pagination/pagination.component';
 
 @Component({
 	selector: 'app-profile-specialist-articles',
@@ -12,6 +13,12 @@ import { Article } from 'src/app/common/models';
 export class ProfileSpecialistArticlesComponent implements OnInit {
     
     public articles: Article[];
+
+    public pageSize = 5;
+    public pageNumber = 1;
+    public totalPages = 1;
+
+    @ViewChild(PaginationComponent) pagination: PaginationComponent;
 
     constructor(
         private router: Router,
@@ -41,13 +48,13 @@ export class ProfileSpecialistArticlesComponent implements OnInit {
                             return;
                         }
 
-                        this.loadArticles();
+                        this.loadArticles(5, 1);
                     })
             });
     }
 
-    private loadArticles() {
-        this.articlesService.getMyArticles()
+    private loadArticles(pageSize: number, pageNumber: number) {
+        this.articlesService.getMyArticles({ pageSize, pageNumber })
             .subscribe(res => {
                 if (!res.success) {
                     alert(res.message);
@@ -56,6 +63,17 @@ export class ProfileSpecialistArticlesComponent implements OnInit {
                 }
 
                 this.articles = res.data;
+                this.pageNumber = res.currentPage;
+				this.pageSize = res.pageSize;
+				this.totalPages = res.totalPages;
             });
+    }
+
+    setPageSize(value: number) {
+        this.loadArticles(value, this.pageNumber);
+    }
+
+    setPageNumber(value: number) {
+        this.loadArticles(this.pageSize, value);
     }
 }

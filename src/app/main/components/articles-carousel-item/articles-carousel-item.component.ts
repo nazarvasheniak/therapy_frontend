@@ -11,28 +11,9 @@ export class ArticlesCarouselItemComponent implements OnChanges {
 
     @Input('article') article: Article;
 
-    public authorRating: number;
-
-    constructor(
-        private specialistsService: SpecialistsService
-    ) {
+    constructor() {
 
     }
 
-    ngOnChanges() {
-        this.loadAuthorRating();
-    }
-
-    private loadAuthorRating() {
-        this.specialistsService.getSpecialistRating(this.article.author.id)
-            .subscribe(res => {
-                if (!res.success) {
-                    alert(res.message);
-
-                    return;
-                }
-
-                this.authorRating = res.data;
-            });
-    }
+    ngOnChanges() { }
 }

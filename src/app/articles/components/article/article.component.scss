@@ -1,6 +1,54 @@
+.button-back {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+
+    > button {
+        border: 0.5px solid rgba(56, 154, 113, 0.5);
+        box-sizing: border-box;
+        border-radius: 10px;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 17px;
+        text-transform: uppercase;
+        color: #5BAA89;
+        height: 34px;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 10.5px;
+        padding-right: 12px;
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+
+            > img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
 .article-head {
     border-bottom: 0.5px solid #AABFB4;
     padding-bottom: 24px;
+
+    .article-image {
+        width: 100%;
+        height: 203px;
+
+        > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    }
 
     .article-info {
         margin-top: 32px;
@@ -240,6 +288,26 @@
                     padding: 15px;
                 }
 
+                .comment-date-mobile {
+                    display: flex;
+                    align-items: center;
+                    font-family: 'Poppins', sans-serif;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 14px;
+                    color: #9EACA9;
+                    margin-top: 10px;
+                    z-index: 1;
+                    position: relative;
+                    
+                    .icon {
+                        width: 16px;
+                        height: 16px;
+                        margin-right: 9px;
+                    }
+                }
+
                 .comment-head {
                     display: flex;
                     align-items: center;
@@ -399,6 +467,131 @@
             > button {
                 letter-spacing: 0.135em;
                 padding: 24px;
+            }
+        }
+    }
+}
+
+@media screen and(max-width: 991px) {
+    .container,
+    .article-container {
+        width: auto;
+        margin: 0;
+    }
+
+    .container {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
+    .button-back {
+        top: 13px;
+        left: auto;
+    }
+
+    .article-head {
+        padding-top: 74px;
+    }
+}
+
+@media screen and(max-width: 768px) {
+    .article-head {
+        .article-info {
+            margin-top: 24px;
+            flex-wrap: wrap;
+            
+            .article-title {
+                line-height: 45px;
+                width: 100%;
+            }
+
+            .article-likes {
+                margin-left: 0;
+                margin-top: 25px;
+            }
+
+            .article-comments {
+                margin-top: 25px;
+            }
+
+            .article-date {
+                margin-top: 25px;
+            }
+        }
+    }
+
+    .article-content {
+        padding-bottom: 43px;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .article-text {
+            width: 100%;
+        }
+
+        .article-sidebar {
+            margin-top: 43px;
+        }
+    }
+
+    .article-comments {
+        .article-add-comment {
+            .comment-area {
+                textarea {
+                    min-width: auto;
+                    width: 519px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .article-comments {
+        .article-comments-list {
+            .article-comment {
+                .comment-content {
+                    .comment-date-mobile {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .container {
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+
+    .article-content {
+        padding-bottom: 32px;
+
+        .article-sidebar {
+            margin-top: 32px;
+        }
+    }
+
+    .article-comments {
+        .article-comments-list {
+            .article-comment {
+                .comment-content {
+                    .comment-head {
+                        .comment-date {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .article-add-comment {
+            .comment-area {
+                textarea {
+                    width: 100%;
+                }
             }
         }
     }

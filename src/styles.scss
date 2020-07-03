@@ -326,6 +326,10 @@ button.scroll-top {
 .article-inner-image {
     margin-top: 32px;
     margin-bottom: 32px;
+    min-height: 160px;
+    border-radius: 10px;
+    width: 100%;
+    object-fit: cover;
 }
 
 /* Importing Bootstrap SCSS file. */

@@ -262,12 +262,22 @@
 
 @media screen and(max-width: 991px) {
     .container {
-        margin-top: 66px;
-        margin-left: 35px;
-        margin-right: 35px;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 112px;
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
+    .article-container {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .button-back {
         top: -66px;
+        left: 35px;
     }
 }

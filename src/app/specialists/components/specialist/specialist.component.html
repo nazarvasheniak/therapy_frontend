@@ -36,11 +36,11 @@
                             {{ specialist.price | number:'':'fr' }} ₽
                         </div>
 
-                        <div class="rating" *ngIf="rating">
-                            <div class="rating-stars" [innerHTML]="getRatingStars()"></div>
+                        <div class="rating">
+                            <div class="rating-stars" [innerHTML]="getRatingStars(specialist.rating)"></div>
 
                             <div class="rating-score">
-                                {{ rating }}
+                                {{ specialist.rating }}
                             </div>
                         </div>
                     </div>
@@ -95,9 +95,7 @@
                                 {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}
                             </div>
     
-                            <div class="review-score">
-    
-                            </div>
+                            <div class="review-score" [innerHTML]="getRatingStars(review.score)"></div>
                         </div>
     
                         <div class="review-text">
@@ -121,9 +119,7 @@
                                 {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}
                             </div>
     
-                            <div class="review-score">
-    
-                            </div>
+                            <div class="review-score" [innerHTML]="getRatingStars(review.score)"></div>
                         </div>
     
                         <div class="review-text">
@@ -147,9 +143,7 @@
                                 {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}
                             </div>
     
-                            <div class="review-score">
-    
-                            </div>
+                            <div class="review-score" [innerHTML]="getRatingStars(review.score)"></div>
                         </div>
     
                         <div class="review-text">

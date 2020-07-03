@@ -7,7 +7,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 33px;
+    padding-top: 15px;
     padding-bottom: 36px;
 
     .page-title {
@@ -68,6 +68,12 @@
 
                     > div {
                         cursor: pointer;
+                        display: flex;
+                        align-items: center;
+
+                        > svg {
+                            margin-left: 10px;
+                        }
 
                         &.active {
                             cursor: default;
@@ -119,6 +125,7 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
+        padding-top: 18px;
         padding-bottom: 32px;
 
         .page-filters {

@@ -1,5 +1,6 @@
 header {
     padding-top: 30px;
+    padding-bottom: 30px;
     position: relative;
     z-index: 1;
     background-image: url(../../../assets/images/main-bg.svg);
@@ -83,7 +84,6 @@ header {
 }
 
 header.header-desktop {
-    padding-bottom: 30px;
     padding-left: 30px;
     padding-right: 30px;
     display: flex;
@@ -205,13 +205,19 @@ header.header-mobile {
         &.expanded {
             max-height: 375px;
             transition: max-height 0.2s ease-in;
-            padding-bottom: 75px;
+            padding-bottom: 45px;
         }
 
         nav {
+            padding-top: 48px;
+            
             ul {
                 li {
                     margin-top: 48px;
+
+                    &:first-child {
+                        margin-top: 0;
+                    }
 
                     a {
                         font-weight: normal;
