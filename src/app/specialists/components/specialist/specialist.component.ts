@@ -74,7 +74,16 @@ export class SpecialistComponent implements OnInit {
 				this.neutralReviews = this.specialist.reviews.filter(x => x.score == 3);
 				this.negativeReviews = this.specialist.reviews.filter(x => x.score < 3);
 
-				this.loadReviews(this.activeReviewsTab, this.pageNumber);
+				this.route.queryParams
+					.subscribe(params => {
+						if (!params['reviews']) {
+							this.loadReviews(this.activeReviewsTab, this.pageNumber);
+
+							return;
+						}
+
+						this.changeReviewsTab(params['reviews'] as ReviewType);
+					});
 			});
 	}
 

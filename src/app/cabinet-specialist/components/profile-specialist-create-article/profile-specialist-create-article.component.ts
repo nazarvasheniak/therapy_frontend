@@ -22,7 +22,6 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
 
     public editorOptions = {
         toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'fontSize', 'insertImage'],
-        attribution: false,
         language: 'ru',
         placeholderText: 'Текст статьи',
         events: {

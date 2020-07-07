@@ -23,15 +23,15 @@
                 </div>
 
                 <div class="reviews">
-                    <div class="reviews-counter positive" *ngIf="positiveReviews && positiveReviews.length">
+                    <div class="reviews-counter positive" *ngIf="positiveReviews && positiveReviews.length" [routerLink]="['/specialists', specialist.id]" [queryParams]="{reviews: 1}">
                         {{ positiveReviews.length }}
                     </div>
     
-                    <div class="reviews-counter neutral" *ngIf="neutralReviews && neutralReviews.length">
+                    <div class="reviews-counter neutral" *ngIf="neutralReviews && neutralReviews.length" [routerLink]="['/specialists', specialist.id]" [queryParams]="{reviews: 2}">
                         {{ neutralReviews.length }}
                     </div>
     
-                    <div class="reviews-counter negative" *ngIf="negativeReviews && negativeReviews.length">
+                    <div class="reviews-counter negative" *ngIf="negativeReviews && negativeReviews.length" [routerLink]="['/specialists', specialist.id]" [queryParams]="{reviews: 3}">
                         {{ negativeReviews.length }}
                     </div>
                 </div>

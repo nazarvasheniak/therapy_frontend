@@ -91,6 +91,8 @@
                         line-height: 22px;
                         text-decoration-line: underline;
                         margin-left: 14px;
+                        outline: none;
+                        cursor: pointer;
     
                         &:first-child {
                             margin-left: 0;
@@ -127,6 +129,7 @@
                 border: none;
                 text-transform: uppercase;
                 cursor: pointer;
+                outline: none;
                 //transition: .3s ease;
     
                 &:hover {
