@@ -43,6 +43,7 @@
     "hammerjs": "^2.0.8",
     "jszip": "^3.3.0",
     "minireset.css": "~0.0.4",
+    "ngx-spinner": "^9.0.2",
     "ngx-swiper-wrapper": "^9.0.1",
     "resize-observer-polyfill": "^1.5.1",
     "rxjs": "~6.5.4",

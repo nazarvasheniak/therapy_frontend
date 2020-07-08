@@ -54,7 +54,7 @@ export class ArticlesComponent implements OnInit {
 						return new Date(a.date).getTime() - new Date(b.date).getTime();
 					});
 
-					window.scroll(0,0);
+					//window.scroll(0,0);
 
 					return;
 				}
@@ -102,7 +102,7 @@ export class ArticlesComponent implements OnInit {
 					return new Date(a.date).getTime() - new Date(b.date).getTime();
 				});
 
-				window.scroll(0,0);
+				//window.scroll(0,0);
 
 				return;
 			}
@@ -112,7 +112,7 @@ export class ArticlesComponent implements OnInit {
 					return new Date(b.date).getTime() - new Date(a.date).getTime();
 				});
 
-				window.scroll(0,0);
+				//window.scroll(0,0);
 
 				return;
 			}
@@ -123,7 +123,7 @@ export class ArticlesComponent implements OnInit {
 		if (this.sorter == ArticlesSorter.Likes) {
 			this.articles = this.sortByLikes(articles, this.sortBy);
 
-			window.scroll(0,0);
+			//window.scroll(0,0);
 
 			return;
 		}
@@ -131,7 +131,7 @@ export class ArticlesComponent implements OnInit {
 		if (this.sorter == ArticlesSorter.Comments) {
 			this.articles = this.sortByComments(articles, this.sortBy);
 
-			window.scroll(0,0);
+			//window.scroll(0,0);
 
 			return;
 		}
@@ -159,6 +159,7 @@ export class ArticlesComponent implements OnInit {
 	}
 
 	setPageNumber(value: number) {
+		window.scroll(0,0);
 		this.loadArticles(value, this.pageSize);
 	}
 

@@ -6,8 +6,8 @@
     <div class="nav-wrapper">
         <nav>
             <ul>
-                <li><a href="#">Как это работает</a></li>
-                <li><a href="#">Отзывы клиентов</a></li>
+                <li><a (click)="scrollToElement('#how-it-works')">Как это работает</a></li>
+                <li><a (click)="scrollToElement('#video-reviews')">Отзывы клиентов</a></li>
                 <li><a [routerLink]="['/specialists']">Выбрать специалиста</a></li>
                 <li><a [routerLink]="['/articles']">Статьи</a></li>
 
@@ -100,8 +100,8 @@
     <div class="header-expand-nav" [ngClass]="{'expanded': isMobileNavExpanden}">
         <nav>
             <ul>
-                <li><a href="#">Как это работает</a></li>
-                <li><a href="#">Отзывы клиентов</a></li>
+                <li><a (click)="scrollToElement('#how-it-works')">Как это работает</a></li>
+                <li><a (click)="scrollToElement('#video-reviews')">Отзывы клиентов</a></li>
                 <li><a [routerLink]="['/specialists']">Выбрать специалиста</a></li>
                 <li><a [routerLink]="['/articles']">Статьи</a></li>
 

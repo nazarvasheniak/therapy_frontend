@@ -332,5 +332,15 @@ button.scroll-top {
     object-fit: cover;
 }
 
+.page-loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #bdbdbdad;
+    z-index: 9999;
+}
+
 /* Importing Bootstrap SCSS file. */
 //@import '~bootstrap/scss/_carousel.scss';

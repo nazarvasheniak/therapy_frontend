@@ -3,6 +3,7 @@ import { Article, User } from 'src/app/common/models';
 import { UserRole } from 'src/app/common/enums';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { SwiperComponent, SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 declare var $: any;
 
@@ -27,8 +28,15 @@ export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
 
     articlesSwitcherCurrentSlide = 0;
 
-    constructor() {
+    constructor(private spinner: NgxSpinnerService) {
         
+    }
+
+    showSpinner() {
+        this.spinner.show();
+        setTimeout(() => {
+            this.spinner.hide();
+        }, 1000);
     }
 
     public setActiveArticle(article: Article) {
@@ -52,7 +60,11 @@ export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
             return;
         }
 
-        this.setActiveArticle(this.articles[activeIndex + 1]);
+        this.showSpinner();
+
+        let timeout = setTimeout(() => {
+            this.setActiveArticle(this.articles[activeIndex + 1]);
+        }, 500);
     }
 
     public togglePrevArticle() {
@@ -62,7 +74,11 @@ export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
             return;
         }
 
-        this.setActiveArticle(this.articles[activeIndex - 1]);
+        this.showSpinner();
+
+        let timeout = setTimeout(() => {
+            this.setActiveArticle(this.articles[activeIndex - 1]);
+        }, 500);
     }
 
     /* @HostListener('window:resize', ['$event'])
@@ -77,7 +93,11 @@ export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
     ngAfterViewChecked() {
         this.articlesSwitcherMobile.indexChange
             .subscribe(slide => {
-                this.setActiveArticle(this.articles[slide]);
+                this.showSpinner();
+
+                let timeout = setTimeout(() => {
+                    this.setActiveArticle(this.articles[slide]);
+                }, 500);
             });
     }
 }

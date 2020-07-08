@@ -54,7 +54,7 @@ export class SpecialistsComponent implements OnInit {
 						return a.price - b.price;
 					});
 
-					window.scroll(0,0);
+					//window.scroll(0,0);
 
 					return;
 				}
@@ -70,7 +70,7 @@ export class SpecialistsComponent implements OnInit {
 					return a.price - b.price;
 				});
 
-				window.scroll(0,0);
+				//window.scroll(0,0);
 
 				return;
 			}
@@ -80,7 +80,7 @@ export class SpecialistsComponent implements OnInit {
 					return b.price - a.price;
 				});
 
-				window.scroll(0,0);
+				//window.scroll(0,0);
 
 				return;
 			}
@@ -94,7 +94,7 @@ export class SpecialistsComponent implements OnInit {
 					return a.rating - b.rating;
 				});
 
-				window.scroll(0,0);
+				//window.scroll(0,0);
 
 				return;
 			}
@@ -104,7 +104,7 @@ export class SpecialistsComponent implements OnInit {
 					return b.rating - a.rating;
 				});
 
-				window.scroll(0,0);
+				//window.scroll(0,0);
 
 				return;
 			}
@@ -118,7 +118,7 @@ export class SpecialistsComponent implements OnInit {
 					return a.reviews.length - b.reviews.length;
 				});
 
-				window.scroll(0,0);
+				//window.scroll(0,0);
 
 				return;
 			}
@@ -128,7 +128,7 @@ export class SpecialistsComponent implements OnInit {
 					return b.reviews.length - a.reviews.length;
 				});
 
-				window.scroll(0,0);
+				//window.scroll(0,0);
 
 				return;
 			}
@@ -144,6 +144,7 @@ export class SpecialistsComponent implements OnInit {
 	}
 
 	setPageNumber(value: number) {
+		window.scroll(0,0);
 		this.loadSpecialists(value, this.pageSize);
 	}
 

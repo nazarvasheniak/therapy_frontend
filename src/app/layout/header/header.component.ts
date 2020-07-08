@@ -59,4 +59,9 @@ export class HeaderComponent {
 	toggleMobileNav() {
 		this.isMobileNavExpanden = !this.isMobileNavExpanden;
 	}
+
+	scrollToElement(elementID: string) {
+        const element = document.querySelector(elementID);
+		if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 }

@@ -47,40 +47,41 @@
 
         <!-- Article Sidebar -->
         <div class="article-sidebar">
+            <div class="article-sidebar-inner">
+                <!-- Author -->
+                <div class="author-block">
+                    <div class="content-wrapper">
 
-            <!-- Author -->
-            <div class="author-block">
-                <div class="content-wrapper">
+                        <div class="title">Автор</div>
 
-                    <div class="title">Автор</div>
-
-                    <div class="author-name" [routerLink]="['/specialists', article.author.id]">
-                        {{ article.author.user.firstName }} {{ article.author.user.lastName }}
-                    </div>
-
-                    <div class="author-info">
-                        <div class="author-photo">
-                            <img [src]="article.author.photo.url" />
+                        <div class="author-name" [routerLink]="['/specialists', article.author.id]">
+                            {{ article.author.user.firstName }} {{ article.author.user.lastName }}
                         </div>
 
-                        <div class="author-price">
-                            {{ article.author.price | number:'':'fr' }} ₽
-                        </div>
-
-                        <div class="author-rating">
-                            <div class="icon-star">
-                                <img src="../../../../assets/images/star.svg" />
+                        <div class="author-info">
+                            <div class="author-photo">
+                                <img [src]="article.author.photo.url" />
                             </div>
 
-                            {{ article.author.rating }}
+                            <div class="author-price">
+                                {{ article.author.price | number:'':'fr' }} ₽
+                            </div>
+
+                            <div class="author-rating">
+                                <div class="icon-star">
+                                    <img src="../../../../assets/images/star.svg" />
+                                </div>
+
+                                {{ article.author.rating }}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Sign Up Button -->
-            <div class="signup-button">
-                <button type="button">Записаться</button>
+                <!-- Sign Up Button -->
+                <div class="signup-button">
+                    <button type="button">Записаться</button>
+                </div>
             </div>
         </div>
 
@@ -104,12 +105,12 @@
                         <div class="author-price">
                             {{ article.author.price | number:'':'fr' }} ₽
                         </div>
-    
+
                         <div class="author-rating">
                             <div class="icon-star">
                                 <img src="../../../../assets/images/star.svg" />
                             </div>
-    
+
                             {{ article.author.rating }}
                         </div>
                     </div>

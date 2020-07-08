@@ -1,15 +1,15 @@
 <div class="page-wrapper">
 
-     <!-- Header -->
-     <app-header></app-header>
+    <!-- Header -->
+    <app-header></app-header>
 
-     <div class="container" style="position: relative;">
+    <div class="container" style="position: relative;">
         <div class="button-back">
             <button class="button-transparent" [routerLink]="['/articles']">
                 <div class="icon">
                     <img src="../../../../assets/images/icon-arrow-left.svg">
-                </div> 
-                Назад 
+                </div>
+                Назад
             </button>
         </div>
 
@@ -74,53 +74,54 @@
 
             <!-- Content -->
             <div class="article-content">
-                
+
                 <!-- Article Text -->
                 <div class="article-text" [innerHTML]="article.text"></div>
 
                 <!-- Article Sidebar -->
                 <div class="article-sidebar">
+                    <div class="article-sidebar-inner">
+                        <!-- Author -->
+                        <div class="author-block">
+                            <div class="content-wrapper">
 
-                    <!-- Author -->
-                    <div class="author-block">
-                        <div class="content-wrapper">
+                                <div class="title">Автор</div>
 
-                            <div class="title">Автор</div>
-
-                            <div class="author-name" [routerLink]="['/specialists', article.author.id]">
-                                {{ article.author.user.firstName }} {{ article.author.user.lastName }}
-                            </div>
-
-                            <div class="author-info">
-                                <div class="author-photo">
-                                    <img [src]="article.author.photo.url" />
-                                </div>
-                                
-                                <div class="author-price">
-                                    {{ article.author.price | number:'':'fr' }} ₽
+                                <div class="author-name" [routerLink]="['/specialists', article.author.id]">
+                                    {{ article.author.user.firstName }} {{ article.author.user.lastName }}
                                 </div>
 
-                                <div class="author-rating">
-                                    <div class="icon-star">
-                                        <img src="../../../../assets/images/star.svg" />
+                                <div class="author-info">
+                                    <div class="author-photo">
+                                        <img [src]="article.author.photo.url" />
                                     </div>
 
-                                    4.3
+                                    <div class="author-price">
+                                        {{ article.author.price | number:'':'fr' }} ₽
+                                    </div>
+
+                                    <div class="author-rating">
+                                        <div class="icon-star">
+                                            <img src="../../../../assets/images/star.svg" />
+                                        </div>
+
+                                        4.3
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Sign Up Button -->
-                    <div class="signup-button">
-                        <button type="button">Записаться</button>
+                        <!-- Sign Up Button -->
+                        <div class="signup-button">
+                            <button type="button">Записаться</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Comments -->
             <div class="article-comments">
-                
+
                 <!-- Head -->
                 <div class="article-comments-head">
                     Комментарии ({{ article.comments.length }})
@@ -153,7 +154,8 @@
                                         <img src="../../../../assets/images/icon-calendar.svg" />
                                     </div>
 
-                                    {{ comment.date | date: 'dd MMM yyy' : '+3' }} в {{ comment.date | date: 'HH:mm' : '+6' }}
+                                    {{ comment.date | date: 'dd MMM yyy' : '+3' }} в
+                                    {{ comment.date | date: 'HH:mm' : '+6' }}
                                 </div>
                             </div>
 
@@ -168,7 +170,8 @@
                                     <img src="../../../../assets/images/icon-calendar.svg" />
                                 </div>
 
-                                {{ comment.date | date: 'dd MMM yyy' : '+3' }} в {{ comment.date | date: 'HH:mm' : '+6' }}
+                                {{ comment.date | date: 'dd MMM yyy' : '+3' }} в
+                                {{ comment.date | date: 'HH:mm' : '+6' }}
                             </div>
 
                             <!-- Reply Button -->
@@ -183,7 +186,7 @@
 
                                 <div class="comment-content">
 
-                                    <div class="reply-background" *ngIf="replyID == replie.id"></div>
+                                    <div class="reply-background" *ngIf="replyID == replie.id" [@replyAnimation]></div>
 
                                     <!-- Comment Head -->
                                     <div class="comment-head">
@@ -191,24 +194,27 @@
                                             <div class="avatar" style="background: #5E7ADD;">
                                                 {{ getAvatar(replie.author) }}
                                             </div>
-            
+
                                             <div class="name">
                                                 {{ replie.author.firstName }} {{ replie.author.lastName }}
                                             </div>
                                         </div>
-            
+
                                         <div class="comment-date">
                                             <div class="icon">
                                                 <img src="../../../../assets/images/icon-calendar.svg" />
                                             </div>
-                                            
-                                            {{ replie.date | date: 'dd MMM yyy' : '+3' }} в {{ replie.date | date: 'HH:mm' : '+6' }}
+
+                                            {{ replie.date | date: 'dd MMM yyy' : '+3' }} в
+                                            {{ replie.date | date: 'HH:mm' : '+6' }}
                                         </div>
                                     </div>
-            
+
                                     <!-- Comment Text -->
                                     <div class="comment-text">
-                                        <a (click)="showReply(replie.parentComment.id)" class="reply-link">{{ replie.parentComment.author.firstName }}</a>, {{ replie.text }}
+                                        <a (click)="showReply(replie.parentComment.id)"
+                                            class="reply-link">{{ replie.parentComment.author.firstName }}</a>,
+                                        {{ replie.text }}
                                     </div>
 
                                     <!-- Comment date mobile -->
@@ -217,9 +223,10 @@
                                             <img src="../../../../assets/images/icon-calendar.svg" />
                                         </div>
 
-                                        {{ comment.date | date: 'dd MMM yyy' : '+3' }} в {{ comment.date | date: 'HH:mm' : '+6' }}
+                                        {{ comment.date | date: 'dd MMM yyy' : '+3' }} в
+                                        {{ comment.date | date: 'HH:mm' : '+6' }}
                                     </div>
-            
+
                                     <!-- Reply Button -->
                                     <div class="reply-button" (click)="setReply(replie.id)">
                                         Ответить
@@ -235,7 +242,7 @@
                     <div class="comment-area">
                         <div class="reply-article" *ngIf="commentForm.value['isReply']">
                             <a>{{ getParentComment(commentForm.value['parentCommentID']).author.firstName }}</a>
-                            
+
                             <div class="reply-cancel" (click)="cancelReply()">
                                 <span class="line"></span>
                                 <span class="line"></span>
@@ -251,8 +258,8 @@
                 </div>
             </div>
         </div>
-     </div>
+    </div>
 
-     <!-- Footer -->
-     <app-footer></app-footer>
+    <!-- Footer -->
+    <app-footer></app-footer>
 </div>

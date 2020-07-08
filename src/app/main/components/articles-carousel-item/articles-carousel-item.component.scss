@@ -84,6 +84,11 @@
     .article-sidebar {
         width: 282px;
 
+        .article-sidebar-inner {
+            position: sticky;
+            top: 24px;
+        }
+
         .author-block {
             background: #ffffff;
             border-top-left-radius: 16px;

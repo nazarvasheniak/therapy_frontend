@@ -105,4 +105,9 @@ export class MainComponent implements OnInit {
     specialistsCarouselNextSlide() {
         this.specialistsCarousel.nextSlide();
     }
+
+    scrollToElement(elementID: string) {
+        const element = document.querySelector(elementID);
+		if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 }
