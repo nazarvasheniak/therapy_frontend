@@ -17,6 +17,9 @@ import { SpecialistCardComponent } from './components/specialis-card/specialist-
         RouterModule,
         LayoutModule
     ],
+    exports: [
+        SpecialistCardComponent
+    ],
     providers: [
         
     ]

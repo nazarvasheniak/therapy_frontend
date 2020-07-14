@@ -6,7 +6,7 @@
     </header>
     
     <div class="form-wrapper" style="padding-bottom: 120px;">
-        <form [formGroup]="signUpForm" (ngSubmit)="submit(signUpForm)">
+        <form [formGroup]="signUpForm" (ngSubmit)="submit(signUpForm)" autocomplete="off">
             <div class="form-header">
                 <h1>Регистрация</h1>
             </div>
@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="button-disabled">Продолжить</button>
+                <button type="submit" [ngClass]="{'button-disabled': !isFormValid()}">Продолжить</button>
             </div>
 
             <div class="form-footer">

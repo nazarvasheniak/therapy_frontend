@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Problem, Session } from 'src/app/common/models';
 import { PatientService } from 'src/app/common/services';
 import { SessionStatus } from 'src/app/common/enums';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-problem',
@@ -17,7 +18,8 @@ export class ProblemComponent implements OnInit {
     public lastSession: Session;
 
     constructor(
-        private patientService: PatientService
+        private patientService: PatientService,
+        private router: Router
     ) {
         
     }
@@ -46,5 +48,9 @@ export class ProblemComponent implements OnInit {
                 console.log(this.activeSession);
                 console.log(this.lastSession);
             });
+    }
+
+    routeToChooseSpecialist() {
+        this.router.navigate([`profile/problems/${this.problem.id}/choose-specialist`])
     }
 }

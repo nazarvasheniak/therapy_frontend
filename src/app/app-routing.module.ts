@@ -14,6 +14,8 @@ import { ProfileSpecialistArticlesComponent } from './cabinet-specialist/compone
 import { ProfileSpecialistComponent } from './cabinet-specialist/components/profile-specialist/profile-specialist.component';
 import { ProfileSpecialistCreateArticleComponent } from './cabinet-specialist/components/profile-specialist-create-article/profile-specialist-create-article.component';
 import { ProfileSpecialistEditArticleComponent } from './cabinet-specialist/components/profile-specialist-edit-article/profile-specialist-edit-article.component';
+import { ChooseSpecialistComponent } from './cabinet/components/choose-specialist/choose-specialist.component';
+import { CreateProblemComponent } from './cabinet/components/create-problem/create-problem.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,8 @@ const routes: Routes = [
 	{ path: 'sign-in', component: SignInComponent },
 	{ path: 'sign-in/confirm', component: ConfirmationComponent },
 	{ path: 'profile', component: ProfileComponent },
+	{ path: 'profile/problems/:id/choose-specialist', component: ChooseSpecialistComponent },
+	{ path: 'profile/problems/add', component: CreateProblemComponent },
 	{ path: 'profile-specialist', component: ProfileSpecialistComponent },
 	{ path: 'profile-specialist/articles', component: ProfileSpecialistArticlesComponent },
 	{ path: 'profile-specialist/articles/create', component: ProfileSpecialistCreateArticleComponent },
@@ -30,7 +34,7 @@ const routes: Routes = [
 	{ path: 'specialists', component: SpecialistsComponent },
 	{ path: 'specialists/:id', component: SpecialistComponent },
 	{ path:'articles', component: ArticlesComponent },
-	{ path: 'articles/:id', component: ArticleComponent }
+	{ path: 'articles/:id', component: ArticleComponent },
 ];
 
 @NgModule({

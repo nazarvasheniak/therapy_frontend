@@ -87,13 +87,26 @@ body {
             font-weight: bold;
             letter-spacing: 0.135em;
             text-transform: uppercase;
+            background: linear-gradient(180deg, #11D26A 0%, #027437 100%);
+            background-size: 1px 280px;
+            background-position: 30px;
+            transition: .3s ease;
+            border-radius: 10px;
+            color: #ffffff;
+            border: 0;  
+
+            &:hover {
+                background-position: 10px -50px;
+            }
+
+            &:active {
+                transition: .1s;
+                background-position: 10px -140px;
+            }
             
             &.button-disabled {
                 background: #3F666F;
                 box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
-                border: 0;
-                border-radius: 10px;
-                color: #ffffff;
             }
         }
     }

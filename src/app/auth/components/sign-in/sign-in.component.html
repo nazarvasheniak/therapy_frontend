@@ -6,7 +6,7 @@
     </header>
     
     <div class="form-wrapper">
-        <form [formGroup]="signInForm" (ngSubmit)="submit(signInForm)">
+        <form [formGroup]="signInForm" (ngSubmit)="submit(signInForm)" autocomplete="off">
             <div class="form-header">
                 <h1>Авторизация</h1>
             </div>
@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="button-disabled">Войти</button>
+                <button type="submit" [ngClass]="{'button-disabled': !isPhoneValid}" [disabled]="!isPhoneValid">Войти</button>
             </div>
 
             <div class="form-footer">

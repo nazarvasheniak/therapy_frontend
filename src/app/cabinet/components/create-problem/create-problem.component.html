@@ -1,0 +1,48 @@
+<div class="page-wrapper">
+
+    <!-- Header -->
+    <app-header></app-header>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <profile-sidebar></profile-sidebar>
+
+            <content>
+                <div class="button-back">
+                    <button type="button">
+                        <div class="icon">
+                            <img src="../../../../assets/images/icon-arrow-left.svg" />
+                        </div>
+
+                        Назад
+                    </button>
+                </div>
+
+                <div class="page-head">
+                    Новая проблема
+                </div>
+
+                <div class="page-content">
+                    <div class="form-wrapper">
+                        <form [formGroup]="createProblemForm" (ngSubmit)="submit(createProblemForm)">
+                            <div class="form-group">
+                                <input type="text" formControlName="problemText" placeholder="Опишите вашу проблему" required>
+                            </div>
+
+                            <div class="form-group">
+                                <button *ngIf="!isLoading" type="submit" class="button-green" [disabled]="!isFormValid()">Добавить проблему</button>
+
+                                <button *ngIf="isLoading" class="button-green loading" disabled>
+                                    <ngx-spinner [fullScreen]="false" bdColor="transparent" size="medium"></ngx-spinner>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+</div>

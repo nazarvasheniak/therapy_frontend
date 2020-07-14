@@ -14,7 +14,7 @@ import { UsersService, PublicService, PatientService, SpecialistsService, Articl
 import { SpecialistsModule } from './specialists/specialists.module';
 import { ArticlesModule } from './articles/articles.module';
 import { CabinetSpecialistModule } from './cabinet-specialist/cabinet-specialist.module';
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import localeRu from '@angular/common/locales/ru';
 
@@ -43,6 +43,7 @@ registerLocaleData(localeRu);
 	],
 	providers: [
 		{ provide: LOCALE_ID, useValue: 'ru' },
+		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		AuthService,
 		UsersService,
 		PublicService,

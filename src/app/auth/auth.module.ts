@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RouterModule } from '@angular/router';
+import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
 
 @NgModule({
     declarations: [
@@ -16,10 +17,14 @@ import { RouterModule } from '@angular/router';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        RouterModule
+        RouterModule,
+        RecaptchaModule
     ],
     providers: [
-        
+        {
+            provide: RECAPTCHA_SETTINGS,
+            useValue: { siteKey: '6LeUMK8ZAAAAAKam4hulJvhY4WTnPkZYltdJzUWK' } as RecaptchaSettings,
+        },
     ]
 })
 export class AuthModule { }

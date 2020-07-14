@@ -55,6 +55,24 @@ export class SignUpComponent implements OnInit {
         return value.replace(/-/g, "").replace(/ /g, "").replace("(", "").replace(")", "");
     }
 
+    isFormValid() {
+        const phone = this.normalizePhoneNumber(this.signUpForm.value['phoneNumber']);
+
+        if (!phone) {
+            return false;
+        }
+
+        if (phone.includes('_')) {
+            return false;
+        }
+
+        if (this.signUpForm.invalid) {
+            return false;
+        }
+
+        return true;
+    }
+
     public submit(form: FormGroup) {
         this.isLoading = true;
 
