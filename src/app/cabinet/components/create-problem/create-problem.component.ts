@@ -69,7 +69,7 @@ export class CreateProblemComponent implements OnInit {
                     return;
                 }
 
-                this.router.navigate(['/profile']);
+                this.router.navigate([`/profile/problems/${res.data.id}/choose-specialist`]);
 
                 this.isLoading = false;
                 this.spinner.hide();

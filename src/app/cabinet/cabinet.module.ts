@@ -10,6 +10,9 @@ import { ChooseSpecialistComponent } from './components/choose-specialist/choose
 import { SpecialistsModule } from '../specialists/specialists.module';
 import { CreateProblemComponent } from './components/create-problem/create-problem.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { CabinetDepositComponent } from './components/deposit/deposit.component';
+import { ProblemAssetsComponent } from './components/problem-assets/problem-assets.component';
+import { CabinetPaySpecialistComponent } from './components/pay-specialist/pay-specialist.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +20,10 @@ import { NgxSpinnerModule } from 'ngx-spinner';
         ProfileSidebarComponent,
         ProblemComponent,
         ChooseSpecialistComponent,
-        CreateProblemComponent
+        CreateProblemComponent,
+        CabinetDepositComponent,
+        CabinetPaySpecialistComponent,
+        ProblemAssetsComponent
     ],
     imports: [
         CommonModule,

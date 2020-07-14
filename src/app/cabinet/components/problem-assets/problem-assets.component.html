@@ -1,0 +1,132 @@
+<div class="page-wrapper">
+
+    <!-- Header -->
+    <app-header></app-header>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <profile-sidebar></profile-sidebar>
+
+            <content>
+                <div class="button-back">
+                    <button type="button" [routerLink]="['/profile']">
+                        <div class="icon">
+                            <img src="../../../../assets/images/icon-arrow-left.svg" />
+                        </div>
+
+                        Назад
+                    </button>
+                </div>
+
+                <div class="page-head" *ngIf="problem">
+                    {{ problem.problemText }}
+                </div>
+
+                <div class="page-content">
+                    <div class="tabs">
+                        <div class="tabs-head">
+                            <div class="tab-head" [ngClass]="{'active': activeTab == 1}" (click)="setActiveTab(1)">
+                                Образов
+
+                                <div class="count">
+                                    3
+                                </div>
+                            </div>
+
+                            <div class="tab-head" [ngClass]="{'active': activeTab == 2}" (click)="setActiveTab(2)">
+                                Ресурсов
+
+                                <div class="count">
+                                    1
+                                </div>
+                            </div>
+
+                            <div class="tab-head" [ngClass]="{'active': activeTab == 3}" (click)="setActiveTab(3)">
+                                Сессий
+
+                                <div class="count">
+                                    5
+                                </div>
+                            </div>
+                        </div>
+
+                        <div  class="tabs-content">
+                            <div class="tab-content" *ngIf="activeTab == 1">
+                                1
+                            </div>
+
+                            <div class="tab-content" *ngIf="activeTab == 2">
+                                2
+                            </div>
+
+                            <div class="tab-content" *ngIf="activeTab == 3">
+                                <div class="sessions-list" *ngIf="sessions">
+                                    <div class="sessions-list-item" *ngFor="let session of sessions">
+                                        <div class="session-info">
+                                            <div class="session-date">
+                                                <div class="day">
+                                                    {{ session.date | date: 'd' }}
+                                                </div>
+
+                                                <div class="month">
+                                                    {{ normalizeMonth(session.date | date: 'MMM') }}
+                                                </div>
+                                            </div>
+
+                                            <div class="session-specialist">
+                                                <div class="specialist-photo">
+                                                    <img [src]="session.specialist.photo.url" />
+                                                </div>
+
+                                                <div class="specialist-name">
+                                                    {{ session.specialist.user.firstName }} {{ session.specialist.user.lastName }}
+                                                </div>
+
+                                                <div class="specialist-rating">
+                                                    <img src="../../../../assets/images/star-half.svg" />
+
+                                                    4
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="session-review">
+                                            <div class="session-score">
+                                                <div class="title">
+                                                    Оценка
+                                                </div>
+
+                                                <div class="score">
+                                                    <img src="../../../../assets/images/star.svg" />
+                                                    <img src="../../../../assets/images/star.svg" />
+                                                    <img src="../../../../assets/images/star.svg" />
+                                                    <img src="../../../../assets/images/star.svg" />
+                                                    <img src="../../../../assets/images/star.svg" />
+                                                </div>
+                                            </div>
+
+                                            <div class="session-review-button">
+                                                <button type="button">
+                                                    <div class="icon">
+                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M3 2.5H13C13.5515 2.5 14 2.9485 14 3.5V9.5C14 10.0515 13.5515 10.5 13 10.5H12.5V12.7495C12.5 13.046 12.3328 13.307 12.0633 13.431C11.9613 13.478 11.854 13.5007 11.7477 13.5007C11.5732 13.5007 11.4015 13.4387 11.2615 13.3185C11.255 13.313 11.2485 13.3073 11.2422 13.3012L8.3 10.5H3C2.4485 10.5 2 10.0515 2 9.5V3.5C2 2.9485 2.4485 2.5 3 2.5ZM3 9.5H8.5C8.6285 9.5 8.75175 9.54925 8.84475 9.638L11.5 12.1657V10C11.5 9.724 11.724 9.5 12 9.5H13V3.5H3V9.5Z" fill="#89A195"/>
+                                                        </svg>
+                                                    </div>
+
+                                                    Отзыв
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+</div>

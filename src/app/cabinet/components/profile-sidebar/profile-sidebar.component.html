@@ -47,25 +47,25 @@
         </nav>
     </div>
 
-    <div class="sidebar-finances">
+    <div class="sidebar-finances" *ngIf="wallet">
         <div class="finances-head">
             Баланс
         </div>
 
         <div class="balance-row">
             <div class="balance">
-                0 ₽
+                {{ wallet.balance | number:'':'fr' }} ₽
             </div>
 
-            <div class="balance-lock">
+            <div class="balance-lock" *ngIf="wallet.lockedBalance">
                 <img src="../../../../assets/images/icon-lock.svg" alt="">
 
-                1 000 ₽
+                {{ wallet.lockedBalance | number:'':'fr' }} ₽
             </div>
         </div>
 
         <div class="pay-button">
-            <button type="button" class="button-green">Пополнить</button>
+            <button type="button" class="button-green" [routerLink]="['/profile/deposit']">Пополнить</button>
         </div>
     </div>
 </aside>

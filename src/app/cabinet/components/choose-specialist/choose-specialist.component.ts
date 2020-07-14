@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService, PatientService, SpecialistsService } from 'src/app/common/services';
-import { Problem, Specialist } from 'src/app/common/models';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService, PatientService, SpecialistsService, UsersWalletsService } from 'src/app/common/services';
+import { Problem, Specialist, UserWallet } from 'src/app/common/models';
 import { SpecialistsSorter } from 'src/app/specialists/components/specialists/specialists-sorter.enum';
 import { SortBy } from 'src/app/common/enums';
 import { PaginationComponent } from 'src/app/layout/pagination/pagination.component';
@@ -13,7 +13,9 @@ import { PaginationComponent } from 'src/app/layout/pagination/pagination.compon
 })
 export class ChooseSpecialistComponent implements OnInit {
     
+    public wallet: UserWallet;
     public specialists: Specialist[];
+    public problem: Problem;
 
     public pageSize = 6;
 	public pageNumber = 1;
@@ -27,7 +29,10 @@ export class ChooseSpecialistComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private specialistsService: SpecialistsService,
-        private router: Router
+        private usersWalletsService: UsersWalletsService,
+        private patientService: PatientService,
+        private router: Router,
+        private route: ActivatedRoute 
     ) {
         
     }
@@ -41,7 +46,70 @@ export class ChooseSpecialistComponent implements OnInit {
                     return;
                 }
 
+                this.route.params
+                    .subscribe(params => {
+                        if (!params['id']) {
+                            this.router.navigate(['/profile']);
+
+                            return;
+                        }
+
+                        this.loadProblem(params['id']);
+                    });
+
+                this.loadWallet();
                 this.loadSpecialists(1, 6);
+            });
+    }
+    
+    private loadWallet() {
+        this.usersWalletsService.getMyWallet()
+            .subscribe(res => {
+                if (!res.success) {
+                    alert(res.message);
+
+                    return;
+                }
+
+                this.wallet = res.data;
+            });
+    }
+
+    chooseSpecialist(specialistID: number) {
+        const specialist = this.specialists.find(x => x.id == specialistID);
+        
+        if (!specialist) {
+            return;
+        }
+
+        if ((this.wallet.balance - this.wallet.lockedBalance) < specialist.price) {
+            this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist/${specialistID}/pay`])
+
+            return;
+        }
+
+        this.patientService.setProblemSpecialist({ specialistID }, this.problem.id)
+            .subscribe(res => {
+                if (!res.success) {
+                    alert(res.message);
+
+                    return;
+                }
+
+                this.router.navigate(['/profile']);
+            })
+    }
+
+    private loadProblem(problemID: number) {
+        this.patientService.getProblem(problemID)
+            .subscribe(res => {
+                if (!res.success) {
+                    alert(res.message);
+
+                    return;
+                }
+
+                this.problem = res.data;
             });
     }
 

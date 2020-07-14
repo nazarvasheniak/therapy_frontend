@@ -106,7 +106,7 @@
                 <div class="page-content">
                     <div class="specialists-list" *ngIf="specialists">
                         <div class="flex-row">
-                            <app-specialist-card *ngFor="let specialist of specialists" [specialist]="specialist">
+                            <app-specialist-card *ngFor="let specialist of specialists" [specialist]="specialist" (choosed)="chooseSpecialist($event)">
                             </app-specialist-card>
                         </div>
                     </div>

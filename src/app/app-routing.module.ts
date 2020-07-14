@@ -16,6 +16,9 @@ import { ProfileSpecialistCreateArticleComponent } from './cabinet-specialist/co
 import { ProfileSpecialistEditArticleComponent } from './cabinet-specialist/components/profile-specialist-edit-article/profile-specialist-edit-article.component';
 import { ChooseSpecialistComponent } from './cabinet/components/choose-specialist/choose-specialist.component';
 import { CreateProblemComponent } from './cabinet/components/create-problem/create-problem.component';
+import { CabinetDepositComponent } from './cabinet/components/deposit/deposit.component';
+import { ProblemAssetsComponent } from './cabinet/components/problem-assets/problem-assets.component';
+import { CabinetPaySpecialistComponent } from './cabinet/components/pay-specialist/pay-specialist.component';
 
 
 const routes: Routes = [
@@ -23,7 +26,10 @@ const routes: Routes = [
 	{ path: 'sign-in', component: SignInComponent },
 	{ path: 'sign-in/confirm', component: ConfirmationComponent },
 	{ path: 'profile', component: ProfileComponent },
+	{ path: 'profile/deposit', component: CabinetDepositComponent },
 	{ path: 'profile/problems/:id/choose-specialist', component: ChooseSpecialistComponent },
+	{ path: 'profile/problems/:id/choose-specialist/:specialistID/pay', component: CabinetPaySpecialistComponent },
+	{ path: 'profile/problems/:id/assets', component: ProblemAssetsComponent },
 	{ path: 'profile/problems/add', component: CreateProblemComponent },
 	{ path: 'profile-specialist', component: ProfileSpecialistComponent },
 	{ path: 'profile-specialist/articles', component: ProfileSpecialistArticlesComponent },

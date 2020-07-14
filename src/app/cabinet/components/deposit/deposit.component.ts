@@ -4,13 +4,12 @@ import { AuthService, PatientService } from 'src/app/common/services';
 import { Problem } from 'src/app/common/models';
 
 @Component({
-	selector: 'app-profile',
-	templateUrl: './profile.component.html',
-	styleUrls: ['./profile.component.scss']
+	selector: 'cabinet-deposit',
+	templateUrl: './deposit.component.html',
+	styleUrls: ['./deposit.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class CabinetDepositComponent implements OnInit {
 
-    public problems: Problem[];
     
     constructor(
         private authService: AuthService,
@@ -25,24 +24,9 @@ export class ProfileComponent implements OnInit {
             .subscribe(logged => {
                 if (!logged) {
                     this.router.navigate(['/sign-in']);
-
-                    return;
                 }
 
-                this.loadProblems();
-            });
-    }
-
-    private loadProblems() {
-        this.patientService.getProblems()
-            .subscribe(res => {
-                if (!res.success) {
-                    alert(res.message);
-
-                    return;
-                }
-
-                this.problems = res.data;
+                
             });
     }
 }

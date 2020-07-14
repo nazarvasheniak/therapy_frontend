@@ -7,3 +7,4 @@ export * from './get-list.model';
 export * from './get-reviews.model';
 export * from './create-article-comment-request.model';
 export * from './create-problem-request.model';
+export * from './set-problem-specialist-request.model';

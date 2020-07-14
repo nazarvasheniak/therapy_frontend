@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { SpecialistsService } from 'src/app/common/services';
 import { Specialist, Review } from 'src/app/common/models';
 
@@ -11,6 +11,8 @@ export class SpecialistCardComponent implements OnChanges {
 
 	@Input('specialist') public specialist: Specialist;
 	
+	@Output() choosed = new EventEmitter<number>();
+
 	public positiveReviews: Review[];
     public neutralReviews: Review[];
 	public negativeReviews: Review[];
@@ -21,6 +23,10 @@ export class SpecialistCardComponent implements OnChanges {
 
 	ngOnChanges() {
 		this.loadReviews();
+	}
+
+	chooseSpecialist() {
+		this.choosed.emit(this.specialist.id);
 	}
 
 	private loadReviews() {

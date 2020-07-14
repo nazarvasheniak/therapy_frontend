@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersWalletsService } from 'src/app/common/services';
+import { UserWallet } from 'src/app/common/models';
 
 @Component({
 	selector: 'profile-sidebar',
@@ -7,11 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileSidebarComponent implements OnInit {
     
-    constructor() {
+    public wallet: UserWallet;
+
+    constructor(
+        private usersWalletsService: UsersWalletsService
+    ) {
 
     }
 
     ngOnInit(): void {
+        this.loadWallet();
+    }
 
+    private loadWallet() {
+        this.usersWalletsService.getMyWallet()
+            .subscribe(res => {
+                if (!res.success) {
+                    alert('load wallet error');
+
+                    return;
+                }
+
+                this.wallet = res.data;
+            });
     }
 }
