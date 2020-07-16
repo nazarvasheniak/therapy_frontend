@@ -22,17 +22,44 @@
                     Пополнение счета
                 </div>
 
-                <div class="page-content">
-                    <div class="deposit-text">
-                        Для работы со специалистом необходимо пополнить счет на сумму <span class="price-badge" *ngIf="specialist"> {{ specialist.price | number:'':'fr' }} ₽
-                        </span> – эти средства будут находится в депозите до конца вашей сессии.
+                <div class="page-content" *ngIf="wallet && specialist">
+                    <div class="deposit-text" *ngIf="!isBalanceEnough()">
+                        <div>
+                            На вашем счете <span class="price-badge" *ngIf="specialist"> {{ (wallet.balance - wallet.lockedBalance) | number:'':'fr' }} ₽
+                            </span>
+                        </div>
+                        <br />
+                        <div>
+                            Для работы со специалистом необходимо пополнить счет на сумму <span class="price-badge" *ngIf="specialist"> {{ amountToDeposit() | number:'':'fr' }} ₽
+                            </span> – эти средства будут находится в депозите до конца вашей сессии.
+                        </div>
+                    </div>
+
+                    <div class="deposit-text" *ngIf="isBalanceEnough()">
+                        <div>
+                            Для работы со специалистом необходимо оплатить <span class="price-badge" *ngIf="specialist"> {{ specialist.price | number:'':'fr' }} ₽
+                            </span> – эти средства будут находится в депозите до конца вашей сессии.
+                        </div>
                     </div>
 
                     <div class="deposit-info">
-                        <div class="deposit-actions">
+                        <div class="deposit-actions" *ngIf="wallet">
                             <div class="pay-button">
-                                <button type="button" class="button-green">
+                                <button type="button" class="button-green" *ngIf="!isBalanceEnough()" (click)="createPayment()">
                                     Перейти к оплате
+
+                                    <div class="icon">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M15.5675 7.5543L15.5676 7.55444C15.6855 7.67213 15.7504 7.82906 15.75 7.99875L15.75 8C15.7505 8.16853 15.6857 8.32549 15.5675 8.44373L9.78944 14.2218C9.67151 14.3398 9.51532 14.4046 9.34704 14.4046C9.17764 14.4046 9.02183 14.3403 8.9045 14.223L8.90424 14.2227L8.37989 13.6999C8.26164 13.5817 8.19751 13.428 8.19751 13.2605C8.19751 13.0937 8.26094 12.9429 8.37988 12.8239C8.37991 12.8238 8.37993 12.8238 8.37996 12.8238L11.7886 9.42698L12.2172 8.9999H11.6121H0.864383C0.532181 8.9999 0.25 8.70863 0.25 8.35078V7.60894C0.25 7.26532 0.518287 6.99793 0.864383 6.99793H11.5739H12.1765L11.7508 6.57135L8.37996 3.19304L8.37969 3.19277C8.2637 3.07687 8.19738 2.91395 8.19738 2.74315C8.19738 2.57445 8.26216 2.41825 8.37969 2.30082L8.37978 2.30073L8.9043 1.77607C9.02206 1.65841 9.17807 1.59375 9.34691 1.59375C9.51557 1.59375 9.67165 1.65834 9.78931 1.776L15.5675 7.5543Z"
+                                                stroke="white" stroke-width="0.5" />
+                                        </svg>
+                                    </div>
+                                </button>
+
+                                <button type="button" class="button-green" *ngIf="isBalanceEnough()" (click)="startSession()">
+                                    Оплатить с баланса
 
                                     <div class="icon">
                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
@@ -45,7 +72,7 @@
                                 </button>
                             </div>
 
-                            <div class="bank-logo">
+                            <div class="bank-logo" *ngIf="!isBalanceEnough()">
                                 <svg width="130" height="24" viewBox="0 0 130 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0)">

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Problem, Session } from 'src/app/common/models';
-import { PatientService } from 'src/app/common/services';
+import { Problem, Session, UserWallet } from 'src/app/common/models';
+import { PatientService, UsersWalletsService } from 'src/app/common/services';
 import { SessionStatus } from 'src/app/common/enums';
 import { Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class ProblemComponent implements OnInit {
 
     @Input('problem') public problem: Problem;
-    
+
     public sessions: Session[];
     public activeSession: Session;
     public lastSession: Session;
@@ -53,5 +53,9 @@ export class ProblemComponent implements OnInit {
                     activeSession: this.activeSession.id
                 }
             });
+    }
+
+    routeToPay() {
+        this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist/${this.activeSession.specialist.id}/pay`]);
     }
 }

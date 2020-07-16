@@ -23,6 +23,10 @@ export class PatientService extends BaseHttpService {
         return this.get<DataResponse<Session[]>>(`${this.apiUrl}/patient/problems/${problemID}/sessions`);
     }
 
+    public getActiveSession(problemID) {
+        return this.get<DataResponse<Session>>(`${this.apiUrl}/patient/problems/${problemID}/activeSession`);
+    }
+
     public createProblem(request: CreateProblemRequest) {
         return this.post<DataResponse<Problem>>(`${this.apiUrl}/patient/problems`, request);
     }

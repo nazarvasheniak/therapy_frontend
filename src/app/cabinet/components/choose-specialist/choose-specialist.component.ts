@@ -314,5 +314,5 @@ export class ChooseSpecialistComponent implements OnInit {
 		}
 
 		return;
-	}
+    }
 }
