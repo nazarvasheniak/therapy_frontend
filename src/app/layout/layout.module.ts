@@ -4,12 +4,14 @@ import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
 	declarations: [
 		HeaderComponent,
 		FooterComponent,
-		PaginationComponent
+		PaginationComponent,
+		AlertComponent
 	],
 	imports: [
         BrowserModule,
@@ -18,7 +20,8 @@ import { PaginationComponent } from './pagination/pagination.component';
 	exports: [
 		HeaderComponent,
 		FooterComponent,
-		PaginationComponent
+		PaginationComponent,
+		AlertComponent
 	],
 	providers: [
 		

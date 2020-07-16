@@ -234,6 +234,27 @@ button.scroll-top {
     display: none;
 }
 
+.price-badge {
+    width: 67px;
+    height: 27px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #32A776;
+}
+
 @media screen and (max-width: 1310px) {
     .scroll-down {
         right:35px

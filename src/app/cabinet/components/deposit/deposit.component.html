@@ -24,9 +24,9 @@
 
                 <div class="page-content">
                     <div class="deposit-form">
-                        <form>
+                        <form [formGroup]="depositForm">
                             <div class="form-group">
-                                <input type="number" placeholder="Сумма" />
+                                <input type="number" formControlName="amount" placeholder="Сумма" min="1" step="1" required />
                                 <label>₽</label>
                             </div>
                         </form>
@@ -35,7 +35,7 @@
                     <div class="deposit-info">
                         <div class="deposit-actions">
                             <div class="pay-button">
-                                <button type="button" class="button-green">
+                                <button type="button" class="button-green" (click)="submit()">
                                     Перейти к оплате
 
                                     <div class="icon">

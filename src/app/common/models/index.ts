@@ -9,3 +9,4 @@ export * from './article.model';
 export * from './article-like.model';
 export * from './article-comment.model';
 export * from './user-wallet.model';
+export * from './payment.model';

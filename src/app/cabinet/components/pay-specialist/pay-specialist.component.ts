@@ -50,6 +50,6 @@ export class CabinetPaySpecialistComponent implements OnInit {
                 }
 
                 this.specialist = res.data;
-            })
+            });
     }
 }

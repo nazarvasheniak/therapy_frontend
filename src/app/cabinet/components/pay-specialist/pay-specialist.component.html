@@ -24,7 +24,7 @@
 
                 <div class="page-content">
                     <div class="deposit-text">
-                        Для работы со специалистом необходимо пополнить счет на сумму <span class="price-badge"> {{ specialist.price | number:'':'fr' }} ₽
+                        Для работы со специалистом необходимо пополнить счет на сумму <span class="price-badge" *ngIf="specialist"> {{ specialist.price | number:'':'fr' }} ₽
                         </span> – эти средства будут находится в депозите до конца вашей сессии.
                     </div>
 

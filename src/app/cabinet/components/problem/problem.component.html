@@ -232,7 +232,7 @@
     <div class="problem-title">
         {{ problem.problemText }}
     </div>
-    
+
     <div class="problem-assets">
         <div class="problem-asset problem-images empty">
             <div class="asset-icon">
@@ -264,7 +264,8 @@
             </div>
         </div>
 
-        <div class="problem-asset problem-sessions" *ngIf="sessions" [ngClass]="{ 'empty': !sessions.length }" [routerLink]="['/profile/problems', problem.id, 'assets']" [queryParams]="{type: '3'}">
+        <div class="problem-asset problem-sessions" *ngIf="sessions" [ngClass]="{ 'empty': !sessions.length }"
+            [routerLink]="['/profile/problems', problem.id, 'assets']" [queryParams]="{type: '3'}">
             <div class="asset-icon">
                 <img *ngIf="!sessions.length" src="../../../../assets/images/icon-session-empty.svg" />
                 <img *ngIf="sessions.length" src="../../../../assets/images/icon-session.svg" />
@@ -311,8 +312,86 @@
         </div>
     </div>
 
+    <div class="session-block" *ngIf="activeSession && activeSession.status == 0">
+        <div class="session-block-head">
+            <div class="content-wrapper">
+
+                <div class="session-block-title">
+                    Активная сессия
+                </div>
+
+                <div class="session-specialist" [routerLink]="['/specialists', activeSession.specialist.id]">
+
+                    <div class="specialist-info">
+                        <div class="specialist-photo">
+                            <img [src]="activeSession.specialist.photo.url" />
+                        </div>
+
+                        <div class="specialist-content">
+                            <div class="specialist-name">
+                                {{ activeSession.specialist.user.firstName }} {{ activeSession.specialist.user.lastName }}
+                                
+                                <div class="rating">
+                                    <img src="../../../../assets/images/star-half.svg" />
+                                    
+                                    4
+                                </div>
+                            </div>
+                            
+                            <div class="specialist-price">
+                                <div class="price-badge">
+                                    <span class="price-badge">
+                                        {{ activeSession.specialist.price | number:'':'fr' }} ₽
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="session-block-content empty">
+            <div class="content-wrapper">
+                <div class="session-actions" style="padding-top: 24px;">
+                    <div class="session-action">
+                        <button type="button" class="button-green" (click)="routeToChooseSpecialist()">
+                            <div class="icon" style="width: 22px; height: 22px;">
+                                <svg fill="#ffffff" width="22" height="22" viewBox="0 0 510 510" xmlns="http://www.w3.org/2000/svg">
+                                    <g>
+                                        <path
+                                            d="m469.912 15h-339.824c-22.105 0-40.088 17.983-40.088 40.088v139.912h-49.912c-22.105 0-40.088 17.983-40.088 40.088v219.824c0 22.105 17.983 40.088 40.088 40.088h339.824c22.105 0 40.088-17.983 40.088-40.088v-139.912h49.912c22.105 0 40.088-17.983 40.088-40.088v-219.824c0-22.105-17.983-40.088-40.088-40.088zm-339.824 30h339.824c5.563 0 10.088 4.525 10.088 10.088v19.912h-360v-19.912c0-5.563 4.525-10.088 10.088-10.088zm349.912 60v30h-360v-30zm-90 349.912c0 5.562-4.525 10.088-10.088 10.088h-339.824c-5.563 0-10.088-4.525-10.088-10.088v-219.824c0-5.563 4.525-10.088 10.088-10.088h339.824c5.562 0 10.088 4.525 10.088 10.088zm79.912-169.912h-49.912v-49.912c0-22.105-17.983-40.088-40.088-40.088h-259.912v-30h360v109.912c0 5.563-4.525 10.088-10.088 10.088z" />
+                                        <path
+                                            d="m155 312.654c0-15.249-12.405-27.654-27.654-27.654h-39.692c-15.249 0-27.654 12.405-27.654 27.654v34.692c0 15.249 12.405 27.654 27.654 27.654h39.692c15.249 0 27.654-12.405 27.654-27.654zm-30 32.346h-35v-30h35z" />
+                                        <path d="m60 405h60v30h-60z" />
+                                        <path d="m150 405h60v30h-60z" />
+                                        <path d="m240 405h60v30h-60z" />
+                                        <path d="m330 405h30v30h-30z" />
+                                    </g>
+                                </svg>
+
+                            </div>
+
+                            Оплатить и начать
+                        </button>
+                    </div>
+
+                    <div class="session-action">
+                        <button type="button" class="button-transparent" (click)="routeToChooseSpecialist()">
+                            <div class="icon">
+                                <img src="../../../../assets/images/icon-target-green.svg" />
+                            </div>
+
+                            Выбрать другого специалиста
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Active Session -->
-    <div class="session-block" *ngIf="activeSession">
+    <div class="session-block" *ngIf="activeSession && activeSession.status == 1">
         <div class="session-block-head">
             <div class="content-wrapper">
 
@@ -343,7 +422,7 @@
 
         <div class="session-block-bottom">
             <div class="content-wrapper">
-                <div class="session-deposit">
+                <div class="session-deposit" *ngIf="activeSession.status == 1">
                     В депозите
 
                     <div class="session-deposit-balance">
@@ -356,12 +435,22 @@
                 </div>
 
                 <div class="session-actions">
-                    <div class="session-action reject">
+                    <div class="session-action reject" *ngIf="activeSession.status == 1">
                         Сессия не помогла, вернуть деньги
                     </div>
 
-                    <div class="session-action resolve">
+                    <div class="session-action resolve" *ngIf="activeSession.status == 1">
                         <button type="button" class="button-green">Сессия помогла</button>
+                    </div>
+
+                    <div class="session-action info" *ngIf="activeSession.status == 0">
+                        <div class="icon-info">
+                            <img src="../../../../assets/images/icon-info.svg" alt="">
+                        </div>
+
+                        <div class="info-text">
+                            Нужно будет внести средства на счет, которые будут находится в депозите до конца сессии.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -418,7 +507,7 @@
                     </div>
 
                     <div class="session-action">
-                        <button type="button" class="button-transparent">
+                        <button type="button" class="button-transparent" (click)="routeToChooseSpecialist()">
                             <div class="icon">
                                 <img src="../../../../assets/images/icon-target-green.svg" />
                             </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService, PatientService } from 'src/app/common/services';
 import { Problem } from 'src/app/common/models';
 
@@ -11,13 +11,25 @@ import { Problem } from 'src/app/common/models';
 export class ProfileComponent implements OnInit {
 
     public problems: Problem[];
+    public isAlertShow = false;
+    public alertText: string;
     
     constructor(
         private authService: AuthService,
         private patientService: PatientService,
-        private router: Router
+        private router: Router,
+        private route: ActivatedRoute
     ) {
-        
+        this.route.queryParams
+            .subscribe(params => {
+                const deposit = params['deposit'];
+
+                if (deposit) {
+                    if (deposit == "success") {
+                        this.showAlert("Счёт успешно пополнен");
+                    }
+                }
+            });
     }
 
     ngOnInit(): void {
@@ -44,5 +56,19 @@ export class ProfileComponent implements OnInit {
 
                 this.problems = res.data;
             });
+    }
+
+    showAlert(text: string) {
+        this.alertText = text;
+        this.isAlertShow = true;
+
+        setTimeout(() => {
+            this.hideAlert()
+        }, 2000);
+    }
+
+    hideAlert() {
+        this.isAlertShow = false;
+        this.alertText = "";
     }
 }

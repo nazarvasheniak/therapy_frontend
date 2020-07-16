@@ -16,6 +16,7 @@ export class ChooseSpecialistComponent implements OnInit {
     public wallet: UserWallet;
     public specialists: Specialist[];
     public problem: Problem;
+    public activeSessionID: number;
 
     public pageSize = 6;
 	public pageNumber = 1;
@@ -34,7 +35,12 @@ export class ChooseSpecialistComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute 
     ) {
-        
+        this.route.queryParams
+            .subscribe(params => {
+                if (params['activeSession']) {
+                    this.activeSessionID = params['activeSession'];
+                };
+            });
     }
 
     ngOnInit(): void {
@@ -75,20 +81,8 @@ export class ChooseSpecialistComponent implements OnInit {
             });
     }
 
-    chooseSpecialist(specialistID: number) {
-        const specialist = this.specialists.find(x => x.id == specialistID);
-        
-        if (!specialist) {
-            return;
-        }
-
-        if ((this.wallet.balance - this.wallet.lockedBalance) < specialist.price) {
-            this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist/${specialistID}/pay`])
-
-            return;
-        }
-
-        this.patientService.setProblemSpecialist({ specialistID }, this.problem.id)
+    private createSession(specialist: Specialist) {
+        this.patientService.createProblemSession({ specialistID: specialist.id }, this.problem.id)
             .subscribe(res => {
                 if (!res.success) {
                     alert(res.message);
@@ -96,8 +90,69 @@ export class ChooseSpecialistComponent implements OnInit {
                     return;
                 }
 
-                this.router.navigate(['/profile']);
-            })
+                if ((this.wallet.balance - this.wallet.lockedBalance) < specialist.price) {
+                    this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist/${specialist.id}/pay`]);
+        
+                    return;
+                }
+
+                this.patientService.startSession(this.problem.id, res.sessionID || this.activeSessionID)
+                    .subscribe(res => {
+                        if (!res.success) {
+                            alert(res.message);
+
+                            return;
+                        }
+
+                        this.router.navigate(['/profile']);
+                    });
+            });
+    }
+
+    private changeSessionSpecialist(specialist: Specialist) {
+        this.patientService.changeSessionSpecialist({
+            specialistID: specialist.id
+        }, this.problem.id, this.activeSessionID)
+        .subscribe(res => {
+            if (!res.success) {
+                alert(res.message);
+
+                return;
+            }
+
+            if ((this.wallet.balance - this.wallet.lockedBalance) < specialist.price) {
+                this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist/${specialist.id}/pay`]);
+    
+                return;
+            }
+
+            this.patientService.startSession(this.problem.id, this.activeSessionID)
+                .subscribe(res => {
+                    if (!res.success) {
+                        alert(res.message);
+
+                        return;
+                    }
+
+                    this.router.navigate(['/profile']);
+                });
+        });
+    }
+
+    chooseSpecialist(specialistID: number) {
+        const specialist = this.specialists.find(x => x.id == specialistID);
+        
+        if (!specialist) {
+            return;
+        }
+
+        if (!this.activeSessionID) {
+            this.createSession(specialist);
+
+            return;
+        }
+
+        this.changeSessionSpecialist(specialist);
     }
 
     private loadProblem(problemID: number) {
