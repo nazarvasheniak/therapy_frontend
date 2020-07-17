@@ -440,7 +440,7 @@
                     </div>
 
                     <div class="session-action resolve" *ngIf="activeSession.status == 1">
-                        <button type="button" class="button-green">Сессия помогла</button>
+                        <button type="button" class="button-green" (click)="closeSession()">Сессия помогла</button>
                     </div>
 
                     <div class="session-action info" *ngIf="activeSession.status == 0">

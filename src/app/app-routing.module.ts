@@ -19,6 +19,7 @@ import { CreateProblemComponent } from './cabinet/components/create-problem/crea
 import { CabinetDepositComponent } from './cabinet/components/deposit/deposit.component';
 import { ProblemAssetsComponent } from './cabinet/components/problem-assets/problem-assets.component';
 import { CabinetPaySpecialistComponent } from './cabinet/components/pay-specialist/pay-specialist.component';
+import { CabinetSessionSuccessComponent } from './cabinet/components/session-success/session-success.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
 	{ path: 'profile/problems/:id/choose-specialist', component: ChooseSpecialistComponent },
 	{ path: 'profile/problems/:id/choose-specialist/:specialistID/pay', component: CabinetPaySpecialistComponent },
 	{ path: 'profile/problems/:id/assets', component: ProblemAssetsComponent },
+	{ path: 'profile/problems/:id/sessions/:sessionID/review', component: CabinetSessionSuccessComponent },
 	{ path: 'profile/problems/add', component: CreateProblemComponent },
 	{ path: 'profile-specialist', component: ProfileSpecialistComponent },
 	{ path: 'profile-specialist/articles', component: ProfileSpecialistArticlesComponent },

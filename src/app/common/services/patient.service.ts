@@ -3,7 +3,7 @@ import { BaseHttpService } from './base-http.service';
 import { HttpClient } from '@angular/common/http';
 import { DataResponse, ResponseModel, CreateSessionResponse } from '../models/response';
 import { Problem, Session } from '../models';
-import { CreateProblemRequest, CreateSessionRequest } from '../models/request';
+import { CreateProblemRequest, CreateSessionRequest, CreateReviewRequest } from '../models/request';
 
 @Injectable()
 export class PatientService extends BaseHttpService {
@@ -23,6 +23,10 @@ export class PatientService extends BaseHttpService {
         return this.get<DataResponse<Session[]>>(`${this.apiUrl}/patient/problems/${problemID}/sessions`);
     }
 
+    public getSession(problemID: number, sessionID: number) {
+        return this.get<DataResponse<Session>>(`${this.apiUrl}/patient/problems/${problemID}/sessions/${sessionID}`);
+    }
+
     public getActiveSession(problemID) {
         return this.get<DataResponse<Session>>(`${this.apiUrl}/patient/problems/${problemID}/activeSession`);
     }
@@ -37,6 +41,14 @@ export class PatientService extends BaseHttpService {
 
     public startSession(problemID: number, sessionID: number) {
         return this.post<ResponseModel>(`${this.apiUrl}/patient/problems/${problemID}/sessions/${sessionID}/start`, {});
+    }
+
+    public closeSession(problemID: number, sessionID: number) {
+        return this.post<ResponseModel>(`${this.apiUrl}/patient/problems/${problemID}/sessions/${sessionID}/close`, {});
+    }
+
+    public createReview(request: CreateReviewRequest, problemID: number, sessionID: number) {
+        return this.post<ResponseModel>(`${this.apiUrl}/patient/problems/${problemID}/sessions/${sessionID}/review`, request);
     }
 
     public changeSessionSpecialist(request: CreateSessionRequest, problemID: number, sessionID: number) {

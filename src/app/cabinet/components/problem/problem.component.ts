@@ -47,15 +47,33 @@ export class ProblemComponent implements OnInit {
     }
 
     routeToChooseSpecialist() {
-        this.router
-            .navigate([`/profile/problems/${this.problem.id}/choose-specialist`], {
+        if (this.activeSession) {
+            this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist`], {
                 queryParams: {
                     activeSession: this.activeSession.id
                 }
             });
+
+            return;
+        }
+
+        this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist`]);
     }
 
     routeToPay() {
         this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist/${this.activeSession.specialist.id}/pay`]);
+    }
+
+    closeSession() {
+        this.patientService.closeSession(this.problem.id, this.activeSession.id)
+            .subscribe(res => {
+                if (!res.success) {
+                    alert(res.message);
+
+                    return;
+                }
+
+                this.router.navigate([`profile/problems/${this.problem.id}/sessions/${this.activeSession.id}/review`]);
+            });
     }
 }
