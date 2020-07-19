@@ -10,7 +10,7 @@ header {
         cursor: pointer;
         outline: none;
         
-        img {
+        svg {
             max-width: none;
         }
     }
@@ -35,9 +35,22 @@ header {
             padding: 20px;
             outline: none;
             cursor: pointer;
+            transition: ease-in-out .3s;
 
             .icon {
                 margin-right: 16px;
+            }
+
+            &:hover {
+                transition: ease-in-out .3s;
+                background: #F2F9F6;
+                border: 0.5px solid #BCE1D1;
+            }
+
+            &:active {
+                transition: ease-in-out .3s;
+                background: #EBF3EF;
+                border: 0.5px solid #B5D8C9;
             }
         }
     }
@@ -115,7 +128,7 @@ header.header-desktop {
                         letter-spacing: 0.05em;
                         text-decoration: none;
                         text-transform: uppercase;
-                        transition: all .2s;
+                        transition: all .3s;
                         cursor: pointer;
 
                         &:hover {
@@ -173,7 +186,7 @@ header.header-mobile {
                         width: 24px;
                         height: 1px;
                         background: #005264;
-                        transition: .2s;
+                        transition: .3s;
     
                         &:last-child {
                             margin-top: 12px;
@@ -200,12 +213,12 @@ header.header-mobile {
 
     .header-expand-nav {
         max-height: 0;
-        transition: max-height 0.2s ease-out;
+        transition: max-height 0.3s ease-out;
         overflow: hidden;
 
         &.expanded {
             max-height: 375px;
-            transition: max-height 0.2s ease-in;
+            transition: max-height 0.3s ease-in;
             padding-bottom: 45px;
         }
 
@@ -228,7 +241,7 @@ header.header-mobile {
                         letter-spacing: 0.05em;
                         text-decoration: none;
                         text-transform: uppercase;
-                        transition: all .2s;
+                        transition: all .3s;
 
                         &:hover {
                             color: #99D3C9;

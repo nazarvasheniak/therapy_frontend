@@ -6,6 +6,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import '../node_modules/froala-editor/css/froala_editor.pkgd.min.css';
 
+html, body {
+    height: 100%;
+}
+
 .fr-toolbar {
     border: 1px solid #D1E2DB;
     
@@ -76,7 +80,8 @@ body {
 .auth-wrapper {
     background: #254951;
     padding-top: 67px;
-    height: 100vh;
+    //height: 100vh;
+    height: 100%;
 
     form {
         button {
@@ -93,7 +98,8 @@ body {
             transition: .3s ease;
             border-radius: 10px;
             color: #ffffff;
-            border: 0;  
+            border: 0;
+            outline: none;
 
             &:hover {
                 background-position: 10px -50px;
@@ -105,6 +111,7 @@ body {
             }
             
             &.button-disabled {
+                cursor: not-allowed !important;
                 background: #3F666F;
                 box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
             }
@@ -374,6 +381,18 @@ button.scroll-top {
     left: 0;
     background: #bdbdbdad;
     z-index: 9999;
+}
+
+button {
+    &:disabled {
+        cursor: not-allowed !important;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .auth-wrapper {
+        background: #335C65;
+    }
 }
 
 /* Importing Bootstrap SCSS file. */

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 import { BaseHttpService } from './base-http.service';
 import { LocalStorageHelper } from '../helpers';
-import { SignInRequest, SignInConfirmRequest, SignUpRequest } from '../models/request';
+import { SignInRequest, SignInConfirmRequest, SignUpRequest, ResendConfirmCodeRequest } from '../models/request';
 import { ResponseModel, SignInResponse, SignInConfirmResponse } from '../models/response';
 
 @Injectable()
@@ -58,7 +58,7 @@ export class AuthService extends BaseHttpService {
     }
 
     public signUp(request: SignUpRequest) {
-        return this.post<ResponseModel>(`${this.apiUrl}/auth/sign-up`, request);
+        return this.post<SignInResponse>(`${this.apiUrl}/auth/sign-up`, request);
     }
 
     public signIn(request: SignInRequest) {
@@ -68,5 +68,9 @@ export class AuthService extends BaseHttpService {
     public signInConfirm(request: SignInConfirmRequest) {
         return this.post<SignInConfirmResponse>(`${this.apiUrl}/auth/sign-in/confirm`, request)
             .map(response => this.saveToken(response));
+    }
+
+    public resendConfirmCode(request: ResendConfirmCodeRequest) {
+        return this.post<SignInResponse>(`${this.apiUrl}/auth/sign-in/confirm/resend`, request);
     }
 }

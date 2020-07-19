@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService, PatientService } from 'src/app/common/services';
 import { Session } from 'src/app/common/models';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SessionStatus } from 'src/app/common/enums';
 
 @Component({
 	selector: 'cabinet-session-success',
@@ -79,10 +80,12 @@ export class CabinetSessionSuccessComponent implements OnInit {
             return;
         }
 
+        // TODO Если отзыв уже оставлен
+
         this.patientService
             .createReview(form.value, this.session.problem.id, this.session.id)
             .subscribe(res => {
-                if (res.success) {
+                if (!res.success) {
                     alert(res.message);
 
                     return;

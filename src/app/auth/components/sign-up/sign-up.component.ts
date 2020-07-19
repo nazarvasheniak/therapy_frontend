@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/common/services';
 import { Router } from '@angular/router';
@@ -14,8 +14,17 @@ declare var $: any;
 export class SignUpComponent implements OnInit {
 
     public isLoading = false;
+    public isError = false;
+    public errorText: string;
 
     public signUpForm: FormGroup;
+
+    @ViewChild("firstName") firstName: ElementRef;
+    @ViewChild("lastName") lastName: ElementRef;
+    @ViewChild("phoneNumber") phoneNumber: ElementRef;
+    @ViewChild("email") email: ElementRef;
+    @ViewChild("problem") problem: ElementRef;
+    @ViewChild("privacy") privacy: ElementRef;
 
     constructor(
         private authService: AuthService,
@@ -30,6 +39,20 @@ export class SignUpComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        if (window.innerWidth <= 450) {
+            document.body.style.background = "#335C65";
+        } else {
+            document.body.style.background = "#254951";
+        }
+
+        window.onresize = () => {
+            if (window.innerWidth <= 450) {
+                document.body.style.background = "#335C65";
+            } else {
+                document.body.style.background = "#254951";
+            }
+        }
+
         this.createSignUpForm();
     }
 
@@ -39,14 +62,33 @@ export class SignUpComponent implements OnInit {
             lastName: new FormControl(null, [Validators.required]),
             phoneNumber: new FormControl(null, [Validators.required]),
             email: new FormControl(null, [Validators.required]),
-            problem: new FormControl(null, [Validators.required])
+            problem: new FormControl(null, [Validators.required]),
+            privacy: new FormControl(false, [Validators.required])
         });
 
         $("#phoneNumber").mask("+7 (999) 999-99-99", { autoclear: false });
     }
 
-    public inputEvent(event) {
-        this.signUpForm.controls['phoneNumber'].setValue(event.target.value);
+    public inputEvent(control: string ,event) {
+        if (control == "phoneNumber") {
+            this.signUpForm.controls['phoneNumber'].setValue(event.target.value);
+        }
+
+        this.isError = false;
+
+        setTimeout(() => {
+            this.errorText = null;
+        }, 300);
+    }
+
+    public togglePrivacy() {
+        this.privacy.nativeElement.click();
+
+        this.isError = false;
+
+        setTimeout(() => {
+            this.errorText = null;
+        }, 300);
     }
 
     private normalizePhoneNumber(value: string): string {
@@ -74,18 +116,17 @@ export class SignUpComponent implements OnInit {
     }
 
     public submit(form: FormGroup) {
+        this.isError = false;
         this.isLoading = true;
 
         const phone = this.normalizePhoneNumber(form.value['phoneNumber']);
 
         if (!phone) {
-            alert('error');
             this.isLoading = false;
             return;
         }
 
         if (phone.includes('_')) {
-            alert('length error');
             this.isLoading = false;
             return;
         }
@@ -94,16 +135,23 @@ export class SignUpComponent implements OnInit {
         request.phoneNumber = phone;
 
         this.authService.signUp(request)
-            .subscribe(res => {
-                if (!res.success) {
-                    alert(res.message);
-                    this.isLoading = false;
-
-                    return;
-                }
-                
+            .subscribe(data => {
                 this.isLoading = false;
-                this.router.navigate(['/sign-in']);
+                
+                this.router.navigate(['/sign-in/confirm'], {
+                    queryParams: {
+                        id: data.userID
+                    }
+                });
+            },
+            fail => {
+                this.errorText = fail.error.message;
+                this.isError = true;
+                this.isLoading = false;
             });
+    }
+
+    public labelClick(elem) {
+        this[elem].nativeElement.focus();
     }
 }

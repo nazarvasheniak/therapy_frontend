@@ -10,3 +10,4 @@ export * from './create-problem-request.model';
 export * from './create-session-request.model';
 export * from './create-payment-request.model';
 export * from './create-review-request';
+export * from './resend-confirm-code-request.model';

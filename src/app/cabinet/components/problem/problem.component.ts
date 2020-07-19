@@ -64,6 +64,18 @@ export class ProblemComponent implements OnInit {
         this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist/${this.activeSession.specialist.id}/pay`]);
     }
 
+    routeToSessions() {
+        if (!this.sessions.length) {
+            return;
+        }
+
+        this.router.navigate(['/profile/problems', this.problem.id, 'assets'], {
+            queryParams: {
+                type: 3
+            }
+        });
+    }
+
     closeSession() {
         this.patientService.closeSession(this.problem.id, this.activeSession.id)
             .subscribe(res => {

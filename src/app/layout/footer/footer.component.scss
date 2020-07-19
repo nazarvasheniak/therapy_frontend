@@ -18,6 +18,23 @@ footer {
         }
 
         .company {
+            .footer-logo {
+                svg {
+                    cursor: pointer;
+                    transition: ease-in-out .3s;
+
+                    &:hover {
+                        transition: ease-in-out .3s;
+                        filter: saturate(2);
+                    }
+
+                    &:active {
+                        transition: ease-in-out .3s;
+                        filter: none;
+                    }
+                }
+            }
+
             .footer-requisites {
                 margin-top: 40px;
                 font-weight: normal;
@@ -56,6 +73,12 @@ footer {
                             color: #005264;
                             text-transform: uppercase;
                             text-decoration: none;
+                            transition: all .3s;
+
+                            &:hover {
+                                color: #2A9B7E;
+                                transition: all .3s;
+                            }
                         }
                     }
                 }
@@ -101,6 +124,7 @@ footer {
                 a {
                     margin-left: 12px;
                     margin-right: 12px;
+                    transition: ease-in-out .3s;
 
                     &:first-child {
                         margin-left: 0;
@@ -108,6 +132,16 @@ footer {
 
                     &:last-child {
                         margin-right: 0;
+                    }
+
+                    &:hover {
+                        transition: ease-in-out .3s;
+                        filter: saturate(4);
+                    }
+
+                    &:active {
+                        transition: ease-in-out .3s;
+                        filter: saturate(4) brightness(0.8);
                     }
                 }
             }
@@ -141,9 +175,22 @@ footer {
                         padding: 20px;
                         outline: none;
                         cursor: pointer;
+                        transition: ease-in-out .3s;
 
                         .icon {
                             margin-right: 16px;
+                        }
+
+                        &:hover {
+                            transition: ease-in-out .3s;
+                            background: #F2F9F6;
+                            border: 0.5px solid #BCE1D1;
+                        }
+
+                        &:active {
+                            transition: ease-in-out .3s;
+                            background: #EBF3EF;
+                            border: 0.5px solid #B5D8C9;
                         }
                     }
                 }
@@ -152,7 +199,22 @@ footer {
                     margin-left: 38px;
 
                     button {
+                        transition: ease-in-out .3s;
                         outline: none;
+
+                        > svg {
+                            margin-right: 16px;
+                        }
+
+                        &:hover {
+                            transition: ease-in-out .3s;
+                            filter: saturate(4);
+                        }
+
+                        &:active {
+                            transition: ease-in-out .3s;
+                            filter: saturate(4) brightness(0.8);
+                        }
                     }
                 }
 
@@ -164,6 +226,7 @@ footer {
                     a {
                         margin-left: 12px;
                         margin-right: 12px;
+                        transition: ease-in-out .3s;
     
                         &:first-child {
                             margin-left: 0;
@@ -171,6 +234,16 @@ footer {
     
                         &:last-child {
                             margin-right: 0;
+                        }
+
+                        &:hover {
+                            transition: ease-in-out .3s;
+                            filter: saturate(4);
+                        }
+    
+                        &:active {
+                            transition: ease-in-out .3s;
+                            filter: saturate(4) brightness(0.8);
                         }
                     }
                 }
@@ -188,6 +261,18 @@ footer {
                     text-align: right;
                     text-decoration-line: underline;
                     color: #C2D0C9;
+                    outline: none;
+                    transition: ease-in-out .3s;
+
+                    &:hover {
+                        transition: ease-in-out .3s;
+                        filter: saturate(4);
+                    }
+
+                    &:active {
+                        transition: ease-in-out .3s;
+                        filter: saturate(4) brightness(0.8);
+                    }
                 }
             }
         }

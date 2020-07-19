@@ -264,8 +264,7 @@
             </div>
         </div>
 
-        <div class="problem-asset problem-sessions" *ngIf="sessions" [ngClass]="{ 'empty': !sessions.length }"
-            [routerLink]="['/profile/problems', problem.id, 'assets']" [queryParams]="{type: '3'}">
+        <div class="problem-asset problem-sessions" *ngIf="sessions" [ngClass]="{ 'empty': !sessions.length }" (click)="routeToSessions()">
             <div class="asset-icon">
                 <img *ngIf="!sessions.length" src="../../../../assets/images/icon-session-empty.svg" />
                 <img *ngIf="sessions.length" src="../../../../assets/images/icon-session.svg" />

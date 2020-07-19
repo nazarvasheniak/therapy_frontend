@@ -59,7 +59,7 @@ header {
                             text-transform: uppercase;
                             border: 0.5px solid #5DB892;
                             box-sizing: border-box;
-                            box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+                            // box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
                             background: transparent;
                             backdrop-filter: blur(25px);
                             /* Note: backdrop-filter has minimal browser support */
@@ -69,9 +69,22 @@ header {
                             padding: 20px;
                             outline: none;
                             cursor: pointer;
+                            transition: ease-in-out .2s;
                 
                             .icon {
                                 margin-right: 16px;
+                            }
+
+                            &:hover {
+                                transition: ease-in-out .2s;
+                                background: #F2F9F6;
+                                border: 0.5px solid #BCE1D1;
+                            }
+    
+                            &:active {
+                                transition: ease-in-out .2s;
+                                background: #EBF3EF;
+                                border: 0.5px solid #B5D8C9;
                             }
                         }
                     }

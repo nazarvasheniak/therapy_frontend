@@ -18,6 +18,8 @@ export class SignInComponent implements OnInit {
     @ViewChild("phone") phone: ElementRef;
 
     public signInForm: FormGroup;
+    public isError = false;
+    public errorText: string;
 
     constructor(
         private authService: AuthService,
@@ -32,6 +34,20 @@ export class SignInComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        if (window.innerWidth <= 450) {
+            document.body.style.background = "#335C65";
+        } else {
+            document.body.style.background = "#254951";
+        }
+
+        window.onresize = () => {
+            if (window.innerWidth <= 450) {
+                document.body.style.background = "#335C65";
+            } else {
+                document.body.style.background = "#254951";
+            }
+        }
+
         this.createSignInForm();
     }
 
@@ -44,6 +60,12 @@ export class SignInComponent implements OnInit {
     }
 
     public inputEvent(event) {
+        this.isError = false;
+
+        setTimeout(() => {
+            this.errorText = null;
+        }, 300);
+
         this.signInForm.controls['phone'].setValue(event.target.value);
 
         if (this.isValidPhoneNumber(this.normalizePhoneNumber(this.signInForm.value['phone']))) {
@@ -64,8 +86,10 @@ export class SignInComponent implements OnInit {
     }
 
     public submit(form: FormGroup): void {
-        this.isLoading = true;
+        this.isError = false;
 
+        this.isLoading = true;
+        
         const phone = this.normalizePhoneNumber(form.value['phone']);
 
         if (!this.isValidPhoneNumber(phone)) {
@@ -85,14 +109,16 @@ export class SignInComponent implements OnInit {
                             id: data.userID
                         }
                     });
+
                     return;
                 },
                 fail => {
-                    alert(fail.error.message);
+                    this.errorText = fail.error.message;
+                    this.isError = true;
                     this.isLoading = false;
                     return;
                 }
-            )
+            );
     }
 
     private normalizePhoneNumber(value: string): string {
