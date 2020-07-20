@@ -88,4 +88,8 @@ export class ProblemComponent implements OnInit {
                 this.router.navigate([`profile/problems/${this.problem.id}/sessions/${this.activeSession.id}/review`]);
             });
     }
+
+    normalizeMonth(monthStr: string) {
+        return monthStr.replace(".", "");
+    }
 }

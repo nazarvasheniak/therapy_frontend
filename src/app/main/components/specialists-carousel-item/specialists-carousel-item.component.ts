@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, Input, OnInit } from "@angular/core";
 import { Specialist, Review } from 'src/app/common/models';
-import { SpecialistsService } from 'src/app/common/services';
+import { SpecialistsService, StorageService } from 'src/app/common/services';
 
 @Component({
     selector: 'specialists-carousel-item',
@@ -15,7 +15,7 @@ export class SpecialistsCarouselItemComponent implements OnInit {
     public neutralReviews: Review[];
     public negativeReviews: Review[];
 
-    constructor() {
+    constructor(private storageService: StorageService) {
 
     }
 
@@ -27,5 +27,13 @@ export class SpecialistsCarouselItemComponent implements OnInit {
         this.positiveReviews = this.specialist.reviews.filter(x => x.score >= 4);
         this.neutralReviews = this.specialist.reviews.filter(x => x.score == 3);
         this.negativeReviews = this.specialist.reviews.filter(x => x.score < 3);
+    }
+
+    showSpecialistDialog(specialist: Specialist){
+        let dialog = document.querySelector('.choose-specialist-dialog');
+        dialog.classList.remove('hidden');
+        dialog.classList.add('show');
+        
+        this.storageService.setSpecialist(specialist);
     }
 }

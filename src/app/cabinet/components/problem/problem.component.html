@@ -457,7 +457,7 @@
     </div>
 
     <!-- Last Session -->
-    <div class="session-block" *ngIf="lastSession">
+    <div class="session-block" *ngIf="lastSession && !activeSession">
         <div class="session-block-head">
             <div class="content-wrapper">
 
@@ -465,7 +465,7 @@
 
                     <div class="session-date">
                         <div class="day">{{ lastSession.date | date: 'dd' }}</div>
-                        <div class="month">{{ lastSession.date | date: 'MMM' }}</div>
+                        <div class="month">{{ normalizeMonth(lastSession.date | date: 'MMM') }}</div>
                     </div>
 
                     Последняя сессия

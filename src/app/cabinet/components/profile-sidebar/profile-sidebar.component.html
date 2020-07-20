@@ -54,7 +54,7 @@
 
         <div class="balance-row">
             <div class="balance">
-                {{ wallet.balance | number:'':'fr' }} ₽
+                {{ (wallet.balance - wallet.lockedBalance) | number:'':'fr' }} ₽
             </div>
 
             <div class="balance-lock" *ngIf="wallet.lockedBalance">

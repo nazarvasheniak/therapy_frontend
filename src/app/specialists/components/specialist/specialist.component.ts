@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SpecialistsService } from 'src/app/common/services';
+import { SpecialistsService, StorageService } from 'src/app/common/services';
 import { Specialist, Review } from 'src/app/common/models';
 import { ReviewsTabs } from './reviews-tabs.enum';
 import { ViewHelper } from 'src/app/common/helpers';
@@ -27,7 +27,8 @@ export class SpecialistComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
-		private specialistsService: SpecialistsService
+		private specialistsService: SpecialistsService,
+		private storageService: StorageService
 	) {
 
 	}
@@ -118,4 +119,12 @@ export class SpecialistComponent implements OnInit {
 			this.totalPages = res.totalPages;
 		});
 	}
+
+	showSpecialistDialog(specialist: Specialist){
+        let dialog = document.querySelector('.choose-specialist-dialog');
+        dialog.classList.remove('hidden');
+        dialog.classList.add('show');
+        
+        this.storageService.setSpecialist(specialist);
+    }
 }

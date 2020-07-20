@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SpecialistsComponent } from './components/specialists/specialists.component';
 import { SpecialistComponent } from './components/specialist/specialist.component';
 import { SpecialistCardComponent } from './components/specialis-card/specialist-card.component';
+import { MainModule } from '../main/main.module';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import { SpecialistCardComponent } from './components/specialis-card/specialist-
     imports: [
         CommonModule,
         RouterModule,
-        LayoutModule
+        LayoutModule,
+        MainModule
     ],
     exports: [
         SpecialistCardComponent

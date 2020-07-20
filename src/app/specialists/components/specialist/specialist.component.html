@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="choose-button">
-                        <button type="button">
+                        <button type="button" (click)="showSpecialistDialog(specialist)">
                             Выбрать
                             <img src="../../../../assets/images/icon-arrow-right.svg" alt="" />
                         </button>
@@ -222,3 +222,5 @@
     <!-- Footer -->
     <app-footer></app-footer>
 </div>
+
+<choose-specialist-dialog class="choose-specialist-dialog hidden"></choose-specialist-dialog>

@@ -22,6 +22,7 @@ import { SpecialistsCarouselItemComponent } from './components/specialists-carou
 import { ArticlesCarouselComponent } from './components/articles-carousel/articles-carousel.component';
 import { ArticlesCarouselItemComponent } from './components/articles-carousel-item/articles-carousel-item.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ChooseSpecialistDialogComponent } from '../choose-specialist-dialog/choose-specialist-dialog.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     direction: 'horizontal',
@@ -42,7 +43,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
         ArticlesCarouselComponent,
         ArticlesCarouselItemComponent,
         SafePipe,
-        FilterArticlesPipe
+        FilterArticlesPipe,
+        ChooseSpecialistDialogComponent
     ],
     imports: [
         CommonModule,
@@ -53,6 +55,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
         BrowserAnimationsModule,
         SwiperModule,
         NgxSpinnerModule
+    ],
+    exports: [
+        ChooseSpecialistDialogComponent
     ],
     providers: [
         {
