@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/common/services/auth.service';
+import { Location } from '@angular/common';
 
 declare var $: any;
 
@@ -23,7 +24,8 @@ export class SignInComponent implements OnInit {
 
     constructor(
         private authService: AuthService,
-        private router: Router) {
+        private router: Router,
+        private location: Location) {
             
         this.authService.isLoggedIn
             .subscribe(logged => {

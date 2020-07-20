@@ -116,6 +116,21 @@ body {
                 box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
             }
         }
+
+        re-captcha {
+            position: relative;
+            left: -9px;
+
+            > div {
+                width: 100% !important;
+
+                > div {
+                    > iframe {
+                        transform: scaleX(0.9342);
+                    }
+                }
+            }
+        }
     }
 }
 

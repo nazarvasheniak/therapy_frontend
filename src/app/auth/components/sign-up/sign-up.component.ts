@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/common/services';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SignUpRequest } from 'src/app/common/models/request';
 
 declare var $: any;
@@ -28,12 +28,21 @@ export class SignUpComponent implements OnInit {
 
     constructor(
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private route: ActivatedRoute
     ) {
         this.authService.isLoggedIn
             .subscribe(logged => {
                 if (logged) {
                     this.router.navigate(['/']);
+                }
+            });
+
+        this.route.params
+            .subscribe(params => {
+                if (params['prev'] && params['prev'] == 'sign-in') {
+                    window.location.href = `${window.location.origin}/#/sign-up`;
+                    window.location.reload();
                 }
             });
     }
