@@ -126,7 +126,7 @@ body {
 
                 > div {
                     > iframe {
-                        transform: scaleX(0.9342);
+                        transform: scale3d(0.9342, 0.9342, 1);
                     }
                 }
             }
