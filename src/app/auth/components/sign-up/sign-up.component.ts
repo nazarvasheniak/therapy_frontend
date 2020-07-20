@@ -72,7 +72,8 @@ export class SignUpComponent implements OnInit {
             phoneNumber: new FormControl(null, [Validators.required]),
             email: new FormControl(null, [Validators.required]),
             problem: new FormControl(null, [Validators.required]),
-            privacy: new FormControl(false, [Validators.required])
+            privacy: new FormControl(false, [Validators.required]),
+            captchaValid: new FormControl(false)
         });
 
         $("#phoneNumber").mask("+7 (999) 999-99-99", { autoclear: false });
@@ -114,6 +115,11 @@ export class SignUpComponent implements OnInit {
         }
 
         if (phone.includes('_')) {
+            return false;
+        }
+
+
+        if  (!this.signUpForm.value['captchaValid']) {
             return false;
         }
 
@@ -162,5 +168,11 @@ export class SignUpComponent implements OnInit {
 
     public labelClick(elem) {
         this[elem].nativeElement.focus();
+    }
+
+    public captchaResolved(event) {
+        if (event) {
+            this.signUpForm.controls['captchaValid'].setValue(true);
+        }
     }
 }

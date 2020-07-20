@@ -55,7 +55,8 @@ export class SignInComponent implements OnInit {
 
     private createSignInForm(): void {
         this.signInForm = new FormGroup({
-            phone: new FormControl(null, [Validators.required])
+            phone: new FormControl(null, [Validators.required]),
+            captchaValid: new FormControl(false)
         });
 
         $("#phone").mask("+7 (999) 999-99-99", { autoclear: false });
@@ -131,5 +132,11 @@ export class SignInComponent implements OnInit {
 
     public labelClick() {
         this.phone.nativeElement.focus();
+    }
+
+    public captchaResolved(event) {
+        if (event) {
+            this.signInForm.controls['captchaValid'].setValue(true);
+        }
     }
 }
