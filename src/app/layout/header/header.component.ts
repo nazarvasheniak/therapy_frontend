@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { AuthService, UsersService } from 'src/app/common/services';
-import { User } from 'src/app/common/models';
+import { AuthService, UsersService, SpecialistService } from 'src/app/common/services';
+import { User, Specialist } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
 import { Router } from '@angular/router';
+import { UserRole } from 'src/app/common/enums';
 
 @Component({
 	selector: 'app-header',
@@ -13,12 +14,14 @@ export class HeaderComponent {
 	
 	public isLoggedIn: boolean;
 	public user: User;
+	public specialist: Specialist;
 
 	public isMobileNavExpanden = false;
 	
     constructor(
 		private authService: AuthService,
 		private usersService: UsersService,
+		private specialistService: SpecialistService,
 		private router: Router
 	) {
 		this.authService
@@ -37,6 +40,18 @@ export class HeaderComponent {
 			.getUserInfo()
 			.subscribe(user => {
 				this.user = user;
+
+				if (user.role == UserRole.Specialist) {
+					this.loadSpecialist();
+				}
+			});
+	}
+
+	private loadSpecialist() {
+		this.specialistService
+			.getSpecialistInfo()
+			.subscribe(specialistInfoResponse => {
+				this.specialist = specialistInfoResponse.data;
 			});
 	}
 

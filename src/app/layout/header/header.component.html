@@ -68,8 +68,8 @@
                     </div>
 
                     <div class="profile-badge-wrapper" *ngIf="user.role == 2 || user.role == 3" [routerLink]="['/profile-specialist']">
-                        <div class="avatar">
-                            {{ getAvatar() }}
+                        <div class="avatar" *ngIf="specialist">
+                            <img [src]="specialist.photo.url" />
                         </div>
 
                         <div class="username">

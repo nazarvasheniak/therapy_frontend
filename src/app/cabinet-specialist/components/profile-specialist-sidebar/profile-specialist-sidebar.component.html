@@ -3,6 +3,19 @@
         <nav>
             <ul>
                 <li>
+                    <a [routerLink]="['/profile-specialist']" [routerLinkActive]="['active']">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="6" r="3" stroke="#000000" />
+                            <path
+                                d="M3 16C3 13.2386 5.23858 11 8 11H12C14.7614 11 17 13.2386 17 16V16C17 16.5523 16.5523 17 16 17H4C3.44772 17 3 16.5523 3 16V16Z"
+                                stroke="#000000" />
+                        </svg>
+
+                        Профиль
+                    </a>
+                </li>
+
+                <li>
                     <a [routerLink]="['/profile-specialist/articles']" [routerLinkActive]="['active']">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"

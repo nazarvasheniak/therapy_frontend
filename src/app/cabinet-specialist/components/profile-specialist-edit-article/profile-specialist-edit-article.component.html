@@ -31,7 +31,7 @@
                         <input type="text" placeholder="Название" [(value)]="articleForm.value['title']" (input)="onChange('title', $event.target.value)" />
                     </div>
 
-                    <!-- <div class="article-preview-image" *ngIf="!articleForm.value['previewImage']">
+                    <div class="article-preview-image" *ngIf="!articleForm.value['previewImage']">
                         <div class="article-preview-image-caption">
                             Добавьте изображение, которое будет отображаться в качестве обложки статьи
                         </div>
@@ -39,7 +39,7 @@
                         <div class="article-preview-image-button">
                             <button type="button" (click)="previewImage.click()">+  Добавить превью</button> 
                         </div>
-                    </div> -->
+                    </div>
 
                     <div class="article-preview-image-uploaded">
                         <div class="preview-image">

@@ -9,3 +9,4 @@ export * from './files.service';
 export * from './users-wallets.service';
 export * from './payments.service';
 export * from './storage.service';
+export * from './specialist.service';
