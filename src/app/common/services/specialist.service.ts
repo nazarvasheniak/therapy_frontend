@@ -37,4 +37,8 @@ export class SpecialistService extends BaseHttpService {
         return this.get<DataResponse<ClientCard>>(`${this.apiUrl}/specialist/clients/${clientID}`)
             .map(response => response.data);
     }
+
+    public getSessions(query: GetList) {
+        return this.get<ListResponse<Session>>(`${this.apiUrl}/specialist/sessions?pageNumber=${query.pageNumber}&pageSize=${query.pageSize}`);
+    }
 }

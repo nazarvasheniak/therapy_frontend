@@ -11,6 +11,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { ProfileSpecialistEditArticleComponent } from './components/profile-specialist-edit-article/profile-specialist-edit-article.component';
 import { ProfileSpecialistClientsComponent } from './components/profile-specialist-clients/profile-specialist-clients.component';
 import { ProfileSpecialistClientComponent } from './components/profile-specialist-client/profile-specialist-client.component';
+import { ProfileSpecialistSessionsComponent } from './components/profile-specialist-sessions/profile-specialist-sessions.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { ProfileSpecialistClientComponent } from './components/profile-specialis
         ProfileSpecialistCreateArticleComponent,
         ProfileSpecialistEditArticleComponent,
         ProfileSpecialistClientsComponent,
-        ProfileSpecialistClientComponent
+        ProfileSpecialistClientComponent,
+        ProfileSpecialistSessionsComponent
     ],
     imports: [
         CommonModule,

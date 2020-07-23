@@ -22,6 +22,7 @@ import { CabinetPaySpecialistComponent } from './cabinet/components/pay-speciali
 import { CabinetSessionSuccessComponent } from './cabinet/components/session-success/session-success.component';
 import { ProfileSpecialistClientsComponent } from './cabinet-specialist/components/profile-specialist-clients/profile-specialist-clients.component';
 import { ProfileSpecialistClientComponent } from './cabinet-specialist/components/profile-specialist-client/profile-specialist-client.component';
+import { ProfileSpecialistSessionsComponent } from './cabinet-specialist/components/profile-specialist-sessions/profile-specialist-sessions.component';
 
 
 const routes: Routes = [
@@ -52,7 +53,8 @@ const routes: Routes = [
 	{ path: 'profile-specialist/articles/create', component: ProfileSpecialistCreateArticleComponent },
 	{ path: 'profile-specialist/articles/:id', component: ProfileSpecialistEditArticleComponent },
 	{ path: 'profile-specialist/clients', component: ProfileSpecialistClientsComponent },
-	{ path: 'profile-specialist/clients/:id', component: ProfileSpecialistClientComponent }
+	{ path: 'profile-specialist/clients/:id', component: ProfileSpecialistClientComponent },
+	{ path: 'profile-specialist/sessions', component: ProfileSpecialistSessionsComponent }
 ];
 
 @NgModule({
