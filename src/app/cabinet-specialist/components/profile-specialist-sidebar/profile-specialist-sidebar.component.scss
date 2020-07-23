@@ -30,15 +30,26 @@ aside {
     
                         > svg {
                             margin-right: 12px;
+
+                            circle {
+                                stroke: #005264;
+                            }
+
+                            path {
+                                fill: #005264;
+                            }
                         }
     
                         &.active {
                             color: #32A776;
     
                             > svg {
-                                circle,
-                                path {
+                                circle {
                                     stroke: #32A776;
+                                }
+
+                                path {
+                                    fill: #32A776;
                                 }
                             }
                         }

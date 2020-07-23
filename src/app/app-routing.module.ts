@@ -20,12 +20,24 @@ import { CabinetDepositComponent } from './cabinet/components/deposit/deposit.co
 import { ProblemAssetsComponent } from './cabinet/components/problem-assets/problem-assets.component';
 import { CabinetPaySpecialistComponent } from './cabinet/components/pay-specialist/pay-specialist.component';
 import { CabinetSessionSuccessComponent } from './cabinet/components/session-success/session-success.component';
+import { ProfileSpecialistClientsComponent } from './cabinet-specialist/components/profile-specialist-clients/profile-specialist-clients.component';
 
 
 const routes: Routes = [
+	{ path: '', component: MainComponent },
+
 	{ path: 'sign-up', component: SignUpComponent },
 	{ path: 'sign-in', component: SignInComponent },
 	{ path: 'sign-in/confirm', component: ConfirmationComponent },
+
+	{ path: 'landing', component: LandingComponent },
+
+	{ path:'articles', component: ArticlesComponent },
+	{ path: 'articles/:id', component: ArticleComponent },
+
+	{ path: 'specialists', component: SpecialistsComponent },
+	{ path: 'specialists/:id', component: SpecialistComponent },
+
 	{ path: 'profile', component: ProfileComponent },
 	{ path: 'profile/deposit', component: CabinetDepositComponent },
 	{ path: 'profile/problems/:id/choose-specialist', component: ChooseSpecialistComponent },
@@ -33,20 +45,16 @@ const routes: Routes = [
 	{ path: 'profile/problems/:id/assets', component: ProblemAssetsComponent },
 	{ path: 'profile/problems/:id/sessions/:sessionID/review', component: CabinetSessionSuccessComponent },
 	{ path: 'profile/problems/add', component: CreateProblemComponent },
+
 	{ path: 'profile-specialist', component: ProfileSpecialistComponent },
 	{ path: 'profile-specialist/articles', component: ProfileSpecialistArticlesComponent },
 	{ path: 'profile-specialist/articles/create', component: ProfileSpecialistCreateArticleComponent },
 	{ path: 'profile-specialist/articles/:id', component: ProfileSpecialistEditArticleComponent },
-	{ path: 'landing', component: LandingComponent },
-	{ path: '', component: MainComponent },
-	{ path: 'specialists', component: SpecialistsComponent },
-	{ path: 'specialists/:id', component: SpecialistComponent },
-	{ path:'articles', component: ArticlesComponent },
-	{ path: 'articles/:id', component: ArticleComponent },
+	{ path: 'profile-specialist/clients', component: ProfileSpecialistClientsComponent },
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
+	imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
 	exports: [RouterModule]
 })
 export class AppRoutingModule { }

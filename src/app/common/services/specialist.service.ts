@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BaseHttpService } from './base-http.service';
 import { HttpClient } from '@angular/common/http';
-import { DataResponse, WebinarResponse, ResponseModel } from '../models/response';
-import { Specialist, SpecialistProfile, Session } from '../models';
-import { ChangeSpecialistPriceRequest } from '../models/request';
+import { DataResponse, WebinarResponse, ResponseModel, ListResponse } from '../models/response';
+import { Specialist, SpecialistProfile, Session, ClientCard } from '../models';
+import { ChangeSpecialistPriceRequest, GetList } from '../models/request';
 
 @Injectable()
 export class SpecialistService extends BaseHttpService {
@@ -27,5 +27,9 @@ export class SpecialistService extends BaseHttpService {
     public getActiveSessions() {
         return this.get<DataResponse<Session[]>>(`${this.apiUrl}/specialist/sessions/active`)
             .map(response => response.data);
+    }
+
+    public getClients(query:  GetList) {
+        return this.get<ListResponse<ClientCard>>(`${this.apiUrl}/specialist/clients?pageNumber=${query.pageNumber}&pageSize=${query.pageSize}`);
     }
 }
