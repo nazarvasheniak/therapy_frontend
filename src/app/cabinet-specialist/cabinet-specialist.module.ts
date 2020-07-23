@@ -10,6 +10,7 @@ import { ProfileSpecialistCreateArticleComponent } from './components/profile-sp
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { ProfileSpecialistEditArticleComponent } from './components/profile-specialist-edit-article/profile-specialist-edit-article.component';
 import { ProfileSpecialistClientsComponent } from './components/profile-specialist-clients/profile-specialist-clients.component';
+import { ProfileSpecialistClientComponent } from './components/profile-specialist-client/profile-specialist-client.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { ProfileSpecialistClientsComponent } from './components/profile-speciali
         ProfileSpecialistArticlesComponent,
         ProfileSpecialistCreateArticleComponent,
         ProfileSpecialistEditArticleComponent,
-        ProfileSpecialistClientsComponent
+        ProfileSpecialistClientsComponent,
+        ProfileSpecialistClientComponent
     ],
     imports: [
         CommonModule,

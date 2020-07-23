@@ -29,7 +29,12 @@ export class SpecialistService extends BaseHttpService {
             .map(response => response.data);
     }
 
-    public getClients(query:  GetList) {
+    public getClients(query: GetList) {
         return this.get<ListResponse<ClientCard>>(`${this.apiUrl}/specialist/clients?pageNumber=${query.pageNumber}&pageSize=${query.pageSize}`);
+    }
+
+    public getClient(clientID: number) {
+        return this.get<DataResponse<ClientCard>>(`${this.apiUrl}/specialist/clients/${clientID}`)
+            .map(response => response.data);
     }
 }

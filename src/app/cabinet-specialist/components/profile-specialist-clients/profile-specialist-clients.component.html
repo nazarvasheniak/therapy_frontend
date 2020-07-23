@@ -88,7 +88,7 @@
                     <div class="clients-list" *ngIf="clients">
 
                         <div class="clients-list-item" *ngFor="let client of clients">
-                            <div class="client-name">
+                            <div class="client-name" [routerLink]="['/profile-specialist/clients', client.user.id]">
                                 <div class="avatar">
                                     <div class="avatar-inner">
                                         <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
