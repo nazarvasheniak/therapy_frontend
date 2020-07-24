@@ -1,0 +1,130 @@
+<div class="page-wrapper">
+
+    <!-- Header -->
+    <app-header></app-header>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <profile-specialist-sidebar></profile-specialist-sidebar>
+
+            <content>
+                <div class="page-top">
+                    <div class="page-head">
+                        Отзывы
+                    </div>
+                </div>
+
+                <div class="page-content">
+                    <div class="tabs">
+                        <div class="tabs-head">
+                            <div class="tab-head" [ngClass]="{'active': activeTab == 1}" (click)="setActiveTab(1)">
+                                <div class="title">
+                                    Положительные
+                                </div>
+
+                                <div class="count">
+                                    2
+                                </div>
+                            </div>
+
+                            <div class="tab-head" [ngClass]="{'active': activeTab == 2}" (click)="setActiveTab(2)">
+                                <div class="title">
+                                    Нейтральные
+                                </div>
+
+                                <div class="count">
+                                    1
+                                </div>
+                            </div>
+
+                            <div class="tab-head" [ngClass]="{'active': activeTab == 3}" (click)="setActiveTab(3)">
+                                <div class="title">
+                                    Отрицательные
+                                </div>
+
+                                <div class="count">
+                                    0
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tabs-content">
+                            <div class="tab-content" *ngIf="activeTab == 1">
+                                <div class="review">
+                                    <div class="review-header">
+                                        <div class="user-icon">
+                                            <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 18.8888C1.00051 15.616 6.92593 12.9629 6.92593 12.9629C6.92593 12.9629 9.383 13.7037 11.0002 13.7036C12.6172 13.7036 15.0741 12.9629 15.0741 12.9629C15.0741 12.9629 21 15.616 21 18.8888C21 19.9999 14.9293 19.9999 11 19.9999C7.07072 19.9999 0.999826 19.9999 1 18.8888Z" stroke="#005264"/>
+                                                <circle cx="11.0004" cy="5.55556" r="5.05556" stroke="#005264"/>
+                                            </svg>                                                
+                                        </div>
+
+                                        <div class="user-name">
+                                            Евгения Поклонская
+                                        </div>
+                                    </div>
+
+                                    <div class="review-content">
+                                        С другой стороны консультация с широким активом представляет собой интересный эксперимент проверки систем массового участия. Разнообразный и богатый опыт новая модель организационной деятельности обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений развития. Задача организации, в особенности же постоянный количественный рост и сфера нашей активности требуют от нас анализа новых предложений.
+                                    </div>
+
+                                    <div class="review-footer">
+                                        <div class="title">
+                                            Оценка
+                                        </div>
+
+                                        <div class="value">
+                                            <img src="../../../../assets/images/star-half.svg" />
+
+                                            4.8
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-content" *ngIf="activeTab == 2">
+                                <div class="review">
+                                    <div class="review-header">
+                                        <div class="user-icon">
+                                            <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 18.8888C1.00051 15.616 6.92593 12.9629 6.92593 12.9629C6.92593 12.9629 9.383 13.7037 11.0002 13.7036C12.6172 13.7036 15.0741 12.9629 15.0741 12.9629C15.0741 12.9629 21 15.616 21 18.8888C21 19.9999 14.9293 19.9999 11 19.9999C7.07072 19.9999 0.999826 19.9999 1 18.8888Z" stroke="#005264"/>
+                                                <circle cx="11.0004" cy="5.55556" r="5.05556" stroke="#005264"/>
+                                            </svg>                                                
+                                        </div>
+
+                                        <div class="user-name">
+                                            Олег Белозеров
+                                        </div>
+                                    </div>
+
+                                    <div class="review-content">
+                                        Все отлично, словами не передать, все понравилось!! Это реально работает, мне стало легче!
+                                    </div>
+
+                                    <div class="review-footer">
+                                        <div class="title">
+                                            Оценка
+                                        </div>
+
+                                        <div class="value">
+                                            <img src="../../../../assets/images/star-half.svg" />
+
+                                            3
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-content" *ngIf="activeTab == 32">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+</div>

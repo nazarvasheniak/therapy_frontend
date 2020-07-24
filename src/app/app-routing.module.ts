@@ -23,6 +23,7 @@ import { CabinetSessionSuccessComponent } from './cabinet/components/session-suc
 import { ProfileSpecialistClientsComponent } from './cabinet-specialist/components/profile-specialist-clients/profile-specialist-clients.component';
 import { ProfileSpecialistClientComponent } from './cabinet-specialist/components/profile-specialist-client/profile-specialist-client.component';
 import { ProfileSpecialistSessionsComponent } from './cabinet-specialist/components/profile-specialist-sessions/profile-specialist-sessions.component';
+import { ProfileSpecialistReviewsComponent } from './cabinet-specialist/components/profile-specialist-reviews/profile-specialist-reviews.component';
 
 
 const routes: Routes = [
@@ -54,7 +55,8 @@ const routes: Routes = [
 	{ path: 'profile-specialist/articles/:id', component: ProfileSpecialistEditArticleComponent },
 	{ path: 'profile-specialist/clients', component: ProfileSpecialistClientsComponent },
 	{ path: 'profile-specialist/clients/:id', component: ProfileSpecialistClientComponent },
-	{ path: 'profile-specialist/sessions', component: ProfileSpecialistSessionsComponent }
+	{ path: 'profile-specialist/sessions', component: ProfileSpecialistSessionsComponent },
+	{ path: 'profile-specialist/reviews', component: ProfileSpecialistReviewsComponent }
 ];
 
 @NgModule({

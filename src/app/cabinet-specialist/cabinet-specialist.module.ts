@@ -12,6 +12,7 @@ import { ProfileSpecialistEditArticleComponent } from './components/profile-spec
 import { ProfileSpecialistClientsComponent } from './components/profile-specialist-clients/profile-specialist-clients.component';
 import { ProfileSpecialistClientComponent } from './components/profile-specialist-client/profile-specialist-client.component';
 import { ProfileSpecialistSessionsComponent } from './components/profile-specialist-sessions/profile-specialist-sessions.component';
+import { ProfileSpecialistReviewsComponent } from './components/profile-specialist-reviews/profile-specialist-reviews.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { ProfileSpecialistSessionsComponent } from './components/profile-special
         ProfileSpecialistEditArticleComponent,
         ProfileSpecialistClientsComponent,
         ProfileSpecialistClientComponent,
-        ProfileSpecialistSessionsComponent
+        ProfileSpecialistSessionsComponent,
+        ProfileSpecialistReviewsComponent
     ],
     imports: [
         CommonModule,
