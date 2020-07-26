@@ -51,5 +51,9 @@ export class ProfileSpecialistClientComponent implements OnInit {
 
     getPhone() {
 		return StringHelper.formatPhone(this.client.user.phoneNumber);
-	}
+    }
+    
+    normalizeMonth(monthStr: string) {
+        return monthStr.replace(".", "");
+    }
 }

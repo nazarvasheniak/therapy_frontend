@@ -86,7 +86,7 @@
                                         Возврат
                                     </div>
 
-                                    <div class="name">
+                                    <div class="name" (click)="routeToClient(session)">
                                         {{ session.client.firstName }} {{ session.client.lastName }}
                                     </div>
 
@@ -164,7 +164,7 @@
                                     'positive': session.reviewScore > 3,
                                     'neutral': session.reviewScore == 3,
                                     'negative': session.reviewScore < 3,
-                                    '': session.review-score == 0
+                                    '': session.reviewScore == 0
                                 }">
                                     <div class="title">
                                         Отзыв

@@ -50,6 +50,10 @@ export class ProfileSpecialistSessionsComponent implements OnInit {
             });
     }
 
+    routeToClient(session: SpecialistSession) {
+        this.router.navigate([`/profile-specialist/clients/${session.client.id}`]);
+    }
+
     setPageSize(value: number) {
 		this.loadSessions(1, Number(value));
 	}
