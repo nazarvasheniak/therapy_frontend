@@ -38,15 +38,15 @@
                             </div>
 
                             <div class="reviews">
-                                <div class="positive">
+                                <div class="positive" [routerLink]="['reviews']" [queryParams]="{'tab': 1}">
                                     {{ profile.positiveReviewsCount }}
                                 </div>
 
-                                <div class="neutral">
+                                <div class="neutral" [routerLink]="['reviews']" [queryParams]="{'tab': 2}">
                                     {{ profile.neutralReviewsCount }}
                                 </div>
 
-                                <div class="negative">
+                                <div class="negative" [routerLink]="['reviews']" [queryParams]="{'tab': 3}">
                                     {{ profile.negativeReviewsCount }}
                                 </div>
                             </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SpecialistService, AuthService } from 'src/app/common/services';
-import { Specialist, SpecialistProfile, Session } from 'src/app/common/models';
+import { SpecialistProfile, Session } from 'src/app/common/models';
 
 @Component({
 	selector: 'app-profile-specialist',

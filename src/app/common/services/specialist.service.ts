@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseHttpService } from './base-http.service';
 import { HttpClient } from '@angular/common/http';
-import { DataResponse, WebinarResponse, ResponseModel, ListResponse } from '../models/response';
+import { DataResponse, WebinarResponse, ResponseModel, ListResponse, ReviewsResponse } from '../models/response';
 import { Specialist, SpecialistProfile, Session, ClientCard } from '../models';
 import { ChangeSpecialistPriceRequest, GetList } from '../models/request';
 
@@ -40,5 +40,9 @@ export class SpecialistService extends BaseHttpService {
 
     public getSessions(query: GetList) {
         return this.get<ListResponse<Session>>(`${this.apiUrl}/specialist/sessions?pageNumber=${query.pageNumber}&pageSize=${query.pageSize}`);
+    }
+
+    public getReviews() {
+        return this.get<ReviewsResponse>(`${this.apiUrl}/specialist/reviews`);
     }
 }

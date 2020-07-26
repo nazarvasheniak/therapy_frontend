@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SpecialistService, AuthService } from 'src/app/common/services';
-import { Specialist, SpecialistProfile, Session } from 'src/app/common/models';
+import { Specialist, SpecialistProfile, Session, Review } from 'src/app/common/models';
 
 @Component({
 	selector: 'app-profile-specialist-reviews',
@@ -11,13 +11,27 @@ import { Specialist, SpecialistProfile, Session } from 'src/app/common/models';
 export class ProfileSpecialistReviewsComponent implements OnInit {
 
     public activeTab = 1;
+    
+    public positiveReviews: Review[] = [];
+    public neutralReviews: Review[] = [];
+	public negativeReviews: Review[] = [];
 
     constructor(
         private authService: AuthService,
         private specialistService: SpecialistService,
-        private router: Router
+        private router: Router,
+        private route: ActivatedRoute
     ) {
 
+    }
+
+    private loadReviews() {
+        this.specialistService.getReviews()
+            .subscribe(response => {
+                this.positiveReviews = response.positiveReviews;
+                this.neutralReviews = response.neutralReviews;
+                this.negativeReviews = response.negativeReviews;
+            });
     }
 
     ngOnInit(): void {
@@ -28,6 +42,19 @@ export class ProfileSpecialistReviewsComponent implements OnInit {
 
                     return;
                 }
+
+                this.route.queryParams
+                    .subscribe(params => {
+                        const tab = params['tab'];
+
+                        if (!tab) {
+                            return;
+                        }
+
+                        this.setActiveTab(tab);
+                    });
+
+                this.loadReviews();
             });
     }
 

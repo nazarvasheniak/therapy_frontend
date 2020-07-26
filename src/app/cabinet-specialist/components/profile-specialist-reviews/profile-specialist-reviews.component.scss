@@ -154,6 +154,21 @@
                                 }
                             }
                         }
+
+                        .no-content {
+                            text-align: center;
+                            margin-top: 63px;
+                            margin-bottom: 63px;
+                            font-weight: normal;
+                            font-size: 16px;
+                            line-height: 22px;
+                            text-align: center;
+                            color: #D4E1DC;
+            
+                            .icon {
+                                margin-bottom: 12px;
+                            }
+                        }
                     }
                 }
             }
