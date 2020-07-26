@@ -331,6 +331,46 @@
                                 }
                             }
 
+                            &.review-badge {
+                                height: 32px;
+                                padding-left: 8px;
+                                padding-right: 8px;
+                                border: 1px solid #DDDDDD;
+                                background: transparent;
+
+                                .title {
+                                    font-weight: normal;
+                                    font-size: 14px;
+                                    line-height: 100%;
+                                    color: #364D47;
+                                }
+
+                                .value {
+                                    font-family: "Poppins", sans-serif;
+                                    font-weight: normal;
+                                    font-size: 16px;
+                                    line-height: 100%;
+                                    color: #364D47;
+                                    margin-top: 2px;
+                                    margin-left: 8px;                           
+                                }
+
+                                &.positive {
+                                    background: #CBFADD;
+                                    border: 1px solid #C6E8D3;
+                                }
+
+                                &.neutral {
+                                    background: linear-gradient(90deg, #F0F0F0 0%, #F0F0F0 48.95%, rgba(240, 240, 240, 0) 48.96%, rgba(240, 240, 240, 0) 100%);
+                                    border: 1px solid #DDDDDD;
+                                }
+
+                                &.negative {
+                                    background: linear-gradient(90deg, #F5C9C9 0%, #F5C9C9 41.15%, rgba(255, 255, 255, 0.505208) 41.16%, rgba(255, 255, 255, 0) 100%);
+                                    border: 1px solid #FFBCBC;
+                                }
+                            }
+
                             &.close-button {
                                 height: 40px;
                                 padding-left: 16px;

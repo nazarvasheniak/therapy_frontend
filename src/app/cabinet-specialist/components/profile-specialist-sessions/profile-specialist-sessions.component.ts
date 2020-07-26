@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SpecialistService, AuthService } from 'src/app/common/services';
-import { Session } from 'src/app/common/models';
+import { Session, SpecialistSession } from 'src/app/common/models';
 import { PaginationComponent } from 'src/app/layout/pagination/pagination.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { PaginationComponent } from 'src/app/layout/pagination/pagination.compon
 })
 export class ProfileSpecialistSessionsComponent implements OnInit {
 
-    public sessions: Session[];
+    public sessions: SpecialistSession[];
 
     public pageSize = 10;
     public pageNumber = 1;
@@ -57,5 +57,9 @@ export class ProfileSpecialistSessionsComponent implements OnInit {
 	setPageNumber(value: number) {
 		window.scroll(0,0);
 		this.loadSessions(value, this.pageSize);
+    }
+
+    normalizeMonth(monthStr: string) {
+        return monthStr.replace(".", "");
     }
 }
