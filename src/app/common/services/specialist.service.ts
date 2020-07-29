@@ -8,7 +8,7 @@ import {
     GetList, 
     CreateUpdateProblemImageRequest, 
     CreateUpdateProblemResourceRequest, 
-    CreateProblemResourceTask
+    CreateUpdateProblemResourceTask
 } from '../models/request';
 
 import { 
@@ -29,6 +29,7 @@ import {
     ProblemResource,
     ProblemResourceTask
 } from '../models';
+import { SpecialistProfileActiveSession } from '../models/specialist-profile-active-session.model';
 
 @Injectable()
 export class SpecialistService extends BaseHttpService {
@@ -50,7 +51,7 @@ export class SpecialistService extends BaseHttpService {
     }
 
     public getActiveSessions() {
-        return this.get<DataResponse<Session[]>>(`${this.apiUrl}/specialist/sessions/active`)
+        return this.get<DataResponse<SpecialistProfileActiveSession[]>>(`${this.apiUrl}/specialist/sessions/active`)
             .map(response => response.data);
     }
 
@@ -101,8 +102,8 @@ export class SpecialistService extends BaseHttpService {
             .map(response => response.data);
     }
 
-    public createClientProblemResourceTask(request: CreateProblemResourceTask, clientID: number, problemID: number, resourceID: number) {
-        return this.post<DataResponse<ProblemResourceTask[]>>(`${this.apiUrl}/specialist/clients/${clientID}/problems/${problemID}/resources/${resourceID}/tasks`, request)
+    public editClientProblemResource(request: CreateUpdateProblemResourceRequest, clientID: number, problemID: number, resourceID: number) {
+        return this.put<DataResponse<ProblemResource[]>>(`${this.apiUrl}/specialist/clients/${clientID}/problems/${problemID}/resources/${resourceID}`, request)
             .map(response => response.data);
     }
 }

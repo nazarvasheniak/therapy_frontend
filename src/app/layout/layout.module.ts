@@ -5,13 +5,17 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { AlertComponent } from './alert/alert.component';
+import { ReviewScoreComponent } from './review-score/review-score.component';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
 	declarations: [
 		HeaderComponent,
 		FooterComponent,
 		PaginationComponent,
-		AlertComponent
+		AlertComponent,
+		ReviewScoreComponent,
+		RatingComponent
 	],
 	imports: [
         BrowserModule,
@@ -21,7 +25,9 @@ import { AlertComponent } from './alert/alert.component';
 		HeaderComponent,
 		FooterComponent,
 		PaginationComponent,
-		AlertComponent
+		AlertComponent,
+		ReviewScoreComponent,
+		RatingComponent
 	],
 	providers: [
 		

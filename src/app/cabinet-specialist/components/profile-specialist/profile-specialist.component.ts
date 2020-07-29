@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SpecialistService, AuthService } from 'src/app/common/services';
 import { SpecialistProfile, Session, Problem } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
+import { SpecialistProfileActiveSession } from 'src/app/common/models/specialist-profile-active-session.model';
 
 @Component({
 	selector: 'app-profile-specialist',
@@ -12,7 +13,7 @@ import { StringHelper } from 'src/app/common/helpers';
 export class ProfileSpecialistComponent implements OnInit {
     
     public profile: SpecialistProfile;
-    public activeSessions: Session[];
+    public activeSessions: SpecialistProfileActiveSession[];
 
     constructor(
         private authService: AuthService,
@@ -90,6 +91,14 @@ export class ProfileSpecialistComponent implements OnInit {
         this.router.navigate([`/profile-specialist/clients/${problem.user.id}/problems/${problem.id}/assets`], {
             queryParams: {
                 tab: 1
+            }
+        });
+    }
+
+    routeToResources(problem: Problem) {
+        this.router.navigate([`/profile-specialist/clients/${problem.user.id}/problems/${problem.id}/assets`], {
+            queryParams: {
+                tab: 2
             }
         });
     }

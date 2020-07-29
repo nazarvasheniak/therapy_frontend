@@ -1,0 +1,11 @@
+.score-stars {
+    height: 20px;
+    
+    > svg {
+        margin-left: 6px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}

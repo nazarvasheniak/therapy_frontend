@@ -37,7 +37,9 @@
                         </div>
 
                         <div class="rating">
-                            <div class="rating-stars" [innerHTML]="getRatingStars(specialist.rating)"></div>
+                            <div class="rating-stars">
+                                <app-rating [score]="specialist.rating" [single]="false"></app-rating>
+                            </div>
 
                             <div class="rating-score">
                                 {{ specialist.rating }}
@@ -97,7 +99,9 @@
                                 {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}
                             </div>
     
-                            <div class="review-score" [innerHTML]="getRatingStars(review.score)"></div>
+                            <div class="review-score">
+                                <app-review-score [score]="review.score"></app-review-score>
+                            </div>
                         </div>
     
                         <div class="review-text">
@@ -139,7 +143,9 @@
                                 {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}
                             </div>
     
-                            <div class="review-score" [innerHTML]="getRatingStars(review.score)"></div>
+                            <div class="review-score">
+                                <app-review-score [score]="review.score"></app-review-score>
+                            </div>
                         </div>
     
                         <div class="review-text">
@@ -181,7 +187,9 @@
                                 {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}
                             </div>
     
-                            <div class="review-score" [innerHTML]="getRatingStars(review.score)"></div>
+                            <div class="review-score">
+                                <app-review-score [score]="review.score"></app-review-score>
+                            </div>
                         </div>
     
                         <div class="review-text">

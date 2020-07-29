@@ -57,10 +57,6 @@ export class SpecialistComponent implements OnInit {
 		this.loadReviews(this.activeReviewsTab, value);
 	}
 
-	getRatingStars(rating: number) {
-		return ViewHelper.buildRatingStars(rating);
-	}
-
 	private loadSpecialist(id: number) {
 		this.specialistsService.getSpecialist(id)
 			.subscribe(res => {

@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SpecialistService, AuthService } from 'src/app/common/services';
-import { ClientCard, ProblemAssets, ProblemImage, ProblemResource } from 'src/app/common/models';
+import { ClientCard, ProblemAssets, ProblemImage, ProblemResource, ProblemResourceTask } from 'src/app/common/models';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CreateUpdateProblemImageRequest, CreateProblemResourceTask } from 'src/app/common/models/request';
+import { CreateUpdateProblemImageRequest, CreateUpdateProblemResourceTask, CreateUpdateProblemResourceRequest } from 'src/app/common/models/request';
+import { ViewHelper } from 'src/app/common/helpers';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-profile-specialist-problem-assets',
@@ -29,7 +31,8 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
         private authService: AuthService,
         private specialistService: SpecialistService,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private domSanitizer: DomSanitizer
     ) {
 
     }
@@ -139,45 +142,44 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
         this.fillEditResourceForm(resource);
     }
 
-    createResourceTask() {
+    createResourceTask(isEdit = false) {
         if (!this.createTaskInput) {
             return;
         }
 
-        const tasksArr = [...this.createResourceForm.value['tasks']];
-        tasksArr.push(this.createTaskInput);
+        if (isEdit) {
+            const tasksArr: CreateUpdateProblemResourceTask[] = this.editResourceForm.value['tasks'];
 
-        this.createResourceForm.controls['tasks'].setValue(tasksArr);
-        
-        this.createTaskInput = null;
-    }
+            if (tasksArr.find(x => x.title == this.createTaskInput)) {
+                alert('Задание уже существует');
 
-    createResourceTaskFull() {
-        if (!this.createTaskInput) {
-            return;
-        }
+                return;
+            }
 
-        const resourceID = Number(this.editResourceForm.value['id']);
-
-        const request: CreateProblemResourceTask = {
-            title: this.createTaskInput
-        };
-
-        this.specialistService
-            .createClientProblemResourceTask(request, this.client.user.id, this.assets.problem.id, resourceID)
-            .subscribe(tasks => {
-                this.assets.resources.map(resource => {
-                    if (resource.id == resourceID) {
-                        resource.tasks = tasks;
-
-                        this.fillEditResourceForm(resource)
-                    }
-
-                    return resource;
-                });
-
-                this.createTaskInput = null;
+            tasksArr.push({
+                title: this.createTaskInput,
+                isDone: false
             });
+
+            this.editResourceForm.controls['tasks'].setValue(tasksArr);
+        } else {
+            const tasksArr: CreateUpdateProblemResourceTask[] = this.createResourceForm.value['tasks'];
+
+            if (tasksArr.find(x => x.title == this.createTaskInput)) {
+                alert('Задание уже существует');
+
+                return;
+            }
+    
+            tasksArr.push({
+                title: this.createTaskInput,
+                isDone: false
+            });
+    
+            this.createResourceForm.controls['tasks'].setValue(tasksArr);
+        }
+
+        this.createTaskInput = null;
     }
 
     editProblemImage(image: ProblemImage) {
@@ -231,19 +233,18 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
     }
 
     submitEditResourceForm(form: FormGroup) {
-        console.log(form)
-        /* if (form.invalid) {
+        if (form.invalid) {
             alert('form invalid');
             
             return;
-        }
+        };
 
         this.specialistService
-            .createClientProblemResource(form.value, this.client.user.id, this.assets.problem.id)
+            .editClientProblemResource(form.value, this.client.user.id, this.assets.problem.id, Number(form.value['id']))
             .subscribe(resources => {
                 this.assets.resources = resources;
-                this.createResourceForm = null;
-            }); */
+                this.editResourceForm.reset();
+            });
     }
 
     submitEditProblemImage(form: FormGroup) {
@@ -293,6 +294,39 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
                 this.initEditImageForm();
                 this.initEditResourceForm();
             });
+    }
+
+    toggleTaskDone(task: CreateUpdateProblemResourceTask, isEdit = false) {
+        const tasks = {
+            create: this.createResourceForm ? this.createResourceForm.value['tasks'] as CreateUpdateProblemResourceTask[] : [],
+            edit: this.editResourceForm ? this.editResourceForm.value['tasks'] as CreateUpdateProblemResourceTask[] : []
+        }
+
+        if (isEdit) {
+            tasks.edit.map(x => {
+                if (x.id == task.id) {
+                    x.isDone = !x.isDone;
+
+                    return x;
+                }
+            });
+
+            this.editResourceForm.controls['tasks'].setValue(tasks.edit);
+
+            return;
+        }
+
+        tasks.create.map(x => {
+            if (x.title == task.title) {
+                x.isDone = !x.isDone;
+
+                return x;
+            }
+        });
+
+        this.createResourceForm.controls['tasks'].setValue(tasks.create);
+
+        return;
     }
 
     setActiveTab(tab: number) {

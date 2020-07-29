@@ -91,7 +91,7 @@
                 }
 
                 .tabs-content {
-                    margin-top: 24px;
+                    padding-top: 16px;
                     padding-left: 24px;
                     padding-right: 24px;
 
@@ -107,6 +107,10 @@
                                 border: 1px solid #E2F1EA;
                                 box-sizing: border-box;
                                 border-radius: 16px;
+
+                                &:first-child {
+                                    margin-top: 0;
+                                }
 
                                 &:not(.hidden-image) {
                                     .item-head {
@@ -642,6 +646,10 @@
                                 box-sizing: border-box;
                                 border-radius: 16px;
 
+                                &:first-child {
+                                    margin-top: 0;
+                                }
+
                                 .item-head {
                                     display: flex;
                                     justify-content: space-between;
@@ -1146,6 +1154,155 @@
                                                     outline: none;
                                                     cursor: pointer;
                                                 }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .sessions-list {
+                            .sessions-list-item {
+                                background: #F6FBF8;
+                                border: 1px solid #E2F1EA;
+                                box-sizing: border-box;
+                                border-radius: 16px;
+                                padding-top: 10px;
+                                padding-bottom: 10px;
+                                padding-left: 16px;
+                                padding-right: 16px;
+                                margin-top: 12px;
+
+                                &:first-child {
+                                    margin-top: 0;
+                                }
+
+                                .sessions-list-item-inner {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+
+                                    .item-title {
+                                        display: flex;
+                                        align-items: center;
+
+                                        .item-date {
+                                            width: 54px;
+                                            height: 54px;
+                                            background: #FFFFFF;
+                                            border: 1px solid #DBF8E6;
+                                            box-sizing: border-box;
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: center;
+                                            align-items: center;
+                                            text-align: center;
+                                            border-radius: 100px;
+
+                                            .day {
+                                                font-family: "Poppins", sans-serif;
+                                                font-weight: 300;
+                                                font-size: 22px;
+                                                line-height: 100%;
+                                                color: #005264;
+                                            }
+
+                                            .month {
+                                                font-weight: normal;
+                                                font-size: 10px;
+                                                line-height: 100%;
+                                                text-align: center;
+                                                letter-spacing: 0.18em;
+                                                text-transform: uppercase;
+                                                color: #9EACA9;
+                                            }
+                                        }
+
+                                        .item-specialist {
+                                            margin-left: 18px;
+                                            display: flex;
+                                            align-items: center;
+
+                                            .specialist-photo {
+                                                width: 43px;
+                                                height: 43px;
+                                                border: 1px solid #32A776;
+                                                border-radius: 100px;
+                                                padding: 3px;
+                        
+                                                > img {
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    border-radius: 100px;
+                                                    object-fit: cover;
+                                                }
+                                            }
+
+                                            .specialist-name {
+                                                margin-left: 10px;
+                                                font-weight: 500;
+                                                font-size: 16px;
+                                                line-height: 100%;
+                                                color: #005264;
+                                                cursor: pointer;
+                                            }
+
+                                            .specialist-rating {
+                                                margin-left: 10px;
+                                                font-weight: normal;
+                                                font-size: 14px;
+                                                line-height: 111%;
+                                                color: #DEBA39;
+                                                display: flex;
+                                                align-items: center;
+
+                                                svg {
+                                                    margin-right: 3px;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .item-rating {
+                                        display: flex;
+                                        align-items: center;
+
+                                        .item-score {
+                                            .title {
+                                                font-weight: normal;
+                                                font-size: 12px;
+                                                line-height: 140%;
+                                                letter-spacing: 0.1em;
+                                                text-transform: uppercase;
+                                                color: #B6C5BC;                                                
+                                            }
+
+                                            .score {
+                                                margin-top: 6px;
+                                            }
+                                        }
+                                        
+                                        .item-review {
+                                            margin-left: 40px;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            width: 101px;
+                                            height: 42px;
+                                            flex: 0 0 101px;
+                                            background: #FFFFFF;
+                                            border: 0.5px solid #C7DFD3;
+                                            box-sizing: border-box;
+                                            border-radius: 10px;
+                                            font-weight: normal;
+                                            font-size: 16px;
+                                            line-height: 140%;
+                                            color: #89A295;
+                                            cursor: pointer;
+                                            outline: none;                                                                                    
+
+                                            svg {
+                                                margin-right: 12px;
                                             }
                                         }
                                     }

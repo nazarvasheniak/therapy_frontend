@@ -399,6 +399,18 @@
                                     margin-left: 0;
                                 }
 
+                                &.empty {
+                                    .session-action-value {
+                                        .title {
+                                            color: #CDD8D1;
+                                        }
+
+                                        .value {
+                                            color: #CDD8D1;
+                                        }
+                                    }
+                                }
+
                                 .session-action-icon {
                                     
                                 }
@@ -412,7 +424,7 @@
                                         line-height: 140%;
                                         letter-spacing: 0.1em;
                                         text-transform: uppercase;
-                                        color: #9EACA9;
+                                        color: #B6C5BC;
                                     }
 
                                     .value {

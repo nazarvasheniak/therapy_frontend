@@ -698,7 +698,7 @@
                                                                         <input type="text" [(ngModel)]="createTaskInput" [ngModelOptions]="{standalone: true}" required />
                                                                         <label (click)="labelClick($event.target.previousSibling)">Что хочется сделать</label>
                                                                         
-                                                                        <button type="button" class="inline-button" (click)="createResourceTaskFull()">
+                                                                        <button type="button" class="inline-button" (click)="createResourceTask(true)">
                                                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M9.49998 9.5V3H10.5V9.5H17V10.5H10.5V17H9.49998V10.5H3V9.5H9.49998Z" fill="#19A067"/>
                                                                             </svg>                                                                                
@@ -719,7 +719,7 @@
                                                                     </div>
 
                                                                     <div class="num-list" *ngIf="editResourceForm.value['tasks'].length">
-                                                                        <div class="num-list-item" *ngFor="let task of editResourceForm.value['tasks']; let index = index">
+                                                                        <div class="num-list-item" *ngFor="let task of editResourceForm.value['tasks']; let index = index" (ngClass)="{'checked': task.isDone}">
                                                                             <div class="num-item-title">
                                                                                 <div class="num-item-index">
                                                                                     {{ index + 1 }}
@@ -730,7 +730,7 @@
 
                                                                             <div class="num-list-item-checked">
                                                                                 <div class="input-wrapper">
-                                                                                    <input class="apple-switch" type="checkbox" [checked]="task.isDone" />
+                                                                                    <input class="apple-switch" type="checkbox" [checked]="task.isDone" (click)="toggleTaskDone(task, true)" />
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -848,12 +848,12 @@
                                                                                 {{ index + 1 }}
                                                                             </div>
                                                                             
-                                                                            {{ task }}
+                                                                            {{ task.title }}
                                                                         </div>
 
                                                                         <div class="num-list-item-checked">
                                                                             <div class="input-wrapper">
-                                                                                <input class="apple-switch" type="checkbox" disabled />
+                                                                                <input class="apple-switch" type="checkbox" [value]="task.isDone"  (click)="toggleTaskDone(task)" />
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -879,7 +879,55 @@
                             </div>
 
                             <div class="tab-content" *ngIf="activeTab == 3">
-                                
+                                <div class="sessions-list">
+                                    <div class="sessions-list-item" *ngFor="let session of assets.sessions">
+                                        <div class="sessions-list-item-inner">
+
+                                            <div class="item-title">
+                                                <div class="item-date">
+                                                    <div class="day">{{ session.sessionDate | date: 'dd' }}</div>
+                                                    <div class="month">{{ normalizeMonth(session.sessionDate | date: 'MMM') }}</div>
+                                                </div>
+
+                                                <div class="item-specialist">
+                                                    <div class="specialist-photo">
+                                                        <img [src]="session.specialist.photo.url" />
+                                                    </div>
+
+                                                    <div class="specialist-name" [routerLink]="['/specialists', session.specialist.id]">
+                                                        {{ session.specialist.user.firstName }} {{ session.specialist.user.lastName }}
+                                                    </div>
+
+                                                    <div class="specialist-rating">
+                                                        <app-rating [score]="session.specialist.rating" [single]="true"></app-rating>
+
+                                                        {{ session.specialist.rating }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="item-rating">
+                                                <div class="item-score">
+                                                    <div class="title">
+                                                        Оценка
+                                                    </div>
+
+                                                    <div class="score">
+                                                        <app-review-score [score]="session.reviewScore"></app-review-score>
+                                                    </div>
+                                                </div>
+
+                                                <div class="item-review">
+                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M3 2.5H13C13.5515 2.5 14 2.9485 14 3.5V9.5C14 10.0515 13.5515 10.5 13 10.5H12.5V12.7495C12.5 13.046 12.3328 13.307 12.0633 13.431C11.9613 13.478 11.854 13.5007 11.7477 13.5007C11.5732 13.5007 11.4015 13.4387 11.2615 13.3185C11.255 13.313 11.2485 13.3073 11.2422 13.3012L8.3 10.5H3C2.4485 10.5 2 10.0515 2 9.5V3.5C2 2.9485 2.4485 2.5 3 2.5ZM3 9.5H8.5C8.6285 9.5 8.75175 9.54925 8.84475 9.638L11.5 12.1657V10C11.5 9.724 11.724 9.5 12 9.5H13V3.5H3V9.5Z" fill="#89A195"/>
+                                                    </svg>
+                                                    
+                                                    Отзыв
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
