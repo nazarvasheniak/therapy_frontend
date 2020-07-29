@@ -13,3 +13,5 @@ export * from './create-review-request';
 export * from './resend-confirm-code-request.model';
 export * from './change-specialist-price-request.model';
 export * from './create-update-problem-image-request.model';
+export * from './create-update-problem-resource-request.model';
+export * from './create-problem-resource-task-request.model';

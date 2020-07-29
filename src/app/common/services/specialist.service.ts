@@ -1,9 +1,34 @@
 import { Injectable } from '@angular/core';
-import { BaseHttpService } from './base-http.service';
 import { HttpClient } from '@angular/common/http';
-import { DataResponse, WebinarResponse, ResponseModel, ListResponse, ReviewsResponse } from '../models/response';
-import { Specialist, SpecialistProfile, Session, ClientCard, SpecialistSession, ProblemAssets, ProblemImage } from '../models';
-import { ChangeSpecialistPriceRequest, GetList, CreateUpdateProblemImageRequest } from '../models/request';
+
+import { BaseHttpService } from './base-http.service';
+
+import { 
+    ChangeSpecialistPriceRequest,
+    GetList, 
+    CreateUpdateProblemImageRequest, 
+    CreateUpdateProblemResourceRequest, 
+    CreateProblemResourceTask
+} from '../models/request';
+
+import { 
+    DataResponse, 
+    ResponseModel, 
+    ListResponse, 
+    ReviewsResponse 
+} from '../models/response';
+
+import { 
+    Specialist, 
+    SpecialistProfile, 
+    Session, 
+    ClientCard, 
+    SpecialistSession, 
+    ProblemAssets, 
+    ProblemImage, 
+    ProblemResource,
+    ProblemResourceTask
+} from '../models';
 
 @Injectable()
 export class SpecialistService extends BaseHttpService {
@@ -68,6 +93,16 @@ export class SpecialistService extends BaseHttpService {
 
     public reloadClientProblemImage(clientID: number, problemID: number, imageID: number) {
         return this.patch<DataResponse<ProblemImage[]>>(`${this.apiUrl}/specialist/clients/${clientID}/problems/${problemID}/images/${imageID}`, {})
+            .map(response => response.data);
+    }
+
+    public createClientProblemResource(request: CreateUpdateProblemResourceRequest, clientID: number, problemID: number) {
+        return this.post<DataResponse<ProblemResource[]>>(`${this.apiUrl}/specialist/clients/${clientID}/problems/${problemID}/resources`, request)
+            .map(response => response.data);
+    }
+
+    public createClientProblemResourceTask(request: CreateProblemResourceTask, clientID: number, problemID: number, resourceID: number) {
+        return this.post<DataResponse<ProblemResourceTask[]>>(`${this.apiUrl}/specialist/clients/${clientID}/problems/${problemID}/resources/${resourceID}/tasks`, request)
             .map(response => response.data);
     }
 }

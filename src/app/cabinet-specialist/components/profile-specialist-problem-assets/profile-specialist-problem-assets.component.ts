@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SpecialistService, AuthService } from 'src/app/common/services';
-import { ClientCard, ProblemAssets, ProblemImage } from 'src/app/common/models';
+import { ClientCard, ProblemAssets, ProblemImage, ProblemResource } from 'src/app/common/models';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CreateUpdateProblemImageRequest } from 'src/app/common/models/request';
+import { CreateUpdateProblemImageRequest, CreateProblemResourceTask } from 'src/app/common/models/request';
 
 @Component({
 	selector: 'app-profile-specialist-problem-assets',
@@ -19,6 +19,11 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
 
     public createImageForm: FormGroup;
     public editImageForm: FormGroup;
+
+    public createResourceForm: FormGroup;
+    public editResourceForm: FormGroup;
+
+    public createTaskInput: string;
 
     constructor(
         private authService: AuthService,
@@ -43,6 +48,18 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
         });
     }
 
+    private initCreateResourceForm() {
+        this.createResourceForm = new FormGroup({
+            title: new FormControl(null, [Validators.required]),
+            emotion: new FormControl(null, [Validators.required]),
+            location: new FormControl(null, [Validators.required]),
+            characteristic: new FormControl(null, [Validators.required]),
+            influence: new FormControl(null, [Validators.required]),
+            likeScore: new FormControl(0),
+            tasks: new FormControl([])
+        });
+    }
+
     private initEditImageForm() {
         this.editImageForm = new FormGroup({
             id: new FormControl(null),
@@ -55,6 +72,19 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
             isForever: new FormControl(false),
             likeScore: new FormControl(0),
             parentImageID: new FormControl(0)
+        });
+    }
+
+    private initEditResourceForm() {
+        this.editResourceForm = new FormGroup({
+            id: new FormControl(null),
+            title: new FormControl(null, [Validators.required]),
+            emotion: new FormControl(null, [Validators.required]),
+            location: new FormControl(null, [Validators.required]),
+            characteristic: new FormControl(null, [Validators.required]),
+            influence: new FormControl(null, [Validators.required]),
+            likeScore: new FormControl(0),
+            tasks: new FormControl([])
         });
     }
 
@@ -73,6 +103,19 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
         });
     }
 
+    private fillEditResourceForm(resource: ProblemResource) {
+        this.editResourceForm.setValue({
+            id: resource.id,
+            title: resource.title,
+            emotion: resource.emotion,
+            location: resource.location,
+            characteristic: resource.characteristic,
+            influence: resource.influence,
+            likeScore: resource.likeScore,
+            tasks: resource.tasks
+        });
+    }
+
     private loadClient(clientID: number) {
         this.specialistService.getClient(clientID)
             .subscribe(client => this.client = client);
@@ -85,6 +128,56 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
 
     createProblemImage() {
         this.initCreateImageForm();
+    }
+
+    createProblemResource() {
+        this.initCreateResourceForm();
+    }
+
+    editProblemResource(resource: ProblemResource) {
+        this.createResourceForm = null;
+        this.fillEditResourceForm(resource);
+    }
+
+    createResourceTask() {
+        if (!this.createTaskInput) {
+            return;
+        }
+
+        const tasksArr = [...this.createResourceForm.value['tasks']];
+        tasksArr.push(this.createTaskInput);
+
+        this.createResourceForm.controls['tasks'].setValue(tasksArr);
+        
+        this.createTaskInput = null;
+    }
+
+    createResourceTaskFull() {
+        if (!this.createTaskInput) {
+            return;
+        }
+
+        const resourceID = Number(this.editResourceForm.value['id']);
+
+        const request: CreateProblemResourceTask = {
+            title: this.createTaskInput
+        };
+
+        this.specialistService
+            .createClientProblemResourceTask(request, this.client.user.id, this.assets.problem.id, resourceID)
+            .subscribe(tasks => {
+                this.assets.resources.map(resource => {
+                    if (resource.id == resourceID) {
+                        resource.tasks = tasks;
+
+                        this.fillEditResourceForm(resource)
+                    }
+
+                    return resource;
+                });
+
+                this.createTaskInput = null;
+            });
     }
 
     editProblemImage(image: ProblemImage) {
@@ -120,6 +213,37 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
                 this.assets.images = images;
                 this.createImageForm = null;
             });
+    }
+
+    submitCreateResourceForm(form: FormGroup) {
+        if (form.invalid) {
+            alert('form invalid');
+            
+            return;
+        }
+
+        this.specialistService
+            .createClientProblemResource(form.value, this.client.user.id, this.assets.problem.id)
+            .subscribe(resources => {
+                this.assets.resources = resources;
+                this.createResourceForm = null;
+            });
+    }
+
+    submitEditResourceForm(form: FormGroup) {
+        console.log(form)
+        /* if (form.invalid) {
+            alert('form invalid');
+            
+            return;
+        }
+
+        this.specialistService
+            .createClientProblemResource(form.value, this.client.user.id, this.assets.problem.id)
+            .subscribe(resources => {
+                this.assets.resources = resources;
+                this.createResourceForm = null;
+            }); */
     }
 
     submitEditProblemImage(form: FormGroup) {
@@ -167,6 +291,7 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
                     });
 
                 this.initEditImageForm();
+                this.initEditResourceForm();
             });
     }
 
@@ -188,5 +313,9 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
 
     getImageID(image: ProblemImage) {
         return image.id;
+    }
+
+    getResource(resourceID: number) {
+        return this.assets.resources.find(x => x.id == resourceID);
     }
 }
