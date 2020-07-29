@@ -16,9 +16,11 @@ export class ProblemComponent implements OnInit {
     public sessions: Session[];
     public activeSession: Session;
     public lastSession: Session;
+    public wallet: UserWallet;
 
     constructor(
         private patientService: PatientService,
+        private usersWalletsService: UsersWalletsService,
         private router: Router
     ) {
         
@@ -26,6 +28,14 @@ export class ProblemComponent implements OnInit {
 
     ngOnInit() {
         this.loadSessions();
+        this.loadWallet();
+    }
+
+    private loadWallet() {
+        this.usersWalletsService.getMyWallet()
+            .subscribe(response => {
+                this.wallet = response.data;
+            });
     }
 
     private loadSessions() {
@@ -43,6 +53,34 @@ export class ProblemComponent implements OnInit {
                 if (res.data.length && (res.data[0].status == SessionStatus.Success || res.data[0].status == SessionStatus.Refund)) {
                     this.lastSession = res.data[0];
                 }
+            });
+    }
+
+    createNewSession() {
+        this.patientService.createProblemSession({ specialistID: this.lastSession.specialist.id }, this.problem.id)
+            .subscribe(createSessionResponse => {
+                if (!createSessionResponse.success) {
+                    alert(createSessionResponse.message);
+
+                    return;
+                }
+
+                if ((this.wallet.balance - this.wallet.lockedBalance) < this.lastSession.specialist.price) {
+                    this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist/${this.lastSession.specialist.id}/pay`]);
+        
+                    return;
+                }
+
+                this.patientService.startSession(this.problem.id, createSessionResponse.sessionID)
+                    .subscribe(startSessionResponse => {
+                        if (!startSessionResponse.success) {
+                            alert(startSessionResponse.message);
+
+                            return;
+                        }
+
+                        this.router.navigate(['/profile']);
+                    });
             });
     }
 

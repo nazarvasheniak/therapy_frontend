@@ -110,7 +110,7 @@
                 </div>
 
                 <div class="active-sessions-block" *ngIf="activeSessions">
-                    <!-- <div class="active-sessions-empty" *ngIf="!activeSessions.length">
+                    <div class="active-sessions-empty" *ngIf="!activeSessions.length">
                         <div class="icon">
                             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0001 38.0001C28.8366 38.0001 36.0001 30.8366 36.0001 22.0001C36.0001 13.1635 28.8366 6.00008 20.0001 6.00008C11.1635 6.00008 4.00008 13.1635 4.00008 22.0001C4.00008 30.8366 11.1635 38.0001 20.0001 38.0001ZM20.0001 40.0001C29.9412 40.0001 38.0001 31.9412 38.0001 22.0001C38.0001 12.059 29.9412 4.00008 20.0001 4.00008C10.059 4.00008 2.00008 12.059 2.00008 22.0001C2.00008 31.9412 10.059 40.0001 20.0001 40.0001Z" fill="#D4E1DC"/>
@@ -123,30 +123,25 @@
                         <div class="text">
                             Нет активных сессий
                         </div>
-                    </div> -->
+                    </div>
 
-                    <div class="active-sessions-list">
-                        <div class="active-sessions-list-item">
+                    <div class="active-sessions-list" *ngIf="activeSessions && activeSessions.length">
+                        <div class="active-sessions-list-item" *ngFor="let session of activeSessions">
                             <div class="client-info">
                                 <div class="client-block">
                                     <div class="session-info">
                                         <div class="session-date">
-                                            <div class="day">
-                                                12
-                                            </div>
-    
-                                            <div class="month">
-                                                мар
-                                            </div>
+                                            <div class="day">{{ session.date | date: 'dd' }}</div>
+                                            <div class="month">{{ normalizeMonth(session.date | date: 'MMM') }}</div>
                                         </div>
     
                                         <div class="client-name">
                                             <div class="phone">
-                                                +7 918 284 38 45
+                                                {{ getPhone(session.problem.user.phoneNumber) }}
                                             </div>
     
                                             <div class="name">
-                                                Антонина Дмитриева
+                                                {{ session.problem.user.firstName }} {{ session.problem.user.lastName }}
                                             </div>
                                         </div>
                                     </div>
@@ -185,7 +180,7 @@
                                 </div>
 
                                 <div class="session-actions">
-                                    <div class="session-action">
+                                    <div class="session-action" (click)="routeToImages(session.problem)">
                                         <div class="session-action-icon">
                                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g clip-path="url(#clip0)">
@@ -261,7 +256,7 @@
                                     </div>
 
                                     <div class="problem-text">
-                                        Ругаюсь с ребенком. Хочу обрести уверенность, что я могу перестать это делать или как минимум снизить эту ругань.
+                                        {{ session.problem.problemText }}
                                     </div>
                                 </div>
 

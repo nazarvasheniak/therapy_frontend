@@ -160,10 +160,10 @@
                                     </div>
                                 </div>
 
-                                <div class="session-action review-badge" [ngClass]="{
+                                <div class="session-action review-badge" *ngIf="session.sessionStatus == 2 || session.sessionStatus == 3" [ngClass]="{
                                     'positive': session.reviewScore > 3,
                                     'neutral': session.reviewScore == 3,
-                                    'negative': session.reviewScore < 3,
+                                    'negative': session.reviewScore < 3 && session.reviewScore != 0,
                                     '': session.reviewScore == 0
                                 }">
                                     <div class="title">

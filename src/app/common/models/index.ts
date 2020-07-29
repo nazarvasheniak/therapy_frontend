@@ -13,3 +13,7 @@ export * from './payment.model';
 export * from './specialist-profile.model';
 export * from './client-card.model';
 export * from './specialist-session.model';
+export * from './problem-image.model';
+export * from './problem-resource.model';
+export * from './problem-resource-task.model';
+export * from './problem-assets.model';

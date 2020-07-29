@@ -12,3 +12,4 @@ export * from './create-payment-request.model';
 export * from './create-review-request';
 export * from './resend-confirm-code-request.model';
 export * from './change-specialist-price-request.model';
+export * from './create-update-problem-image-request.model';

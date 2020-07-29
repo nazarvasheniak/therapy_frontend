@@ -24,6 +24,11 @@ export abstract class BaseHttpService {
         return this.http.put<T>(url, body, options);
     }
 
+    protected patch<T>(url: string, body: Object, options?: RequestOptions): Observable<T> {
+        options = this.buildBaseRequest(options);
+        return this.http.patch<T>(url, body, options);
+    }
+
     protected delete<T>(url: string, options?: RequestOptions): Observable<T> {
         options = this.buildBaseRequest(options);
         return this.http.delete<T>(url, options);

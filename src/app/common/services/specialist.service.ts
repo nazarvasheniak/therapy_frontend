@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BaseHttpService } from './base-http.service';
 import { HttpClient } from '@angular/common/http';
 import { DataResponse, WebinarResponse, ResponseModel, ListResponse, ReviewsResponse } from '../models/response';
-import { Specialist, SpecialistProfile, Session, ClientCard, SpecialistSession } from '../models';
-import { ChangeSpecialistPriceRequest, GetList } from '../models/request';
+import { Specialist, SpecialistProfile, Session, ClientCard, SpecialistSession, ProblemAssets, ProblemImage } from '../models';
+import { ChangeSpecialistPriceRequest, GetList, CreateUpdateProblemImageRequest } from '../models/request';
 
 @Injectable()
 export class SpecialistService extends BaseHttpService {
@@ -44,5 +44,30 @@ export class SpecialistService extends BaseHttpService {
 
     public getReviews() {
         return this.get<ReviewsResponse>(`${this.apiUrl}/specialist/reviews`);
+    }
+
+    public getClientAssets(clientID: number, problemID: number) {
+        return this.get<DataResponse<ProblemAssets>>(`${this.apiUrl}/specialist/clients/${clientID}/problems/${problemID}/assets`)
+            .map(response => response.data);
+    }
+
+    public createClientProblemImage(request: CreateUpdateProblemImageRequest, clientID: number, problemID: number) {
+        return this.post<DataResponse<ProblemImage[]>>(`${this.apiUrl}/specialist/clients/${clientID}/problems/${problemID}/images`, request)
+            .map(response => response.data);
+    }
+
+    public updateClientProblemImage(request: CreateUpdateProblemImageRequest, clientID: number, problemID: number, imageID: number) {
+        return this.put<DataResponse<ProblemImage[]>>(`${this.apiUrl}/specialist/clients/${clientID}/problems/${problemID}/images/${imageID}`, request)
+            .map(response => response.data);
+    }
+
+    public hideClientProblemImage(clientID: number, problemID: number, imageID: number) {
+        return this.delete<DataResponse<ProblemImage[]>>(`${this.apiUrl}/specialist/clients/${clientID}/problems/${problemID}/images/${imageID}`)
+            .map(response => response.data);
+    }
+
+    public reloadClientProblemImage(clientID: number, problemID: number, imageID: number) {
+        return this.patch<DataResponse<ProblemImage[]>>(`${this.apiUrl}/specialist/clients/${clientID}/problems/${problemID}/images/${imageID}`, {})
+            .map(response => response.data);
     }
 }

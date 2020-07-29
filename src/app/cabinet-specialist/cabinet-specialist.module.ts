@@ -13,6 +13,10 @@ import { ProfileSpecialistClientsComponent } from './components/profile-speciali
 import { ProfileSpecialistClientComponent } from './components/profile-specialist-client/profile-specialist-client.component';
 import { ProfileSpecialistSessionsComponent } from './components/profile-specialist-sessions/profile-specialist-sessions.component';
 import { ProfileSpecialistReviewsComponent } from './components/profile-specialist-reviews/profile-specialist-reviews.component';
+import { ProfileSpecialistProblemAssetsComponent } from './components/profile-specialist-problem-assets/profile-specialist-problem-assets.component';
+
+import { MatSliderModule } from '@angular/material/slider';
+import { FilterHiddenImagesPipe } from '../common/pipes';
 
 @NgModule({
     declarations: [
@@ -24,7 +28,9 @@ import { ProfileSpecialistReviewsComponent } from './components/profile-speciali
         ProfileSpecialistClientsComponent,
         ProfileSpecialistClientComponent,
         ProfileSpecialistSessionsComponent,
-        ProfileSpecialistReviewsComponent
+        ProfileSpecialistReviewsComponent,
+        ProfileSpecialistProblemAssetsComponent,
+        FilterHiddenImagesPipe
     ],
     imports: [
         CommonModule,
@@ -32,6 +38,7 @@ import { ProfileSpecialistReviewsComponent } from './components/profile-speciali
         ReactiveFormsModule,
         RouterModule,
         LayoutModule,
+        MatSliderModule,
         FroalaEditorModule.forRoot(),
         FroalaViewModule.forRoot()
     ],

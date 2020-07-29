@@ -1,0 +1,507 @@
+<div class="page-wrapper">
+
+    <!-- Header -->
+    <app-header></app-header>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <profile-specialist-sidebar></profile-specialist-sidebar>
+
+            <content>
+                <div class="page-top">
+                    <div class="page-info">
+                        <div class="button-back">
+                            <button class="button-transparent">
+                                <div class="icon">
+                                    <img src="../../../../assets/images/icon-arrow-left.svg">
+                                </div>
+    
+                                Назад
+                            </button>
+                        </div>
+    
+                        <div class="client-name" *ngIf="client">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="6" r="3" stroke="#ADBDC0"/>
+                                <path d="M3 16C3 13.2386 5.23858 11 8 11H12C14.7614 11 17 13.2386 17 16V16C17 16.5523 16.5523 17 16 17H4C3.44772 17 3 16.5523 3 16V16Z" stroke="#ADBDC0"/>
+                            </svg>
+                                                 
+                            {{ client.user.firstName }} {{ client.user.lastName }}
+                        </div>
+                    </div>
+
+                    <div class="page-head">
+                        <div class="problem-text" *ngIf="assets">
+                            {{ assets.problem.problemText }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-content">
+                    <div class="tabs" *ngIf="assets">
+                        <div class="tabs-head">
+                            <div class="tab-head" [ngClass]="{'active': activeTab == 1}" (click)="setActiveTab(1)">
+                                <div class="title">
+                                    Образов
+                                </div>
+
+                                <div class="count">
+                                    {{ assets.images.length }}
+                                </div>
+                            </div>
+
+                            <div class="tab-head" [ngClass]="{'active': activeTab == 2}" (click)="setActiveTab(2)">
+                                <div class="title">
+                                    Ресурсов
+                                </div>
+
+                                <div class="count">
+                                    {{ assets.resources.length }}
+                                </div>
+                            </div>
+
+                            <div class="tab-head" [ngClass]="{'active': activeTab == 3}" (click)="setActiveTab(3)">
+                                <div class="title">
+                                    Сессий
+                                </div>
+
+                                <div class="count">
+                                    {{ assets.sessions.length }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tabs-content">
+                            <div class="tab-content" *ngIf="activeTab == 1">
+                                <div class="images-list">
+                                    <ng-container *ngFor="let image of assets.images">
+                                        <div class="images-list-item" *ngIf="editImageForm.value['id'] != image.id" [ngClass]="{'hidden-image': image.isHidden}">
+                                            <div class="item-head">
+                                                <div class="item-title">
+                                                    <div class="item-date">
+                                                        <div class="day">{{ image.session.date | date: 'dd' }}</div>
+                                                        <div class="month">{{ normalizeMonth(image.session.date | date: 'MMM') }}</div>
+                                                    </div>
+    
+                                                    <div class="item-name">
+                                                        <div class="title hidden-image-title">
+                                                            Образ убран
+                                                        </div>
+    
+                                                        <div class="name">
+                                                            {{ image.title }}
+                                                        </div>
+                                                        
+                                                        <div class="like-score">
+                                                            <div class="like-score-section" [ngClass]="{'filled': image.likeScore > 0}"></div>
+                                                            <div class="like-score-section" [ngClass]="{'filled': image.likeScore > 1}"></div>
+                                                            <div class="like-score-section" [ngClass]="{'filled': image.likeScore > 2}"></div>
+                                                            <div class="like-score-section" [ngClass]="{'filled': image.likeScore > 3}"></div>
+                                                            <div class="like-score-section" [ngClass]="{'filled': image.likeScore > 4}"></div>
+                                                            <div class="like-score-section" [ngClass]="{'filled': image.likeScore > 5}"></div>
+                                                            <div class="like-score-section" [ngClass]="{'filled': image.likeScore > 6}"></div>
+                                                            <div class="like-score-section" [ngClass]="{'filled': image.likeScore > 7}"></div>
+                                                            <div class="like-score-section" [ngClass]="{'filled': image.likeScore > 8}"></div>
+                                                            <div class="like-score-section" [ngClass]="{'filled': image.likeScore > 9}"></div>
+                                                        </div>
+                                                    </div>
+    
+                                                    <div class="item-specialist">
+                                                        <div class="specialist-photo">
+                                                            <img [src]="image.session.specialist.photo.url" />
+                                                        </div>
+    
+                                                        <div class="specialist-name">
+                                                            {{ image.session.specialist.user.firstName }} {{ image.session.specialist.user.lastName }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="item-actions">
+                                                    <div class="item-edit">
+                                                        <div class="button-edit">
+                                                            <button (click)="editProblemImage(image)">
+                                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.3191 7.62235L12.3776 5.68091L4.17137 13.8872L3.29083 16.7092L6.11281 15.8286L14.3191 7.62235ZM15.0262 6.91525L13.0848 4.97381L15.0375 3.02107L16.9789 4.96251L15.0262 6.91525ZM17.722 5.63364C18.0927 5.26299 18.0927 4.66204 17.722 4.29138L15.7086 2.27799C15.338 1.90734 14.737 1.90734 14.3664 2.27799L3.35662 13.2877C3.27812 13.3662 3.22962 13.4698 3.21957 13.5803L2.002 17.4824C1.97517 17.7776 2.22243 18.0248 2.51757 17.998L6.41967 16.7804C6.53023 16.7704 6.63377 16.7219 6.71227 16.6434L17.722 5.63364Z" fill="#19A067"/>
+                                                                </svg>                                                                
+                                                            </button>
+                                                        </div>
+                                                    </div>
+    
+                                                    <div class="item-reload">
+                                                        <div class="button-reload">
+                                                            <button (click)="reloadProblemImage(image)">
+                                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M6.19673 2H1V1H8V8H7V2.62247L4.68752 4.70282C1.76777 7.63249 1.77083 12.3744 4.6967 15.3002C7.62563 18.2292 12.3744 18.2292 15.3033 15.3002C18.2322 12.3713 18.2322 7.62256 15.3033 4.69362L16.0104 3.98652C19.3299 7.30597 19.3299 12.6879 16.0104 16.0073C12.691 19.3268 7.30905 19.3268 3.98959 16.0073C0.670136 12.6879 0.670136 7.30597 3.98959 3.98652L3.99893 3.97718L6.19673 2Z" fill="#C8B69D"/>
+                                                                </svg>                                                                                                                            
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="item-body">
+                                                <div class="item-description">
+                                                    <div class="item-description-row">
+                                                        <div class="item-description-column text-column">
+                                                            <div class="column-title">
+                                                                Эмоция / Чувство
+                                                            </div>
+    
+                                                            <div class="column-value">
+                                                                {{ image.emotion }}
+                                                            </div>
+                                                        </div>
+    
+                                                        <div class="item-description-column text-column">
+                                                            <div class="column-title">
+                                                                Расположение
+                                                            </div>
+    
+                                                            <div class="column-value">
+                                                                {{ image.location }}
+                                                            </div>
+                                                        </div>
+    
+                                                        <div class="item-description-column text-column">
+                                                            <div class="column-title">
+                                                                Характеристики
+                                                            </div>
+    
+                                                            <div class="column-value">
+                                                                {{ image.characteristic }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+    
+                                                    <div class="item-description-row">
+                                                        <div class="item-description-column checkbox-column">
+                                                            <div class="column-title">
+                                                                Моё
+                                                            </div>
+    
+                                                            <div class="column-value">
+                                                                <svg *ngIf="image.isMine" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g clip-path="url(#clip0)">
+                                                                        <path d="M6.12669 13.9774C5.97396 14.131 5.76558 14.2167 5.54913 14.2167C5.33267 14.2167 5.1243 14.131 4.97157 13.9774L0.359012 9.36408C-0.119671 8.8854 -0.119671 8.10919 0.359012 7.6314L0.936573 7.05369C1.4154 6.57501 2.19072 6.57501 2.6694 7.05369L5.54913 9.93357L13.3306 2.15198C13.8094 1.6733 14.5855 1.6733 15.0634 2.15198L15.641 2.72969C16.1196 3.20837 16.1196 3.98444 15.641 4.46237L6.12669 13.9774Z" fill="#389A71"/>
+                                                                    </g>
+    
+                                                                    <defs>
+                                                                        <clipPath id="clip0">
+                                                                            <rect width="16" height="16" fill="white"/>
+                                                                        </clipPath>
+                                                                    </defs>
+                                                                </svg>
+    
+                                                                <svg *ngIf="!image.isMine" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M8 0C3.58887 0 0 3.58887 0 8C0 12.4111 3.58887 16 8 16C12.4111 16 16 12.4111 16 8C16 3.58887 12.4111 0 8 0ZM8 14C4.69172 14 2 11.3083 2 8C2 6.73731 2.38281 5.54362 3.11069 4.52506L11.4749 12.8893C10.4564 13.6172 9.26269 14 8 14ZM12.8893 11.4749L4.52506 3.11069C5.54362 2.38281 6.73731 2 8 2C11.3083 2 14 4.69172 14 8C14 9.26269 13.6172 10.4564 12.8893 11.4749Z" fill="#B6C5BC"/>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+    
+                                                        <div class="item-description-column checkbox-column">
+                                                            <div class="column-title">
+                                                                Я сделал
+                                                            </div>
+    
+                                                            <div class="column-value">
+                                                                <svg *ngIf="image.isIDo" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g clip-path="url(#clip0)">
+                                                                        <path d="M6.12669 13.9774C5.97396 14.131 5.76558 14.2167 5.54913 14.2167C5.33267 14.2167 5.1243 14.131 4.97157 13.9774L0.359012 9.36408C-0.119671 8.8854 -0.119671 8.10919 0.359012 7.6314L0.936573 7.05369C1.4154 6.57501 2.19072 6.57501 2.6694 7.05369L5.54913 9.93357L13.3306 2.15198C13.8094 1.6733 14.5855 1.6733 15.0634 2.15198L15.641 2.72969C16.1196 3.20837 16.1196 3.98444 15.641 4.46237L6.12669 13.9774Z" fill="#389A71"/>
+                                                                    </g>
+    
+                                                                    <defs>
+                                                                        <clipPath id="clip0">
+                                                                            <rect width="16" height="16" fill="white"/>
+                                                                        </clipPath>
+                                                                    </defs>
+                                                                </svg>
+    
+                                                                <svg *ngIf="!image.isIDo" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M8 0C3.58887 0 0 3.58887 0 8C0 12.4111 3.58887 16 8 16C12.4111 16 16 12.4111 16 8C16 3.58887 12.4111 0 8 0ZM8 14C4.69172 14 2 11.3083 2 8C2 6.73731 2.38281 5.54362 3.11069 4.52506L11.4749 12.8893C10.4564 13.6172 9.26269 14 8 14ZM12.8893 11.4749L4.52506 3.11069C5.54362 2.38281 6.73731 2 8 2C11.3083 2 14 4.69172 14 8C14 9.26269 13.6172 10.4564 12.8893 11.4749Z" fill="#B6C5BC"/>
+                                                                </svg>                                                            
+                                                            </div>
+                                                        </div>
+    
+                                                        <div class="item-description-column checkbox-column">
+                                                            <div class="column-title">
+                                                                Пусть будет всегда
+                                                            </div>
+    
+                                                            <div class="column-value">
+                                                                <svg *ngIf="image.isForever" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g clip-path="url(#clip0)">
+                                                                        <path d="M6.12669 13.9774C5.97396 14.131 5.76558 14.2167 5.54913 14.2167C5.33267 14.2167 5.1243 14.131 4.97157 13.9774L0.359012 9.36408C-0.119671 8.8854 -0.119671 8.10919 0.359012 7.6314L0.936573 7.05369C1.4154 6.57501 2.19072 6.57501 2.6694 7.05369L5.54913 9.93357L13.3306 2.15198C13.8094 1.6733 14.5855 1.6733 15.0634 2.15198L15.641 2.72969C16.1196 3.20837 16.1196 3.98444 15.641 4.46237L6.12669 13.9774Z" fill="#389A71"/>
+                                                                    </g>
+    
+                                                                    <defs>
+                                                                        <clipPath id="clip0">
+                                                                            <rect width="16" height="16" fill="white"/>
+                                                                        </clipPath>
+                                                                    </defs>
+                                                                </svg>
+    
+                                                                <svg *ngIf="!image.isForever" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M8 0C3.58887 0 0 3.58887 0 8C0 12.4111 3.58887 16 8 16C12.4111 16 16 12.4111 16 8C16 3.58887 12.4111 0 8 0ZM8 14C4.69172 14 2 11.3083 2 8C2 6.73731 2.38281 5.54362 3.11069 4.52506L11.4749 12.8893C10.4564 13.6172 9.26269 14 8 14ZM12.8893 11.4749L4.52506 3.11069C5.54362 2.38281 6.73731 2 8 2C11.3083 2 14 4.69172 14 8C14 9.26269 13.6172 10.4564 12.8893 11.4749Z" fill="#B6C5BC"/>
+                                                                </svg>                                                            
+                                                            </div>
+                                                        </div>
+    
+                                                        <div class="item-description-column button-column" *ngIf="!image.parentImage || image.parentImage.isHidden">
+                                                            <div class="column-value">
+                                                                <button class="button-green" (click)="hideProblemImage(image)">Убрать образ</button>
+                                                            </div>
+                                                        </div>
+    
+                                                        <div class="item-description-column relation-column" *ngIf="image.parentImage && !image.parentImage.isHidden">
+                                                            <div class="column-title">
+                                                                Убрать
+                                                            </div>
+                                                            
+                                                            <div class="column-value">
+                                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M8 0C3.58887 0 0 3.58887 0 8C0 12.4111 3.58887 16 8 16C12.4111 16 16 12.4111 16 8C16 3.58887 12.4111 0 8 0ZM8 14C4.69172 14 2 11.3083 2 8C2 6.73731 2.38281 5.54362 3.11069 4.52506L11.4749 12.8893C10.4564 13.6172 9.26269 14 8 14ZM12.8893 11.4749L4.52506 3.11069C5.54362 2.38281 6.73731 2 8 2C11.3083 2 14 4.69172 14 8C14 9.26269 13.6172 10.4564 12.8893 11.4749Z" fill="#B6C5BC"/>
+                                                                </svg>
+                                                                
+                                                                <div class="related-image">
+                                                                    Зависит от образа “{{ image.parentImage.title }}”
+    
+                                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M10.9389 5.85205L7.81395 2.72706C7.73257 2.64567 7.60073 2.64567 7.51936 2.72706C7.43798 2.80844 7.43798 2.94028 7.51936 3.02164L10.2887 5.79102H1.20834C1.09318 5.79102 1 5.8842 1 5.99936C1 6.11451 1.09318 6.20769 1.20834 6.20769H10.2887L7.51936 8.97705C7.43798 9.05843 7.43798 9.19027 7.51936 9.27163C7.56005 9.31232 7.61337 9.33267 7.66667 9.33267C7.71997 9.33267 7.77327 9.31232 7.81397 9.27163L10.939 6.14664C11.0203 6.06527 11.0203 5.93344 10.9389 5.85205Z" fill="#B6C5BC" stroke="#B6C5BC" stroke-width="0.5"/>
+                                                                    </svg>
+                                                                </div>                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="images-list-item create-item-form" *ngIf="editImageForm.value['id'] && editImageForm.value['id'] == image.id">
+                                            <div class="item-head">
+                                                <div class="item-title">
+                                                    <div class="item-add-icon">
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.49998 9.5V3H10.5V9.5H17V10.5H10.5V17H9.49998V10.5H3V9.5H9.49998Z" fill="#19A067"/>
+                                                        </svg>                                                        
+                                                    </div>
+    
+                                                    <div class="item-name">
+                                                        <div class="name">
+                                                            {{ getImage(editImageForm.value['id']).title }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="item-body">
+                                                <div class="create-item-form">
+                                                    <form [formGroup]="editImageForm" (ngSubmit)="submitEditProblemImage(editImageForm)">
+                                                        <div class="form-inner">
+                                                            <div class="form-block">
+                                                                <div class="form-group">
+                                                                    <div class="input-wrapper">
+                                                                        <input type="text" formControlName="title" required />
+                                                                        <label (click)="labelClick($event.target.previousSibling)">Название образа</label>
+                                                                    </div>
+                                                                </div>
+    
+                                                                <div class="form-group form-group-half">
+                                                                    <div class="input-wrapper">
+                                                                        <input type="text" formControlName="emotion" required />
+                                                                        <label (click)="labelClick($event.target.previousSibling)">Эмоция/чувство</label>
+                                                                    </div>
+    
+                                                                    <div class="input-wrapper">
+                                                                        <input type="text" formControlName="location" required />
+                                                                        <label (click)="labelClick($event.target.previousSibling)">Расположение</label>
+                                                                    </div>
+                                                                </div>
+    
+                                                                <div class="form-group form-group-checkbox">
+                                                                    <div class="input-wrapper">
+                                                                        <label>Моё</label>
+                                                                        <input class="apple-switch" type="checkbox" formControlName="isMine" />
+                                                                    </div>
+    
+                                                                    <div class="input-wrapper">
+                                                                        <label>Я сделал</label>
+                                                                        <input class="apple-switch" type="checkbox" formControlName="isIDo" />
+                                                                    </div>
+    
+                                                                    <div class="input-wrapper">
+                                                                        <label>Будет всегда</label>
+                                                                        <input class="apple-switch" type="checkbox" formControlName="isForever" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+    
+                                                            <div class="form-block">
+                                                                <div class="form-group form-group-progress">
+                                                                    <div class="input-wrapper">
+                                                                        <label>
+                                                                            <span>Нравится</span>
+                                                                            <span>{{ editImageForm.value['likeScore'] }}/10</span>
+                                                                        </label>
+    
+                                                                        <mat-slider formControlName="likeScore" min="0" max="10" step="1" value="2" tickInterval="1"></mat-slider>
+                                                                    </div>
+                                                                </div>
+    
+                                                                <div class="form-group">
+                                                                    <div class="input-wrapper">
+                                                                        <input type="text" formControlName="characteristic" required />
+                                                                        <label (click)="labelClick($event.target.previousSibling)">Характеристики</label>
+                                                                    </div>
+                                                                </div>
+    
+                                                                <div class="form-group">
+                                                                    <div class="input-wrapper">
+                                                                        <select required formControlName="parentImageID">
+                                                                            <ng-container *ngFor="let image of assets.images | filterHiddenImages">
+                                                                                <option *ngIf="image.id != editImageForm.value['id']" [value]="image.id">
+                                                                                    {{ image.title }}
+                                                                                </option>
+                                                                            </ng-container>
+                                                                        </select>
+                                                                        
+                                                                        <label (click)="labelClick($event.target.previousSibling)">Зависимость</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+    
+                                                        <div class="submit-block">
+                                                            <button type="submit">Сохранить</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+
+                                    <div class="images-list-item create-item-form" *ngIf="createImageForm">
+                                        <div class="item-head">
+                                            <div class="item-title">
+                                                <div class="item-add-icon">
+                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.49998 9.5V3H10.5V9.5H17V10.5H10.5V17H9.49998V10.5H3V9.5H9.49998Z" fill="#19A067"/>
+                                                    </svg>                                                        
+                                                </div>
+
+                                                <div class="item-name">
+                                                    <div class="name">
+                                                        Новый образ
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item-body">
+                                            <div class="create-item-form">
+                                                <form [formGroup]="createImageForm" (ngSubmit)="submitCreateProblemImage(createImageForm)">
+                                                    <div class="form-inner">
+                                                        <div class="form-block">
+                                                            <div class="form-group">
+                                                                <div class="input-wrapper">
+                                                                    <input type="text" formControlName="title" required />
+                                                                    <label (click)="labelClick($event.target.previousSibling)">Название образа</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group form-group-half">
+                                                                <div class="input-wrapper">
+                                                                    <input type="text" formControlName="emotion" required />
+                                                                    <label (click)="labelClick($event.target.previousSibling)">Эмоция/чувство</label>
+                                                                </div>
+
+                                                                <div class="input-wrapper">
+                                                                    <input type="text" formControlName="location" required />
+                                                                    <label (click)="labelClick($event.target.previousSibling)">Расположение</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group form-group-checkbox">
+                                                                <div class="input-wrapper">
+                                                                    <label>Моё</label>
+                                                                    <input class="apple-switch" type="checkbox" formControlName="isMine" />
+                                                                </div>
+
+                                                                <div class="input-wrapper">
+                                                                    <label>Я сделал</label>
+                                                                    <input class="apple-switch" type="checkbox" formControlName="isIDo" />
+                                                                </div>
+
+                                                                <div class="input-wrapper">
+                                                                    <label>Будет всегда</label>
+                                                                    <input class="apple-switch" type="checkbox" formControlName="isForever" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-block">
+                                                            <div class="form-group form-group-progress">
+                                                                <div class="input-wrapper">
+                                                                    <label>
+                                                                        <span>Нравится</span>
+                                                                        <span>{{ createImageForm.value['likeScore'] }}/10</span>
+                                                                    </label>
+
+                                                                    <mat-slider formControlName="likeScore" min="0" max="10" step="1" value="2" tickInterval="1"></mat-slider>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div class="input-wrapper">
+                                                                    <input type="text" formControlName="characteristic" required />
+                                                                    <label (click)="labelClick($event.target.previousSibling)">Характеристики</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div class="input-wrapper">
+                                                                    <select required formControlName="parentImageID">
+                                                                        <option *ngFor="let image of assets.images | filterHiddenImages" [value]="image.id">
+                                                                            {{ image.title }}
+                                                                        </option>
+                                                                    </select>
+                                                                    
+                                                                    <label (click)="labelClick($event.target.previousSibling)">Зависимость</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="submit-block">
+                                                        <button type="submit">Добавить</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="new-item" *ngIf="!editImageForm.value['id']">
+                                    <div class="new-item-button" (click)="createProblemImage()">
+                                        <img src="../../../../assets/images/icon-plus.svg" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-content" *ngIf="activeTab == 2">
+                                
+                            </div>
+
+                            <div class="tab-content" *ngIf="activeTab == 3">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+</div>

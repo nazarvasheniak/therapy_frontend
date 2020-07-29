@@ -25,11 +25,6 @@
                 <div class="page-content" *ngIf="wallet && specialist">
                     <div class="deposit-text" *ngIf="!isBalanceEnough()">
                         <div>
-                            На вашем счете <span class="price-badge" *ngIf="specialist"> {{ (wallet.balance - wallet.lockedBalance) | number:'':'fr' }} ₽
-                            </span>
-                        </div>
-                        <br />
-                        <div>
                             Для работы со специалистом необходимо пополнить счет на сумму <span class="price-badge" *ngIf="specialist"> {{ amountToDeposit() | number:'':'fr' }} ₽
                             </span> – эти средства будут находится в депозите до конца вашей сессии.
                         </div>
