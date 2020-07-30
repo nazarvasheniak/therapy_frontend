@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService, PatientService } from 'src/app/common/services';
-import { Problem, Session } from 'src/app/common/models';
+import { Problem, Session, ClientProblemAssets } from 'src/app/common/models';
 import { AssetType } from './asset-type.enum';
 
 @Component({
@@ -15,6 +15,7 @@ export class ProblemAssetsComponent implements OnInit {
 
     public problem: Problem;
     public sessions: Session[];
+    public assets: ClientProblemAssets;
     
     constructor(
         private authService: AuthService,
@@ -69,6 +70,7 @@ export class ProblemAssetsComponent implements OnInit {
 
                 this.problem = res.data;
                 this.loadSessions();
+                this.loadAssets();
             });
     }
 
@@ -82,7 +84,14 @@ export class ProblemAssetsComponent implements OnInit {
                 }
 
                 this.sessions = res.data;
-                console.log(this.sessions)
+            });
+    }
+
+    private loadAssets() {
+        this.patientService.getProblemAssets(this.problem.id)
+            .subscribe(assets => {
+                this.assets = assets;
+                this.assets.images = assets.images.filter(x => !x.isHidden);
             });
     }
 

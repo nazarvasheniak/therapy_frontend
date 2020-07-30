@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { BaseHttpService } from './base-http.service';
 import { HttpClient } from '@angular/common/http';
 import { DataResponse, ResponseModel, CreateSessionResponse } from '../models/response';
-import { Problem, Session } from '../models';
+import { Problem, Session, ClientProblemAssets } from '../models';
 import { CreateProblemRequest, CreateSessionRequest, CreateReviewRequest } from '../models/request';
+import { map } from 'rxjs-compat/operator/map';
 
 @Injectable()
 export class PatientService extends BaseHttpService {
@@ -27,8 +28,13 @@ export class PatientService extends BaseHttpService {
         return this.get<DataResponse<Session>>(`${this.apiUrl}/patient/problems/${problemID}/sessions/${sessionID}`);
     }
 
-    public getActiveSession(problemID) {
+    public getActiveSession(problemID: number) {
         return this.get<DataResponse<Session>>(`${this.apiUrl}/patient/problems/${problemID}/activeSession`);
+    }
+
+    public getProblemAssets(problemID: number) {
+        return this.get<DataResponse<ClientProblemAssets>>(`${this.apiUrl}/patient/problems/${problemID}/assets`)
+            .map(response => response.data);
     }
 
     public createProblem(request: CreateProblemRequest) {

@@ -268,12 +268,16 @@
                                                 border-bottom: 1px solid #E2F1EA;
 
                                                 > .item-description-column {
+                                                    width: 156px;
+
                                                     &:first-child {
                                                         margin-right: 81px;
+                                                        width: 136px;
                                                     }
 
                                                     &:last-child {
                                                         margin-left: 62px;
+                                                        width: 315px;
                                                     }
                                                 }
                                             }
@@ -284,7 +288,7 @@
 
                                                     &:last-child {
                                                         margin-right: 0;
-                                                        margin-left: -7px;
+                                                        margin-left: 10px;
                                                     }
                                                 }
                                             }

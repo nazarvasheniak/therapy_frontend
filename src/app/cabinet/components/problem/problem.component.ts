@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Problem, Session, UserWallet } from 'src/app/common/models';
+import { Problem, Session, UserWallet, ProblemImage, ProblemResource } from 'src/app/common/models';
 import { PatientService, UsersWalletsService } from 'src/app/common/services';
 import { SessionStatus } from 'src/app/common/enums';
 import { Router } from '@angular/router';
@@ -18,6 +18,9 @@ export class ProblemComponent implements OnInit {
     public lastSession: Session;
     public wallet: UserWallet;
 
+    public images: ProblemImage[];
+    public resources: ProblemResource[];
+
     constructor(
         private patientService: PatientService,
         private usersWalletsService: UsersWalletsService,
@@ -28,6 +31,7 @@ export class ProblemComponent implements OnInit {
 
     ngOnInit() {
         this.loadSessions();
+        this.loadAssets();
         this.loadWallet();
     }
 
@@ -53,6 +57,14 @@ export class ProblemComponent implements OnInit {
                 if (res.data.length && (res.data[0].status == SessionStatus.Success || res.data[0].status == SessionStatus.Refund)) {
                     this.lastSession = res.data[0];
                 }
+            });
+    }
+
+    private loadAssets() {
+        this.patientService.getProblemAssets(this.problem.id)
+            .subscribe(assets => {
+                this.images = assets.images;
+                this.resources = assets.resources;
             });
     }
 
@@ -102,14 +114,22 @@ export class ProblemComponent implements OnInit {
         this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist/${this.activeSession.specialist.id}/pay`]);
     }
 
-    routeToSessions() {
-        if (!this.sessions.length) {
+    routeToAssets(tab: number) {
+        if (tab == 3 && !this.sessions.length) {
+            return;
+        }
+
+        if (tab == 2 && !this.resources.length) {
+            return;
+        }
+
+        if (tab == 1 && !this.images.length) {
             return;
         }
 
         this.router.navigate(['/profile/problems', this.problem.id, 'assets'], {
             queryParams: {
-                type: 3
+                type: tab
             }
         });
     }
