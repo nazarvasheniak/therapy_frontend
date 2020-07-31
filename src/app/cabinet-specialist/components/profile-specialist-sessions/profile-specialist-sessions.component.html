@@ -96,6 +96,16 @@
                                 </div>
                             </div>
 
+                            <div class="session-info-mobile">
+                                <div class="client-name" (click)="routeToClient(session)">
+                                    {{ session.client.firstName }} {{ session.client.lastName }}
+                                </div>
+
+                                <div class="problem-text">
+                                    {{ session.problemText }}
+                                </div>
+                            </div>
+
                             <div class="session-actions">
                                 <div class="session-action problem-images">
                                     <div class="title">
@@ -122,8 +132,12 @@
                                         </svg>
                                     </div>
 
-                                    <div class="value">
-                                        5/7
+                                    <div class="value" *ngIf="!session.isAllImagesFromOneSpecialist">
+                                        {{ session.sessionImagesCount }}/{{ session.totalImagesCount }}
+                                    </div>
+
+                                    <div class="value" *ngIf="session.isAllImagesFromOneSpecialist">
+                                        {{ session.sessionImagesCount }}
                                     </div>
                                 </div>
 
@@ -155,8 +169,12 @@
                                         </svg>
                                     </div>
 
-                                    <div class="value">
-                                        1/1
+                                    <div class="value" *ngIf="!session.isAllResourcesFromOneSpecialist">
+                                        {{ session.sessionResourcesCount }}/{{ session.totalResourcesCount }}
+                                    </div>
+
+                                    <div class="value" *ngIf="session.isAllResourcesFromOneSpecialist">
+                                        {{ session.sessionResourcesCount }}
                                     </div>
                                 </div>
 

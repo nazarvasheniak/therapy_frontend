@@ -13,4 +13,10 @@ export class SpecialistSession {
     public reward: number;
     public isSpecialistClose: boolean;
     public isClientClose: boolean;
+    public sessionImagesCount: number;
+    public totalImagesCount: number;
+    public sessionResourcesCount: number;
+    public totalResourcesCount: number;
+    public isAllImagesFromOneSpecialist: boolean;
+    public isAllResourcesFromOneSpecialist: boolean;
 }

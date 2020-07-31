@@ -8,7 +8,7 @@
         margin-left: 30px;
         padding-left: 24px;
         padding-right: 24px;
-        padding-top: 28px;
+        padding-top: 24px;
         padding-bottom: 24px;
         border-radius: 14px;
         
@@ -191,6 +191,7 @@
                         .session-date {
                             width: 54px;
                             height: 54px;
+                            flex: 0 0 54px;
                             border-radius: 100px;
                             background: #FFFFFF;
                             border: 1px solid #ECE2D4;
@@ -249,6 +250,27 @@
                                 line-height: 140%;
                                 color: #364D47;                                
                             }
+                        }
+                    }
+
+                    .session-info-mobile {
+                        margin-top: 6px;
+
+                        .client-name {
+                            font-weight: normal;
+                            font-size: 18px;
+                            line-height: 140%;
+                            text-decoration-line: underline;
+                            color: #364D47;
+                            cursor: pointer;
+                        }
+
+                        .problem-text {
+                            margin-top: 12px;
+                            font-weight: normal;
+                            font-size: 14px;
+                            line-height: 140%;
+                            color: #364D47;
                         }
                     }
 
@@ -392,6 +414,162 @@
             .sessions-pagination {
                 display: inline-block;
                 margin-top: 24px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .content-wrapper {
+        flex-direction: column;
+
+        content {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 16px;
+
+            .page-content {
+                .sessions-list {
+                    .sessions-list-item {
+                        margin-top: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .content-wrapper {
+        content {
+            .page-content {
+                .sessions-list {
+                    margin-top: 16px;
+
+                    .sessions-list-item {
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        align-items: flex-start;
+
+                        &.session-active {
+                            padding-bottom: 16px;
+                        }
+
+                        .session-actions {
+                            margin-top: 20px;
+                            margin-left: 67px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        width: 100%;
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+}
+
+@media screen and (min-width: 560px) {
+    .content-wrapper {
+        content {
+            .page-content {
+                .sessions-list {
+                    .sessions-list-item {
+                        .session-info-mobile {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 559px) {
+    .container {
+        width: 100%;
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+
+    .content-wrapper {
+        content {
+            padding: 16px;
+
+            .page-top {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                .page-filters {
+                    margin-top: 8px;
+
+                    .filter {
+                        width: 188px;
+
+                        .filter-title {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            .page-content {
+                .sessions-list {
+                    margin-top: 16px;
+
+                    .sessions-list-item {
+                        padding-bottom: 16px;
+
+                        &.session-active {
+                            .session-info {
+                                .problem-info {
+                                    margin-left: 12px;
+
+                                    .title {
+                                        max-width: 80px;
+                                    }
+                                }
+                            }
+                        }
+
+                        .session-info {
+                            width: 100%;
+
+                            .problem-info {
+                                margin-left: 16px;
+                                margin-top: 0;
+                                align-self: center;
+
+                                .name,
+                                .text {
+                                    display: none;
+                                }
+                            }
+                        }
+
+                        .session-actions {
+                            margin-top: 16px;
+                            margin-left: 0;
+                            flex-direction: column;
+                            align-items: flex-start;
+
+                            .session-action {
+                                margin-left: 0;
+                                margin-top: 16px;
+
+                                &:first-child {
+                                    margin-top: 0;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
