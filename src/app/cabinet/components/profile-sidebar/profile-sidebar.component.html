@@ -67,4 +67,30 @@
             <button type="button" class="button-green" [routerLink]="['/profile/deposit']">Пополнить</button>
         </div>
     </div>
+
+    <div class="sidebar-finances sidebar-finances-mobile" *ngIf="wallet">
+        <div class="balance-block">
+            <div class="finances-head">
+                Баланс
+            </div>
+    
+            <div class="balance-row">
+                <div class="balance">
+                    {{ (wallet.balance - wallet.lockedBalance) | number:'':'fr' }} ₽
+                </div>
+    
+                <div class="balance-lock" *ngIf="wallet.lockedBalance">
+                    <img src="../../../../assets/images/icon-lock.svg" alt="">
+    
+                    {{ wallet.lockedBalance | number:'':'fr' }} ₽
+                </div>
+            </div>
+        </div>
+
+        <div class="pay-block">
+            <div class="pay-button">
+                <button type="button" class="button-green" [routerLink]="['/profile/deposit']">Пополнить</button>
+            </div>
+        </div>
+    </div>
 </aside>

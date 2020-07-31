@@ -1,6 +1,7 @@
 .score-stars {
-    height: 20px;
-    
+    display: flex;
+    align-items: center;
+
     > svg {
         margin-left: 6px;
 

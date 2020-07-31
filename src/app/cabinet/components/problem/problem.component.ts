@@ -55,7 +55,7 @@ export class ProblemComponent implements OnInit {
                 this.activeSession = res.data.find(x => x.status == SessionStatus.Started || x.status == SessionStatus.Waiting);
                 
                 if (res.data.length && (res.data[0].status == SessionStatus.Success || res.data[0].status == SessionStatus.Refund)) {
-                    this.lastSession = res.data[0];
+                    this.lastSession = res.data[res.data.length - 1];
                 }
             });
     }
