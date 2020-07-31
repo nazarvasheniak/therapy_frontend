@@ -22,6 +22,7 @@
                 align-items: center;
                 width: 54px;
                 height: 54px;
+                flex: 0 0 54px;
                 border-radius: 100px;
                 background: #F6FBF8;
                 border: 1px solid #DBF8E6;
@@ -56,9 +57,10 @@
                 .specialist-photo {
                     width: 43px;
                     height: 43px;
+                    flex: 0 0 43px;
                     border: 1px solid #32A776;
                     border-radius: 100px;
-                    padding: 3.58px;
+                    padding: 3px;
 
                     > img {
                         width: 100%;
@@ -68,32 +70,35 @@
                     }
                 }
 
-                .specialist-name {
+                .specialist-name-rating {
                     margin-left: 10px;
-                    font-weight: 500;
-                    font-size: 16px;
-                    line-height: 16px;
-                    color: #005264;
-                }
 
-                .specialist-rating {
-                    margin-left: 10px;
-                    display: flex;
-                    align-items: center;
-                    font-weight: normal;
-                    font-size: 14px;
-                    line-height: 16px;
-                    color: #DEBA39;
-
-                    > .icon {
-                        margin-right: 3px;
+                    .specialist-name {
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 16px;
+                        color: #005264;
+                    }
+    
+                    .specialist-rating {
+                        margin-top: 5px;
+                        display: flex;
+                        align-items: center;
+                        font-weight: normal;
+                        font-size: 14px;
+                        line-height: 16px;
+                        color: #DEBA39;
+    
+                        > .icon {
+                            margin-right: 3px;
+                        }
                     }
                 }
             }
         }
 
         .page-content {
-            margin-top: 19px;
+            margin-top: 16px;
 
             .page-text {
                 max-width: 511px;
@@ -104,7 +109,7 @@
             }
 
             .review-form {
-                margin-top: 22px;
+                margin-top: 16px;
 
                 .form-group {
                     textarea {
@@ -153,6 +158,13 @@
                             margin-left: 8px;
                             cursor: pointer;
                             opacity: .5;
+                            width: 24px;
+                            height: 24px;
+
+                            > img {
+                                width: 100%;
+                                height: 100%;
+                            }
 
                             &:hover {
                                 opacity: 1;
@@ -168,6 +180,76 @@
 
                             &:last-child {
                                 margin-left: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .content-wrapper {
+        flex-direction: column;
+
+        content {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        width: 100%;
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+}
+
+@media screen and (max-width: 559px) {
+    .container {
+        width: 100%;
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+
+    .content-wrapper {
+        content {
+            padding: 16px;
+
+            .page-head {
+                .session-date {
+                    display: none;
+                }
+
+                .specialist-info {
+                    margin-left: 0;
+                }
+            }
+
+            .page-content {
+                .page-text {
+                    max-width: none;
+                    font-size: 20px;
+                }
+
+                .review-form {
+                    .form-footer {
+                        flex-direction: column-reverse;
+
+                        .set-score {
+                            margin-left: 0;
+                        }
+
+                        .submit-button {
+                            margin-top: 24px;
+                            width: 100%;
+
+                            > button {
+                                width: 100%;
                             }
                         }
                     }

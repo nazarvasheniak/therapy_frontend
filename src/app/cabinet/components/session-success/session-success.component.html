@@ -24,16 +24,18 @@
                             <img [src]="session.specialist.photo.url" />
                         </div>
     
-                        <div class="specialist-name">
-                            {{ session.specialist.user.firstName }} {{ session.specialist.user.lastName }}
-                        </div>
-    
-                        <div class="specialist-rating">
-                            <div class="icon">
-                                <img src="../../../../assets/images/star.svg" />
+                        <div class="specialist-name-rating">
+                            <div class="specialist-name">
+                                {{ session.specialist.user.firstName }} {{ session.specialist.user.lastName }}
                             </div>
-    
-                            4
+        
+                            <div class="specialist-rating">
+                                <div class="icon">
+                                    <img src="../../../../assets/images/star.svg" />
+                                </div>
+        
+                                4
+                            </div>
                         </div>
                     </div>
                 </div>
