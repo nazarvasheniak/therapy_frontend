@@ -681,6 +681,7 @@
                                         .item-date {
                                             width: 54px;
                                             height: 54px;
+                                            flex: 0 0 54px;
                                             background: #FFFFFF;
                                             border: 1px solid #DBF8E6;
                                             box-sizing: border-box;
@@ -762,6 +763,7 @@
                                             .specialist-photo {
                                                 width: 40px;
                                                 height: 40px;
+                                                flex: 0 0 40px;
                                                 padding: 3px;
                                                 border-radius: 100px;
                                                 border: 1px solid #32A776;
@@ -1467,6 +1469,57 @@
                                     }
                                 }
                             }
+
+                            .resources-list {
+                                .resources-list-item {
+                                    .item-head {
+                                        .item-title {
+                                            .item-specialist {
+                                                margin-left: 100px;
+                                            }
+                                        }
+                                    }
+
+                                    .item-body {
+                                        .item-description {
+                                            flex-direction: column;
+
+                                            .item-description-block {
+                                                width: 100% !important;
+                                                padding-right: 16px;
+
+                                                .item-description-row {
+                                                    .row-value {
+                                                        .num-list {
+                                                            .num-list-item {
+                                                                width: 100%;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                                &:first-child {
+                                                    border-right: 0;
+                                                    padding-bottom: 0;
+
+                                                    .item-description-row {
+                                                        max-width: 350px;
+                                                    }
+                                                }
+
+                                                &:last-child {
+                                                    padding-top: 0;
+                                                    margin-top: 24px;
+
+                                                    .item-description-row {
+                                                        max-width: none;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -1528,6 +1581,21 @@
                                                         width: 200px !important;
                                                     }
                                                 }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .resources-list {
+                                .resources-list-item {
+                                    .item-head {
+                                        .item-title {
+                                            width: 100%;
+
+                                            .item-specialist {
+                                                margin-left: auto;
+                                                margin-right: 0;
                                             }
                                         }
                                     }
@@ -1713,6 +1781,30 @@
                                                             }
                                                         }
                                                     }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .resources-list {
+                                .resources-list-item {
+                                    .item-head {
+                                        .item-title {
+                                            .item-name {
+                                                margin-left: 10px;
+
+                                                .like-score {
+                                                    .like-score-section {
+                                                        width: 16px;
+                                                    }
+                                                }
+                                            }
+
+                                            .item-specialist {
+                                                .specialist-name {
+                                                    display: none;
                                                 }
                                             }
                                         }
