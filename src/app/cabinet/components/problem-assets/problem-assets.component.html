@@ -24,8 +24,8 @@
 
                 <div class="page-content">
                     <div class="tabs" *ngIf="assets">
-                        <ul class="tabs-head">
-                            <li class="tab-head" [ngClass]="{'active': activeTab == 1}" (click)="setActiveTab(1)">
+                        <ul class="tabs-head" #assetsTabs>
+                            <li class="tab-head" name="images" [ngClass]="{'active': activeTab == 'images'}" (click)="setActiveTab('images')">
                                 Образов
 
                                 <div class="count">
@@ -33,7 +33,7 @@
                                 </div>
                             </li>
 
-                            <li class="tab-head" [ngClass]="{'active': activeTab == 2}" (click)="setActiveTab(2)">
+                            <li class="tab-head" name="resources" [ngClass]="{'active': activeTab == 'resources'}" (click)="setActiveTab('resources')">
                                 Ресурсов
 
                                 <div class="count">
@@ -41,7 +41,7 @@
                                 </div>
                             </li>
 
-                            <li class="tab-head" [ngClass]="{'active': activeTab == 3}" (click)="setActiveTab(3)">
+                            <li class="tab-head" name="sessions" [ngClass]="{'active': activeTab == 'sessions'}" (click)="setActiveTab('sessions')">
                                 Проведено сессий
 
                                 <div class="count" *ngIf="sessions">
@@ -51,7 +51,7 @@
                         </ul>
 
                         <div class="tabs-content">
-                            <div class="tab-content" *ngIf="activeTab == 1">
+                            <div class="tab-content" *ngIf="activeTab == 'images'">
                                 <div class="images-list">
                                     <div class="images-list-item" *ngFor="let image of assets.images">
                                         <div class="item-head">
@@ -347,7 +347,7 @@
                                 </div>
                             </div>
 
-                            <div class="tab-content" *ngIf="activeTab == 2">
+                            <div class="tab-content" *ngIf="activeTab == 'resources'">
                                 <div class="resources-list">
                                     <div class="resources-list-item" *ngFor="let resource of assets.resources">
                                         <div class="item-head">
@@ -477,7 +477,7 @@
                                 </div>
                             </div>
 
-                            <div class="tab-content" *ngIf="activeTab == 3">
+                            <div class="tab-content" *ngIf="activeTab == 'sessions'">
                                 <div class="sessions-list" *ngIf="sessions">
                                     <div class="sessions-list-item" *ngFor="let session of sessions">
                                         <div class="session-info">

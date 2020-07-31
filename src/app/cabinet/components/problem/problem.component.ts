@@ -4,6 +4,8 @@ import { PatientService, UsersWalletsService } from 'src/app/common/services';
 import { SessionStatus } from 'src/app/common/enums';
 import { Router } from '@angular/router';
 
+type AssetTab = "images" | "resources" | "sessions";
+
 @Component({
 	selector: 'app-problem',
 	templateUrl: './problem.component.html',
@@ -114,22 +116,22 @@ export class ProblemComponent implements OnInit {
         this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist/${this.activeSession.specialist.id}/pay`]);
     }
 
-    routeToAssets(tab: number) {
-        if (tab == 3 && !this.sessions.length) {
+    routeToAssets(tab: AssetTab) {
+        if (tab == 'sessions' && !this.sessions.length) {
             return;
         }
 
-        if (tab == 2 && !this.resources.length) {
+        if (tab == 'resources' && !this.resources.length) {
             return;
         }
 
-        if (tab == 1 && !this.images.length) {
+        if (tab == 'images' && !this.images.length) {
             return;
         }
 
         this.router.navigate(['/profile/problems', this.problem.id, 'assets'], {
             queryParams: {
-                type: tab
+                tab: tab
             }
         });
     }

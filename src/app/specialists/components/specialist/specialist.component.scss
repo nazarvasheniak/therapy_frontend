@@ -188,13 +188,32 @@
                     &:first-child {
                         margin-left: 0;
                     }
-    
+
                     &.active {
                         cursor: default;
-                        color: #389A71;
-    
-                        .count {
+
+                        &.positive {
                             color: #389A71;
+
+                            .count {
+                                color: #389A71;
+                            }
+                        }
+
+                        &.neutral {
+                            color: #9EACA9;
+
+                            .count {
+                                color: #9EACA9;
+                            }
+                        }
+
+                        &.negative {
+                            color: #AE2424;
+
+                            .count {
+                                color: #AE2424;
+                            }
                         }
                     }
                     

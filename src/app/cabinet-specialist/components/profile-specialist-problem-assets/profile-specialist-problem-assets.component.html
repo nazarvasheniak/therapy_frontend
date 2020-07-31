@@ -39,8 +39,8 @@
 
                 <div class="page-content">
                     <div class="tabs" *ngIf="assets">
-                        <ul class="tabs-head">
-                            <li class="tab-head" [ngClass]="{'active': activeTab == 1}" (click)="setActiveTab(1)">
+                        <ul class="tabs-head" #assetsTabs>
+                            <li class="tab-head" name="images" [ngClass]="{'active': activeTab == 'images'}" (click)="setActiveTab('images')">
                                 <div class="title">
                                     Образов
                                 </div>
@@ -50,7 +50,7 @@
                                 </div>
                             </li>
 
-                            <li class="tab-head" [ngClass]="{'active': activeTab == 2}" (click)="setActiveTab(2)">
+                            <li class="tab-head" name="resources" [ngClass]="{'active': activeTab == 'resources'}" (click)="setActiveTab('resources')">
                                 <div class="title">
                                     Ресурсов
                                 </div>
@@ -60,7 +60,7 @@
                                 </div>
                             </li>
 
-                            <li class="tab-head" [ngClass]="{'active': activeTab == 3}" (click)="setActiveTab(3)">
+                            <li class="tab-head" name="sessions" [ngClass]="{'active': activeTab == 'sessions'}" (click)="setActiveTab('sessions')">
                                 <div class="title">
                                     Сессий
                                 </div>
@@ -72,7 +72,7 @@
                         </ul>
 
                         <div class="tabs-content">
-                            <div class="tab-content" *ngIf="activeTab == 1">
+                            <div class="tab-content" *ngIf="activeTab == 'images'">
                                 <div class="images-list">
                                     <ng-container *ngFor="let image of assets.images">
                                         <div class="images-list-item" *ngIf="editImageForm.value['id'] != image.id" [ngClass]="{'hidden-image': image.isHidden}">
@@ -588,7 +588,7 @@
                                 </div>
                             </div>
 
-                            <div class="tab-content" *ngIf="activeTab == 2">
+                            <div class="tab-content" *ngIf="activeTab == 'resources'">
                                 <div class="resources-list">
                                     <ng-container *ngFor="let resource of assets.resources">
                                         <div class="resources-list-item" *ngIf="editResourceForm.value['id'] != resource.id">
@@ -978,7 +978,7 @@
                                 </div>
                             </div>
 
-                            <div class="tab-content" *ngIf="activeTab == 3">
+                            <div class="tab-content" *ngIf="activeTab == 'sessions'">
                                 <div class="sessions-list">
                                     <div class="sessions-list-item" *ngFor="let session of assets.sessions">
                                         <div class="sessions-list-item-inner">

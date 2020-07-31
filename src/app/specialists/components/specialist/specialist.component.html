@@ -69,18 +69,18 @@
         <div class="reviews-head">
             <div class="article-container">
                 <div class="reviews-switcher">
-                    <ul>
-                        <li [ngClass]="{'active': activeReviewsTab == 1}" (click)="changeReviewsTab(1)">
+                    <ul #reviewsTabs>
+                        <li class="positive" name="Positive" [ngClass]="{'active': activeReviewsTab == 'Positive'}" (click)="changeReviewsTab('Positive')">
                             Положительные отзывы
                             <div class="count">{{ positiveReviews.length }}</div>
                         </li>
 
-                        <li [ngClass]="{'active': activeReviewsTab == 2}" (click)="changeReviewsTab(2)">
+                        <li class="neutral" name="Neutral" [ngClass]="{'active': activeReviewsTab == 'Neutral'}" (click)="changeReviewsTab('Neutral')">
                             Нейтральные отзывы
                             <div class="count">{{ neutralReviews.length }}</div>
                         </li>
 
-                        <li [ngClass]="{'active': activeReviewsTab == 3}" (click)="changeReviewsTab(3)">
+                        <li class="negative" name="Negative" [ngClass]="{'active': activeReviewsTab == 'Negative'}" (click)="changeReviewsTab('Negative')">
                             Отрицательные отзывы
                             <div class="count">{{ negativeReviews.length }}</div>
                         </li>
@@ -92,7 +92,7 @@
         <div class="reviews-content">
             <div class="article-container">
 
-                <div class="reviews-list" *ngIf="activeReviewsTab == 1">
+                <div class="reviews-list" *ngIf="activeReviewsTab == 'Positive'">
                     <div class="review-block" *ngFor="let review of positiveReviews">
                         <div class="review-block-head">
                             <div class="reviewer-name">
@@ -136,7 +136,7 @@
                     </div>
                 </div>
 
-                <div class="reviews-list" *ngIf="activeReviewsTab == 2">
+                <div class="reviews-list" *ngIf="activeReviewsTab == 'Neutral'">
                     <div class="review-block" *ngFor="let review of neutralReviews">
                         <div class="review-block-head">
                             <div class="reviewer-name">
@@ -180,7 +180,7 @@
                     </div>
                 </div>
 
-                <div class="reviews-list" *ngIf="activeReviewsTab == 3">
+                <div class="reviews-list" *ngIf="activeReviewsTab == 'Negative'">
                     <div class="review-block" *ngFor="let review of negativeReviews">
                         <div class="review-block-head">
                             <div class="reviewer-name">

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SpecialistService, AuthService } from 'src/app/common/services';
 import { ClientCard, ProblemAssets, ProblemImage, ProblemResource, ProblemResourceTask } from 'src/app/common/models';
@@ -7,6 +7,8 @@ import { CreateUpdateProblemImageRequest, CreateUpdateProblemResourceTask, Creat
 import { ViewHelper } from 'src/app/common/helpers';
 import { DomSanitizer } from '@angular/platform-browser';
 
+type AssetTab = "images" | "resources" | "sessions";
+
 @Component({
 	selector: 'app-profile-specialist-problem-assets',
 	templateUrl: './profile-specialist-problem-assets.component.html',
@@ -14,7 +16,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ProfileSpecialistProblemAssetsComponent implements OnInit {
 
-    public activeTab = 1;
+    public activeTab: AssetTab = "images";
 
     public client: ClientCard;
     public assets: ProblemAssets;
@@ -26,6 +28,8 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
     public editResourceForm: FormGroup;
 
     public createTaskInput: string;
+
+    @ViewChild('assetsTabs') private assetsTabs: ElementRef<HTMLUListElement>;
 
     constructor(
         private authService: AuthService,
@@ -126,7 +130,20 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
 
     private loadAssets(clientID: number, problemID: number) {
         this.specialistService.getClientAssets(clientID, problemID)
-            .subscribe(assets => this.assets = assets);
+            .subscribe(assets => {
+                this.assets = assets;
+                
+                this.route.queryParams
+                    .subscribe(params => {
+                        const tab = params['tab'];
+
+                        if (!tab) {
+                            return;
+                        }
+
+                        this.setActiveTab(tab);
+                    });
+            });
     }
 
     createProblemImage() {
@@ -280,17 +297,6 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
                         this.loadAssets(params['clientID'], params['problemID']);
                     });
 
-                this.route.queryParams
-                    .subscribe(params => {
-                        const tab = params['tab'];
-
-                        if (!tab) {
-                            return;
-                        }
-
-                        this.setActiveTab(tab);
-                    });
-
                 this.initEditImageForm();
                 this.initEditResourceForm();
             });
@@ -329,8 +335,22 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
         return;
     }
 
-    setActiveTab(tab: number) {
+    setActiveTab(tab: AssetTab) {
         this.activeTab = tab;
+
+        if (!this.assetsTabs) {
+            return;
+        }
+
+        const item = this.assetsTabs.nativeElement.getElementsByTagName('li').namedItem(tab);
+        const margin = parseInt(window.getComputedStyle(item).marginLeft);
+        
+        const scrollTo = (margin / 2) + (item.offsetLeft - item.offsetWidth);
+
+        this.assetsTabs.nativeElement.scrollTo({
+            left: scrollTo,
+            behavior: 'smooth'
+        });
     }
 
     labelClick(input) {

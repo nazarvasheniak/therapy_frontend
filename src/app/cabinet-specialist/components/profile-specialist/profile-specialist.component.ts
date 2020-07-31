@@ -90,7 +90,7 @@ export class ProfileSpecialistComponent implements OnInit {
     routeToImages(problem: Problem) {
         this.router.navigate([`/profile-specialist/clients/${problem.user.id}/problems/${problem.id}/assets`], {
             queryParams: {
-                tab: 1
+                tab: 'images'
             }
         });
     }
@@ -98,7 +98,7 @@ export class ProfileSpecialistComponent implements OnInit {
     routeToResources(problem: Problem) {
         this.router.navigate([`/profile-specialist/clients/${problem.user.id}/problems/${problem.id}/assets`], {
             queryParams: {
-                tab: 2
+                tab: 'resources'
             }
         });
     }

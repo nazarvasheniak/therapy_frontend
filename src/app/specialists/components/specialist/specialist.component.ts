@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpecialistsService, StorageService } from 'src/app/common/services';
 import { Specialist, Review } from 'src/app/common/models';
-import { ReviewsTabs } from './reviews-tabs.enum';
-import { ViewHelper } from 'src/app/common/helpers';
 import { ReviewType } from 'src/app/common/enums';
+
+type ReviewTab = 'Positive' | 'Neutral' | 'Negative';
 
 @Component({
 	selector: 'app-specialist',
@@ -14,7 +14,7 @@ import { ReviewType } from 'src/app/common/enums';
 export class SpecialistComponent implements OnInit {
 
 	public specialist: Specialist;
-	public activeReviewsTab = ReviewType.Positive;
+	public activeReviewsTab: ReviewTab = 'Positive';
 
 	public positiveReviews: Review[] = [];
     public neutralReviews: Review[] = [];
@@ -23,6 +23,8 @@ export class SpecialistComponent implements OnInit {
 	public pageSize = 4;
 	public pageNumber = 1;
 	public totalPages = 1;
+
+	@ViewChild('reviewsTabs') private reviewsTabs: ElementRef<HTMLUListElement>;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -47,11 +49,21 @@ export class SpecialistComponent implements OnInit {
 				this.loadSpecialist(id);
 			});
 	}
-	
-	changeReviewsTab(tab: ReviewType) {
+
+	changeReviewsTab(tab: ReviewTab) {
 		this.activeReviewsTab = tab;
 		this.loadReviews(tab, this.pageNumber);
-	}
+
+        const item = this.reviewsTabs.nativeElement.getElementsByTagName('li').namedItem(tab);
+        const margin = parseInt(window.getComputedStyle(item).marginLeft);
+        
+        const scrollTo = (margin / 2) + (item.offsetLeft - item.offsetWidth);
+
+        this.reviewsTabs.nativeElement.scrollTo({
+            left: scrollTo,
+            behavior: 'smooth'
+        });
+    }
 
 	setPageNumber(value: number) {
 		this.loadReviews(this.activeReviewsTab, value);
@@ -79,12 +91,12 @@ export class SpecialistComponent implements OnInit {
 							return;
 						}
 
-						this.changeReviewsTab(params['reviews'] as ReviewType);
+						this.changeReviewsTab(params['reviews'] as ReviewTab);
 					});
 			});
 	}
 
-	private loadReviews(type: ReviewType, pageNumber: number) {
+	private loadReviews(type: ReviewTab, pageNumber: number) {
 		this.specialistsService.getSpecialistReviews({
 			pageNumber: pageNumber,
 			pageSize: this.pageSize,
@@ -98,15 +110,15 @@ export class SpecialistComponent implements OnInit {
 			}
 
 			switch (type) {
-				case ReviewType.Positive:
+				case "Positive":
 					this.positiveReviews = res.data;
 					break;
 
-				case ReviewType.Neutral:
+				case "Neutral":
 					this.neutralReviews = res.data;
 					break;
 
-				case ReviewType.Negative:
+				case "Negative":
 					this.negativeReviews = res.data;
 					break;
 			}

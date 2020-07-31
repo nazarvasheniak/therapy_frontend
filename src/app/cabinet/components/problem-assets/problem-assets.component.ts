@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService, PatientService } from 'src/app/common/services';
 import { Problem, Session, ClientProblemAssets } from 'src/app/common/models';
 import { AssetType } from './asset-type.enum';
+
+type AssetTab = "images" | "resources" | "sessions";
 
 @Component({
 	selector: 'cabinet-problem-assets',
@@ -11,11 +13,13 @@ import { AssetType } from './asset-type.enum';
 })
 export class ProblemAssetsComponent implements OnInit {
 
-    public activeTab = AssetType.Images;
+    public activeTab: AssetTab = 'images';
 
     public problem: Problem;
     public sessions: Session[];
     public assets: ClientProblemAssets;
+
+    @ViewChild('assetsTabs') private assetsTabs: ElementRef<HTMLUListElement>;
     
     constructor(
         private authService: AuthService,
@@ -48,13 +52,13 @@ export class ProblemAssetsComponent implements OnInit {
 
                 this.route.queryParams
                     .subscribe(params => {
-                        if (!params['type']) {
-                            this.activeTab = AssetType.Sessions;
+                        const tab = params['tab'];
 
+                        if (!tab) {
                             return;
                         }
 
-                        this.activeTab = AssetType[AssetType[params['type']]];
+                        this.setActiveTab(tab);
                     });
             });
     }
@@ -95,8 +99,22 @@ export class ProblemAssetsComponent implements OnInit {
             });
     }
 
-    setActiveTab(tab: AssetType) {
+    setActiveTab(tab: AssetTab) {
         this.activeTab = tab;
+
+        if (!this.assetsTabs) {
+            return;
+        }
+
+        const item = this.assetsTabs.nativeElement.getElementsByTagName('li').namedItem(tab);
+        const margin = parseInt(window.getComputedStyle(item).marginLeft);
+        
+        const scrollTo = (margin / 2) + (item.offsetLeft - item.offsetWidth);
+
+        this.assetsTabs.nativeElement.scrollTo({
+            left: scrollTo,
+            behavior: 'smooth'
+        });
     }
 
     normalizeMonth(monthStr: string) {

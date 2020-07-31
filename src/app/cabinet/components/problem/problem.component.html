@@ -234,7 +234,7 @@
     </div>
 
     <div class="problem-assets">
-        <div class="problem-asset problem-images" *ngIf="images" [ngClass]="{'empty': !images.length}" (click)="routeToAssets(1)">
+        <div class="problem-asset problem-images" *ngIf="images" [ngClass]="{'empty': !images.length}" (click)="routeToAssets('images')">
             <div class="asset-icon">
                 <svg *ngIf="!images.length" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0)">
@@ -279,7 +279,7 @@
             </div>
         </div>
 
-        <div class="problem-asset problem-resources" *ngIf="resources" [ngClass]="{'empty': !resources.length}" (click)="routeToAssets(2)">
+        <div class="problem-asset problem-resources" *ngIf="resources" [ngClass]="{'empty': !resources.length}" (click)="routeToAssets('resources')">
             <div class="asset-icon">
                 <svg *ngIf="!resources.length" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0)">
@@ -326,7 +326,7 @@
             </div>
         </div>
 
-        <div class="problem-asset problem-sessions" *ngIf="sessions" [ngClass]="{ 'empty': !sessions.length }" (click)="routeToAssets(3)">
+        <div class="problem-asset problem-sessions" *ngIf="sessions" [ngClass]="{ 'empty': !sessions.length }" (click)="routeToAssets('sessions')">
             <div class="asset-icon">
                 <img *ngIf="!sessions.length" src="../../../../assets/images/icon-session-empty.svg" />
                 <img *ngIf="sessions.length" src="../../../../assets/images/icon-session.svg" />
