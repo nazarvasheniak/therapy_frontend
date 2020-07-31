@@ -1569,6 +1569,28 @@
     }
 }
 
+@media screen and (min-width: 768px) {
+    .content-wrapper {
+        content {
+            .page-content {
+                .tabs {
+                    .tabs-content {
+                        .sessions-list {
+                            .sessions-list-item {
+                                .session-info {
+                                    .session-score {
+                                        //display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 767px) {
     .container {
         width: 100%;
@@ -1703,66 +1725,10 @@
 
                             .sessions-list {
                                 .sessions-list-item {
-                                    flex-direction: column;
-                                    justify-content: flex-start;
-                                    align-items: flex-start;
-                                    padding-top: 16px;
-                                    padding-bottom: 16px;
-
-                                    .session-info {
-                                        width: 100%;
+                                    .sessions-list-item-inner {
+                                        flex-direction: column;
+                                        justify-content: flex-start;
                                         align-items: flex-start;
-
-                                        .session-date {
-                                            display: none;
-                                        }
-
-                                        .session-specialist {
-                                            margin-left: 0;
-
-                                            .specialist-name-rating {
-                                                flex-direction: column;
-                                                align-items: flex-start;
-                                                
-                                                .specialist-rating {
-                                                    margin-left: 0;
-                                                    margin-top: 5px;
-                                                }
-                                            }
-                                        }
-
-                                        .session-score {
-                                            margin-right: 0;
-                                            margin-left: auto;
-
-                                            .score {
-                                                > img {
-                                                    margin-left: 6px;
-
-                                                    &:first-child {
-                                                        margin-left: 0;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    .session-review {
-                                        width: 100%;
-                                        margin-top: 24px;
-
-                                        .session-score {
-                                            display: none;
-                                        }
-
-                                        .session-review-button {
-                                            width: 100%;
-                                            margin-left: 0;
-
-                                            > button {
-                                                width: 100%;
-                                            }
-                                        }
                                     }
                                 }
                             }
