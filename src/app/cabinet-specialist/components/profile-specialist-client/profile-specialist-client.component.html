@@ -74,6 +74,12 @@
                             </div>
                         </div>
 
+                        <div class="client-stat-block phone-number">
+                            <div class="value">
+                                {{ getPhone() }}
+                            </div>
+                        </div>
+
                         <div class="client-stat-block">
                             <div class="title">
                                 Возвратов
@@ -139,6 +145,12 @@
                                     <div class="text">
                                         {{ session.problem.problemText }}
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="session-info-mobile">
+                                <div class="problem-text">
+                                    {{ session.problem.problemText }}
                                 </div>
                             </div>
 
