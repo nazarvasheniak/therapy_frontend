@@ -8,8 +8,8 @@
         margin-left: 30px;
         /* padding-left: 24px;
         padding-right: 24px; */
-        padding-top: 28px;
-        padding-bottom: 24px;
+        padding-top: 18px;
+        padding-bottom: 32px;
         border-radius: 14px;
 
         .page-top {
@@ -48,7 +48,7 @@
         }
 
         .page-content {
-            margin-top: 35px;
+            margin-top: 32px;
 
             .tabs {
                 .tabs-head {
@@ -142,6 +142,7 @@
                                         .item-date {
                                             width: 54px;
                                             height: 54px;
+                                            flex: 0 0 54px;
                                             background: #FFFFFF;
                                             border: 1px solid #DBF8E6;
                                             box-sizing: border-box;
@@ -223,6 +224,7 @@
                                             .specialist-photo {
                                                 width: 40px;
                                                 height: 40px;
+                                                flex: 0 0 40px;
                                                 padding: 3px;
                                                 border-radius: 100px;
                                                 border: 1px solid #32A776;
@@ -282,7 +284,7 @@
                                                 }
                                             }
 
-                                            &:last-child {
+                                            &:nth-child(2) {
                                                 > .item-description-column {
                                                     margin-right: 60px;
 
@@ -666,6 +668,7 @@
                                         .item-date {
                                             width: 54px;
                                             height: 54px;
+                                            flex: 0 0 54px;
                                             background: #FFFFFF;
                                             border: 1px solid #DBF8E6;
                                             box-sizing: border-box;
@@ -747,6 +750,7 @@
                                             .specialist-photo {
                                                 width: 40px;
                                                 height: 40px;
+                                                flex: 0 0 40px;
                                                 padding: 3px;
                                                 border-radius: 100px;
                                                 border: 1px solid #32A776;
@@ -1193,6 +1197,7 @@
                                         .item-date {
                                             width: 54px;
                                             height: 54px;
+                                            flex: 0 0 54px;
                                             background: #FFFFFF;
                                             border: 1px solid #DBF8E6;
                                             box-sizing: border-box;
@@ -1230,6 +1235,7 @@
                                             .specialist-photo {
                                                 width: 43px;
                                                 height: 43px;
+                                                flex: 0 0 43px;
                                                 border: 1px solid #32A776;
                                                 border-radius: 100px;
                                                 padding: 3px;
@@ -1316,6 +1322,691 @@
 
                         .new-item {
                             margin-top: 32px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .content-wrapper {
+        flex-direction: column;
+
+        content {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 16px;
+            padding-top: 24px;
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .content-wrapper {
+        content {
+            .page-content {
+                .tabs {
+                    .tabs-content {
+                        .tab-content {
+                            .images-list {
+                                .images-list-item {
+                                    .item-head {
+                                        .item-title {
+                                            .item-specialist {
+                                                margin-left: 100px;
+                                            }
+                                        }
+                                    }
+
+                                    .item-body {
+                                        .item-description {
+                                            .item-description-row {
+                                                align-items: flex-start !important;
+
+                                                .item-description-column {
+                                                    &.relation-column {
+
+                                                        &:not(.relation-column-mobile) {
+                                                            //display: none;
+                                                        }
+
+                                                        &.relation-column-mobile {
+                                                            .column-value {
+                                                                .related-image {
+                                                                    margin-left: 10px;
+                                                                    font-size: 14px;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                                &:first-child {
+                                                    > .item-description-column {
+                                                        width: auto;
+
+                                                        &:first-child {
+                                                            width: auto;
+                                                            margin-right: 62px;
+                                                        }
+
+                                                        &:last-child {
+                                                            width: auto;
+                                                        }
+                                                    }
+                                                }
+
+                                                &:nth-child(2) {
+                                                    > .item-description-column {
+                                                        margin-right: 50px;
+
+                                                        &:nth-child(3) {
+                                                            margin-right: 0;
+                                                        }
+
+                                                        &:last-child {
+                                                            margin-left: 0;
+                                                        }
+
+                                                        &.button-column {
+                                                            align-self: center;
+                                                            margin-left: 25px;
+                                                        }
+
+                                                        &.relation-column {
+                                                            margin-left: 14px;
+
+                                                            .related-image {
+                                                                margin-left: 10px !important;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    &.create-item-form {
+                                        .item-body {
+                                            .create-item-form {
+                                                .form-inner {
+                                                    .form-block {
+                                                        
+                                                        &:first-child {
+                                                            width: 340px;
+                                                        }
+
+                                                        &:last-child {
+                                                            width: 282px;
+                                                        }
+
+                                                        .form-group {
+
+
+                                                            &.form-group-half {
+                                                                .input-wrapper {
+                                                                    width: 162px;
+                                                                }
+                                                            }
+
+                                                            &.form-group-checkbox {
+                                                                justify-content: space-between;
+
+                                                                .input-wrapper {
+                                                                    
+                                                                    &:first-child {
+                                                                        margin-right: 0;
+                                                                    }
+
+                                                                    &:last-child {
+                                                                        margin-left: 0;
+                                                                        margin-right: 16px;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .resources-list {
+                                .resources-list-item {
+                                    .item-head {
+                                        .item-title {
+                                            .item-specialist {
+                                                margin-left: 100px;
+                                            }
+                                        }
+                                    }
+
+                                    .item-body {
+                                        .item-description {
+                                            flex-direction: column;
+
+                                            .item-description-block {
+                                                width: 100% !important;
+                                                padding-right: 16px;
+
+                                                .item-description-row {
+                                                    .row-value {
+                                                        .num-list {
+                                                            .num-list-item {
+                                                                width: 100%;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                                &:first-child {
+                                                    border-right: 0;
+                                                    padding-bottom: 0;
+
+                                                    .item-description-row {
+                                                        max-width: 350px;
+                                                    }
+                                                }
+
+                                                &:last-child {
+                                                    padding-top: 0;
+                                                    margin-top: 24px;
+
+                                                    .item-description-row {
+                                                        max-width: none;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        width: 100%;
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
+    .content-wrapper {
+        content {
+            .page-content {
+                .tabs {
+                    .tabs-content {
+                        .tab-content {
+                            .images-list {
+                                .images-list-item {
+                                    //padding-top: 10px;
+
+                                    .item-head {
+                                        .item-title {
+                                            width: 100%;
+
+                                            .item-specialist {
+                                                margin-left: auto;
+                                                margin-right: 0;
+                                            }
+                                        }
+                                    }
+
+                                    .item-body {
+                                        .item-description {
+                                            .item-description-row {
+                                                justify-content: space-between;
+
+                                                .item-description-column {
+                                                    &.relation-column {
+                                                        display: none;
+                                                    }
+
+                                                    margin-left: 0 !important;
+                                                    margin-right: 0 !important;
+
+                                                    &:nth-child(1) {
+                                                        width: 136px !important;
+                                                    }
+
+                                                    &:nth-child(2) {
+                                                        width: 140px !important;
+                                                    }
+
+                                                    &:nth-child(3) {
+                                                        width: 200px !important;
+                                                    }
+                                                }
+
+                                                &:last-child {
+                                                    .item-description-column {
+                                                        width: auto !important;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    &.create-item-form {
+                                        .item-body {
+                                            .create-item-form {
+                                                .form-inner {
+                                                    flex-direction: column;
+                                                    padding-bottom: 16px;
+
+                                                    .form-block {
+
+                                                        &:first-child {
+                                                            width: 100%;
+                                                        }
+
+                                                        &:last-child {
+                                                            width: 100%;
+                                                            margin-left: 0;
+                                                            margin-top: 24px;
+                                                        }
+
+                                                        .form-group {
+
+                                                            &.form-group-half {
+                                                                .input-wrapper {
+                                                                    width: calc(50% - 8px);
+                                                                }
+                                                            }
+
+                                                            &.form-group-checkbox {
+                                                                justify-content: flex-start;
+
+                                                                .input-wrapper {
+                                                                    
+                                                                    &:first-child {
+                                                                        margin-right: 80px;
+                                                                    }
+
+                                                                    &:last-child {
+                                                                        margin-left: 80px;
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            &.form-group-progress {
+                                                                margin-left: 8px;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .resources-list {
+                                .resources-list-item {
+                                    .item-head {
+                                        .item-title {
+                                            width: 100%;
+
+                                            .item-specialist {
+                                                margin-left: auto;
+                                                margin-right: 0;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .sessions-list {
+                                .sessions-list-item {
+                                    flex-direction: column;
+                                    justify-content: flex-start;
+                                    align-items: flex-start;
+                                    padding-top: 16px;
+                                    padding-bottom: 16px;
+
+                                    .session-info {
+                                        width: 100%;
+                                        align-items: flex-start;
+
+                                        .session-date {
+                                            display: none;
+                                        }
+
+                                        .session-specialist {
+                                            margin-left: 0;
+
+                                            .specialist-name-rating {
+                                                flex-direction: column;
+                                                align-items: flex-start;
+                                                
+                                                .specialist-rating {
+                                                    margin-left: 0;
+                                                    margin-top: 5px;
+                                                }
+                                            }
+                                        }
+
+                                        .session-score {
+                                            margin-right: 0;
+                                            margin-left: auto;
+
+                                            .score {
+                                                > img {
+                                                    margin-left: 6px;
+
+                                                    &:first-child {
+                                                        margin-left: 0;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .session-review {
+                                        width: 100%;
+                                        margin-top: 24px;
+
+                                        .session-score {
+                                            display: none;
+                                        }
+
+                                        .session-review-button {
+                                            width: 100%;
+                                            margin-left: 0;
+
+                                            > button {
+                                                width: 100%;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 560px) {
+    .content-wrapper {
+        content {
+            .page-content {
+                .tabs {
+                    .tabs-head {
+                        .tab-head {
+                            &.tab-head-mobile {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    .tabs-content {
+                        .tab-content {
+                            .images-list {
+                                .images-list-item {
+                                    .item-body {
+                                        .item-description {
+                                            .item-description-row {
+                                                &.item-description-row-mobile {
+                                                    display: none;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 559px) {
+    .container {
+        width: 100%;
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+
+    .content-wrapper {
+        content {
+            padding-top: 16px;
+            padding-bottom: 16px;
+
+            .page-top {
+                padding-left: 16px;
+                padding-right: 16px;
+
+                .page-info {
+                    .button-back {
+                        margin-left: 0;
+                    }
+                }
+    
+                .page-head {
+                    margin-top: 16px;
+                    padding-left: 0;
+                    padding-right: 0;
+                    font-size: 20px;
+                }
+            }
+
+            .page-content {
+                margin-top: 20px;
+
+                .tabs {
+                    .tabs-head {
+                        padding-left: 16px;
+                        padding-right: 16px;
+                        padding-bottom: 8px;
+                        justify-content: space-between;
+
+                        .tab-head {
+                            font-size: 14px;
+                            line-height: 140%;
+                            margin-left: 0;
+
+                            .count {
+                                font-size: 18px;
+                                line-height: 140%;
+                                margin-left: 8px;
+                            }
+                        }
+                    }
+
+                    .tabs-content {
+                        padding-left: 16px;
+                        padding-right: 16px;
+
+                        .tab-content {
+                            .images-list {
+                                .images-list-item {
+                                    .item-head {
+                                        .item-title {
+                                            .item-name {
+                                                margin-left: 10px;
+
+                                                .like-score {
+                                                    .like-score-section {
+                                                        width: 16px;
+                                                    }
+                                                }
+                                            }
+
+                                            .item-specialist {
+                                                .specialist-name {
+                                                    display: none;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .item-body {
+                                        .item-description {
+                                            .item-description-row {
+                                                &:first-child {
+                                                    flex-direction: column;
+
+                                                    .item-description-column {
+                                                        margin-top: 24px;
+                                                        width: 100% !important;
+    
+                                                        &:first-child {
+                                                            margin-top: 0;
+                                                        }
+    
+                                                        &:last-child {
+                                                            width: 100% !important;
+                                                        }
+                                                    }
+                                                }
+
+                                                &:nth-child(2) {
+                                                    &:not(.item-description-row-mobile) {
+                                                        display: none;
+                                                    }
+                                                }
+
+                                                &.item-description-row-mobile {
+                                                    flex-direction: column-reverse;
+                                                    justify-content: flex-start;
+                                                    align-items: flex-start;
+
+                                                    .item-description-column {
+                                                        width: 100% !important;
+                                                        margin-top: 24px;
+
+                                                        &:last-child {
+                                                            margin-top: 0;
+                                                        }
+
+                                                        &.button-column {
+                                                            .column-value {
+                                                                > button {
+                                                                    width: 100%;
+                                                                }
+                                                            }
+                                                        }
+
+                                                        &.relation-column {
+                                                            &:not(.relation-column-mobile) {
+                                                                display: block;
+
+                                                                .column-value {
+                                                                    > svg {
+                                                                        flex: 0 0 16px;
+                                                                        align-self: flex-start;
+                                                                    }
+
+                                                                    .related-image {
+                                                                        font-size: 14px;
+                                                                        margin-left: 10px;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    &.create-item-form {
+                                        .item-body {
+                                            .create-item-form {
+                                                .form-inner {
+                                                    .form-block {
+                                                        .form-group {
+
+                                                            &.form-group-half {
+                                                                flex-direction: column;
+                                                                justify-content: flex-start;
+                                                                align-items: flex-start;
+
+                                                                .input-wrapper {
+                                                                    width: 100%;
+
+                                                                    &:last-child {
+                                                                        margin-top: 16px;
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            &.form-group-checkbox {
+                                                                justify-content: flex-start;
+                                                                align-items: flex-start;
+                                                                flex-direction: column-reverse;
+                                                                margin-left: 16px;
+
+                                                                .input-wrapper {
+                                                                    margin-top: 24px;
+
+                                                                    &:first-child {
+                                                                        margin-left: 0;
+                                                                        margin-right: 0;
+                                                                    }
+
+                                                                    &:last-child {
+                                                                        margin-top: 0;
+                                                                        margin-left: 0;
+                                                                        margin-right: 0;
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            &.form-group-progress {
+                                                                margin-left: 0;
+
+                                                                .input-wrapper {
+                                                                    width: 215px;
+                                                                    height: 56px;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .resources-list {
+                                .resources-list-item {
+                                    .item-head {
+                                        .item-title {
+                                            .item-name {
+                                                margin-left: 10px;
+
+                                                .like-score {
+                                                    .like-score-section {
+                                                        width: 16px;
+                                                    }
+                                                }
+                                            }
+
+                                            .item-specialist {
+                                                .specialist-name {
+                                                    display: none;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
