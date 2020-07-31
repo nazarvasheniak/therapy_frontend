@@ -504,14 +504,26 @@
                                                     <img [src]="session.specialist.photo.url" />
                                                 </div>
 
-                                                <div class="specialist-name">
-                                                    {{ session.specialist.user.firstName }} {{ session.specialist.user.lastName }}
+                                                <div class="specialist-name-rating">
+                                                    <div class="specialist-name">
+                                                        {{ session.specialist.user.firstName }} {{ session.specialist.user.lastName }}
+                                                    </div>
+    
+                                                    <div class="specialist-rating">
+                                                        <app-rating [score]="session.specialist.rating" [single]="true" [size]="18"></app-rating>
+    
+                                                        {{ session.specialist.rating }}
+                                                    </div>
                                                 </div>
+                                            </div>
 
-                                                <div class="specialist-rating">
-                                                    <app-rating [score]="session.specialist.rating" [single]="true" [size]="18"></app-rating>
-
-                                                    {{ session.specialist.rating }}
+                                            <div class="session-score">
+                                                <div class="score">
+                                                    <img src="../../../../assets/images/star.svg" />
+                                                    <img src="../../../../assets/images/star.svg" />
+                                                    <img src="../../../../assets/images/star.svg" />
+                                                    <img src="../../../../assets/images/star.svg" />
+                                                    <img src="../../../../assets/images/star.svg" />
                                                 </div>
                                             </div>
                                         </div>

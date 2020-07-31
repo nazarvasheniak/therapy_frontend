@@ -1208,6 +1208,7 @@
                                     .session-date {
                                         width: 54px;
                                         height: 54px;
+                                        flex: 0 0 54px;
                                         background: #FFFFFF;
                                         border: 1px solid #DBF8E6;
                                         box-sizing: border-box;
@@ -1246,6 +1247,7 @@
                                         .specialist-photo {
                                             width: 43px;
                                             height: 43px;
+                                            flex: 0 0 43px;
                                             border-radius: 24px;
 
                                             > img {
@@ -1258,25 +1260,30 @@
                                             }
                                         }
 
-                                        .specialist-name {
-                                            margin-left: 18px;
-                                            font-weight: 500;
-                                            font-size: 16px;
-                                            line-height: 16px;
-                                            color: #005264;
-                                        }
-
-                                        .specialist-rating {
+                                        .specialist-name-rating {
                                             margin-left: 10px;
                                             display: flex;
                                             align-items: center;
-                                            font-weight: normal;
-                                            font-size: 14px;
-                                            line-height: 16px;
-                                            color: #DEBA39;                                            
 
-                                            > img {
-                                                margin-right: 3px;
+                                            .specialist-name {
+                                                font-weight: 500;
+                                                font-size: 16px;
+                                                line-height: 16px;
+                                                color: #005264;
+                                            }
+    
+                                            .specialist-rating {
+                                                margin-left: 10px;
+                                                display: flex;
+                                                align-items: center;
+                                                font-weight: normal;
+                                                font-size: 14px;
+                                                line-height: 16px;
+                                                color: #DEBA39;                                            
+    
+                                                app-rating {
+                                                    margin-right: 3px;
+                                                }
                                             }
                                         }
                                     }
@@ -1528,6 +1535,28 @@
     }
 }
 
+@media screen and (min-width: 768px) {
+    .content-wrapper {
+        content {
+            .page-content {
+                .tabs {
+                    .tabs-content {
+                        .sessions-list {
+                            .sessions-list-item {
+                                .session-info {
+                                    .session-score {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 767px) {
     .container {
         width: 100%;
@@ -1596,6 +1625,72 @@
                                             .item-specialist {
                                                 margin-left: auto;
                                                 margin-right: 0;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .sessions-list {
+                                .sessions-list-item {
+                                    flex-direction: column;
+                                    justify-content: flex-start;
+                                    align-items: flex-start;
+                                    padding-top: 16px;
+                                    padding-bottom: 16px;
+
+                                    .session-info {
+                                        width: 100%;
+                                        align-items: flex-start;
+
+                                        .session-date {
+                                            display: none;
+                                        }
+
+                                        .session-specialist {
+                                            margin-left: 0;
+
+                                            .specialist-name-rating {
+                                                flex-direction: column;
+                                                align-items: flex-start;
+                                                
+                                                .specialist-rating {
+                                                    margin-left: 0;
+                                                    margin-top: 5px;
+                                                }
+                                            }
+                                        }
+
+                                        .session-score {
+                                            margin-right: 0;
+                                            margin-left: auto;
+
+                                            .score {
+                                                > img {
+                                                    margin-left: 6px;
+
+                                                    &:first-child {
+                                                        margin-left: 0;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .session-review {
+                                        width: 100%;
+                                        margin-top: 24px;
+
+                                        .session-score {
+                                            display: none;
+                                        }
+
+                                        .session-review-button {
+                                            width: 100%;
+                                            margin-left: 0;
+
+                                            > button {
+                                                width: 100%;
                                             }
                                         }
                                     }
