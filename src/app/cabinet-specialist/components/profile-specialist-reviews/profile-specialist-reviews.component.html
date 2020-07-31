@@ -16,8 +16,8 @@
 
                 <div class="page-content">
                     <div class="tabs">
-                        <div class="tabs-head">
-                            <div class="tab-head" *ngIf="positiveReviews" [ngClass]="{'active': activeTab == 1}" (click)="setActiveTab(1)">
+                        <ul class="tabs-head">
+                            <li class="tab-head" *ngIf="positiveReviews" [ngClass]="{'active': activeTab == 1}" (click)="setActiveTab(1)">
                                 <div class="title">
                                     Положительные
                                 </div>
@@ -25,9 +25,9 @@
                                 <div class="count">
                                     {{ positiveReviews.length }}
                                 </div>
-                            </div>
+                            </li>
 
-                            <div class="tab-head" *ngIf="neutralReviews" [ngClass]="{'active': activeTab == 2}" (click)="setActiveTab(2)">
+                            <li class="tab-head" *ngIf="neutralReviews" [ngClass]="{'active': activeTab == 2}" (click)="setActiveTab(2)">
                                 <div class="title">
                                     Нейтральные
                                 </div>
@@ -35,9 +35,9 @@
                                 <div class="count">
                                     {{ neutralReviews.length }}
                                 </div>
-                            </div>
+                            </li>
 
-                            <div class="tab-head" *ngIf="negativeReviews" [ngClass]="{'active': activeTab == 3}" (click)="setActiveTab(3)">
+                            <li class="tab-head" *ngIf="negativeReviews" [ngClass]="{'active': activeTab == 3}" (click)="setActiveTab(3)">
                                 <div class="title">
                                     Отрицательные
                                 </div>
@@ -45,8 +45,8 @@
                                 <div class="count">
                                     {{ negativeReviews.length }}
                                 </div>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
 
                         <div class="tabs-content">
                             <div class="tab-content" *ngIf="activeTab == 1">

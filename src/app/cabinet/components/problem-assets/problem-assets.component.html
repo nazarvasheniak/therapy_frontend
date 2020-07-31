@@ -24,39 +24,31 @@
 
                 <div class="page-content">
                     <div class="tabs" *ngIf="assets">
-                        <div class="tabs-head">
-                            <div class="tab-head" [ngClass]="{'active': activeTab == 1}" (click)="setActiveTab(1)">
+                        <ul class="tabs-head">
+                            <li class="tab-head" [ngClass]="{'active': activeTab == 1}" (click)="setActiveTab(1)">
                                 Образов
 
                                 <div class="count">
                                     {{ assets.images.length }}
                                 </div>
-                            </div>
+                            </li>
 
-                            <div class="tab-head" [ngClass]="{'active': activeTab == 2}" (click)="setActiveTab(2)">
+                            <li class="tab-head" [ngClass]="{'active': activeTab == 2}" (click)="setActiveTab(2)">
                                 Ресурсов
 
                                 <div class="count">
                                     {{ assets.resources.length }}
                                 </div>
-                            </div>
+                            </li>
 
-                            <div class="tab-head tab-head-mobile" [ngClass]="{'active': activeTab == 3}" (click)="setActiveTab(3)">
-                                Сессий
-
-                                <div class="count" *ngIf="sessions">
-                                    {{ sessions.length }}
-                                </div>
-                            </div>
-
-                            <div class="tab-head" [ngClass]="{'active': activeTab == 3}" (click)="setActiveTab(3)">
+                            <li class="tab-head" [ngClass]="{'active': activeTab == 3}" (click)="setActiveTab(3)">
                                 Проведено сессий
 
                                 <div class="count" *ngIf="sessions">
                                     {{ sessions.length }}
                                 </div>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
 
                         <div class="tabs-content">
                             <div class="tab-content" *ngIf="activeTab == 1">

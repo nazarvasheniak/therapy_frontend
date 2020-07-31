@@ -68,6 +68,8 @@
                     border-bottom: 1px solid #D5E8DD;
                     display: flex;
                     align-items: center;
+                    overflow-x: scroll;
+                    overflow-y: hidden;
 
                     .tab-head {
                         font-weight: 500;
@@ -1710,14 +1712,6 @@
         content {
             .page-content {
                 .tabs {
-                    .tabs-head {
-                        .tab-head {
-                            &.tab-head-mobile {
-                                display: none;
-                            }
-                        }
-                    }
-
                     .tabs-content {
                         .tab-content {
                             .images-list {
@@ -1770,25 +1764,14 @@
                 .tabs {
                     .tabs-head {
                         padding-left: 16px;
-                        padding-right: 16px;
+                        padding-right: 0;
                         padding-bottom: 8px;
-                        justify-content: space-between;
 
                         .tab-head {
-                            font-size: 14px;
-                            line-height: 140%;
-                            margin-left: 0;
-
-                            .count {
-                                font-size: 18px;
-                                line-height: 140%;
-                                margin-left: 8px;
-                            }
-
+                            white-space: nowrap;
+                            
                             &:last-child {
-                                &:not(.tab-head-mobile) {
-                                    display: none;
-                                }
+                                padding-right: 16px;
                             }
                         }
                     }
