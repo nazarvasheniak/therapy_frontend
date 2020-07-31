@@ -17,7 +17,7 @@
                 <div class="page-content">
                     <div class="tabs">
                         <ul class="tabs-head">
-                            <li class="tab-head" *ngIf="positiveReviews" [ngClass]="{'active': activeTab == 1}" (click)="setActiveTab(1)">
+                            <li class="tab-head positive" *ngIf="positiveReviews" [ngClass]="{'active': activeTab == 1}" (click)="setActiveTab(1)">
                                 <div class="title">
                                     Положительные
                                 </div>
@@ -27,7 +27,7 @@
                                 </div>
                             </li>
 
-                            <li class="tab-head" *ngIf="neutralReviews" [ngClass]="{'active': activeTab == 2}" (click)="setActiveTab(2)">
+                            <li class="tab-head neutral" *ngIf="neutralReviews" [ngClass]="{'active': activeTab == 2}" (click)="setActiveTab(2)">
                                 <div class="title">
                                     Нейтральные
                                 </div>
@@ -37,7 +37,7 @@
                                 </div>
                             </li>
 
-                            <li class="tab-head" *ngIf="negativeReviews" [ngClass]="{'active': activeTab == 3}" (click)="setActiveTab(3)">
+                            <li class="tab-head negative" *ngIf="negativeReviews" [ngClass]="{'active': activeTab == 3}" (click)="setActiveTab(3)">
                                 <div class="title">
                                     Отрицательные
                                 </div>
