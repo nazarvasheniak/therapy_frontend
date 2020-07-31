@@ -94,19 +94,19 @@
                     <div class="sessions-list" *ngIf="client">
                         <div class="sessions-list-item session-active" *ngFor="let session of client.sessions"
                             [ngClass]="{
-                            'session-waiting': session.status == 0,
-                            'session-active': session.status == 1,
-                            'session-success': session.status == 2,
-                            'session-refund': session.status == 3
+                            'session-waiting': session.sessionStatus == 0,
+                            'session-active': session.sessionStatus == 1,
+                            'session-success': session.sessionStatus == 2,
+                            'session-refund': session.sessionStatus == 3
                         }">
                             <div class="session-info">
                                 <div class="session-date">
-                                    <div class="day">{{ session.date | date: 'dd' }}</div>
-                                    <div class="month">{{ normalizeMonth(session.date | date: 'MMM') }}</div>
+                                    <div class="day">{{ session.sessionDate | date: 'dd' }}</div>
+                                    <div class="month">{{ normalizeMonth(session.sessionDate | date: 'MMM') }}</div>
                                 </div>
 
                                 <div class="problem-info">
-                                    <div class="title" *ngIf="session.status == 0">
+                                    <div class="title" *ngIf="session.sessionStatus == 0">
                                         <div class="title-inner">
                                             <div class="icon">
                                                 <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
@@ -130,27 +130,27 @@
                                         </div>
                                     </div>
 
-                                    <div class="title" *ngIf="session.status == 1">
+                                    <div class="title" *ngIf="session.sessionStatus == 1">
                                         Активная сессия
                                     </div>
 
-                                    <div class="title" *ngIf="session.status == 2">
+                                    <div class="title" *ngIf="session.sessionStatus == 2">
                                         + {{ session.reward | number:'':'fr' }} ₽
                                     </div>
 
-                                    <div class="title" *ngIf="session.status == 3">
+                                    <div class="title" *ngIf="session.sessionStatus == 3">
                                         Возврат
                                     </div>
 
                                     <div class="text">
-                                        {{ session.problem.problemText }}
+                                        {{ session.problemText }}
                                     </div>
                                 </div>
                             </div>
 
                             <div class="session-info-mobile">
                                 <div class="problem-text">
-                                    {{ session.problem.problemText }}
+                                    {{ session.problemText }}
                                 </div>
                             </div>
 
@@ -180,8 +180,12 @@
                                         </svg>
                                     </div>
 
-                                    <div class="value">
-                                        5/7
+                                    <div class="value" *ngIf="!session.isAllImagesFromOneSpecialist">
+                                        {{ session.sessionImagesCount }}/{{ session.totalImagesCount }}
+                                    </div>
+
+                                    <div class="value" *ngIf="session.isAllImagesFromOneSpecialist">
+                                        {{ session.sessionImagesCount }}
                                     </div>
                                 </div>
 
@@ -213,12 +217,16 @@
                                         </svg>
                                     </div>
 
-                                    <div class="value">
-                                        1/1
+                                    <div class="value" *ngIf="!session.isAllResourcesFromOneSpecialist">
+                                        {{ session.sessionResourcesCount }}/{{ session.totalResourcesCount }}
+                                    </div>
+
+                                    <div class="value" *ngIf="session.isAllResourcesFromOneSpecialist">
+                                        {{ session.sessionResourcesCount }}
                                     </div>
                                 </div>
 
-                                <div class="session-action close-button" *ngIf="session.status == 1">
+                                <div class="session-action close-button" *ngIf="session.sessionStatus == 1">
                                     Завершить
                                 </div>
                             </div>
