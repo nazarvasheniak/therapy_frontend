@@ -7,7 +7,7 @@
         margin-left: 30px;
         padding-left: 24px;
         padding-right: 24px;
-        padding-top: 28px;
+        padding-top: 24px;
         padding-bottom: 24px;
         border-radius: 14px;
 
@@ -289,6 +289,7 @@
                                     align-items: center;
                                     width: 54px;
                                     height: 54px;
+                                    flex: 0 0 54px;
                                     background: #FFFFFF;
                                     border: 1px solid #DBF8E6;
                                     box-sizing: border-box;
@@ -333,9 +334,22 @@
                                     }
                                 }
                             }
+
+                            .client-phone-mobile {
+                                margin-top: 16px;
+                                margin-left: 4px;
+
+                                .phone {
+                                    font-family: "Poppins", sans-serif;
+                                    font-weight: normal;
+                                    font-size: 16px;
+                                    line-height: 121.5%;
+                                    color: #9EACA9;
+                                }
+                            }
     
                             .client-actions {
-                                margin-top: 17px;
+                                margin-top: 12px;
                                 display: flex;
                                 align-items: center;
     
@@ -381,13 +395,15 @@
                             align-items: center;
 
                             .session-action {
+                                position: relative;
+                                width: 211px;
                                 background: #FFFFFF;
                                 border: 1px solid #E3F2EB;
                                 box-sizing: border-box;
                                 box-shadow: 0px 4px 20px #E2EEE7;
                                 border-radius: 10px;
-                                padding-top: 21px;
-                                padding-bottom: 21px;
+                                padding-top: 20px;
+                                padding-bottom: 20px;
                                 padding-left: 24px;
                                 padding-right: 20px;
                                 display: flex;
@@ -412,7 +428,8 @@
                                 }
 
                                 .session-action-icon {
-                                    
+                                    width: 48px;
+                                    height: 48px;
                                 }
 
                                 .session-action-value {
@@ -437,8 +454,9 @@
                                 }
 
                                 .session-action-goto {
-                                    margin-left: 19px;
-                                    margin-top: 18px;
+                                    position: absolute;
+                                    top: 46px;
+                                    right: 16px;
                                     width: 20px;
                                     height: 20px;
                                 }
@@ -489,6 +507,267 @@
                                 letter-spacing: 0.135em;
                                 font-size: 14px;
                                 line-height: 121.5%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .content-wrapper {
+        flex-direction: column;
+
+        content {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 16px;
+            
+            .specialist-work-stat {
+                margin-top: 30px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .content-wrapper {
+        content {
+            .active-sessions-block {
+                .active-sessions-list {
+                    .active-sessions-list-item {
+                        .client-info {
+                            justify-content: flex-start;
+                            align-items: flex-start;
+                            flex-direction: column;
+                            padding-bottom: 26px;
+
+                            .client-block {
+                                width: 100%;
+                            }
+
+                            .session-actions {
+                                margin-top: 18px;
+                            }
+                        }
+
+                        .problem-info {
+                            flex-direction: column;
+                            align-items: flex-start;
+                            justify-content: flex-start;
+                            padding-top: 23px;
+                            padding-bottom: 27px;
+
+                            .problem {
+                                width: 100%;
+                            }
+                            
+                            .button {
+                                margin-top: 25px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        width: 100%;
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
+    .content-wrapper {
+        content {
+            .specialist-work-stat {
+                justify-content: flex-start;
+                align-items: flex-start;
+                flex-direction: column;
+                padding-top: 0;
+                padding-bottom: 20px;
+                padding-left: 16px;
+                padding-right: 0;
+
+                .stats-block {
+                    align-items: flex-start;
+                    flex-direction: column;
+                    width: 100%;
+
+                    .stat-block {
+                        width: 100%;
+                        border-right: 0;
+                        border-bottom: 1px solid #CDEADC;
+                        padding-top: 16px;
+                        padding-bottom: 16px;
+                        padding-left: 0;
+                        padding-right: 0;
+
+                        &:last-child {
+                            border-bottom: 0;
+                            padding-bottom: 0;
+                        }
+                    }
+                }
+
+                .price-block {
+                    margin-top: 28px;
+                    padding-right: 16px;
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
+
+            .active-sessions-block {
+                .active-sessions-empty {
+                    padding-top: 58px;
+                    padding-bottom: 65px;
+                }
+
+                .active-sessions-list {
+                    .active-sessions-list-item {
+                        .client-info {
+                            padding-top: 16px;
+                            padding-left: 16px;
+                            padding-right: 16px;
+                        }
+
+                        .problem-info {
+                            padding-top: 16px;
+                            padding-bottom: 16px;
+                            padding-left: 16px;
+                            padding-right: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 560px) {
+    .content-wrapper {
+        content {
+            .active-sessions-block {
+                .active-sessions-list {
+                    .active-sessions-list-item {
+                        .client-info {
+                            .client-block {
+                                .client-phone-mobile {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 559px) {
+    .container {
+        width: 100%;
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+
+    .content-wrapper {
+        content {
+            padding: 16px;
+
+            .specialist-work-stat {
+                margin-top: 24px;
+            }
+
+            .active-sessions-block {
+                .active-sessions-list {
+                    .active-sessions-list-item {
+                        margin-top: 16px;
+
+                        .client-info {
+                            padding-bottom: 16px;
+
+                            .client-block {
+                                .session-info {
+                                    .client-name {
+                                        .phone {
+                                            display: none;
+                                        }
+
+                                        .name {
+                                            line-height: 140%;
+                                            margin-top: 0;
+                                        }
+                                    }
+                                }
+
+                                .client-actions {
+                                    margin-top: 16px;
+                                    flex-wrap: wrap;
+
+                                    .action {
+                                        margin-left: 0;
+                                        margin-right: 10px;
+
+                                        &:last-child {
+                                            margin-right: 0;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .session-actions {
+                                width: 100%;
+                                margin-top: 16px;
+                                flex-direction: column;
+
+                                .session-action {
+                                    margin-left: 0;
+                                    width: 100%;
+
+                                    &:last-child {
+                                        margin-top: 8px;
+                                    }
+                                }
+                            }
+                        }
+
+                        .problem-info {
+                            .button {
+                                width: 100%;
+
+                                > button {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 408px) {
+    .content-wrapper {
+        content {
+            .active-sessions-block {
+                .active-sessions-list {
+                    .active-sessions-list-item {
+                        .client-info {
+                            .client-block {
+                                .client-actions {
+                                    .action {
+                                        &:last-child {
+                                            margin-top: 10px;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

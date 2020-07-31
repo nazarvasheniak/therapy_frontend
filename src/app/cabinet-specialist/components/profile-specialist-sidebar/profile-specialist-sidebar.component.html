@@ -75,4 +75,28 @@
             </ul>
         </nav>
     </div>
+
+    <div class="sidebar-finances sidebar-finances-mobile">
+        <div class="balance-block">
+            <div class="finances-head">
+                Баланс
+            </div>
+    
+            <div class="balance-row">
+                <!-- <div class="balance">
+                    {{ (wallet.balance - wallet.lockedBalance) | number:'':'fr' }} ₽
+                </div> -->
+
+                <div class="balance">
+                    17 840 ₽
+                </div>
+            </div>
+        </div>
+
+        <div class="pay-block">
+            <div class="pay-button">
+                <button type="button" class="button-green" [routerLink]="['/profile/deposit']">Пополнить</button>
+            </div>
+        </div>
+    </div>
 </aside>
