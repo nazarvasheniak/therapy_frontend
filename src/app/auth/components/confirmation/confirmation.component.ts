@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/common/services/auth.service';
+import { UserRole } from 'src/app/common/enums';
 
 @Component({
 	selector: 'app-auth-confirmation',
@@ -125,6 +126,13 @@ export class ConfirmationComponent implements OnInit, AfterViewInit {
         .subscribe(data => {
             this.isError = false;
             this.isLoading = false;
+            
+            if (data.role == UserRole.Specialist) {
+                this.router.navigate(['/profile-specialist']);
+
+                return;
+            }
+            
             this.router.navigate(['/profile']);
         },
         fail => {

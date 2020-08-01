@@ -6,6 +6,7 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RouterModule } from '@angular/router';
 import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recap
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        RecaptchaModule
+        RecaptchaModule,
+        NgxMaskModule.forRoot(),
     ],
     providers: [
         {

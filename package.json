@@ -32,6 +32,7 @@
     "jszip": "^3.3.0",
     "minireset.css": "~0.0.4",
     "ng-recaptcha": "^5.0.0",
+    "ngx-mask": "^9.1.2",
     "ngx-spinner": "^9.0.2",
     "ngx-swiper-wrapper": "^9.0.1",
     "resize-observer-polyfill": "^1.5.1",

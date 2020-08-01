@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/common/services/auth.service';
 import { Location } from '@angular/common';
 
-declare var $: any;
-
 @Component({
 	selector: 'app-signin',
 	templateUrl: './sign-in.component.html',
@@ -24,8 +22,8 @@ export class SignInComponent implements OnInit {
 
     constructor(
         private authService: AuthService,
-        private router: Router,
-        private location: Location) {
+        private router: Router
+    ) {
             
         this.authService.isLoggedIn
             .subscribe(logged => {
@@ -58,8 +56,6 @@ export class SignInComponent implements OnInit {
             phone: new FormControl(null, [Validators.required]),
             captchaValid: new FormControl(false)
         });
-
-        $("#phone").mask("+7 (999) 999-99-99", { autoclear: false });
     }
 
     public inputEvent(event) {
@@ -102,9 +98,7 @@ export class SignInComponent implements OnInit {
         }
 
         this.authService
-            .signIn({
-                phoneNumber: phone
-            })
+            .signIn({ phoneNumber: phone })
             .subscribe(
                 data => {
                     this.router.navigate(['/sign-in/confirm'], {
@@ -119,6 +113,7 @@ export class SignInComponent implements OnInit {
                     this.errorText = fail.error.message;
                     this.isError = true;
                     this.isLoading = false;
+                    
                     return;
                 }
             );

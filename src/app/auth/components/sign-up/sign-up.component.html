@@ -23,7 +23,7 @@
                 </div>
     
                 <div class="form-group">
-                    <input #phoneNumber id="phoneNumber" type="text" formControlName="phoneNumber" (keyup)="inputEvent('phoneNumber' ,$event)" required />
+                    <input #phoneNumber id="phoneNumber" type="text" formControlName="phoneNumber" (keyup)="inputEvent('phoneNumber' ,$event)" prefix="+7 " mask="(000) 000-00-00" required />
                     <label (click)="labelClick('phoneNumber')">Телефон</label>
                 </div>
     
