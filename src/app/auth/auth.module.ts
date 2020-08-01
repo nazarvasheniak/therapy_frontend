@@ -6,7 +6,8 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RouterModule } from '@angular/router';
 import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
-import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { NgxMaskModule } from 'ngx-mask';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
         ReactiveFormsModule,
         RouterModule,
         RecaptchaModule,
+        MatProgressSpinnerModule,
         NgxMaskModule.forRoot(),
     ],
     providers: [

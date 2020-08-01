@@ -61,7 +61,11 @@
                 </div>
     
                 <div class="form-group">
-                    <button type="submit" [ngClass]="{'button-disabled': !isFormValid()}" [disabled]="!isFormValid()">Продолжить</button>
+                    <button type="submit" *ngIf="!isLoading" [ngClass]="{'button-disabled': !isFormValid()}" [disabled]="!isFormValid()">Продолжить</button>
+
+                    <button *ngIf="isLoading">
+                        <mat-spinner [diameter]="40"></mat-spinner>
+                    </button>
                 </div>
     
                 <div class="form-footer">

@@ -97,8 +97,7 @@ export class SignInComponent implements OnInit {
             return;
         }
 
-        this.authService
-            .signIn({ phoneNumber: phone })
+        this.authService.signIn({ phoneNumber: phone })
             .subscribe(
                 data => {
                     this.router.navigate(['/sign-in/confirm'], {
@@ -113,7 +112,7 @@ export class SignInComponent implements OnInit {
                     this.errorText = fail.error.message;
                     this.isError = true;
                     this.isLoading = false;
-                    
+
                     return;
                 }
             );

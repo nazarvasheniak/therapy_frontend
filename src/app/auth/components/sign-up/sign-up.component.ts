@@ -4,8 +4,6 @@ import { AuthService } from 'src/app/common/services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SignUpRequest } from 'src/app/common/models/request';
 
-declare var $: any;
-
 @Component({
 	selector: 'app-signup',
 	templateUrl: './sign-up.component.html',
@@ -75,8 +73,6 @@ export class SignUpComponent implements OnInit {
             privacy: new FormControl(false, [Validators.required]),
             captchaValid: new FormControl(false)
         });
-
-        $("#phoneNumber").mask("+7 (999) 999-99-99", { autoclear: false });
     }
 
     public inputEvent(control: string ,event) {

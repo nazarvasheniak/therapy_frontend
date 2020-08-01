@@ -28,7 +28,11 @@
                 </div>
     
                 <div class="form-group">
-                    <button type="submit" *ngIf="!isError" class="button-disabled" [disabled]="confirmAuthForm.invalid">Продолжить</button>
+                    <button type="submit" *ngIf="!isError && !isLoading" class="button-disabled" [disabled]="confirmAuthForm.invalid">Продолжить</button>
+
+                    <button *ngIf="isLoading">
+                        <mat-spinner [diameter]="40"></mat-spinner>
+                    </button>
                 </div>
     
                 <div class="form-footer">

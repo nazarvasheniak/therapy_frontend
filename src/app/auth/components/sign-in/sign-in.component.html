@@ -23,7 +23,13 @@
                 </div>
     
                 <div class="form-group" style="margin-top: 13px;">
-                    <button type="submit" [ngClass]="{'button-disabled': !isPhoneValid || !signInForm.value['captchaValid']}" [disabled]="!isPhoneValid || !signInForm.value['captchaValid']">Войти</button>
+                    <button type="submit" *ngIf="!isLoading" [ngClass]="{'button-disabled': !isPhoneValid || !signInForm.value['captchaValid']}" [disabled]="!isPhoneValid || !signInForm.value['captchaValid']">
+                        Войти
+                    </button>
+
+                    <button *ngIf="isLoading">
+                        <mat-spinner [diameter]="40"></mat-spinner>
+                    </button>
                 </div>
     
                 <div class="form-footer">

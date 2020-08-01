@@ -105,6 +105,11 @@ body {
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
 }
 
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #FFFFFF !important;
+    opacity: .7;
+}
+
 .auth-wrapper {
     background: #254951;
     padding-top: 67px;
@@ -113,9 +118,11 @@ body {
 
     form {
         button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
-            padding-top: 24px;
-            padding-bottom: 24px;
+            height: 65px;
             font-size: 14px;
             font-weight: bold;
             letter-spacing: 0.135em;

@@ -114,6 +114,7 @@ export class ConfirmationComponent implements OnInit, AfterViewInit {
 
         if (form.invalid) {
             this.isLoading = false;
+            
             return;
         }
 
