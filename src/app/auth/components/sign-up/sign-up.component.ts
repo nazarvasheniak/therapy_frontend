@@ -127,6 +127,10 @@ export class SignUpComponent implements OnInit {
     }
 
     public submit(form: FormGroup) {
+        if (this.isLoading) {
+            return;
+        }
+
         this.isError = false;
         this.isLoading = true;
 

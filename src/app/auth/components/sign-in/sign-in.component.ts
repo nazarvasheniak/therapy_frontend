@@ -85,8 +85,11 @@ export class SignInComponent implements OnInit {
     }
 
     public submit(form: FormGroup): void {
-        this.isError = false;
+        if (this.isLoading) {
+            return;
+        }
 
+        this.isError = false;
         this.isLoading = true;
         
         const phone = this.normalizePhoneNumber(form.value['phone']);

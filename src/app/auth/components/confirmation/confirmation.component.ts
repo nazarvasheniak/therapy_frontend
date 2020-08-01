@@ -110,11 +110,15 @@ export class ConfirmationComponent implements OnInit, AfterViewInit {
     }
 
     public submit(form: FormGroup) {
+        if (this.isLoading) {
+            return;
+        }
+
         this.isLoading = true;
 
         if (form.invalid) {
             this.isLoading = false;
-            
+
             return;
         }
 
