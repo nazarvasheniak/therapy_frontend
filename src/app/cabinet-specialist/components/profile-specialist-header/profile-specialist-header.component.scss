@@ -3,7 +3,7 @@ header {
     padding-bottom: 12px;
     position: relative;
     z-index: 1;
-    background-image: url(../../../assets/images/main-bg.svg);
+    background-image: url('../../../../assets/images/main-bg.svg');
     background-repeat: repeat;
 
     .logo-wrapper {
@@ -229,32 +229,52 @@ header.header-mobile {
         }
 
         nav {
-            padding-top: 48px;
+            padding-top: 45px;
+            padding-left: 23px;
             
             ul {
                 li {
-                    margin-top: 48px;
+                    margin-top: 35px;
 
                     &:first-child {
                         margin-top: 0;
                     }
 
                     a {
+                        display: flex;
+                        align-items: center;
                         font-weight: normal;
-                        font-size: 14px;
-                        line-height: 17px;
-                        color: #7EA59E;
-                        letter-spacing: 0.05em;
+                        font-size: 16px;
+                        line-height: 19px;
+                        color: #005264;
                         text-decoration: none;
-                        text-transform: uppercase;
+                        cursor: pointer;
                         transition: all .3s;
 
-                        &:hover {
-                            color: #99D3C9;
-                        }
+                        > svg {
+                            margin-right: 12px;
 
-                        &:active {
-                            color: #639289;
+                            &:first-child {
+                                display: block;
+                            }
+
+                            &:last-child {
+                                display: none;
+                            }
+                        }
+    
+                        &.active {
+                            color: #32A776;
+    
+                            > svg {
+                                &:first-child {
+                                    display: none;
+                                }
+
+                                &:last-child {
+                                    display: block;
+                                }
+                            }
                         }
                     }
                 }
@@ -291,7 +311,7 @@ header.header-mobile {
                 ul {
                     li {
                         &:last-child {
-                            display: none;
+                            //display: none;
                         }
                     }
                 }
@@ -301,10 +321,6 @@ header.header-mobile {
 }
 
 @media screen and (max-width: 559px) {
-    header {
-        padding-bottom: 44px;
-    }
-
     header.header-mobile {
         padding-left: 19px;
         padding-right: 19px;
@@ -315,6 +331,12 @@ header.header-mobile {
                 .profile-badge-wrapper {
                     display: none;
                 }
+            }
+        }
+
+        .header-expand-nav {
+            nav {
+                padding-bottom: 20px;
             }
         }
     }

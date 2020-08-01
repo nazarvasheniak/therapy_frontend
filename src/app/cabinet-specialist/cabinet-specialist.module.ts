@@ -17,10 +17,12 @@ import { ProfileSpecialistProblemAssetsComponent } from './components/profile-sp
 
 import { MatSliderModule } from '@angular/material/slider';
 import { FilterHiddenImagesPipe } from '../common/pipes';
+import { ProfileSpecialistHeaderComponent } from './components/profile-specialist-header/profile-specialist-header.component';
 
 @NgModule({
     declarations: [
         ProfileSpecialistComponent,
+        ProfileSpecialistHeaderComponent,
         ProfileSpecialistSidebarComponent,
         ProfileSpecialistArticlesComponent,
         ProfileSpecialistCreateArticleComponent,

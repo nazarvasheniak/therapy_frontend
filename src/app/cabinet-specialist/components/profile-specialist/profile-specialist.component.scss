@@ -1,5 +1,6 @@
 .content-wrapper {
     display: flex;
+    margin-top: 19px;
 
     content {
         width: 954px;
@@ -74,7 +75,11 @@
                         font-weight: normal;
                         font-size: 18px;
                         line-height: 111%;
-                        color: #DEDEDE;
+                        color: #DEBA39;
+
+                        &.low {
+                            color: #DEDEDE;
+                        }
 
                         .star {
                             width: 24px;
@@ -584,6 +589,22 @@
 
     .content-wrapper {
         content {
+            .specialist-info {
+                .specialist-stat {
+                    .specialist-name {
+                        .last-name {
+                            display: none;
+                        }
+                    }
+
+                    .specialist-rating {
+                        .reviews {
+                            margin-left: 14px;
+                        }
+                    }
+                }
+            }
+
             .specialist-work-stat {
                 justify-content: flex-start;
                 align-items: flex-start;
@@ -743,6 +764,8 @@
 
                                 > button {
                                     width: 100%;
+                                    padding-left: 0;
+                                    padding-right: 0;
                                 }
                             }
                         }

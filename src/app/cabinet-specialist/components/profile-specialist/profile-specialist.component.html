@@ -1,7 +1,7 @@
 <div class="page-wrapper">
 
     <!-- Header -->
-    <app-header></app-header>
+    <profile-specialist-header></profile-specialist-header>
 
     <div class="container">
         <div class="content-wrapper">
@@ -25,13 +25,13 @@
 
                     <div class="specialist-stat">
                         <div class="specialist-name">
-                            {{ profile.firstName }} {{ profile.lastName }}
+                            <span class="first-name">{{ profile.firstName }}</span> <span class="last-name"> {{ profile.lastName }}</span>
                         </div>
 
                         <div class="specialist-rating">
-                            <div class="rating">
+                            <div class="rating" [ngClass]="{'low': profile.rating == 0}">
                                 <div class="star">
-                                    <img src="../../../../assets/images/star-empty.svg" />
+                                    <app-rating [score]="profile.rating" [single]="true" [size]="24"></app-rating>
                                 </div>
 
                                 {{ profile.rating }}

@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
 import { UserRole } from 'src/app/common/enums';
 
 @Component({
-	selector: 'app-header',
-	templateUrl: './header.component.html',
-	styleUrls: ['./header.component.scss']
+	selector: 'profile-specialist-header',
+	templateUrl: './profile-specialist-header.component.html',
+	styleUrls: ['./profile-specialist-header.component.scss']
 })
-export class HeaderComponent {
+export class ProfileSpecialistHeaderComponent {
 	
 	public isLoggedIn: boolean;
 	public user: User;
