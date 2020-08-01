@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/common/services/auth.service';
 import { Location } from '@angular/common';
+import { UserRole } from 'src/app/common/enums';
 
 @Component({
 	selector: 'app-signin',
@@ -92,17 +93,41 @@ export class SignInComponent implements OnInit {
         this.isError = false;
         this.isLoading = true;
         
-        const phone = this.normalizePhoneNumber(form.value['phone']);
+        const phoneNumber = this.normalizePhoneNumber(form.value['phone']);
 
-        if (!this.isValidPhoneNumber(phone)) {
+        if (!this.isValidPhoneNumber(phoneNumber)) {
             alert('error');
             this.isLoading = false;
             return;
         }
 
-        this.authService.signIn({ phoneNumber: phone })
+        if (phoneNumber == '+78888888888' || phoneNumber == '+79999999999') {
+            this.authService.signInTest({ phoneNumber })
+                .subscribe(
+                    (data) => {
+                        this.isError = false;
+                        this.isLoading = false;
+                        
+                        if (data.role == UserRole.Specialist) {
+                            this.router.navigate(['/profile-specialist']);
+
+                            return;
+                        }
+                        
+                        this.router.navigate(['/profile']);
+                    },
+                    (fail) => {
+                        this.errorText = fail.error.message;
+                        this.isError = true;
+                        this.isLoading = false;
+                    });
+
+            return;
+        }
+
+        this.authService.signIn({ phoneNumber })
             .subscribe(
-                data => {
+                (data) => {
                     this.router.navigate(['/sign-in/confirm'], {
                         queryParams: {
                             id: data.userID
@@ -111,7 +136,7 @@ export class SignInComponent implements OnInit {
 
                     return;
                 },
-                fail => {
+                (fail) => {
                     this.errorText = fail.error.message;
                     this.isError = true;
                     this.isLoading = false;

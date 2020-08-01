@@ -68,8 +68,12 @@
                     </div>
 
                     <div class="profile-badge-wrapper" *ngIf="user.role == 2 || user.role == 3" [routerLink]="['/profile-specialist']">
-                        <div class="avatar" *ngIf="specialist">
+                        <div class="avatar" *ngIf="specialist && specialist.photo && specialist.photo.url">
                             <img [src]="specialist.photo.url" />
+                        </div>
+
+                        <div class="avatar" *ngIf="specialist && (!specialist.photo || !specialist.photo.url)">
+                            {{ getAvatar() }}
                         </div>
 
                         <div class="username">
@@ -107,8 +111,12 @@
             </div>
 
             <div class="profile-badge-wrapper" *ngIf="isLoggedIn && user && (user.role == 2 || user.role == 3)" [routerLink]="['/profile-specialist']">
-                <div class="avatar" *ngIf="specialist">
+                <div class="avatar" *ngIf="specialist && specialist.photo && specialist.photo.url">
                     <img [src]="specialist.photo.url" />
+                </div>
+
+                <div class="avatar" *ngIf="specialist && (!specialist.photo || !specialist.photo.url)">
+                    {{ getAvatar() }}
                 </div>
 
                 <div class="username">
@@ -156,8 +164,12 @@
 
                 <li *ngIf="isLoggedIn && user && (user.role == 2 || user.role == 3)">
                     <div class="profile-badge-wrapper" *ngIf="isLoggedIn && user && (user.role == 2 || user.role == 3)" [routerLink]="['/profile-specialist']">
-                        <div class="avatar" *ngIf="specialist">
+                        <div class="avatar" *ngIf="specialist && specialist.photo && specialist.photo.url">
                             <img [src]="specialist.photo.url" />
+                        </div>
+
+                        <div class="avatar" *ngIf="specialist && (!specialist.photo || !specialist.photo.url)">
+                            {{ getAvatar() }}
                         </div>
         
                         <div class="username">

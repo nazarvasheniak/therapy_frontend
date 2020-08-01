@@ -47,8 +47,12 @@
 
                 <li *ngIf="user && specialist">
                     <div class="profile-badge-wrapper" [routerLink]="['/profile-specialist']">
-                        <div class="avatar">
+                        <div class="avatar" *ngIf="specialist.photo && specialist.photo.url">
                             <img [src]="specialist.photo.url" />
+                        </div>
+
+                        <div class="avatar" *ngIf="!specialist.photo || !specialist.photo.url">
+                            {{ getAvatar() }}
                         </div>
 
                         <div class="username">
@@ -69,8 +73,12 @@
     
         <div class="nav-wrapper" *ngIf="user && specialist">
             <div class="profile-badge-wrapper" [routerLink]="['/profile-specialist']">
-                <div class="avatar">
+                <div class="avatar" *ngIf="specialist.photo && specialist.photo.url">
                     <img [src]="specialist.photo.url" />
+                </div>
+
+                <div class="avatar" *ngIf="!specialist.photo || !specialist.photo.url">
+                    {{ getAvatar() }}
                 </div>
 
                 <div class="username">

@@ -38,6 +38,21 @@
                         }
                     }
 
+                    .avatar {
+                        width: 100%;
+                        height: 100%;
+                        border: 2px solid #6AC9A1;
+                        border-radius: 100px;
+                        background: #77D8AF;
+                        font-weight: 500;
+                        font-size: 28px;
+                        line-height: 100%;
+                        color: #FFFFFF;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
                     .edit-button {
                         position: absolute;
                         bottom: 0;

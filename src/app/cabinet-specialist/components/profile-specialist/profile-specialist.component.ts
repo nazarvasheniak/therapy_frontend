@@ -102,4 +102,8 @@ export class ProfileSpecialistComponent implements OnInit {
             }
         });
     }
+
+    getAvatar() {
+		return StringHelper.getFirstLetter(this.profile.lastName);
+	}
 }

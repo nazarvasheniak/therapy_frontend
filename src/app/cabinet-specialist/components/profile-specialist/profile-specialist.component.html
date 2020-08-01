@@ -11,8 +11,12 @@
                 <div class="specialist-info" *ngIf="profile">
                     <div class="specialist-photo">
                         <div class="specialist-photo-inner">
-                            <div class="image">
+                            <div class="image" *ngIf="profile.photoUrl">
                                 <img [src]="profile.photoUrl" />
+                            </div>
+
+                            <div class="avatar" *ngIf="!profile.photoUrl">
+                                {{ getAvatar() }}
                             </div>
 
                             <div class="edit-button">

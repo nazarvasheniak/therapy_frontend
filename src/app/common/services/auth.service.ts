@@ -65,6 +65,11 @@ export class AuthService extends BaseHttpService {
         return this.post<SignInResponse>(`${this.apiUrl}/auth/sign-in`, request);
     }
 
+    public signInTest(request: SignInRequest) {
+        return this.post<SignInConfirmResponse>(`${this.apiUrl}/auth/test/sign-in`, request)
+            .map(response => this.saveToken(response));
+    }
+
     public signInConfirm(request: SignInConfirmRequest) {
         return this.post<SignInConfirmResponse>(`${this.apiUrl}/auth/sign-in/confirm`, request)
             .map(response => this.saveToken(response));
