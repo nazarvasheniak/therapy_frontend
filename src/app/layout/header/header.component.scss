@@ -1,6 +1,6 @@
 header {
     padding-top: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 12px;
     position: relative;
     z-index: 1;
     background-image: url(../../../assets/images/main-bg.svg);
@@ -264,19 +264,24 @@ header.header-mobile {
     }
 }
 
-@media screen and (max-width: 575px) {
-    header.header-mobile {
-        padding-left: 19px;
-        padding-right: 19px;
 
-        .header-content {
-            .nav-wrapper {
-                .login-wrapper,
-                .profile-badge-wrapper {
-                    display: none;
-                }
-            }
-        }
+
+@media screen and (min-width: 1200px) {
+    header.header-mobile {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    header.header-desktop {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    header {
+        padding-top: 27px;
+        padding-bottom: 0;
     }
 }
 
@@ -296,14 +301,22 @@ header.header-mobile {
     }
 }
 
-@media screen and (max-width: 1199px) {
-    header.header-desktop {
-        display: none;
+@media screen and (max-width: 575px) {
+    header {
+        padding-bottom: 44px;
     }
-}
 
-@media screen and (min-width: 1200px) {
     header.header-mobile {
-        display: none;
+        padding-left: 19px;
+        padding-right: 19px;
+
+        .header-content {
+            .nav-wrapper {
+                .login-wrapper,
+                .profile-badge-wrapper {
+                    display: none;
+                }
+            }
+        }
     }
 }

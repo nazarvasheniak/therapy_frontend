@@ -95,22 +95,22 @@
                     Войти
                 </button>
             </div>
-    
+
             <div class="profile-badge-wrapper" *ngIf="isLoggedIn && user && user.role == 1" [routerLink]="['/profile']">
                 <div class="avatar">
                     {{ getAvatar() }}
                 </div>
-    
+
                 <div class="username">
                     {{ user.firstName }}
                 </div>
             </div>
 
             <div class="profile-badge-wrapper" *ngIf="isLoggedIn && user && (user.role == 2 || user.role == 3)" [routerLink]="['/profile-specialist']">
-                <div class="avatar">
-                    {{ getAvatar() }}
+                <div class="avatar" *ngIf="specialist">
+                    <img [src]="specialist.photo.url" />
                 </div>
-    
+
                 <div class="username">
                     {{ user.firstName }}
                 </div>
