@@ -27,7 +27,8 @@ import {
     ProblemAssets, 
     ProblemImage, 
     ProblemResource,
-    ProblemResourceTask
+    ProblemResourceTask,
+    File
 } from '../models';
 import { SpecialistProfileActiveSession } from '../models/specialist-profile-active-session.model';
 
@@ -70,6 +71,14 @@ export class SpecialistService extends BaseHttpService {
 
     public getReviews() {
         return this.get<ReviewsResponse>(`${this.apiUrl}/specialist/reviews`);
+    }
+
+    public uploadAvatarImage(file: globalThis.File) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        return this.put<DataResponse<File>>(`${this.apiUrl}/specialist/avatar`, formData)
+            .map(response => response.data);
     }
 
     public getClientAssets(clientID: number, problemID: number) {

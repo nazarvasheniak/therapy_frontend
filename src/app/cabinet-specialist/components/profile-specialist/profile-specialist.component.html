@@ -9,7 +9,7 @@
 
             <content>
                 <div class="specialist-info" *ngIf="profile">
-                    <div class="specialist-photo">
+                    <div class="specialist-photo" (click)="uploadPhotoInput.click()">
                         <div class="specialist-photo-inner">
                             <div class="image" *ngIf="profile.photoUrl">
                                 <img [src]="profile.photoUrl" />
@@ -20,6 +20,8 @@
                             </div>
 
                             <div class="edit-button">
+                                <input (change)="uploadFile($event.target.files)" #uploadPhotoInput class="upload-photo-input" type="file" accept=".png, .jpg, .jpeg" />
+
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0233 5.33604L8.66425 3.97703L2.91986 9.72142L2.30348 11.6968L4.27887 11.0804L10.0233 5.33604ZM10.5182 4.84106L9.15923 3.48206L10.5261 2.11514L11.8851 3.47415L10.5182 4.84106ZM12.4053 3.94394C12.6648 3.68448 12.6648 3.26382 12.4053 3.00436L10.9959 1.59498C10.7365 1.33553 10.3158 1.33553 10.0563 1.59498L2.34954 9.3018C2.29459 9.35675 2.26064 9.42923 2.2536 9.50662L1.4013 12.2381C1.38252 12.4447 1.5556 12.6178 1.7622 12.599L4.49367 11.7467C4.57107 11.7397 4.64354 11.7057 4.69849 11.6508L12.4053 3.94394Z" fill="white"/>
                                 </svg>                                    

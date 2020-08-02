@@ -19,3 +19,4 @@ export * from './problem-resource-task.model';
 export * from './problem-assets.model';
 export * from './client-card.model';
 export * from './client-problem-assets.model';
+export * from './specialist-profile-active-session.model';

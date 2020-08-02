@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { SpecialistService, AuthService } from 'src/app/common/services';
-import { SpecialistProfile, Session, Problem } from 'src/app/common/models';
+
+import { SpecialistService, AuthService, FilesService } from 'src/app/common/services';
+import { SpecialistProfile, Problem, SpecialistProfileActiveSession } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
-import { SpecialistProfileActiveSession } from 'src/app/common/models/specialist-profile-active-session.model';
 
 @Component({
 	selector: 'app-profile-specialist',
@@ -11,7 +11,7 @@ import { SpecialistProfileActiveSession } from 'src/app/common/models/specialist
 	styleUrls: ['./profile-specialist.component.scss']
 })
 export class ProfileSpecialistComponent implements OnInit {
-    
+
     public profile: SpecialistProfile;
     public activeSessions: SpecialistProfileActiveSession[];
 
@@ -105,5 +105,12 @@ export class ProfileSpecialistComponent implements OnInit {
 
     getAvatar() {
 		return StringHelper.getFirstLetter(this.profile.lastName);
-	}
+    }
+    
+    uploadFile(files: FileList) {
+        const file = files.item(0);
+
+        this.specialistService.uploadAvatarImage(file)
+            .subscribe(response => this.profile.photoUrl = response.url);
+    }
 }
