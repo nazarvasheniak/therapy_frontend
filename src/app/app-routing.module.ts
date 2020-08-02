@@ -34,9 +34,9 @@ export class LoaderGuard implements CanActivate {
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 		return new Promise<boolean>((resolve, reject) => {
-			this.loaderService.showLoader();
+			this.loaderService.next(true);
 			
-			setTimeout(() => resolve(true), 200);
+			setTimeout(() => resolve(true), 100);
 		});
 	}
 }
