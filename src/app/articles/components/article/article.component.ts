@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ArticlesService } from 'src/app/common/services';
+import { ArticlesService, RouterExtService } from 'src/app/common/services';
 import { Article, User, ArticleComment } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -36,6 +36,7 @@ export class ArticleComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
+		private routerService: RouterExtService,
 		private articlesService: ArticlesService
 	) {
 
@@ -162,5 +163,9 @@ export class ArticleComponent implements OnInit {
 				this.commentText = null;
 				this.loadArticle(this.article.id);
 			});
+	}
+
+	prevRoute() {
+		this.router.navigate([this.routerService.getPreviousUrl()]);
 	}
 }

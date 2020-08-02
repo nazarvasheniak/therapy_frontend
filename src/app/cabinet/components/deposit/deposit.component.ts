@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService, PatientService, PaymentsService } from 'src/app/common/services';
+import { AuthService, PatientService, PaymentsService, RouterExtService } from 'src/app/common/services';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CreatePaymentRequest } from 'src/app/common/models/request';
 import { PaymentType } from 'src/app/common/enums';
@@ -18,7 +18,8 @@ export class CabinetDepositComponent implements OnInit {
         private authService: AuthService,
         private patientService: PatientService,
         private paymentsService: PaymentsService,
-        private router: Router
+        private router: Router,
+        private routerService: RouterExtService
     ) {
         
     }
@@ -33,6 +34,10 @@ export class CabinetDepositComponent implements OnInit {
                 this.initDepositForm();
             });
     }
+
+    prevRoute() {
+		this.router.navigate([this.routerService.getPreviousUrl()]);
+	}
 
     private initDepositForm() {
         this.depositForm = new FormGroup({

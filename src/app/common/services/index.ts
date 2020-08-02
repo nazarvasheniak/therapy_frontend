@@ -11,3 +11,4 @@ export * from './payments.service';
 export * from './storage.service';
 export * from './specialist.service';
 export * from './loader.service';
+export * from './router-ext.service';

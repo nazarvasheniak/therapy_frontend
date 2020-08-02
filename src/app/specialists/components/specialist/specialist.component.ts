@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SpecialistsService, StorageService } from 'src/app/common/services';
+import { SpecialistsService, StorageService, RouterExtService } from 'src/app/common/services';
 import { Specialist, Review } from 'src/app/common/models';
 import { ReviewType } from 'src/app/common/enums';
 
@@ -29,10 +29,15 @@ export class SpecialistComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
+		private routerService: RouterExtService,
 		private specialistsService: SpecialistsService,
 		private storageService: StorageService
 	) {
 
+	}
+
+	prevRoute() {
+		this.router.navigate([this.routerService.getPreviousUrl()]);
 	}
 
 	ngOnInit() {

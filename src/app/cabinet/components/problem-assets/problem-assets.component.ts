@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService, PatientService } from 'src/app/common/services';
+import { AuthService, PatientService, RouterExtService } from 'src/app/common/services';
 import { Problem, Session, ClientProblemAssets } from 'src/app/common/models';
 import { AssetType } from './asset-type.enum';
 
@@ -25,10 +25,15 @@ export class ProblemAssetsComponent implements OnInit {
         private authService: AuthService,
         private patientService: PatientService,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private routerService: RouterExtService
     ) {
         
     }
+
+    prevRoute() {
+		this.router.navigate([this.routerService.getPreviousUrl()]);
+	}
 
     ngOnInit(): void {
         this.authService.isLoggedIn

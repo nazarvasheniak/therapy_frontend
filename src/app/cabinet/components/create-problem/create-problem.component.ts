@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService, PatientService } from 'src/app/common/services';
+import { AuthService, PatientService, RouterExtService } from 'src/app/common/services';
 import { Problem } from 'src/app/common/models';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -20,6 +20,7 @@ export class CreateProblemComponent implements OnInit {
         private authService: AuthService,
         private patientService: PatientService,
         private router: Router,
+        private routerService: RouterExtService,
         private spinner: NgxSpinnerService
     ) {
         
@@ -75,4 +76,8 @@ export class CreateProblemComponent implements OnInit {
                 this.spinner.hide();
             });
     }
+
+    prevRoute() {
+		this.router.navigate([this.routerService.getPreviousUrl()]);
+	}
 }

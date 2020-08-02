@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService, PatientService, SpecialistsService, UsersWalletsService, PaymentsService } from 'src/app/common/services';
+import { AuthService, PatientService, SpecialistsService, UsersWalletsService, PaymentsService, RouterExtService } from 'src/app/common/services';
 import { Problem, Specialist, UserWallet, Session } from 'src/app/common/models';
 import { PaymentType } from 'src/app/common/enums';
 
@@ -24,7 +24,8 @@ export class CabinetPaySpecialistComponent implements OnInit {
         private patientService: PatientService,
         private paymentsService: PaymentsService,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private routerService: RouterExtService
     ) {
 
     }
@@ -51,6 +52,10 @@ export class CabinetPaySpecialistComponent implements OnInit {
                     });
             });
     }
+
+    prevRoute() {
+		this.router.navigate([this.routerService.getPreviousUrl()]);
+	}
 
     private loadSpecialist(specialistID: number) {
         this.specialistsService.getSpecialist(specialistID)

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SpecialistService, AuthService } from 'src/app/common/services';
+import { SpecialistService, AuthService, RouterExtService } from 'src/app/common/services';
 import { ClientCard, ProblemAssets, ProblemImage, ProblemResource, ProblemResourceTask } from 'src/app/common/models';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CreateUpdateProblemImageRequest, CreateUpdateProblemResourceTask, CreateUpdateProblemResourceRequest } from 'src/app/common/models/request';
@@ -36,10 +36,14 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
         private specialistService: SpecialistService,
         private router: Router,
         private route: ActivatedRoute,
-        private domSanitizer: DomSanitizer
+        private routerService: RouterExtService
     ) {
 
     }
+
+    prevRoute() {
+		this.router.navigate([this.routerService.getPreviousUrl()]);
+	}
 
     private initCreateImageForm() {
         this.createImageForm = new FormGroup({

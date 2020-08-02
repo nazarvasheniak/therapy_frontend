@@ -11,7 +11,7 @@
                 <div class="page-top" *ngIf="client">
                     <div class="client-name">
                         <div class="button-back">
-                            <button class="button-transparent" [routerLink]="['/profile-specialist/clients']">
+                            <button class="button-transparent" (click)="prevRoute()">
                                 <div class="icon">
                                     <img src="../../../../assets/images/icon-arrow-left.svg">
                                 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService, UsersService, FilesService, ArticlesService } from 'src/app/common/services';
+import { AuthService, UsersService, FilesService, ArticlesService, RouterExtService } from 'src/app/common/services';
 import { UserRole } from 'src/app/common/enums';
 
 import 'froala-editor/js/plugins/image.min.js';
@@ -54,7 +54,8 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
         private authService: AuthService,
         private usersService: UsersService,
         private filesService: FilesService,
-        private articlesService: ArticlesService
+        private articlesService: ArticlesService,
+        private routerService: RouterExtService
     ) {
         
     }
@@ -82,6 +83,10 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
                     });
             });
     }
+
+    prevRoute() {
+		this.router.navigate([this.routerService.getPreviousUrl()]);
+	}
 
     private initArticleForm() {
         this.articleForm = new FormGroup({

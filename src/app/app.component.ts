@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterExtService } from './common/services';
 
 @Component({
 	selector: 'app-root',
@@ -7,6 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 	title = 'therapy-frontend';
+
+	constructor(private routerService: RouterExtService) {
+	}
 
 	onActivate(event) {
 		window.scroll(0,0);

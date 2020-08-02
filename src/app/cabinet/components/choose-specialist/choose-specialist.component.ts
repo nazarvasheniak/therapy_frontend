@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService, PatientService, SpecialistsService, UsersWalletsService } from 'src/app/common/services';
+import { AuthService, PatientService, SpecialistsService, UsersWalletsService, RouterExtService } from 'src/app/common/services';
 import { Problem, Specialist, UserWallet } from 'src/app/common/models';
 import { SpecialistsSorter } from 'src/app/specialists/components/specialists/specialists-sorter.enum';
 import { SortBy } from 'src/app/common/enums';
@@ -33,7 +33,8 @@ export class ChooseSpecialistComponent implements OnInit {
         private usersWalletsService: UsersWalletsService,
         private patientService: PatientService,
         private router: Router,
-        private route: ActivatedRoute 
+        private route: ActivatedRoute,
+        private routerService: RouterExtService
     ) {
         this.route.queryParams
             .subscribe(params => {
@@ -315,4 +316,8 @@ export class ChooseSpecialistComponent implements OnInit {
 
 		return;
     }
+
+    prevRoute() {
+		this.router.navigate([this.routerService.getPreviousUrl()]);
+	}
 }
