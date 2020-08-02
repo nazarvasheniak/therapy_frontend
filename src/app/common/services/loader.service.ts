@@ -16,23 +16,15 @@ export class LoaderService {
 	}
 
 	next(value: boolean) {
-		this.isLoading.next(value);
-	}
-
-	public showLoader() {
 		if (this.route.snapshot.firstChild) {
 			const componentName = this.route.snapshot.firstChild.component['name'];
 
 			if (this.ignorableComponents.includes(componentName)) {
-				console.log(componentName)
+				console.log('ignorable' + componentName);
 				return;
 			}
 		}
-
-		this.isLoading.next(true);
-	}
-
-	public hideLoader() {
-		this.isLoading.next(false);
+		
+		this.isLoading.next(value);
 	}
 }
