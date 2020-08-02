@@ -3,6 +3,8 @@
     padding-bottom: 24px;
 
     .article-image {
+        border-radius: 10px;
+        
         > img {
             border-radius: 10px;
             object-fit: cover;
