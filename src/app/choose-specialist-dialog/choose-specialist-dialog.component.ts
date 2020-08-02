@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PatientService, StorageService, UsersWalletsService } from 'src/app/common/services';
+import { PatientService, StorageService, UsersWalletsService, AuthService } from 'src/app/common/services';
 import { Problem, Specialist, UserWallet } from '../common/models';
 import { Router } from '@angular/router';
 
@@ -21,6 +21,7 @@ export class ChooseSpecialistDialogComponent implements OnInit {
     public newProblemText: string;
 
     constructor(
+        private authService: AuthService,
         private patientService: PatientService,
         private storageService: StorageService,
         private walletsService: UsersWalletsService,
@@ -37,8 +38,14 @@ export class ChooseSpecialistDialogComponent implements OnInit {
         }
 
         this.loadSpecialist();
-        this.loadProblems();
-        this.loadWallet();
+        
+        this.authService.isLoggedIn
+            .subscribe(logged => {
+                if (logged) {
+                    this.loadProblems();
+                    this.loadWallet();
+                }
+            });
     }
 
     public selectProblem(problem?: Problem) {
