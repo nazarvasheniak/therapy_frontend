@@ -50,11 +50,10 @@ const routes: Routes = [
 
 	{
 		path: 'sign-up',
-		component: SignUpComponent,
-		canActivate: [LoaderGuard]
+		component: SignUpComponent
 	},
-	{ path: 'sign-in', component: SignInComponent, canActivate: [LoaderGuard] },
-	{ path: 'sign-in/confirm', component: ConfirmationComponent, canActivate: [LoaderGuard] },
+	{ path: 'sign-in', component: SignInComponent },
+	{ path: 'sign-in/confirm', component: ConfirmationComponent },
 
 	{ path: 'landing', component: LandingComponent, canActivate: [LoaderGuard] },
 
