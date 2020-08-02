@@ -39,13 +39,17 @@ export class ProfileSpecialistHeaderComponent implements OnInit, OnDestroy {
 				}
             });
             
-        this.avatarChanged.subscribe(avatar => {
-            this.specialist.photo = avatar;
-        });
+        if (this.avatarChanged) {
+            this.avatarChanged.subscribe(avatar => {
+                this.specialist.photo = avatar;
+            });
+        }
     }
 
     ngOnDestroy() {
-        this.avatarChanged.unsubscribe();
+        if (this.avatarChanged) {
+            this.avatarChanged.unsubscribe();
+        }
     }
 	
 	private loadUserInfo() {
