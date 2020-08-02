@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SpecialistService, AuthService, FilesService } from 'src/app/common/services';
-import { SpecialistProfile, Problem, SpecialistProfileActiveSession } from 'src/app/common/models';
+import { SpecialistProfile, Problem, SpecialistProfileActiveSession, File } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
+import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-profile-specialist',
@@ -11,6 +12,8 @@ import { StringHelper } from 'src/app/common/helpers';
 	styleUrls: ['./profile-specialist.component.scss']
 })
 export class ProfileSpecialistComponent implements OnInit {
+
+    public uploadAvatarSubject = new Subject<File>();
 
     public profile: SpecialistProfile;
     public activeSessions: SpecialistProfileActiveSession[];
@@ -111,6 +114,9 @@ export class ProfileSpecialistComponent implements OnInit {
         const file = files.item(0);
 
         this.specialistService.uploadAvatarImage(file)
-            .subscribe(response => this.profile.photoUrl = response.url);
+            .subscribe(response => {
+                this.profile.photoUrl = response.url;
+                this.uploadAvatarSubject.next(response);
+            });
     }
 }

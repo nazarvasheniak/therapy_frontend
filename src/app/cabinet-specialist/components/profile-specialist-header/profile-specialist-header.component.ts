@@ -1,38 +1,52 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { AuthService, UsersService, SpecialistService } from 'src/app/common/services';
-import { User, Specialist } from 'src/app/common/models';
+import { User, Specialist, File } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
 import { Router } from '@angular/router';
 import { UserRole } from 'src/app/common/enums';
+import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'profile-specialist-header',
 	templateUrl: './profile-specialist-header.component.html',
 	styleUrls: ['./profile-specialist-header.component.scss']
 })
-export class ProfileSpecialistHeaderComponent {
+export class ProfileSpecialistHeaderComponent implements OnInit, OnDestroy {
 	
-	public isLoggedIn: boolean;
+    public isLoggedIn: boolean;
+    public isMobileNavExpanden = false;
+    
 	public user: User;
-	public specialist: Specialist;
-
-	public isMobileNavExpanden = false;
+    public specialist: Specialist;
+    
+    @Input()
+    public avatarChanged: Subject<File>;
 	
     constructor(
 		private authService: AuthService,
 		private usersService: UsersService,
 		private specialistService: SpecialistService,
 		private router: Router
-	) {
-		this.authService.isLoggedIn
+	) { }
+    
+    ngOnInit() {
+        this.authService.isLoggedIn
 			.subscribe(logged => {
 				this.isLoggedIn = logged;
 
 				if (logged) {
 					this.loadUserInfo();
 				}
-			});
-	}
+            });
+            
+        this.avatarChanged.subscribe(avatar => {
+            this.specialist.photo = avatar;
+        });
+    }
+
+    ngOnDestroy() {
+        this.avatarChanged.unsubscribe();
+    }
 	
 	private loadUserInfo() {
 		this.usersService.getUserInfo()
