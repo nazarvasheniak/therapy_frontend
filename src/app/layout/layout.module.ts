@@ -7,6 +7,10 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { AlertComponent } from './alert/alert.component';
 import { ReviewScoreComponent } from './review-score/review-score.component';
 import { RatingComponent } from './rating/rating.component';
+import { LoaderComponent } from './loader/loader.component';
+
+import { NgxMaskModule } from 'ngx-mask';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
 	declarations: [
@@ -14,20 +18,26 @@ import { RatingComponent } from './rating/rating.component';
 		FooterComponent,
 		PaginationComponent,
 		AlertComponent,
+		LoaderComponent,
 		ReviewScoreComponent,
 		RatingComponent
 	],
 	imports: [
         BrowserModule,
-        RouterModule
+		RouterModule,
+		MatProgressSpinnerModule,
+		NgxMaskModule.forRoot()
 	],
 	exports: [
 		HeaderComponent,
 		FooterComponent,
 		PaginationComponent,
 		AlertComponent,
+		LoaderComponent,
 		ReviewScoreComponent,
-		RatingComponent
+		RatingComponent,
+		MatProgressSpinnerModule,
+		NgxMaskModule
 	],
 	providers: [
 		

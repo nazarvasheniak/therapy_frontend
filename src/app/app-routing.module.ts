@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule, Injectable } from '@angular/core';
+import { Routes, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate, Router } from '@angular/router';
 import { SignInComponent } from './auth/components/sign-in/sign-in.component';
 import { ConfirmationComponent } from './auth/components/confirmation/confirmation.component';
 import { SignUpComponent } from './auth/components/sign-up/sign-up.component';
@@ -25,40 +25,71 @@ import { ProfileSpecialistClientComponent } from './cabinet-specialist/component
 import { ProfileSpecialistSessionsComponent } from './cabinet-specialist/components/profile-specialist-sessions/profile-specialist-sessions.component';
 import { ProfileSpecialistReviewsComponent } from './cabinet-specialist/components/profile-specialist-reviews/profile-specialist-reviews.component';
 import { ProfileSpecialistProblemAssetsComponent } from './cabinet-specialist/components/profile-specialist-problem-assets/profile-specialist-problem-assets.component';
+import { AuthService, LoaderService } from './common/services';
+import { Observable } from 'rxjs';
 
+@Injectable()
+export class LoaderGuard implements CanActivate {
+	constructor(private loaderService: LoaderService, private router: Router) { };
+
+	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+		return new Promise<boolean>((resolve, reject) => {
+			this.loaderService.showLoader();
+			
+			setTimeout(() => resolve(true), 200);
+		});
+	}
+}
 
 const routes: Routes = [
-	{ path: '', component: MainComponent },
+	{
+		path: '',
+		component: MainComponent,
+		canActivate: [LoaderGuard]
+	},
 
-	{ path: 'sign-up', component: SignUpComponent },
-	{ path: 'sign-in', component: SignInComponent },
-	{ path: 'sign-in/confirm', component: ConfirmationComponent },
+	{
+		path: 'sign-up',
+		component: SignUpComponent,
+		canActivate: [LoaderGuard]
+	},
+	{ path: 'sign-in', component: SignInComponent, canActivate: [LoaderGuard] },
+	{ path: 'sign-in/confirm', component: ConfirmationComponent, canActivate: [LoaderGuard] },
 
-	{ path: 'landing', component: LandingComponent },
+	{ path: 'landing', component: LandingComponent, canActivate: [LoaderGuard] },
 
-	{ path:'articles', component: ArticlesComponent },
-	{ path: 'articles/:id', component: ArticleComponent },
+	{ path: 'articles', component: ArticlesComponent, canActivate: [LoaderGuard] },
+	{ path: 'articles/:id', component: ArticleComponent, canActivate: [LoaderGuard] },
 
-	{ path: 'specialists', component: SpecialistsComponent },
-	{ path: 'specialists/:id', component: SpecialistComponent },
+	{
+		path: 'specialists',
+		component: SpecialistsComponent,
+		canActivate: [LoaderGuard]
+	},
 
-	{ path: 'profile', component: ProfileComponent },
-	{ path: 'profile/deposit', component: CabinetDepositComponent },
-	{ path: 'profile/problems/:id/choose-specialist', component: ChooseSpecialistComponent },
-	{ path: 'profile/problems/:id/choose-specialist/:specialistID/pay', component: CabinetPaySpecialistComponent },
-	{ path: 'profile/problems/:id/assets', component: ProblemAssetsComponent },
-	{ path: 'profile/problems/:id/sessions/:sessionID/review', component: CabinetSessionSuccessComponent },
-	{ path: 'profile/problems/add', component: CreateProblemComponent },
+	{
+		path: 'specialists/:id',
+		component: SpecialistComponent,
+		canActivate: [LoaderGuard]
+	},
 
-	{ path: 'profile-specialist', component: ProfileSpecialistComponent },
-	{ path: 'profile-specialist/articles', component: ProfileSpecialistArticlesComponent },
-	{ path: 'profile-specialist/articles/create', component: ProfileSpecialistCreateArticleComponent },
-	{ path: 'profile-specialist/articles/:id', component: ProfileSpecialistEditArticleComponent },
-	{ path: 'profile-specialist/clients', component: ProfileSpecialistClientsComponent },
-	{ path: 'profile-specialist/clients/:id', component: ProfileSpecialistClientComponent },
-	{ path: 'profile-specialist/sessions', component: ProfileSpecialistSessionsComponent },
-	{ path: 'profile-specialist/reviews', component: ProfileSpecialistReviewsComponent },
-	{ path: 'profile-specialist/clients/:clientID/problems/:problemID/assets', component: ProfileSpecialistProblemAssetsComponent }
+	{ path: 'profile', component: ProfileComponent, canActivate: [LoaderGuard] },
+	{ path: 'profile/deposit', component: CabinetDepositComponent, canActivate: [LoaderGuard] },
+	{ path: 'profile/problems/:id/choose-specialist', component: ChooseSpecialistComponent, canActivate: [LoaderGuard] },
+	{ path: 'profile/problems/:id/choose-specialist/:specialistID/pay', component: CabinetPaySpecialistComponent, canActivate: [LoaderGuard] },
+	{ path: 'profile/problems/:id/assets', component: ProblemAssetsComponent, canActivate: [LoaderGuard] },
+	{ path: 'profile/problems/:id/sessions/:sessionID/review', component: CabinetSessionSuccessComponent, canActivate: [LoaderGuard] },
+	{ path: 'profile/problems/add', component: CreateProblemComponent, canActivate: [LoaderGuard] },
+
+	{ path: 'profile-specialist', component: ProfileSpecialistComponent, canActivate: [LoaderGuard] },
+	{ path: 'profile-specialist/articles', component: ProfileSpecialistArticlesComponent, canActivate: [LoaderGuard] },
+	{ path: 'profile-specialist/articles/create', component: ProfileSpecialistCreateArticleComponent, canActivate: [LoaderGuard] },
+	{ path: 'profile-specialist/articles/:id', component: ProfileSpecialistEditArticleComponent, canActivate: [LoaderGuard] },
+	{ path: 'profile-specialist/clients', component: ProfileSpecialistClientsComponent, canActivate: [LoaderGuard] },
+	{ path: 'profile-specialist/clients/:id', component: ProfileSpecialistClientComponent, canActivate: [LoaderGuard] },
+	{ path: 'profile-specialist/sessions', component: ProfileSpecialistSessionsComponent, canActivate: [LoaderGuard] },
+	{ path: 'profile-specialist/reviews', component: ProfileSpecialistReviewsComponent, canActivate: [LoaderGuard] },
+	{ path: 'profile-specialist/clients/:clientID/problems/:problemID/assets', component: ProfileSpecialistProblemAssetsComponent, canActivate: [LoaderGuard] }
 ];
 
 @NgModule({

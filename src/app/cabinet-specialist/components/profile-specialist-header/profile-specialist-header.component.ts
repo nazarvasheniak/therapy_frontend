@@ -27,7 +27,9 @@ export class ProfileSpecialistHeaderComponent implements OnInit, OnDestroy {
 		private usersService: UsersService,
 		private specialistService: SpecialistService,
 		private router: Router
-	) { }
+	) {
+        
+    }
     
     ngOnInit() {
         this.authService.isLoggedIn

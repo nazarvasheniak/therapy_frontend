@@ -23,7 +23,7 @@ export class ProfileSpecialistComponent implements OnInit {
         private specialistService: SpecialistService,
         private router: Router
     ) {
-
+        
     }
 
     ngOnInit(): void {
