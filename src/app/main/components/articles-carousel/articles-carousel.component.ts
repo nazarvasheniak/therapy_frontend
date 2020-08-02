@@ -1,11 +1,7 @@
-import { Component, AfterViewInit, HostListener, OnInit, Input, ViewChild, AfterViewChecked } from '@angular/core';
-import { Article, User } from 'src/app/common/models';
-import { UserRole } from 'src/app/common/enums';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Component, OnInit, Input, ViewChild, AfterViewChecked } from '@angular/core';
+import { Article } from 'src/app/common/models';
 import { SwiperComponent, SwiperConfigInterface } from 'ngx-swiper-wrapper';
-import { NgxSpinnerService } from 'ngx-spinner';
-
-declare var $: any;
+import { LoaderService } from 'src/app/common/services';
 
 @Component({
     selector: 'articles-carousel',
@@ -28,15 +24,16 @@ export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
 
     articlesSwitcherCurrentSlide = 0;
 
-    constructor(private spinner: NgxSpinnerService) {
+    constructor(private loaderService: LoaderService) {
         
     }
 
-    showSpinner() {
-        this.spinner.show();
+    showLoader() {
+        this.loaderService.next(true);
+
         setTimeout(() => {
-            this.spinner.hide();
-        }, 1000);
+            this.loaderService.next(false);
+        }, 100);
     }
 
     public setActiveArticle(article: Article) {
@@ -60,11 +57,11 @@ export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
             return;
         }
 
-        this.showSpinner();
+        this.showLoader();
 
         let timeout = setTimeout(() => {
             this.setActiveArticle(this.articles[activeIndex + 1]);
-        }, 500);
+        }, 100);
     }
 
     public togglePrevArticle() {
@@ -74,17 +71,12 @@ export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
             return;
         }
 
-        this.showSpinner();
+        this.showLoader();
 
         let timeout = setTimeout(() => {
             this.setActiveArticle(this.articles[activeIndex - 1]);
-        }, 500);
+        }, 100);
     }
-
-    /* @HostListener('window:resize', ['$event'])
-    onResize(event) {
-        
-    } */
 
     ngOnInit() {
         this.setActiveArticle(this.articles[0]);
@@ -93,11 +85,11 @@ export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
     ngAfterViewChecked() {
         this.articlesSwitcherMobile.indexChange
             .subscribe(slide => {
-                this.showSpinner();
+                this.showLoader();
 
                 let timeout = setTimeout(() => {
                     this.setActiveArticle(this.articles[slide]);
-                }, 500);
+                }, 100);
             });
     }
 }

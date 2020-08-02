@@ -1,6 +1,4 @@
 <div class="articles-carousel">
-    <ngx-spinner></ngx-spinner>
-    
     <div class="article-container">
         <div class="articles-switcher" *ngIf="articles && activeArticle" [ngClass]="{'active-first': !prevArticle}">
             <div class="article-item" *ngIf="activeArticle != articles[0]">
