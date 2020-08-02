@@ -4,14 +4,15 @@ import { AuthService, UsersService, ArticlesService } from 'src/app/common/servi
 import { UserRole } from 'src/app/common/enums';
 import { Article } from 'src/app/common/models';
 import { PaginationComponent } from 'src/app/layout/pagination/pagination.component';
+import { ProfileSpecialistDeleteDialog } from '../profile-specialist-delete-dialog/profile-specialist-delete-dialog.component';
 
 @Component({
-	selector: 'app-profile-specialist-articles',
-	templateUrl: './profile-specialist-articles.component.html',
-	styleUrls: ['./profile-specialist-articles.component.scss']
+    selector: 'app-profile-specialist-articles',
+    templateUrl: './profile-specialist-articles.component.html',
+    styleUrls: ['./profile-specialist-articles.component.scss']
 })
 export class ProfileSpecialistArticlesComponent implements OnInit {
-    
+
     public articles: Article[];
 
     public pageSize = 5;
@@ -19,6 +20,7 @@ export class ProfileSpecialistArticlesComponent implements OnInit {
     public totalPages = 1;
 
     @ViewChild(PaginationComponent) pagination: PaginationComponent;
+    @ViewChild(ProfileSpecialistDeleteDialog) deleteDialog: ProfileSpecialistDeleteDialog;
 
     constructor(
         private router: Router,
@@ -26,7 +28,7 @@ export class ProfileSpecialistArticlesComponent implements OnInit {
         private usersService: UsersService,
         private articlesService: ArticlesService
     ) {
-        
+
     }
 
     ngOnInit(): void {
@@ -55,18 +57,21 @@ export class ProfileSpecialistArticlesComponent implements OnInit {
 
     private loadArticles(pageSize: number, pageNumber: number) {
         this.articlesService.getMyArticles({ pageSize, pageNumber })
-            .subscribe(res => {
-                if (!res.success) {
-                    alert(res.message);
-
-                    return;
-                }
-
-                this.articles = res.data;
-                this.pageNumber = res.currentPage;
-				this.pageSize = res.pageSize;
-				this.totalPages = res.totalPages;
+            .subscribe(response => {
+                this.articles = response.data;
+                this.pageNumber = response.currentPage;
+                this.pageSize = response.pageSize;
+                this.totalPages = response.totalPages;
             });
+    }
+
+    showDeleteArticleDialog(articleID: number) {
+        const article = this.articles.find(x => x.id == articleID);
+        if (!article) {
+            return;
+        }
+
+        this.deleteDialog.open(article);
     }
 
     setPageSize(value: number) {

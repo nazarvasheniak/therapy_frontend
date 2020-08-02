@@ -26,10 +26,14 @@
                             </div>
 
                             <div class="filter-values">
-                                <div class="filter-value" (click)="setPageSize(5)" [ngClass]="{'active': pageSize == 5}">5</div>
-                                <div class="filter-value" (click)="setPageSize(10)" [ngClass]="{'active': pageSize == 10}">10</div>
-                                <div class="filter-value" (click)="setPageSize(15)" [ngClass]="{'active': pageSize == 15}">15</div>
-                                <div class="filter-value" (click)="setPageSize(30)" [ngClass]="{'active': pageSize == 30}">30</div>
+                                <div class="filter-value" (click)="setPageSize(5)"
+                                    [ngClass]="{'active': pageSize == 5}">5</div>
+                                <div class="filter-value" (click)="setPageSize(10)"
+                                    [ngClass]="{'active': pageSize == 10}">10</div>
+                                <div class="filter-value" (click)="setPageSize(15)"
+                                    [ngClass]="{'active': pageSize == 15}">15</div>
+                                <div class="filter-value" (click)="setPageSize(30)"
+                                    [ngClass]="{'active': pageSize == 30}">30</div>
                             </div>
                         </div>
                     </div>
@@ -50,7 +54,8 @@
                                 <div class="article-actions">
                                     <div class="article-date">
                                         <span class="icon">
-                                            <img _ngcontent-plx-c72="" src="../../../../assets/images/icon-calendar.svg" alt="">
+                                            <img _ngcontent-plx-c72="" src="../../../../assets/images/icon-calendar.svg"
+                                                alt="">
                                         </span>
 
                                         {{ article.date | date: 'dd.MM.yyy' }}
@@ -79,7 +84,7 @@
                                             Редактировать
                                         </div>
 
-                                        <div class="action-delete">
+                                        <div class="action-delete" (click)="showDeleteArticleDialog(article.id)">
                                             Удалить
                                         </div>
                                     </div>
@@ -93,7 +98,8 @@
                     </div>
 
                     <div class="articles-pagination">
-                        <app-pagination [currentPage]="pageNumber" [totalPages]="totalPages" (onChanged)="setPageNumber($event)"></app-pagination>
+                        <app-pagination [currentPage]="pageNumber" [totalPages]="totalPages"
+                            (onChanged)="setPageNumber($event)"></app-pagination>
                     </div>
                 </div>
             </content>
@@ -103,3 +109,5 @@
     <!-- Footer -->
     <app-footer></app-footer>
 </div>
+
+<profile-specialist-delete-dialog #deleteDialog class="delete-article-dialog"></profile-specialist-delete-dialog>

@@ -18,6 +18,7 @@ import { ProfileSpecialistProblemAssetsComponent } from './components/profile-sp
 import { MatSliderModule } from '@angular/material/slider';
 import { FilterHiddenImagesPipe } from '../common/pipes';
 import { ProfileSpecialistHeaderComponent } from './components/profile-specialist-header/profile-specialist-header.component';
+import { ProfileSpecialistDeleteDialog } from './components/profile-specialist-delete-dialog/profile-specialist-delete-dialog.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { ProfileSpecialistHeaderComponent } from './components/profile-specialis
         ProfileSpecialistSessionsComponent,
         ProfileSpecialistReviewsComponent,
         ProfileSpecialistProblemAssetsComponent,
+        ProfileSpecialistDeleteDialog,
         FilterHiddenImagesPipe
     ],
     imports: [

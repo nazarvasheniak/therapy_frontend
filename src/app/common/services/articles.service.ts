@@ -7,35 +7,39 @@ import { CreateUpdateArticleRequest, GetList, CreateArticleCommentRequest } from
 
 @Injectable()
 export class ArticlesService extends BaseHttpService {
-    constructor (http: HttpClient) {
+    constructor(http: HttpClient) {
         super(http);
     }
 
     public getArticles(query: GetList) {
-        return this.get<ListResponse<Article>>(`${this.apiUrl}/articles?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}`);
-    }
-
-    public getMyArticles(query: GetList) {
-        return this.get<ListResponse<Article>>(`${this.apiUrl}/articles/my?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}`);
+        return this.get<ListResponse<Article>>(`/articles?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}`);
     }
 
     public getArticle(id: number) {
-        return this.get<DataResponse<Article>>(`${this.apiUrl}/articles/${id}`);
+        return this.get<DataResponse<Article>>(`/articles/${id}`);
+    }
+
+    public getMyArticles(query: GetList) {
+        return this.get<ListResponse<Article>>(`/articles/my?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}`);
     }
 
     public createArticle(request: CreateUpdateArticleRequest) {
-        return this.post<DataResponse<Article>>(`${this.apiUrl}/articles`, request);
+        return this.post<DataResponse<Article>>(`/articles`, request);
     }
 
     public updateArticle(request: CreateUpdateArticleRequest, id: number) {
-        return this.put<DataResponse<Article>>(`${this.apiUrl}/articles/${id}`, request);
+        return this.put<DataResponse<Article>>(`/articles/${id}`, request);
+    }
+
+    public deleteArticle(articleID: number) {
+        return this.delete<ResponseModel>(`/articles/${articleID}`)
     }
 
     public likeArticle(id: number) {
-        return this.post<ResponseModel>(`${this.apiUrl}/articles/${id}/like`, {});
+        return this.post<ResponseModel>(`/articles/${id}/like`, {});
     }
 
     public commentArticle(request: CreateArticleCommentRequest, id: number) {
-        return this.post<DataResponse<ArticleComment>>(`${this.apiUrl}/articles/${id}/comment`, request);
+        return this.post<DataResponse<ArticleComment>>(`/articles/${id}/comment`, request);
     }
 }

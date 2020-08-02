@@ -11,27 +11,27 @@ export abstract class BaseHttpService {
 
     protected get<T>(url: string, options?: RequestOptions): Observable<T> {
         options = this.buildBaseRequest(options);
-        return this.http.get<T>(url, options);
+        return this.http.get<T>(this.apiUrl + url, options);
     }
 
     protected post<T>(url: string, body: Object, options?: RequestOptions): Observable<T> {
         options = this.buildBaseRequest(options);
-        return this.http.post<T>(url, body, options);
+        return this.http.post<T>(this.apiUrl + url, body, options);
     }
 
     protected put<T>(url: string, body: Object, options?: RequestOptions): Observable<T> {
         options = this.buildBaseRequest(options);
-        return this.http.put<T>(url, body, options);
+        return this.http.put<T>(this.apiUrl + url, body, options);
     }
 
     protected patch<T>(url: string, body: Object, options?: RequestOptions): Observable<T> {
         options = this.buildBaseRequest(options);
-        return this.http.patch<T>(url, body, options);
+        return this.http.patch<T>(this.apiUrl + url, body, options);
     }
 
     protected delete<T>(url: string, options?: RequestOptions): Observable<T> {
         options = this.buildBaseRequest(options);
-        return this.http.delete<T>(url, options);
+        return this.http.delete<T>(this.apiUrl + url, options);
     }
 
     private buildBaseRequest(options?: RequestOptions): RequestOptions {

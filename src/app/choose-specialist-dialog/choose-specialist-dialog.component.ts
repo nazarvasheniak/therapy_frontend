@@ -62,10 +62,8 @@ export class ChooseSpecialistDialogComponent implements OnInit {
 
     private loadSpecialist() {
         this.storageService.getSpecialist()
-            .subscribe(specialist => {
+            .subscribe((specialist: Specialist) => {
                 this.specialist = specialist;
-                console.log(this.specialist);
-                console.log(this.problems);
             });
     }
 
@@ -86,7 +84,7 @@ export class ChooseSpecialistDialogComponent implements OnInit {
 
     close() {
         let dialog = document.querySelector('.choose-specialist-dialog');
-        dialog.classList.remove('show')
+        dialog.classList.remove('show');
         dialog.classList.add('hidden');
         this.storageService.resetSpecialist();
     }
@@ -100,33 +98,28 @@ export class ChooseSpecialistDialogComponent implements OnInit {
             return;
         }
 
-        this.patientService.createProblem({
-            problemText: this.newProblemText
-        })
-        .subscribe(problemResponse => {
-            this.patientService.createProblemSession({
-                specialistID: this.specialist.id
-            }, problemResponse.data.id)
-            .subscribe(sessionResponse => {
-
-                if ((this.wallet.balance - this.wallet.lockedBalance) < this.specialist.price) {
-                    this.router.navigate([`/profile/problems/${problemResponse.data.id}/choose-specialist/${this.specialist.id}/pay`]);
-        
-                    return;
-                }
-
-                this.patientService.startSession(problemResponse.data.id, sessionResponse.sessionID)
-                    .subscribe(res => {
-                        if (!res.success) {
-                            alert(res.message);
-
+        this.patientService.createProblem({ problemText: this.newProblemText })
+            .subscribe(problemResponse => {
+                this.patientService.createProblemSession({ specialistID: this.specialist.id }, problemResponse.data.id)
+                    .subscribe(sessionResponse => {
+                        if ((this.wallet.balance - this.wallet.lockedBalance) < this.specialist.price) {
+                            this.router.navigate([`/profile/problems/${problemResponse.data.id}/choose-specialist/${this.specialist.id}/pay`]);
+                
                             return;
                         }
 
-                        this.router.navigate(['/profile']);
+                        this.patientService.startSession(problemResponse.data.id, sessionResponse.sessionID)
+                            .subscribe(res => {
+                                if (!res.success) {
+                                    alert(res.message);
+
+                                    return;
+                                }
+
+                                this.router.navigate(['/profile']);
+                            });
                     });
             });
-        });
     }
     
     startSession() {
@@ -134,29 +127,27 @@ export class ChooseSpecialistDialogComponent implements OnInit {
             return;
         }
 
-        this.patientService.createProblemSession({
-            specialistID: this.specialist.id
-        }, this.selectedProblem.id)
-        .subscribe(sessionResponse => {
-            if (sessionResponse.success) {
-                if ((this.wallet.balance - this.wallet.lockedBalance) < this.specialist.price) {
-                    this.router.navigate([`/profile/problems/${this.selectedProblem.id}/choose-specialist/${this.specialist.id}/pay`]);
-        
-                    return;
+        this.patientService.createProblemSession({ specialistID: this.specialist.id }, this.selectedProblem.id)
+            .subscribe(sessionResponse => {
+                if (sessionResponse.success) {
+                    if ((this.wallet.balance - this.wallet.lockedBalance) < this.specialist.price) {
+                        this.router.navigate([`/profile/problems/${this.selectedProblem.id}/choose-specialist/${this.specialist.id}/pay`]);
+            
+                        return;
+                    }
+
+                    this.patientService.startSession(this.selectedProblem.id, sessionResponse.sessionID)
+                        .subscribe(res => {
+                            if (!res.success) {
+                                alert(res.message);
+
+                                return;
+                            }
+
+                            this.router.navigate(['/profile']);
+                        });
                 }
-
-                this.patientService.startSession(this.selectedProblem.id, sessionResponse.sessionID)
-                    .subscribe(res => {
-                        if (!res.success) {
-                            alert(res.message);
-
-                            return;
-                        }
-
-                        this.router.navigate(['/profile']);
-                    });
-            }
-        });
+            });
     }
 
     submit() {

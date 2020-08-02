@@ -11,14 +11,18 @@ export class FilesService extends BaseHttpService {
         super(http);
     }
 
+    public getFile(fileID: number) {
+        return this.get<DataResponse<File>>(`/files/${fileID}`);
+    }
+
     public uploadFile(request: UploadFileRequest) {
-        return this.post<DataResponse<File>>(`${this.apiUrl}/files`, request);
+        return this.post<DataResponse<File>>('/files', request);
     }
 
     public uploadFileForm(request: UploadFileFormRequest) {
         const formData: FormData = new FormData();
         formData.append('file', request.file);
 
-        return this.post<Object>(`${this.apiUrl}/files/form`, formData);
+        return this.post<DataResponse<File>>('/files/form', formData);
     }
 }

@@ -11,7 +11,7 @@ export class UsersService extends BaseHttpService {
     }
 
     public getUserInfo() {
-        return this.get<DataResponse<User>>(`${this.apiUrl}/users/info`)
+        return this.get<DataResponse<User>>(`/users/info`)
             .map(response => response.data);
     }
 }

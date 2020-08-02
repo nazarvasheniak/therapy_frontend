@@ -12,14 +12,14 @@ export class SpecialistsService extends BaseHttpService {
     }
 
     public getSpecialists(query: GetList) {
-        return this.get<ListResponse<Specialist>>(`${this.apiUrl}/specialists?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}`);
+        return this.get<ListResponse<Specialist>>(`/specialists?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}`);
     }
 
     public getSpecialist(specialistID: number) {
-        return this.get<DataResponse<Specialist>>(`${this.apiUrl}/specialists/${specialistID}`);
+        return this.get<DataResponse<Specialist>>(`/specialists/${specialistID}`);
     }
 
     public getSpecialistReviews(query: GetReviews, specialistID: number) {
-        return this.get<ListResponse<Review>>(`${this.apiUrl}/specialists/${specialistID}/reviews?type=${query.type}&pageSize=${query.pageSize}&pageNumber=${query.pageNumber}`);
+        return this.get<ListResponse<Review>>(`/specialists/${specialistID}/reviews?type=${query.type}&pageSize=${query.pageSize}&pageNumber=${query.pageNumber}`);
     }
 }

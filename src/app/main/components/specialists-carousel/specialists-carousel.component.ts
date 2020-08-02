@@ -47,7 +47,7 @@ export class SpecialistsCarouselComponent implements AfterViewInit {
             this.config.slidesOffsetBefore = marginLeft;
             this.config.slidesOffsetAfter = marginRight;
         } catch (e) {
-            alert(e);
+            //alert(e);
         }
     }
 

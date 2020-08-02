@@ -11,6 +11,6 @@ export class PaymentsService extends BaseHttpService {
     }
 
     public createPayment(request: CreatePaymentRequest) {
-        return this.post<CreatePaymentResponse>(`${this.apiUrl}/payments`, request);
+        return this.post<CreatePaymentResponse>(`/payments`, request);
     }
 }

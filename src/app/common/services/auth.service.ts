@@ -58,24 +58,24 @@ export class AuthService extends BaseHttpService {
     }
 
     public signUp(request: SignUpRequest) {
-        return this.post<SignInResponse>(`${this.apiUrl}/auth/sign-up`, request);
+        return this.post<SignInResponse>(`/auth/sign-up`, request);
     }
 
     public signIn(request: SignInRequest) {
-        return this.post<SignInResponse>(`${this.apiUrl}/auth/sign-in`, request);
+        return this.post<SignInResponse>(`/auth/sign-in`, request);
     }
 
     public signInTest(request: SignInRequest) {
-        return this.post<SignInConfirmResponse>(`${this.apiUrl}/auth/test/sign-in`, request)
+        return this.post<SignInConfirmResponse>(`/auth/test/sign-in`, request)
             .map(response => this.saveToken(response));
     }
 
     public signInConfirm(request: SignInConfirmRequest) {
-        return this.post<SignInConfirmResponse>(`${this.apiUrl}/auth/sign-in/confirm`, request)
+        return this.post<SignInConfirmResponse>(`/auth/sign-in/confirm`, request)
             .map(response => this.saveToken(response));
     }
 
     public resendConfirmCode(request: ResendConfirmCodeRequest) {
-        return this.post<SignInResponse>(`${this.apiUrl}/auth/sign-in/confirm/resend`, request);
+        return this.post<SignInResponse>(`/auth/sign-in/confirm/resend`, request);
     }
 }

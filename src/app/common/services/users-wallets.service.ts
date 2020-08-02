@@ -12,6 +12,6 @@ export class UsersWalletsService extends BaseHttpService {
     }
 
     public getMyWallet() {
-        return this.get<DataResponse<UserWallet>>(`${this.apiUrl}/wallet`);
+        return this.get<DataResponse<UserWallet>>(`/wallet`);
     }
 }
