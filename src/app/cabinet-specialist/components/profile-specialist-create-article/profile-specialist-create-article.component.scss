@@ -75,9 +75,13 @@
                     padding-left: 16px;
                     font-weight: normal;
                     font-size: 16px;
-                    line-height: 16px;
-                    color: #BDD2D1;
-                    outline: none;                    
+                    line-height: 100%;
+                    color: #364D47;
+                    outline: none;
+                    
+                    &::placeholder {
+                        color: #BDD2D1;
+                    }
                 }
             }
 
@@ -148,10 +152,14 @@
                     padding-top: 23px;
                     font-weight: normal;
                     font-size: 16px;
-                    line-height: 16px;
-                    color: #BDD2D1;
+                    line-height: 100%;
+                    color: #364D47;
                     outline: none;
                     resize: vertical;
+
+                    &::placeholder {
+                        color: #BDD2D1;
+                    }
                 }
             }
 
@@ -160,13 +168,86 @@
             }
 
             .article-submit {
-                margin-top: 16px;
+                margin-top: 4px;
 
                 > button {
                     border-radius: 10px;
                     padding-top: 24px;
                     padding-bottom: 24px;
                     letter-spacing: 0.135em;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .content-wrapper {
+        flex-direction: column;
+
+        content {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .content-wrapper {
+        content {
+            .page-content {
+                margin-top: 16px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        width: 100%;
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .container {
+        width: 100%;
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+
+    .content-wrapper {
+        content {
+            padding: 24px;
+
+            .page-top {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                .page-head {
+                    width: 100%;
+                    margin-top: 16px;
+                    margin-left: 0;
+                }
+
+                .button-back {
+                    width: 100%;
+                }
+            }
+
+            .page-content {
+                .article-preview-image {
+                    padding-top: 32px;
+                    padding-bottom: 31px;
+                    padding-left: 18px;
+                    padding-right: 18px;
+                }
+
+                .article-text-editor {
+                    margin-top: 12px;
                 }
             }
         }
