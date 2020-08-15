@@ -22,9 +22,9 @@
     
                 <div class="form-group horizontal">
                     <input type="number" #digit1 formControlName="digit1" placeholder="0" min="0" step="1" maxlength="1" (keyup)="nextDigit($event, 1)" />
-                    <input type="number" #digit2 formControlName="digit2" placeholder="0" maxlength="1" (keyup)="nextDigit($event, 2)" />
-                    <input type="number" #digit3 formControlName="digit3" placeholder="0" maxlength="1" (keyup)="nextDigit($event, 3)" />
-                    <input type="number" #digit4 formControlName="digit4" placeholder="0" maxlength="1" (keyup)="nextDigit($event, 4)" />
+                    <input type="number" #digit2 formControlName="digit2" placeholder="0" min="0" step="1" maxlength="1" (keyup)="nextDigit($event, 2)" />
+                    <input type="number" #digit3 formControlName="digit3" placeholder="0" min="0" step="1" maxlength="1" (keyup)="nextDigit($event, 3)" />
+                    <input type="number" #digit4 formControlName="digit4" placeholder="0" min="0" step="1" maxlength="1" (keyup)="nextDigit($event, 4)" />
                 </div>
     
                 <div class="form-group">

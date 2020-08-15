@@ -75,10 +75,26 @@ export class ProfileSpecialistArticlesComponent implements OnInit {
     }
 
     setPageSize(value: number) {
+        if (!this.articles.length) {
+            return;
+        }
+
+        if (this.pageSize == value) {
+            return;
+        }
+
         this.loadArticles(value, this.pageNumber);
     }
 
     setPageNumber(value: number) {
+        if (!this.articles.length) {
+            return;
+        }
+        
+        if (this.pageNumber == value) {
+            return;
+        }
+
         this.loadArticles(this.pageSize, value);
     }
 }

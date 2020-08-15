@@ -4,6 +4,7 @@
 
     content {
         width: 954px;
+        height: 100%;
         background: #ffffff;
         margin-left: 30px;
         padding-left: 24px;
@@ -86,6 +87,12 @@
 
                             &.active {
                                 color: #005264;
+                                cursor: default;
+                            }
+
+                            &.disabled {
+                                color: #9EACA9;
+                                cursor: not-allowed;
                             }
 
                             &:first-child {
@@ -99,6 +106,21 @@
 
         .page-content {
             margin-top: 21px;
+
+            .articles-empty {
+                padding-top: 93px;
+                padding-bottom: 124px;
+                text-align: center;
+
+                .text {
+                    margin-top: 12px;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 140%;
+                    text-align: center;
+                    color: #D4E1DC;
+                }
+            }
 
             .articles-list {
                 article {
@@ -252,6 +274,40 @@
                 display: inline-block;
                 margin-top: 24px;
             }
+        }
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .content-wrapper {
+        flex-direction: column;
+
+        content {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        width: 100%;
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+}
+
+@media screen and (max-width: 559px) {
+    .container {
+        width: 100%;
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+
+    .content-wrapper {
+        content {
+            padding: 16px;
         }
     }
 }

@@ -83,6 +83,10 @@ export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
     }
 
     ngAfterViewChecked() {
+        if (!this.articlesSwitcherMobile) {
+            return;
+        }
+        
         this.articlesSwitcherMobile.indexChange
             .subscribe(slide => {
                 this.showLoader();

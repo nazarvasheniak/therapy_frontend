@@ -167,7 +167,7 @@ export class ConfirmationComponent implements OnInit, AfterViewInit {
         }
 
         if (currentDigit > 0 && currentDigit < 4) {
-            if (keyNumber) {
+            if (keyNumber != null) {
                 this.confirmAuthForm.controls[`digit${currentDigit}`].setValue(keyNumber);
                 this[`digit${currentDigit + 1}`].nativeElement.focus();
 
