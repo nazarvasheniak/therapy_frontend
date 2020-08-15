@@ -52,6 +52,10 @@ export class ProfileSpecialistHeaderComponent implements OnInit, OnDestroy {
         if (this.avatarChanged) {
             this.avatarChanged.unsubscribe();
         }
+	}
+	
+	logout() {
+        this.authService.logout().subscribe();
     }
 	
 	private loadUserInfo() {

@@ -26,11 +26,18 @@ export class AuthService extends BaseHttpService {
     }
 
     // Logout method
-    public logout(): void {
-        LocalStorageHelper.removeToken();
-        // LocalStorageHelper.removeSymbols();
-        this.loginSubject.next(false);
-        this.router.navigate(['/sign-in']);
+    public logout() {
+        return this.delete<ResponseModel>('/auth/logout')
+            .map(response => {
+                if (response.success) {
+                    LocalStorageHelper.removeToken();
+        
+                    this.loginSubject.next(false);
+                    this.router.navigate(['/sign-in']);
+                }
+
+                return response.success;
+            });
     }
 
     // Check is user logged in now

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersWalletsService } from 'src/app/common/services';
+import { UsersWalletsService, AuthService } from 'src/app/common/services';
 import { UserWallet } from 'src/app/common/models';
 
 @Component({
@@ -12,6 +12,7 @@ export class ProfileSidebarComponent implements OnInit {
     public wallet: UserWallet;
 
     constructor(
+        private authService: AuthService,
         private usersWalletsService: UsersWalletsService
     ) {
 
@@ -19,6 +20,10 @@ export class ProfileSidebarComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadWallet();
+    }
+
+    logout() {
+        this.authService.logout().subscribe();
     }
 
     private loadWallet() {
