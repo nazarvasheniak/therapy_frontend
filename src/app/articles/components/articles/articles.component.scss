@@ -1,5 +1,6 @@
 .container {
-    padding: 0;
+    padding-left: 35px;
+    padding-right: 35px;
 }
 
 .article-likes {
@@ -172,10 +173,14 @@
                         margin-top: 18px;
                         font-weight: normal;
                         font-size: 32px;
-                        line-height: 32px;
+                        line-height: 100%;
                         text-decoration-line: underline;
                         color: #162B1E;
                         cursor: pointer;
+                        max-width: 663px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
     
                     .article-short-text {
@@ -183,8 +188,14 @@
                         margin-top: 20px;
                         font-weight: normal;
                         font-size: 16px;
-                        line-height: 22px;
+                        line-height: 140%;
                         color: #364D47;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        height: 44px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
     
                     .article-actions {
@@ -265,8 +276,8 @@
 @media screen and (max-width: 991px) {
     .container {
         width: auto;
-        margin-left: 35px;
-        margin-right: 35px;
+        padding-left: 35px;
+        padding-right: 35px;
     }
 
     .page-head {
@@ -284,6 +295,13 @@
         .articles-list {
             article {
                 .article-top {
+                    .article-image {
+                        .image-block {
+                            width: 203px;
+                            height: 142px;
+                        }
+                    }
+
                     .article-content {
                         .article-actions {
                             display: none;
@@ -291,11 +309,14 @@
 
                         .article-title {
                             font-size: 24px;
-                            line-height: 29px;
+                            line-height: 120%;
+                            margin-top: 10px;
                         }
 
                         .article-short-text {
                             margin-top: 12px;
+                            -webkit-line-clamp: 3;
+                            height: 66px;
                         }
                     }
                 }
@@ -306,7 +327,7 @@
 
                     .likes-block {
                         width: 203px;
-                        margin-top: 26px;
+                        margin-top: 22px;
                         display: flex;
                         justify-content: center;
 
@@ -323,7 +344,7 @@
                         display: flex;
                         align-items: center;
                         margin-left: 40px;
-                        margin-top: 18px;
+                        margin-top: 22px;
 
                         .article-author {
                             display: flex;
@@ -385,6 +406,23 @@
     }
 }
 
+@media screen and (max-width: 767px) {
+    .page-content {
+        .articles-list {
+            article {
+                .article-top {
+                    .article-content {
+                        .article-title,
+                        .article-short-text {
+                            max-width: 431px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media screen and (min-width: 576px) {
     .page-content {
         .articles-list {
@@ -425,6 +463,8 @@
     .page-content {
         .articles-list {
             article {
+                margin-top: 24px;
+                
                 .article-top {
                     flex-direction: column;
                     align-items: flex-start;
@@ -434,6 +474,7 @@
 
                         .image-block {
                             width: 100%;
+                            height: 197px;
                         }
 
                         .info-block {
@@ -462,6 +503,19 @@
                         
                         .article-date {
                             display: none;
+                        }
+
+                        .article-title {
+                            max-width: none;
+                            width: 100%;
+                            white-space: normal;
+                        }
+
+                        .article-short-text {
+                            -webkit-line-clamp: 6;
+                            max-width: none;
+                            width: 100%;
+                            height: 132px;
                         }
                     }
                 }
