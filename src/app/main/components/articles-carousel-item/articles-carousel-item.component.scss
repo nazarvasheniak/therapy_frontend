@@ -21,13 +21,13 @@
         .article-title {
             font-weight: 500;
             font-size: 32px;
-            line-height: 32px;
+            line-height: 100%;
             color: #162B1E;
         }
 
         .article-likes {
             margin-left: 40px;
-            font-family: Poppins;
+            font-family: "Poppins", sans-serif;
             font-style: normal;
             font-weight: 500;
             font-size: 14px;
@@ -85,13 +85,6 @@
 
     .article-text {
         width: 496px;
-        max-height: 880px;
-        -webkit-line-clamp: 40;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: block;
-        display: -webkit-box;
         margin-right: 24px;
         font-weight: normal;
         font-size: 16px;
@@ -366,10 +359,11 @@
     .article-head {
         .article-info {
             flex-wrap: wrap;
+            margin-top: 24px;
 
             .article-title {
                 width: 100%;
-                line-height: 45px;
+                line-height: 140%;
             }
 
             .article-likes {
@@ -379,7 +373,7 @@
             .article-likes,
             .article-comments,
             .article-date {
-                margin-top: 25px;
+                margin-top: 24px;
             }
         }
     }
@@ -425,5 +419,23 @@
                 height: 128px;
             }
         }
+
+        .article-info {
+            margin-top: 22px;
+
+            .article-title {
+                font-size: 26px;
+            }
+
+            .article-likes,
+            .article-comments,
+            .article-date {
+                margin-top: 27px;
+            }
+        }
+    }
+
+    .article-content {
+        padding-bottom: 32px;
     }
 }
