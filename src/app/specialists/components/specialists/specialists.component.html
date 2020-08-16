@@ -88,11 +88,15 @@
 
         <!-- Page Content -->
         <div class="page-content">
-            <div class="specialists-list" *ngIf="specialists">
+            <div class="uk-child-width-auto" uk-grid *ngIf="specialists">
+                <app-specialist-card *ngFor="let specialist of specialists" [specialist]="specialist"></app-specialist-card>
+            </div>
+
+            <!-- <div class="specialists-list" *ngIf="specialists">
                 <div class="flex-row">
                     <app-specialist-card *ngFor="let specialist of specialists" [specialist]="specialist"></app-specialist-card>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Pagination -->
             <div class="specialists-pagination">

@@ -7,14 +7,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 15px;
+    padding-top: 33px;
     padding-bottom: 36px;
 
     .page-title {
         h2 {
             font-weight: 500;
             font-size: 32px;
-            line-height: 32px;
+            line-height: 100%;
             color: #162B1E;
         }
     }
@@ -91,26 +91,39 @@
 }
 
 .page-content {
-    .specialists-list {
-        .flex-row {
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
+    .uk-grid {
+        margin-left: -30px;
+    }
 
-        app-specialist-card {
-            margin-bottom: 30px;
+    app-specialist-card {
+        padding-left: 30px;
+
+        &.uk-grid-margin {
+            margin-top: 30px;
         }
     }
 
     .specialists-pagination {
         display: inline-block;
-        margin-top: 2px;
+        margin-top: 32px;
     }
 }
 
 @media screen and (min-width: 1200px) {
     .container {
         width: 1218px;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .page-content {
+        .uk-grid {
+            margin-left: -54px;
+        }
+    
+        app-specialist-card {
+            padding-left: 56px;
+        }
     }
 }
 
@@ -125,7 +138,7 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        padding-top: 18px;
+        padding-top: 48px;
         padding-bottom: 32px;
 
         .page-filters {
@@ -134,14 +147,12 @@
     }
 
     .page-content {
-        .specialists-list {
-            .flex-row {
-                justify-content: flex-start;
-            }
-
-            app-specialist-card {
-                margin-right: 30px;
-            }
+        .uk-grid {
+            margin-left: -30px;
+        }
+    
+        app-specialist-card {
+            padding-left: 30px;
         }
     }
 }
@@ -156,6 +167,7 @@
 @media screen and (max-width: 767px) {
     .container {
         margin-left: 19px;
+        margin-right: 19px;
     }
 
     .page-head {
@@ -183,5 +195,17 @@
 @media screen and (max-width: 575px) {
     .container {
         width: auto;
+    }
+
+    .page-head {
+        padding-top: 4px;
+    }
+
+    .page-content {
+        app-specialist-card {
+            &.uk-grid-margin {
+                margin-top: 24px;
+            }
+        }
     }
 }
