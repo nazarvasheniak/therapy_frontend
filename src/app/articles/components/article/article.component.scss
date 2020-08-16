@@ -1,3 +1,7 @@
+.article-container {
+    margin-top: 23px;
+}
+
 .button-back {
     position: absolute;
     left: 0;
@@ -59,7 +63,7 @@
         .article-title {
             font-weight: 500;
             font-size: 32px;
-            line-height: 32px;
+            line-height: 100%;
             color: #162B1E;
         }
 
@@ -131,7 +135,7 @@
         margin-right: 24px;
         font-weight: normal;
         font-size: 16px;
-        line-height: 22px;
+        line-height: 140%;
         color: #364D47;
     }
 
@@ -446,7 +450,6 @@
             }
 
             textarea {
-                margin-top: 15px;
                 min-width: 519px;
                 min-height: 115px;
                 background: #F6FBF8;
@@ -493,12 +496,12 @@
     }
 
     .button-back {
-        top: 13px;
+        top: 43px;
         left: auto;
     }
 
     .article-head {
-        padding-top: 74px;
+        padding-top: 104px;
     }
 }
 
@@ -509,21 +512,21 @@
             flex-wrap: wrap;
             
             .article-title {
-                line-height: 45px;
+                line-height: 140%;
                 width: 100%;
             }
 
             .article-likes {
                 margin-left: 0;
-                margin-top: 25px;
+                margin-top: 24px;
             }
 
             .article-comments {
-                margin-top: 25px;
+                margin-top: 24px;
             }
 
             .article-date {
-                margin-top: 25px;
+                margin-top: 24px;
             }
         }
     }
@@ -574,7 +577,17 @@
         padding-right: 19px;
     }
 
+    .button-back {
+        top: 0;
+    }
+
+    .article-head {
+        padding-top: 60px;
+        padding-bottom: 32px;
+    }
+
     .article-content {
+        margin-top: 32px;
         padding-bottom: 32px;
 
         .article-sidebar {
