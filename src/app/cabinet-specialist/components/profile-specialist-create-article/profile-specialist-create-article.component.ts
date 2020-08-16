@@ -169,8 +169,7 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
 
                             return;
                         }
-
-                        console.log(res.data);
+                        
                         this.router.navigate(['/profile-specialist/articles']);
                     });
             });

@@ -10,11 +10,8 @@ export class AppComponent {
 	title = 'therapy-frontend';
 
 	constructor(
-		private route: ActivatedRoute,
 		private router: Router
 	) {
-		console.log(this.route)
-
 		this.router.events.subscribe(event => {
 			if (event instanceof ActivationEnd) {
 				window.scroll(0, 0);
