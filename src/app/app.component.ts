@@ -13,19 +13,12 @@ export class AppComponent {
 		private router: Router
 	) {
 		this.router.events.subscribe(event => {
-			if (event instanceof ActivationEnd) {
-				window.scroll(0, 0);
-			}
 			
 			// filter `NavigationEnd` events
 			if (event instanceof NavigationEnd) {
 
-				// get current route without leading slash `/`
-				const eventUrl = /(?<=\/).+/.exec(event.urlAfterRedirects);
-				const currentRoute = (eventUrl || []).join('');
-				
 				// set bgClass property with the value of the current route
-				if (!currentRoute.includes('/sign-in') && !currentRoute.includes('/sign-up')) {
+				if (!event.urlAfterRedirects.includes('sign-in') && !event.urlAfterRedirects.includes('sign-up')) {
 					document.body.style.background = "#F0F6F3";
 				}
 			}
