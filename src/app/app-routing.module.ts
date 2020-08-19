@@ -35,7 +35,7 @@ export class LoaderGuard implements CanActivate {
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 		return new Promise<boolean>((resolve, reject) => {
 			this.loaderService.next(true);
-			
+
 			setTimeout(() => resolve(true), 100);
 		});
 	}
@@ -52,13 +52,33 @@ const routes: Routes = [
 		path: 'sign-up',
 		component: SignUpComponent
 	},
-	{ path: 'sign-in', component: SignInComponent },
-	{ path: 'sign-in/confirm', component: ConfirmationComponent },
 
-	{ path: 'landing', component: LandingComponent },
+	{
+		path: 'sign-in',
+		component: SignInComponent
+	},
 
-	{ path: 'articles', component: ArticlesComponent, canActivate: [LoaderGuard] },
-	{ path: 'articles/:id', component: ArticleComponent, canActivate: [LoaderGuard] },
+	{
+		path: 'sign-in/confirm',
+		component: ConfirmationComponent
+	},
+
+	{
+		path: 'landing',
+		component: LandingComponent
+	},
+
+	{
+		path: 'articles',
+		component: ArticlesComponent,
+		canActivate: [LoaderGuard]
+	},
+
+	{
+		path: 'articles/:id',
+		component: ArticleComponent,
+		canActivate: [LoaderGuard]
+	},
 
 	{
 		path: 'specialists',
@@ -72,16 +92,33 @@ const routes: Routes = [
 		canActivate: [LoaderGuard]
 	},
 
-	{ path: 'profile', component: ProfileComponent, canActivate: [LoaderGuard] },
-	{ path: 'profile/deposit', component: CabinetDepositComponent, canActivate: [LoaderGuard] },
-	{ path: 'profile/problems/:id/choose-specialist', component: ChooseSpecialistComponent, canActivate: [LoaderGuard] },
-	{ path: 'profile/problems/:id/choose-specialist/:specialistID/pay', component: CabinetPaySpecialistComponent, canActivate: [LoaderGuard] },
-	{ path: 'profile/problems/:id/assets', component: ProblemAssetsComponent, canActivate: [LoaderGuard] },
-	{ path: 'profile/problems/:id/sessions/:sessionID/review', component: CabinetSessionSuccessComponent, canActivate: [LoaderGuard] },
+	{
+		path: 'profile',
+		component: ProfileComponent,
+		canActivate: [LoaderGuard]
+	},
+
+	{
+		path: 'profile/deposit', component: CabinetDepositComponent, canActivate: [LoaderGuard] },
+
+	{
+		path: 'profile/problems/:id/choose-specialist', component: ChooseSpecialistComponent, canActivate: [LoaderGuard] },
+
+	{
+		path: 'profile/problems/:id/choose-specialist/:specialistID/pay', component: CabinetPaySpecialistComponent, canActivate: [LoaderGuard] },
+	
+	{
+		path: 'profile/problems/:id/assets', component: ProblemAssetsComponent, canActivate: [LoaderGuard] },
+	
+	{
+		path: 'profile/problems/:id/sessions/:sessionID/review', component: CabinetSessionSuccessComponent, canActivate: [LoaderGuard] },
+	
 	{ path: 'profile/problems/add', component: CreateProblemComponent, canActivate: [LoaderGuard] },
 
 	{ path: 'profile-specialist', component: ProfileSpecialistComponent, canActivate: [LoaderGuard] },
+	
 	{ path: 'profile-specialist/articles', component: ProfileSpecialistArticlesComponent, canActivate: [LoaderGuard] },
+	
 	{ path: 'profile-specialist/articles/create', component: ProfileSpecialistCreateArticleComponent, canActivate: [LoaderGuard] },
 	{ path: 'profile-specialist/articles/:id', component: ProfileSpecialistEditArticleComponent, canActivate: [LoaderGuard] },
 	{ path: 'profile-specialist/clients', component: ProfileSpecialistClientsComponent, canActivate: [LoaderGuard] },
@@ -93,10 +130,7 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [
-		RouterModule.forRoot(routes, {
-			scrollPositionRestoration: 'top',
-			useHash: false
-		})
+		RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
 	],
 	exports: [RouterModule]
 })

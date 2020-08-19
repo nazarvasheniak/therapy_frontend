@@ -14,10 +14,11 @@ import { UsersService, PublicService, PatientService, SpecialistsService, Articl
 import { SpecialistsModule } from './specialists/specialists.module';
 import { ArticlesModule } from './articles/articles.module';
 import { CabinetSpecialistModule } from './cabinet-specialist/cabinet-specialist.module';
-import { registerLocaleData, LocationStrategy, HashLocationStrategy, PathLocationStrategy } from '@angular/common';
+import { LocationStrategy, registerLocaleData, HashLocationStrategy, APP_BASE_HREF, PathLocationStrategy } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import localeRu from '@angular/common/locales/ru';
 import { LoaderInterceptor } from './common/interceptors';
+
 
 registerLocaleData(localeFr, 'fr');
 registerLocaleData(localeRu);
@@ -43,8 +44,9 @@ registerLocaleData(localeRu);
 		
 	],
 	providers: [
-		{ provide: LOCALE_ID, useValue: 'ru' },
+		{ provide: APP_BASE_HREF, useValue: '/' },
 		{ provide: LocationStrategy, useClass: PathLocationStrategy },
+		{ provide: LOCALE_ID, useValue: 'ru' },
 		{ provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
 		LoaderService,
 		AuthService,

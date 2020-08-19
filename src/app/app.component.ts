@@ -13,6 +13,9 @@ export class AppComponent {
 		private router: Router
 	) {
 		this.router.events.subscribe(event => {
+			if (event instanceof ActivationEnd) {
+				window.scroll(0, 0);
+			}
 			
 			// filter `NavigationEnd` events
 			if (event instanceof NavigationEnd) {
