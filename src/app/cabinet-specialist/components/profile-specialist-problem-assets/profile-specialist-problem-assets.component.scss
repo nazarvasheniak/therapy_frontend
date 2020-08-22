@@ -264,11 +264,15 @@
 
                                         .item-description-row {
                                             display: flex;
-                                            align-items: center;
+                                            //align-items: center;
                                             padding-left: 16px;
                                             padding-right: 16px;
                                             padding-top: 16px;
                                             padding-bottom: 15px;
+
+                                            &.checklist-row {
+                                                align-items: center;
+                                            }
                                             
                                             &:first-child {
                                                 border-bottom: 1px solid #E2F1EA;
@@ -351,6 +355,10 @@
                                                         align-items: center;
                                                         margin-top: 9px;
 
+                                                        > svg {
+                                                            flex: 0 0 16px;
+                                                        }
+
                                                         .related-image {
                                                             margin-left: 13px;
                                                             font-weight: normal;
@@ -358,9 +366,19 @@
                                                             line-height: 140%;
                                                             color: #B6C5BC;
                                                             border-bottom: 1px dashed #B6C5BC;
+                                                            display: flex;
+                                                            align-items: center;
+
+                                                            .text {
+                                                                max-width: 256px;
+                                                                white-space: nowrap;
+                                                                overflow: hidden;
+                                                                text-overflow: ellipsis;
+                                                            }
 
                                                             > svg {
                                                                 margin-left: 7px;
+                                                                flex: 0 0 12px;
                                                             }
                                                         }
                                                     }
@@ -1359,7 +1377,7 @@
                                     .item-head {
                                         .item-title {
                                             .item-specialist {
-                                                margin-left: 100px;
+                                                margin-left: 19px;
                                             }
                                         }
                                     }
@@ -1368,63 +1386,38 @@
                                         .item-description {
                                             .item-description-row {
                                                 align-items: flex-start !important;
-
-                                                .item-description-column {
-                                                    &.relation-column {
-
-                                                        &:not(.relation-column-mobile) {
-                                                            //display: none;
-                                                        }
-
-                                                        &.relation-column-mobile {
-                                                            .column-value {
-                                                                .related-image {
-                                                                    margin-left: 10px;
-                                                                    font-size: 14px;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
+                                                flex-direction: column;
+                                                padding: 0;
 
                                                 &:first-child {
+                                                    border-bottom: 0;
+
                                                     > .item-description-column {
-                                                        width: auto;
-
-                                                        &:first-child {
-                                                            width: auto;
-                                                            margin-right: 62px;
-                                                        }
-
-                                                        &:last-child {
-                                                            width: auto;
-                                                        }
+                                                        width: 100% !important;
+                                                        margin-left: 0 !important;
+                                                        margin-right: 0 !important;
+                                                        padding: 16px;
+                                                        border-bottom: 1px solid #E2F1EA;
                                                     }
                                                 }
 
                                                 &:nth-child(2) {
-                                                    > .item-description-column {
-                                                        margin-right: 50px;
+                                                    flex-direction: row;
+                                                    flex-wrap: wrap;
 
-                                                        &:nth-child(3) {
-                                                            margin-right: 0;
+                                                    > .item-description-column {
+                                                        padding-top: 16px;
+                                                        padding-bottom: 16px;
+
+                                                        &:first-child {
+                                                            margin-left: 16px;
                                                         }
 
                                                         &:last-child {
+                                                            width: 100%;
                                                             margin-left: 0;
-                                                        }
-
-                                                        &.button-column {
-                                                            align-self: center;
-                                                            margin-left: 25px;
-                                                        }
-
-                                                        &.relation-column {
-                                                            margin-left: 14px;
-
-                                                            .related-image {
-                                                                margin-left: 10px !important;
-                                                            }
+                                                            padding-left: 16px;
+                                                            border-top: 1px solid #E2F1EA;
                                                         }
                                                     }
                                                 }
@@ -1615,46 +1608,6 @@
                                     .item-head {
                                         .item-title {
                                             width: 100%;
-
-                                            .item-specialist {
-                                                margin-left: auto;
-                                                margin-right: 0;
-                                            }
-                                        }
-                                    }
-
-                                    .item-body {
-                                        .item-description {
-                                            .item-description-row {
-                                                justify-content: space-between;
-
-                                                .item-description-column {
-                                                    &.relation-column {
-                                                        display: none;
-                                                    }
-
-                                                    margin-left: 0 !important;
-                                                    margin-right: 0 !important;
-
-                                                    &:nth-child(1) {
-                                                        width: 136px !important;
-                                                    }
-
-                                                    &:nth-child(2) {
-                                                        width: 140px !important;
-                                                    }
-
-                                                    &:nth-child(3) {
-                                                        width: 200px !important;
-                                                    }
-                                                }
-
-                                                &:last-child {
-                                                    .item-description-column {
-                                                        width: auto !important;
-                                                    }
-                                                }
-                                            }
                                         }
                                     }
 
@@ -1789,6 +1742,14 @@
                 padding-right: 16px;
 
                 .page-info {
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    
+                    .client-name {
+                        margin-top: 18px;
+                    }
+
                     .button-back {
                         margin-left: 0;
                     }
@@ -1827,86 +1788,77 @@
                             .images-list {
                                 .images-list-item {
                                     .item-head {
+                                        align-items: flex-start;
+                                        position: relative;
+
                                         .item-title {
+                                            flex-wrap: wrap;
+
                                             .item-name {
-                                                margin-left: 10px;
+                                                margin-left: 0;
+                                                margin-top: 16px;
+                                                width: 100%;
+
+                                                .name {
+                                                    line-height: 120%;
+                                                }
 
                                                 .like-score {
+                                                    margin-top: 11px;
+
                                                     .like-score-section {
-                                                        width: 16px;
+                                                        width: 21.8px;
                                                     }
                                                 }
                                             }
 
                                             .item-specialist {
+                                                margin-left: 0;
+                                                margin-top: 18px;
+
                                                 .specialist-name {
-                                                    display: none;
+                                                    max-width: 164px;
+                                                    white-space: nowrap;
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis;
                                                 }
                                             }
+                                        }
+
+                                        .item-actions {
+                                            position: absolute;
+                                            top: 0;
+                                            right: 0;
                                         }
                                     }
 
                                     .item-body {
                                         .item-description {
                                             .item-description-row {
-                                                &:first-child {
-                                                    flex-direction: column;
+                                                flex-direction: column !important;
 
-                                                    .item-description-column {
-                                                        margin-top: 24px;
-                                                        width: 100% !important;
-    
-                                                        &:first-child {
-                                                            margin-top: 0;
-                                                        }
-    
-                                                        &:last-child {
-                                                            width: 100% !important;
-                                                        }
+                                                .item-description-column {
+                                                    padding-top: 0 !important;
+                                                    padding-bottom: 0 !important;
+                                                    margin-left: 0 !important;
+                                                    margin-right: 0 !important;
+                                                    border-top: 0 !important;
+                                                    border-bottom: 0 !important;
+                                                    padding-left: 16px;
+                                                    padding-right: 14px;
+                                                    margin-top: 24px;
+
+                                                    &.button-column,
+                                                    &.relation-column {
+                                                        margin-bottom: 24px;
                                                     }
-                                                }
 
-                                                &:nth-child(2) {
-                                                    &:not(.item-description-row-mobile) {
-                                                        display: none;
-                                                    }
-                                                }
-
-                                                &.item-description-row-mobile {
-                                                    flex-direction: column-reverse;
-                                                    justify-content: flex-start;
-                                                    align-items: flex-start;
-
-                                                    .item-description-column {
-                                                        width: 100% !important;
-                                                        margin-top: 24px;
-
-                                                        &:last-child {
-                                                            margin-top: 0;
-                                                        }
-
-                                                        &.button-column {
-                                                            .column-value {
-                                                                > button {
-                                                                    width: 100%;
-                                                                }
-                                                            }
-                                                        }
-
-                                                        &.relation-column {
-                                                            &:not(.relation-column-mobile) {
-                                                                display: block;
-
-                                                                .column-value {
-                                                                    > svg {
-                                                                        flex: 0 0 16px;
-                                                                        align-self: flex-start;
-                                                                    }
-
-                                                                    .related-image {
-                                                                        font-size: 14px;
-                                                                        margin-left: 10px;
-                                                                    }
+                                                    &.relation-column {
+                                                        .column-value {
+                                                            .related-image {
+                                                                .text {
+                                                                    max-width: none;
+                                                                    white-space: normal;
                                                                 }
                                                             }
                                                         }
