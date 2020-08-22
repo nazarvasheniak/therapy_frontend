@@ -1686,6 +1686,11 @@
                                         flex-direction: column;
                                         justify-content: flex-start;
                                         align-items: flex-start;
+
+                                        .item-rating {
+                                            margin-left: 72px;
+                                            margin-top: 24px;
+                                        }
                                     }
                                 }
                             }
@@ -2059,6 +2064,41 @@
                                                         }
                                                     }
                                                 }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .sessions-list {
+                                .sessions-list-item {
+                                    padding-top: 16px;
+                                    padding-bottom: 16px;
+                                    padding-left: 16px;
+                                    padding-right: 16px;
+
+                                    .sessions-list-item-inner {
+                                        .item-title {
+                                            flex-wrap: wrap-reverse;
+
+                                            .item-date {
+                                                margin-top: 16px;
+                                            }
+
+                                            .item-specialist {
+                                                width: 100%;
+                                                margin-left: 0;
+                                            }
+                                        }
+
+                                        .item-rating {
+                                            margin-top: -50px;
+                                            flex-wrap: wrap;
+
+                                            .item-review {
+                                                width: 100%;
+                                                margin-left: -72px;
+                                                margin-top: 16px;
                                             }
                                         }
                                     }
