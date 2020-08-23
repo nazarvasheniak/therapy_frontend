@@ -14,10 +14,12 @@ import { CabinetDepositComponent } from './components/deposit/deposit.component'
 import { ProblemAssetsComponent } from './components/problem-assets/problem-assets.component';
 import { CabinetPaySpecialistComponent } from './components/pay-specialist/pay-specialist.component';
 import { CabinetSessionSuccessComponent } from './components/session-success/session-success.component';
+import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
 
 @NgModule({
     declarations: [
         ProfileComponent,
+        ProfileHeaderComponent,
         ProfileSidebarComponent,
         ProblemComponent,
         ChooseSpecialistComponent,
