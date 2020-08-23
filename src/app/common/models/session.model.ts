@@ -9,4 +9,5 @@ export class Session {
     public status: SessionStatus;
     public reward: number;
     public date: Date;
+    public reviewScore: number;
 }

@@ -356,12 +356,16 @@
 
                                                 &.relation-column {
                                                     cursor: not-allowed;
-                                                    margin-left: 10px;
+                                                    margin-left: 10px !important;
 
                                                     .column-value {
                                                         display: flex;
                                                         align-items: center;
                                                         margin-top: 9px;
+
+                                                        > svg {
+                                                            flex: 0 0 16px;
+                                                        }
 
                                                         .related-image {
                                                             margin-left: 13px;
@@ -370,9 +374,19 @@
                                                             line-height: 140%;
                                                             color: #B6C5BC;
                                                             border-bottom: 1px dashed #B6C5BC;
+                                                            display: flex;
+                                                            align-items: center;
+
+                                                            .text {
+                                                                max-width: 256px;
+                                                                white-space: nowrap;
+                                                                overflow: hidden;
+                                                                text-overflow: ellipsis;
+                                                            }
 
                                                             > svg {
                                                                 margin-left: 7px;
+                                                                flex: 0 0 12px;
                                                             }
                                                         }
                                                     }
@@ -1187,9 +1201,6 @@
 
                         .sessions-list {
                             .sessions-list-item {
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
                                 background: #F6FBF8;
                                 border: 1px solid #E2F1EA;
                                 box-sizing: border-box;
@@ -1204,147 +1215,134 @@
                                     margin-top: 0;
                                 }
 
-                                .session-info {
+                                .sessions-list-item-inner {
                                     display: flex;
+                                    justify-content: space-between;
                                     align-items: center;
 
-                                    .session-date {
-                                        width: 54px;
-                                        height: 54px;
-                                        flex: 0 0 54px;
-                                        background: #FFFFFF;
-                                        border: 1px solid #DBF8E6;
-                                        box-sizing: border-box;
-                                        border-radius: 28px;
-                                        display: flex;
-                                        flex-direction: column;
-                                        justify-content: center;
-                                        align-items: center;
-
-                                        .day {
-                                            font-family: "Poppins", sans-serif;
-                                            font-weight: 300;
-                                            font-size: 22px;
-                                            line-height: 22px;
-                                            text-align: center;
-                                            color: #005264;
-                                        }
-
-                                        .month {
-                                            margin-top: 4px;
-                                            font-weight: normal;
-                                            font-size: 10px;
-                                            line-height: 10px;
-                                            text-align: center;
-                                            letter-spacing: 0.18em;
-                                            text-transform: uppercase;
-                                            color: #9EACA9;                      
-                                        }
-                                    }
-
-                                    .session-specialist {
-                                        margin-left: 18px;
+                                    .item-title {
                                         display: flex;
                                         align-items: center;
 
-                                        .specialist-photo {
-                                            width: 43px;
-                                            height: 43px;
-                                            flex: 0 0 43px;
-                                            border-radius: 24px;
+                                        .item-date {
+                                            width: 54px;
+                                            height: 54px;
+                                            flex: 0 0 54px;
+                                            background: #FFFFFF;
+                                            border: 1px solid #DBF8E6;
+                                            box-sizing: border-box;
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: center;
+                                            align-items: center;
+                                            text-align: center;
+                                            border-radius: 100px;
 
-                                            > img {
-                                                width: 100%;
-                                                height: 100%;
-                                                border-radius: 24px;
-                                                padding: 4px;
-                                                border: 1px solid #32A776;
-                                                object-fit: cover;
+                                            .day {
+                                                font-family: "Poppins", sans-serif;
+                                                font-weight: 300;
+                                                font-size: 22px;
+                                                line-height: 100%;
+                                                color: #005264;
+                                            }
+
+                                            .month {
+                                                font-weight: normal;
+                                                font-size: 10px;
+                                                line-height: 100%;
+                                                text-align: center;
+                                                letter-spacing: 0.18em;
+                                                text-transform: uppercase;
+                                                color: #9EACA9;
                                             }
                                         }
 
-                                        .specialist-name-rating {
-                                            margin-left: 10px;
+                                        .item-specialist {
+                                            margin-left: 18px;
                                             display: flex;
                                             align-items: center;
 
+                                            .specialist-photo {
+                                                width: 43px;
+                                                height: 43px;
+                                                flex: 0 0 43px;
+                                                border: 1px solid #32A776;
+                                                border-radius: 100px;
+                                                padding: 3px;
+                        
+                                                > img {
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    border-radius: 100px;
+                                                    object-fit: cover;
+                                                }
+                                            }
+
                                             .specialist-name {
+                                                margin-left: 10px;
                                                 font-weight: 500;
                                                 font-size: 16px;
-                                                line-height: 16px;
+                                                line-height: 100%;
                                                 color: #005264;
+                                                cursor: pointer;
                                             }
-    
+
                                             .specialist-rating {
                                                 margin-left: 10px;
-                                                display: flex;
-                                                align-items: center;
                                                 font-weight: normal;
                                                 font-size: 14px;
-                                                line-height: 16px;
-                                                color: #DEBA39;                                            
-    
-                                                app-rating {
+                                                line-height: 111%;
+                                                color: #DEBA39;
+                                                display: flex;
+                                                align-items: center;
+
+                                                svg {
                                                     margin-right: 3px;
                                                 }
                                             }
                                         }
                                     }
-                                }
 
-                                .session-review {
-                                    display: flex;
-                                    align-items: center;
+                                    .item-rating {
+                                        display: flex;
+                                        align-items: center;
 
-                                    .session-score {
-                                        .title {
-                                            font-weight: normal;
-                                            font-size: 12px;
-                                            line-height: 17px;
-                                            letter-spacing: 0.1em;
-                                            color: #B6C5BC;               
-                                            text-transform: uppercase;                             
-                                        }
+                                        .item-score {
+                                            .title {
+                                                font-weight: normal;
+                                                font-size: 12px;
+                                                line-height: 140%;
+                                                letter-spacing: 0.1em;
+                                                text-transform: uppercase;
+                                                color: #B6C5BC;                                                
+                                            }
 
-                                        .score {
-                                            margin-top: 6px;
-
-                                            > img {
-                                                width: 18px;
-                                                height: 18px;
-                                                margin-left: 6px;
-
-                                                &:first-child {
-                                                    margin-left: 0;
-                                                }
+                                            .score {
+                                                margin-top: 6px;
                                             }
                                         }
-                                    }
-
-                                    .session-review-button {
-                                        margin-left: 40px;
-
-                                        > button {
+                                        
+                                        .item-review {
+                                            margin-left: 40px;
                                             display: flex;
-                                            align-items: center;
                                             justify-content: center;
+                                            align-items: center;
                                             width: 101px;
                                             height: 42px;
+                                            flex: 0 0 101px;
                                             background: #FFFFFF;
                                             border: 0.5px solid #C7DFD3;
                                             box-sizing: border-box;
                                             border-radius: 10px;
                                             font-weight: normal;
                                             font-size: 16px;
-                                            line-height: 22px;
+                                            line-height: 140%;
                                             color: #89A295;
-                                            cursor: pointer;  
-                                            outline: none;                                          
+                                            cursor: pointer;
+                                            outline: none;                                                                                    
 
-                                            > .icon {
-                                                width: 16px;
-                                                height: 16px;
-                                                margin-right: 10px;
+                                            svg {
+                                                margin-right: 12px;
                                             }
                                         }
                                     }
@@ -1414,7 +1412,7 @@
                                     .item-head {
                                         .item-title {
                                             .item-specialist {
-                                                margin-left: 100px;
+                                                margin-left: 21px;
                                             }
                                         }
                                     }
@@ -1423,54 +1421,51 @@
                                         .item-description {
                                             .item-description-row {
                                                 align-items: flex-start !important;
+                                                padding: 0;
 
                                                 .item-description-column {
-                                                    &.relation-column {
-
-                                                        &:not(.relation-column-mobile) {
-                                                            display: none;
-                                                        }
-
-                                                        &.relation-column-mobile {
-                                                            .column-value {
-                                                                .related-image {
-                                                                    margin-left: 10px;
-                                                                    font-size: 14px;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
+                                                    margin-left: 0 !important;
+                                                    margin-right: 0 !important;
+                                                    padding: 16px;
                                                 }
 
                                                 &:first-child {
+                                                    flex-direction: column;
+                                                    border-bottom: 0;
+
                                                     > .item-description-column {
-                                                        width: auto;
-
-                                                        &:first-child {
-                                                            width: auto;
-                                                            margin-right: 62px;
-                                                        }
-
-                                                        &:last-child {
-                                                            width: auto;
-                                                        }
+                                                        width: 100% !important;
+                                                        border-bottom: 1px solid #E2F1EA;
                                                     }
                                                 }
 
                                                 &:nth-child(2) {
-                                                    > .item-description-column {
-                                                        margin-right: 50px;
+                                                    padding-top: 16px;
+                                                    padding-bottom: 16px;
+                                                    flex-wrap: wrap;
 
-                                                        &:nth-child(3) {
-                                                            margin-right: 0;
-                                                        }
+                                                    .item-description-column {
+                                                        padding: 0;
 
-                                                        &:last-child {
-                                                            margin-left: 0;
+                                                        &.checkbox-column {
+                                                            margin-right: 60px !important;
+
+                                                            &:first-child {
+                                                                padding-left: 16px;
+                                                            }
+
+                                                            &:last-child {
+                                                                margin-right: 0;
+                                                            }
                                                         }
 
                                                         &.relation-column {
-                                                            margin-left: 25px;
+                                                            width: 100%;
+                                                            margin-left: 0 !important;
+                                                            padding-top: 16px;
+                                                            padding-left: 16px;
+                                                            margin-top: 16px;
+                                                            border-top: 1px solid #E2F1EA;
                                                         }
                                                     }
                                                 }
@@ -1485,7 +1480,7 @@
                                     .item-head {
                                         .item-title {
                                             .item-specialist {
-                                                margin-left: 100px;
+                                                margin-left: 21px;
                                             }
                                         }
                                     }
@@ -1496,9 +1491,17 @@
 
                                             .item-description-block {
                                                 width: 100% !important;
-                                                padding-right: 16px;
+                                                padding: 0 !important;
 
                                                 .item-description-row {
+                                                    border-bottom: 1px solid #E2F1EA;
+                                                    max-width: none !important;
+                                                    padding-top: 16px;
+                                                    padding-bottom: 16px;
+                                                    padding-left: 16px;
+                                                    padding-right: 16px;
+                                                    margin-top: 0;
+
                                                     .row-value {
                                                         .num-list {
                                                             .num-list-item {
@@ -1518,11 +1521,9 @@
                                                 }
 
                                                 &:last-child {
-                                                    padding-top: 0;
-                                                    margin-top: 24px;
-
                                                     .item-description-row {
                                                         max-width: none;
+                                                        border-bottom: 0;
                                                     }
                                                 }
                                             }
@@ -1548,7 +1549,7 @@
                             .sessions-list-item {
                                 .session-info {
                                     .session-score {
-                                        display: none;
+                                        //display: none;
                                     }
                                 }
                             }
@@ -1573,62 +1574,12 @@
                 .tabs {
                     .tabs-content {
                         .tab-content {
-                            .images-list {
-                                .images-list-item {
-                                    padding-top: 10px;
-
-                                    .item-head {
-                                        .item-title {
-                                            width: 100%;
-
-                                            .item-specialist {
-                                                margin-left: auto;
-                                                margin-right: 0;
-                                            }
-                                        }
-                                    }
-
-                                    .item-body {
-                                        .item-description {
-                                            .item-description-row {
-                                                justify-content: space-between;
-
-                                                .item-description-column {
-                                                    &.relation-column {
-                                                        display: none;
-                                                    }
-
-                                                    margin-left: 0 !important;
-                                                    margin-right: 0 !important;
-
-                                                    &:nth-child(1) {
-                                                        width: 136px !important;
-                                                    }
-
-                                                    &:nth-child(2) {
-                                                        width: 140px !important;
-                                                    }
-
-                                                    &:nth-child(3) {
-                                                        width: 200px !important;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
 
                             .resources-list {
                                 .resources-list-item {
                                     .item-head {
                                         .item-title {
                                             width: 100%;
-
-                                            .item-specialist {
-                                                margin-left: auto;
-                                                margin-right: 0;
-                                            }
                                         }
                                     }
                                 }
@@ -1636,93 +1587,14 @@
 
                             .sessions-list {
                                 .sessions-list-item {
-                                    flex-direction: column;
-                                    justify-content: flex-start;
-                                    align-items: flex-start;
-                                    padding-top: 16px;
-                                    padding-bottom: 16px;
-
-                                    .session-info {
-                                        width: 100%;
+                                    .sessions-list-item-inner {
+                                        flex-direction: column;
+                                        justify-content: flex-start;
                                         align-items: flex-start;
 
-                                        .session-date {
-                                            display: none;
-                                        }
-
-                                        .session-specialist {
-                                            margin-left: 0;
-
-                                            .specialist-name-rating {
-                                                flex-direction: column;
-                                                align-items: flex-start;
-                                                
-                                                .specialist-rating {
-                                                    margin-left: 0;
-                                                    margin-top: 5px;
-                                                }
-                                            }
-                                        }
-
-                                        .session-score {
-                                            margin-right: 0;
-                                            margin-left: auto;
-
-                                            .score {
-                                                > img {
-                                                    margin-left: 6px;
-
-                                                    &:first-child {
-                                                        margin-left: 0;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    .session-review {
-                                        width: 100%;
-                                        margin-top: 24px;
-
-                                        .session-score {
-                                            display: none;
-                                        }
-
-                                        .session-review-button {
-                                            width: 100%;
-                                            margin-left: 0;
-
-                                            > button {
-                                                width: 100%;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media screen and (min-width: 560px) {
-    .content-wrapper {
-        content {
-            .page-content {
-                .tabs {
-                    .tabs-content {
-                        .tab-content {
-                            .images-list {
-                                .images-list-item {
-                                    .item-body {
-                                        .item-description {
-                                            .item-description-row {
-                                                &.item-description-row-mobile {
-                                                    display: none;
-                                                }
-                                            }
+                                        .item-rating {
+                                            margin-left: 72px;
+                                            margin-top: 24px;
                                         }
                                     }
                                 }
@@ -1777,87 +1649,78 @@
                     }
 
                     .tabs-content {
-                        padding-left: 16px;
-                        padding-right: 16px;
+                        padding-left: 10px;
+                        padding-right: 10px;
 
                         .tab-content {
                             .images-list {
                                 .images-list-item {
                                     .item-head {
                                         .item-title {
+                                            flex-direction: column;
+                                            justify-content: flex-start;
+                                            align-items: flex-start;
+
                                             .item-name {
-                                                margin-left: 10px;
+                                                margin-left: 0;
+                                                margin-top: 16px;
+
+                                                .name {
+                                                    line-height: 120%;
+                                                }
 
                                                 .like-score {
-                                                    .like-score-section {
-                                                        width: 16px;
-                                                    }
+                                                    margin-top: 11px;
                                                 }
                                             }
 
                                             .item-specialist {
-                                                .specialist-name {
-                                                    display: none;
-                                                }
+                                                margin-left: 0;
+                                                margin-top: 18px;
                                             }
                                         }
                                     }
 
                                     .item-body {
+                                        margin-top: 16px;
+
                                         .item-description {
                                             .item-description-row {
+                                                flex-direction: column;
+
                                                 &:first-child {
-                                                    flex-direction: column;
-
                                                     .item-description-column {
                                                         margin-top: 24px;
                                                         width: 100% !important;
-    
-                                                        &:first-child {
-                                                            margin-top: 0;
-                                                        }
-    
-                                                        &:last-child {
-                                                            width: 100% !important;
-                                                        }
+                                                        padding-left: 16px;
+                                                        padding-right: 14px;
+                                                        padding-top: 0;
+                                                        padding-bottom: 0;
+                                                        border-bottom: 0;
                                                     }
                                                 }
 
-                                                &:nth-child(2) {
-                                                    &:not(.item-description-row-mobile) {
-                                                        display: none;
-                                                    }
-                                                }
-
-                                                &.item-description-row-mobile {
-                                                    flex-direction: column-reverse;
-                                                    justify-content: flex-start;
-                                                    align-items: flex-start;
+                                                &:last-child {
+                                                    padding-top: 0;
+                                                    padding-bottom: 0;
 
                                                     .item-description-column {
-                                                        width: 100% !important;
-                                                        margin-top: 24px;
-
-                                                        &:last-child {
-                                                            margin-top: 0;
+                                                        &.checkbox-column {
+                                                            margin-top: 24px;
+                                                            padding-left: 16px;
+                                                            padding-right: 14px;
+                                                            margin-left: 0 !important;
+                                                            margin-right: 0 !important;
                                                         }
 
                                                         &.relation-column {
-                                                            &:not(.relation-column-mobile) {
-                                                                display: block;
+                                                            border-top: 0;
+                                                            padding-top: 0;
+                                                            margin-top: 24px;
+                                                        }
 
-                                                                .column-value {
-                                                                    > svg {
-                                                                        flex: 0 0 16px;
-                                                                        align-self: flex-start;
-                                                                    }
-
-                                                                    .related-image {
-                                                                        font-size: 14px;
-                                                                        margin-left: 10px;
-                                                                    }
-                                                                }
-                                                            }
+                                                        &:last-child {
+                                                            margin-bottom: 16px;
                                                         }
                                                     }
                                                 }
@@ -1871,20 +1734,89 @@
                                 .resources-list-item {
                                     .item-head {
                                         .item-title {
+                                            flex-wrap: wrap;
+
                                             .item-name {
-                                                margin-left: 10px;
+                                                width: 100%;
+                                                margin-left: 0;
+                                                margin-top: 16px;
+
+                                                .name {
+                                                    line-height: 120%;
+                                                }
 
                                                 .like-score {
+                                                    margin-top: 11px;
+
                                                     .like-score-section {
-                                                        width: 16px;
+                                                        width: 21.8px;
                                                     }
                                                 }
                                             }
 
                                             .item-specialist {
-                                                .specialist-name {
-                                                    display: none;
+                                                margin-left: 0;
+                                                margin-top: 18px;
+                                            }
+                                        }
+                                    }
+
+                                    .item-body {
+                                        .item-description {
+                                            .item-description-block {
+                                                .item-description-row {
+                                                    margin-top: 24px;
+                                                    border-bottom: 0;
+                                                    padding-top: 0;
+                                                    padding-bottom: 0;
+
+                                                    &:first-child {
+                                                        margin-top: 24px;
+                                                    }
                                                 }
+
+                                                &:last-child {
+                                                    .item-description-row {
+                                                        &:last-child {
+                                                            margin-bottom: 16px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .sessions-list {
+                                .sessions-list-item {
+                                    padding-top: 16px;
+                                    padding-bottom: 16px;
+                                    padding-left: 16px;
+                                    padding-right: 16px;
+
+                                    .sessions-list-item-inner {
+                                        .item-title {
+                                            flex-wrap: wrap-reverse;
+
+                                            .item-date {
+                                                margin-top: 16px;
+                                            }
+
+                                            .item-specialist {
+                                                width: 100%;
+                                                margin-left: 0;
+                                            }
+                                        }
+
+                                        .item-rating {
+                                            margin-top: -50px;
+                                            flex-wrap: wrap;
+
+                                            .item-review {
+                                                width: 100%;
+                                                margin-left: -72px;
+                                                margin-top: 16px;
                                             }
                                         }
                                     }
