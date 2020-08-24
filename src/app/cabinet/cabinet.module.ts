@@ -15,6 +15,7 @@ import { ProblemAssetsComponent } from './components/problem-assets/problem-asse
 import { CabinetPaySpecialistComponent } from './components/pay-specialist/pay-specialist.component';
 import { CabinetSessionSuccessComponent } from './components/session-success/session-success.component';
 import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
+import { RefundComponent } from './components/refund/refund.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { ProfileHeaderComponent } from './components/profile-header/profile-head
         CabinetDepositComponent,
         CabinetPaySpecialistComponent,
         ProblemAssetsComponent,
-        CabinetSessionSuccessComponent
+        CabinetSessionSuccessComponent,
+        RefundComponent
     ],
     imports: [
         CommonModule,

@@ -27,6 +27,7 @@ import { ProfileSpecialistReviewsComponent } from './cabinet-specialist/componen
 import { ProfileSpecialistProblemAssetsComponent } from './cabinet-specialist/components/profile-specialist-problem-assets/profile-specialist-problem-assets.component';
 import { AuthService, LoaderService } from './common/services';
 import { Observable } from 'rxjs';
+import { RefundComponent } from './cabinet/components/refund/refund.component';
 
 @Injectable()
 export class LoaderGuard implements CanActivate {
@@ -99,33 +100,100 @@ const routes: Routes = [
 	},
 
 	{
-		path: 'profile/deposit', component: CabinetDepositComponent, canActivate: [LoaderGuard] },
+		path: 'profile/deposit', 
+		component: CabinetDepositComponent, 
+		canActivate: [LoaderGuard]
+	},
 
 	{
-		path: 'profile/problems/:id/choose-specialist', component: ChooseSpecialistComponent, canActivate: [LoaderGuard] },
+		path: 'profile/problems/:id/choose-specialist', 
+		component: ChooseSpecialistComponent, 
+		canActivate: [LoaderGuard]
+	},
 
 	{
-		path: 'profile/problems/:id/choose-specialist/:specialistID/pay', component: CabinetPaySpecialistComponent, canActivate: [LoaderGuard] },
+		path: 'profile/problems/:id/choose-specialist/:specialistID/pay', 
+		component: CabinetPaySpecialistComponent, 
+		canActivate: [LoaderGuard] 
+	},
 	
 	{
-		path: 'profile/problems/:id/assets', component: ProblemAssetsComponent, canActivate: [LoaderGuard] },
+		path: 'profile/problems/:id/assets', 
+		component: ProblemAssetsComponent, 
+		canActivate: [LoaderGuard] 
+	},
 	
 	{
-		path: 'profile/problems/:id/sessions/:sessionID/review', component: CabinetSessionSuccessComponent, canActivate: [LoaderGuard] },
-	
-	{ path: 'profile/problems/add', component: CreateProblemComponent, canActivate: [LoaderGuard] },
+		path: 'profile/problems/:id/sessions/:sessionID/review', 
+		component: CabinetSessionSuccessComponent, 
+		canActivate: [LoaderGuard] 
+	},
 
-	{ path: 'profile-specialist', component: ProfileSpecialistComponent, canActivate: [LoaderGuard] },
+	{
+		path: 'profile/problems/:id/sessions/:sessionID/refund',
+		component: RefundComponent,
+		canActivate: [LoaderGuard] 
+	},
 	
-	{ path: 'profile-specialist/articles', component: ProfileSpecialistArticlesComponent, canActivate: [LoaderGuard] },
+	{ 
+		path: 'profile/problems/add', 
+		component: CreateProblemComponent, 
+		canActivate: [LoaderGuard] 
+	},
+
+	{ 
+		path: 'profile-specialist', 
+		component: ProfileSpecialistComponent, 
+		canActivate: [LoaderGuard] 
+	},
 	
-	{ path: 'profile-specialist/articles/create', component: ProfileSpecialistCreateArticleComponent, canActivate: [LoaderGuard] },
-	{ path: 'profile-specialist/articles/:id', component: ProfileSpecialistEditArticleComponent, canActivate: [LoaderGuard] },
-	{ path: 'profile-specialist/clients', component: ProfileSpecialistClientsComponent, canActivate: [LoaderGuard] },
-	{ path: 'profile-specialist/clients/:id', component: ProfileSpecialistClientComponent, canActivate: [LoaderGuard] },
-	{ path: 'profile-specialist/sessions', component: ProfileSpecialistSessionsComponent, canActivate: [LoaderGuard] },
-	{ path: 'profile-specialist/reviews', component: ProfileSpecialistReviewsComponent, canActivate: [LoaderGuard] },
-	{ path: 'profile-specialist/clients/:clientID/problems/:problemID/assets', component: ProfileSpecialistProblemAssetsComponent, canActivate: [LoaderGuard] }
+	{ 
+		path: 'profile-specialist/articles', 
+		component: ProfileSpecialistArticlesComponent, 
+		canActivate: [LoaderGuard] 
+	},
+	
+	{ 
+		path: 'profile-specialist/articles/create', 
+		component: ProfileSpecialistCreateArticleComponent, 
+		canActivate: [LoaderGuard] 
+	},
+	
+	{ 
+		path: 'profile-specialist/articles/:id', 
+		component: ProfileSpecialistEditArticleComponent, 
+		canActivate: [LoaderGuard] 
+	},
+
+	{ 
+		path: 'profile-specialist/clients', 
+		component: ProfileSpecialistClientsComponent, 
+		canActivate: [LoaderGuard] 
+	},
+
+	{ 
+		path: 'profile-specialist/clients/:id', 
+		component: ProfileSpecialistClientComponent, 
+		canActivate: [LoaderGuard] 
+	},
+
+	{ 
+		path: 'profile-specialist/sessions', 
+		component: ProfileSpecialistSessionsComponent, 
+		canActivate: [LoaderGuard] 
+	},
+	
+	{ 
+		path: 'profile-specialist/reviews', 
+		component: ProfileSpecialistReviewsComponent, 
+		canActivate: [LoaderGuard] 
+	},
+
+	{ 
+		path: 'profile-specialist/clients/:clientID/problems/:problemID/assets', 
+		component: ProfileSpecialistProblemAssetsComponent, 
+		canActivate: [LoaderGuard] 
+	}
 ];
 
 @NgModule({
