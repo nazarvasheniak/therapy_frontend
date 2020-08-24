@@ -556,7 +556,7 @@
                 </div>
 
                 <div class="session-actions">
-                    <div class="session-action reject" *ngIf="activeSession.status == 1">
+                    <div class="session-action reject" *ngIf="activeSession.status == 1" (click)="refundSession()">
                         Сессия не помогла, вернуть деньги
                     </div>
 

@@ -7,4 +7,5 @@ export class User {
     public phoneNumber: string;
     public email: string;
     public role: UserRole;
+    public registeredAt: Date;
 }

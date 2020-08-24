@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/common/services';
+import { AuthService, UsersWalletsService } from 'src/app/common/services';
+import { UserWallet } from 'src/app/common/models';
 
 @Component({
 	selector: 'profile-specialist-sidebar',
@@ -8,12 +9,22 @@ import { AuthService } from 'src/app/common/services';
 })
 export class ProfileSpecialistSidebarComponent implements OnInit {
     
+    public wallet: UserWallet;
+
     constructor(
-        private authService: AuthService
+        private authService: AuthService,
+        private walletService: UsersWalletsService
     ) { }
 
-    ngOnInit(): void {
+    private loadWallet() {
+        this.walletService.getMyWallet()
+            .subscribe(response => {
+                this.wallet = response.data;
+            });
+    }
 
+    ngOnInit(): void {
+        this.loadWallet();
     }
 
     logout() {

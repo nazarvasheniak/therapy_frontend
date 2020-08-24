@@ -113,4 +113,8 @@ export class SpecialistService extends BaseHttpService {
         return this.put<DataResponse<ProblemResource[]>>(`/specialist/clients/${clientID}/problems/${problemID}/resources/${resourceID}`, request)
             .map(response => response.data);
     }
+
+    public closeClientSession(clientID: number, problemID: number, sessionID: number) {
+        return this.post<ResponseModel>(`/specialist/clients/${clientID}/problems/${problemID}/sessions/${sessionID}/close`, {});
+    }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '
 import { Router } from '@angular/router';
 
 import { SpecialistService, AuthService, FilesService } from 'src/app/common/services';
-import { SpecialistProfile, Problem, SpecialistProfileActiveSession, File } from 'src/app/common/models';
+import { SpecialistProfile, Problem, SpecialistProfileActiveSession, File, Session } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
 import { Subject } from 'rxjs';
 
@@ -51,6 +51,16 @@ export class ProfileSpecialistComponent implements OnInit {
         this.specialistService.getActiveSessions()
             .subscribe(sessions => {
                 this.activeSessions = sessions;
+            });
+    }
+
+    closeSession(session: Session) {
+        this.specialistService
+            .closeClientSession(session.problem.user.id, session.problem.id, session.id)
+            .subscribe(response => {
+                if (response.success) {
+                    this.loadActiveSessions();
+                }
             });
     }
 

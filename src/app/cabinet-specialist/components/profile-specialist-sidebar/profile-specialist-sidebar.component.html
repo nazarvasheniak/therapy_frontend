@@ -153,8 +153,8 @@
                     {{ (wallet.balance - wallet.lockedBalance) | number:'':'fr' }} ₽
                 </div> -->
 
-                <div class="balance">
-                    17 840 ₽
+                <div class="balance" *ngIf="wallet">
+                    {{ wallet.balance | number:'':'fr' }} ₽
                 </div>
             </div>
         </div>

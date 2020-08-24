@@ -54,7 +54,7 @@ export class ProblemComponent implements OnInit {
                 }
 
                 this.sessions = res.data;
-                this.activeSession = res.data.find(x => x.status == SessionStatus.Started || x.status == SessionStatus.Waiting);
+                this.activeSession = res.data.find(x => !x.isClientClose);
                 
                 if (res.data.length && (res.data[0].status == SessionStatus.Success || res.data[0].status == SessionStatus.Refund)) {
                     this.lastSession = res.data[res.data.length - 1];
@@ -147,6 +147,10 @@ export class ProblemComponent implements OnInit {
 
                 this.router.navigate([`profile/problems/${this.problem.id}/sessions/${this.activeSession.id}/review`]);
             });
+    }
+
+    refundSession() {
+        this.router.navigate([`profile/problems/${this.problem.id}/sessions/${this.activeSession.id}/refund`]);
     }
 
     normalizeMonth(monthStr: string) {

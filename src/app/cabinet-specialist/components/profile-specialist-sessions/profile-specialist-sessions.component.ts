@@ -37,6 +37,16 @@ export class ProfileSpecialistSessionsComponent implements OnInit {
             });
     }
 
+    closeSession(session: SpecialistSession) {
+        this.specialistService
+            .closeClientSession(session.client.id, session.problem.id, session.sessionID)
+            .subscribe(response => {
+                if (response.success) {
+                    this.loadSessions(this.pageNumber, this.pageSize);
+                }
+            });
+    }
+
     ngOnInit(): void {
         this.authService.isLoggedIn
             .subscribe(logged => {

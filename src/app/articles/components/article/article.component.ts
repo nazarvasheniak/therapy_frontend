@@ -89,7 +89,6 @@ export class ArticleComponent implements OnInit {
 					return;
 				}
 
-
 				this.loadArticle(this.article.id);
 			});
 	}

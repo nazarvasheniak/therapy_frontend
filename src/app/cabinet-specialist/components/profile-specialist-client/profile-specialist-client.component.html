@@ -226,7 +226,7 @@
                                     </div>
                                 </div>
 
-                                <div class="session-action close-button" *ngIf="session.sessionStatus == 1">
+                                <div class="session-action close-button" *ngIf="!session.isSpecialistClose" (click)="closeSession(session)">
                                     Завершить
                                 </div>
                             </div>

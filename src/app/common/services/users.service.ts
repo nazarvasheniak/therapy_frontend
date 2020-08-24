@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BaseHttpService } from './base-http.service';
 import { HttpClient } from '@angular/common/http';
-import { DataResponse, ResponseModel } from '../models/response';
-import { User } from '../models';
+import { DataResponse, ResponseModel, GetVerificationResponse } from '../models/response';
+import { User, UserVerificationRequest } from '../models';
 import { VerificationRequest } from '../models/request';
 
 @Injectable()
@@ -12,7 +12,17 @@ export class UsersService extends BaseHttpService {
     }
 
     public getUserInfo() {
-        return this.get<DataResponse<User>>(`/users/info`)
+        return this.get<DataResponse<User>>('/users/info')
+            .map(response => response.data);
+    }
+
+    public getUserVerification() {
+        return this.get<GetVerificationResponse>('/users/verification')
+            .map(response => response.isVerified);
+    }
+
+    public getUserVerificationRequest() {
+        return this.get<DataResponse<UserVerificationRequest>>('/users/verification/request')
             .map(response => response.data);
     }
 

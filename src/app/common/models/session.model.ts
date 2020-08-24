@@ -10,4 +10,6 @@ export class Session {
     public reward: number;
     public date: Date;
     public reviewScore: number;
+    public isSpecialistClose: boolean;
+    public isClientClose: boolean;
 }

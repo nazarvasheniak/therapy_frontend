@@ -7,3 +7,4 @@ export * from './list-response.model';
 export * from './create-payment-response.model';
 export * from './create-session-response.model';
 export * from './reviews-response.model';
+export * from './get-verification-response.model';
