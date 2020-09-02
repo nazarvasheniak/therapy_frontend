@@ -37,7 +37,7 @@ $therapy-frontend-theme: mat-light-theme($therapy-frontend-primary, $therapy-fro
 @import url('https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/css/uikit.min.css');
 
 html, body {
-    height: 100%;
+    //height: 100%;
 }
 
 .fr-toolbar {
@@ -575,5 +575,5 @@ input.apple-switch {
 /* Importing Bootstrap SCSS file. */
 //@import '~bootstrap/scss/_carousel.scss';
 
-html, body { height: 100%; }
+//html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

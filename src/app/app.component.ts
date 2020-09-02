@@ -22,15 +22,9 @@ export class AppComponent {
 
 				// set bgClass property with the value of the current route
 				if (!event.urlAfterRedirects.includes('sign-in') && !event.urlAfterRedirects.includes('sign-up')) {
-					document.body.style.background = "#F0F6F3";
+					document.documentElement.style.background = "#F0F6F3";
 				}
 			}
 		});
-	}
-
-	onActivate(event) {
-		//window.scroll(0, 0);
-		//or document.body.scrollTop = 0;
-		//or document.querySelector('body').scrollTo(0,0);
 	}
 }

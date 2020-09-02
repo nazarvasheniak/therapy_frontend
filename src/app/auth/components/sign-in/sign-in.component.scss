@@ -12,7 +12,6 @@ header {
 .form-wrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: 60px;
 
     .form-inner {
         width: 402px;
@@ -84,7 +83,8 @@ header {
                     border: 1px solid #5B868F;
                     border-radius: 10px;
                     font-size: 16px;
-                    color: #98BDC3;
+                    line-height: 100%;
+                    color: #ffffff;
                     outline: none;
     
                     &::placeholder {
@@ -115,6 +115,7 @@ header {
             background: #AC2858;
             border-radius: 10px;
             margin-top: 20px;
+            margin-bottom: 60px;
             margin-left: 14px;
             margin-right: 14px;
             padding-left: 14px;

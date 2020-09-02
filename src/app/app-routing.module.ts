@@ -28,6 +28,7 @@ import { ProfileSpecialistProblemAssetsComponent } from './cabinet-specialist/co
 import { AuthService, LoaderService } from './common/services';
 import { Observable } from 'rxjs';
 import { RefundComponent } from './cabinet/components/refund/refund.component';
+import { NotFoundComponent } from './layout/not-found/not-found.component';
 
 @Injectable()
 export class LoaderGuard implements CanActivate {
@@ -193,12 +194,27 @@ const routes: Routes = [
 		path: 'profile-specialist/clients/:clientID/problems/:problemID/assets', 
 		component: ProfileSpecialistProblemAssetsComponent, 
 		canActivate: [LoaderGuard] 
+	},
+
+	{
+		path: '404',
+		component: NotFoundComponent,
+		canActivate: [LoaderGuard]
+	},
+
+	{
+		path: '**', 
+		redirectTo: '/404'
 	}
 ];
 
 @NgModule({
 	imports: [
-		RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
+		RouterModule.forRoot(routes, {
+			onSameUrlNavigation: 'reload',
+			scrollPositionRestoration: 'enabled',
+			anchorScrolling: 'enabled'
+		})
 	],
 	exports: [RouterModule]
 })

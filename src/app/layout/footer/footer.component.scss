@@ -1,7 +1,8 @@
 footer {
     padding-top: 51px;
     padding-bottom: 68px;
-    background: #F0F6F3;
+    background-image: url(../../../assets/images/main-bg.svg);
+    background-repeat: repeat;
 
     &.footer-mobile {
         display: none;

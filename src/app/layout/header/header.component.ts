@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { AuthService, UsersService, SpecialistService } from 'src/app/common/services';
 import { User, Specialist } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { UserRole } from 'src/app/common/enums';
+import { element } from 'protractor';
 
 @Component({
 	selector: 'app-header',
@@ -11,14 +12,14 @@ import { UserRole } from 'src/app/common/enums';
 	styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-	
+
 	public isLoggedIn: boolean;
 	public user: User;
 	public specialist: Specialist;
 
 	public isMobileNavExpanden = false;
-	
-    constructor(
+
+	constructor(
 		private authService: AuthService,
 		private usersService: UsersService,
 		private specialistService: SpecialistService,
@@ -33,7 +34,7 @@ export class HeaderComponent {
 				}
 			});
 	}
-	
+
 	private loadUserInfo() {
 		this.usersService.getUserInfo()
 			.subscribe(user => {
@@ -72,13 +73,25 @@ export class HeaderComponent {
 		this.isMobileNavExpanden = !this.isMobileNavExpanden;
 	}
 
-	scrollToElement(elementID: string) {
-		const element = document.querySelector(elementID);
+	routeToFragment(fragmentID: string) {
+		if (this.router.url == '/') {
+			this.scrollToElement(fragmentID);
 
-		if (element) {
-			element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			return;
 		}
 
-		this.toggleMobileNav();
+		this.router.navigate(['/'], { fragment: fragmentID });
+	}
+
+	scrollToElement(elementID: string) {
+        const element = document.getElementById(elementID);
+
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            return true;
+        }
+
+        return false;
     }
 }

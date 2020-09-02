@@ -34,8 +34,8 @@
     <div class="nav-wrapper">
         <nav>
             <ul>
-                <li><a (click)="scrollToElement('#how-it-works')">Как это работает</a></li>
-                <li><a (click)="scrollToElement('#video-reviews')">Отзывы клиентов</a></li>
+                <li><a (click)="routeToFragment('how-it-works')">Как это работает</a></li>
+                <li><a (click)="routeToFragment('video-reviews')">Отзывы клиентов</a></li>
                 <li><a [routerLink]="['/specialists']">Выбрать специалиста</a></li>
                 <li><a [routerLink]="['/articles']">Статьи</a></li>
 
@@ -136,8 +136,8 @@
     <div class="header-expand-nav" [ngClass]="{'expanded': isMobileNavExpanden}">
         <nav>
             <ul>
-                <li><a (click)="scrollToElement('#how-it-works-mobile')">Как это работает</a></li>
-                <li><a (click)="scrollToElement('#video-reviews-mobile')">Отзывы клиентов</a></li>
+                <li><a (click)="routeToFragment('how-it-works-mobile')">Как это работает</a></li>
+                <li><a (click)="routeToFragment('video-reviews-mobile')">Отзывы клиентов</a></li>
                 <li><a [routerLink]="['/specialists']">Выбрать специалиста</a></li>
                 <li><a [routerLink]="['/articles']">Статьи</a></li>
 

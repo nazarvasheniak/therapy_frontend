@@ -11,6 +11,7 @@ import { LoaderComponent } from './loader/loader.component';
 
 import { NgxMaskModule } from 'ngx-mask';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
 	declarations: [
@@ -20,7 +21,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 		AlertComponent,
 		LoaderComponent,
 		ReviewScoreComponent,
-		RatingComponent
+		RatingComponent,
+		NotFoundComponent
 	],
 	imports: [
         BrowserModule,
@@ -36,6 +38,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 		LoaderComponent,
 		ReviewScoreComponent,
 		RatingComponent,
+		NotFoundComponent,
 		MatProgressSpinnerModule,
 		NgxMaskModule
 	],

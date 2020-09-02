@@ -1,38 +1,40 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { SpecialistsService, ArticlesService } from 'src/app/common/services';
+import { Component, OnInit, ViewChild, AfterViewInit, AfterViewChecked, AfterContentInit, OnChanges, AfterContentChecked } from '@angular/core';
+import { SpecialistsService, ArticlesService, RouterExtService } from 'src/app/common/services';
 import { Specialist, Article } from 'src/app/common/models';
 import { Review } from '../../models';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SpecialistsCarouselComponent } from '../specialists-carousel/specialists-carousel.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
-	selector: 'app-main',
-	templateUrl: './main.component.html',
+    selector: 'app-main',
+    templateUrl: './main.component.html',
     styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
 
-	public specialists: Specialist[];
-	public reviews: Review[];
+    public specialists: Specialist[];
+    public reviews: Review[];
     public activeReview: Review;
 
     public articles: Article[];
 
     @ViewChild(SpecialistsCarouselComponent) specialistsCarousel: SpecialistsCarouselComponent;
 
-	constructor(
+    constructor(
         private specialistsService: SpecialistsService,
         private articlesService: ArticlesService,
-		private domSanitizer: DomSanitizer
-	) {
+        private domSanitizer: DomSanitizer
+    ) {
 
-	}
+    }
 
-	ngOnInit(): void {
+    ngOnInit(): void {
         this.loadSpecialists();
         this.loadArticles();
 
-		this.reviews = [
+        this.reviews = [
             {
                 image: "data:image/png;base64,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",
                 name: "Андрей Ефименко",
@@ -60,42 +62,42 @@ export class MainComponent implements OnInit {
         ];
 
         this.activeReview = this.reviews[0];
-	}
+    }
 
-	switchReview(review: Review) {
+    switchReview(review: Review) {
         this.activeReview = review;
     }
 
-	private loadSpecialists() {
-		this.specialistsService.getSpecialists({
+    private loadSpecialists() {
+        this.specialistsService.getSpecialists({
             pageNumber: 1,
             pageSize: 100000
         })
-        .subscribe(res => {
-            if (!res.success) {
-                alert(res.message);
+            .subscribe(res => {
+                if (!res.success) {
+                    alert(res.message);
 
-                return;
-            }
-            
-            this.specialists = res.data;
-        });
+                    return;
+                }
+
+                this.specialists = res.data;
+            });
     }
-    
+
     private loadArticles() {
         this.articlesService.getArticles({
             pageNumber: 1,
             pageSize: 100000
         })
-        .subscribe(res => {
-            if (!res.success) {
-                alert(res.message);
+            .subscribe(res => {
+                if (!res.success) {
+                    alert(res.message);
 
-                return;
-            }
+                    return;
+                }
 
-            this.articles = res.data;
-        });
+                this.articles = res.data;
+            });
     }
 
     specialistsCarouselPrevSlide() {
@@ -107,7 +109,14 @@ export class MainComponent implements OnInit {
     }
 
     scrollToElement(elementID: string) {
-        const element = document.querySelector(elementID);
-		if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const element = document.getElementById(elementID);
+
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            return true;
+        }
+
+        return false;
     }
 }

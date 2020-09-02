@@ -36,16 +36,16 @@ export class SignInComponent implements OnInit {
 
     ngOnInit(): void {
         if (window.innerWidth <= 450) {
-            document.body.style.background = "#335C65";
+            document.documentElement.style.background = "#335C65";
         } else {
-            document.body.style.background = "#254951";
+            document.documentElement.style.background = "#254951";
         }
 
         window.onresize = () => {
             if (window.innerWidth <= 450) {
-                document.body.style.background = "#335C65";
+                document.documentElement.style.background = "#335C65";
             } else {
-                document.body.style.background = "#254951";
+                document.documentElement.style.background = "#254951";
             }
         }
 

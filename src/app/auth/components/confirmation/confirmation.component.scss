@@ -12,7 +12,6 @@ header {
 .form-wrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: 60px;
 
     .form-inner {
         width: 402px;
@@ -105,8 +104,11 @@ header {
                     box-sizing: border-box;
                     border: 1px solid #5B868F;
                     border-radius: 10px;
+                    font-family: "Poppins", sans-serif;
                     font-size: 32px;
-                    color: #98BDC3;
+                    line-height: 130.08%;
+                    letter-spacing: 0.06em;
+                    color: #ffffff;
                     outline: none;
     
                     &::placeholder {
@@ -171,6 +173,7 @@ header {
             background: #AC2858;
             border-radius: 10px;
             margin-top: 20px;
+            margin-bottom: 60px;
             margin-left: 14px;
             margin-right: 14px;
             padding-left: 14px;

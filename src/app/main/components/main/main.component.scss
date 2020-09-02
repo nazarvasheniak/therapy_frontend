@@ -333,10 +333,6 @@ section {
         color: #10363C;
         text-align: center;        
     }
-
-    .section-content {
-        margin-top: 49px;
-    }
 }
 
 .video-reviews-mobile {
@@ -352,10 +348,10 @@ section {
     }
 
     .section-content {
-        margin-top: 40px;
+        /* margin-top: 40px;
         margin-left: auto;
         margin-right: auto;
-        max-width: 520px;
+        max-width: 520px; */
     }
 }
 
@@ -634,8 +630,12 @@ section.articles {
                     font-weight: normal;
                     font-size: 18px;
                     line-height: 22px;
-                    color: #ABB3AF;
                     outline: none;
+                    color: #000000;
+
+                    &::placeholder {
+                        color: #ABB3AF;
+                    }
                 }
             }
 
@@ -896,7 +896,7 @@ section.articles {
         }
 
         .section-content {
-            margin-top: 36px;
+            //margin-top: 36px;
         }
     }
 }

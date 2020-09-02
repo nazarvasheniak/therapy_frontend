@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="block-button">
-                    <button type="button" class="button-transparent button-icon">
+                    <button type="button" class="button-transparent button-icon" (click)="scrollToElement('specialists')">
                         <img class="icon" src="../../../../assets/images/icon-target-gray.svg" />
                         Выбрать консультанта
                     </button>
@@ -258,7 +258,7 @@
                 </div>
 
                 <div class="block-button">
-                    <button type="button" class="button-transparent button-icon">
+                    <button type="button" class="button-transparent button-icon" (click)="scrollToElement('specialists')">
                         <img src="../../../../assets/images/icon-target-gray.svg" class="icon"> Выбрать консультанта
                     </button>
                 </div>
@@ -404,7 +404,7 @@
 </section>
 
 <!-- Specialists -->
-<section class="specialists">
+<section class="specialists" id="specialists">
     <div class="container">
         <div class="section-head">
             Специалисты
