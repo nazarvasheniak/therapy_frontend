@@ -1,15 +1,17 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, AfterContentChecked, AfterViewChecked, AfterContentInit, QueryList, ViewChildren } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/common/services/auth.service';
 import { UserRole } from 'src/app/common/enums';
+import { CodeInputComponent } from 'angular-code-input';
+import { map } from 'rxjs-compat/operator/map';
 
 @Component({
-	selector: 'app-auth-confirmation',
-	templateUrl: './confirmation.component.html',
-	styleUrls: ['./confirmation.component.scss']
+    selector: 'app-auth-confirmation',
+    templateUrl: './confirmation.component.html',
+    styleUrls: ['./confirmation.component.scss']
 })
-export class ConfirmationComponent implements OnInit, AfterViewInit {
+export class ConfirmationComponent implements OnInit, AfterContentChecked {
 
     public isLoading = false;
     public isError = false;
@@ -17,10 +19,8 @@ export class ConfirmationComponent implements OnInit, AfterViewInit {
     public secondsToResend = 30;
     public isResendAllowed = false;
 
-    @ViewChild("digit1") digit1: ElementRef;
-    @ViewChild("digit2") digit2: ElementRef;
-    @ViewChild("digit3") digit3: ElementRef;
-    @ViewChild("digit4") digit4: ElementRef;
+    @ViewChildren("codeInput") list: QueryList<CodeInputComponent>
+    codeInput: CodeInputComponent;
 
     public confirmAuthForm: FormGroup;
     public userID: number;
@@ -49,7 +49,18 @@ export class ConfirmationComponent implements OnInit, AfterViewInit {
                 this.updateTimer();
             });
     }
-    
+
+    // this called every time when user changed the code
+    onCodeChanged(code: string) {
+        
+    }
+
+    // this called only if user entered full code
+    onCodeCompleted(code: string) {
+        this.confirmAuthForm.setValue({ code });
+        this.submit(this.confirmAuthForm);
+    }
+
     updateTimer() {
         setInterval(() => {
             if (this.secondsToResend != 0) {
@@ -88,16 +99,27 @@ export class ConfirmationComponent implements OnInit, AfterViewInit {
         this.createConfirmAuthForm();
     }
 
-    ngAfterViewInit() {
-        this.digit1.nativeElement.focus();
+    ngAfterContentChecked() {
+
+        if (!this.codeInput) {
+            try {
+                this.codeInput = this.list.first;
+            } catch (e) {}
+        }
+
+        if (this.codeInput) {
+            this.codeInput.inputsList
+                .map(item => {
+                    item.nativeElement.placeholder = '0';
+
+                    return item;
+                });
+        }
     }
 
     private createConfirmAuthForm(): void {
         this.confirmAuthForm = new FormGroup({
-            digit1: new FormControl(null, [Validators.required]),
-            digit2: new FormControl(null, [Validators.required]),
-            digit3: new FormControl(null, [Validators.required]),
-            digit4: new FormControl(null, [Validators.required])
+            code: new FormControl(null, [Validators.required])
         });
     }
 
@@ -122,91 +144,29 @@ export class ConfirmationComponent implements OnInit, AfterViewInit {
             return;
         }
 
-        const code = `${form.value['digit1']}${form.value['digit2']}${form.value['digit3']}${form.value['digit4']}`;
-
         this.authService.signInConfirm({
             userID: this.userID,
-            code: code
+            code: form.value['code']
         })
-        .subscribe(data => {
+        .subscribe((data) => {
             this.isError = false;
             this.isLoading = false;
-            
+
             if (data.role == UserRole.Specialist) {
                 this.router.navigate(['/profile-specialist']);
 
                 return;
             }
-            
+
             this.router.navigate(['/profile']);
-        },
-        fail => {
+        }, (fail) => {
             this.errorText = fail.error.message;
             this.isError = true;
             this.isLoading = false;
         });
     }
-    
+
     public backToAuth() {
         this.router.navigate(['/sign-in']);
-    }
-
-    public nextDigit(event, currentDigit: number) {
-        if (this.confirmAuthForm.valid) {
-            this.submit(this.confirmAuthForm);
-        } else {
-            this.isError = false;
-        }
-
-        let keyNumber = null;
-        
-        if (event.key != 'e' && event.key != ',' && event.key != '.') {
-            keyNumber = parseInt(event.key);
-        } else {
-            keyNumber = null;
-        }
-
-        if (currentDigit > 0 && currentDigit < 4) {
-            if (keyNumber != null) {
-                this.confirmAuthForm.controls[`digit${currentDigit}`].setValue(keyNumber);
-                this[`digit${currentDigit + 1}`].nativeElement.focus();
-
-                return;
-            } else if (keyNumber == NaN || keyNumber == null) {
-                this.confirmAuthForm.controls[`digit${currentDigit}`].setValue(null);
-
-                return;
-            }
-        }
-
-        if (currentDigit > 1 && currentDigit < 5) {
-            if (event.key == "Backspace") {
-                this.confirmAuthForm.controls[`digit${currentDigit}`].setValue(null);
-                this[`digit${currentDigit - 1}`].nativeElement.focus();
-
-                return;
-            }
-        }
-
-        if (currentDigit == 4) {
-            if (keyNumber) {
-                this.confirmAuthForm.controls[`digit${currentDigit}`].setValue(keyNumber);
-
-                return;
-            } else if (keyNumber == NaN || keyNumber == null) {
-                this.confirmAuthForm.controls[`digit${currentDigit}`].setValue(null);
-
-                return;
-            }
-        }
-
-        if (currentDigit == 4) {
-            if (event.key == "Backspace") {
-                this.confirmAuthForm.controls[`digit${currentDigit}`].setValue(null);
-                this[`digit${currentDigit - 1}`].nativeElement.focus();
-
-                return;
-            }
-        }
     }
 }

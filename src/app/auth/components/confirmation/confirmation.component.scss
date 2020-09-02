@@ -94,6 +94,26 @@ header {
     
             .form-group {
                 margin-top: 18px;
+
+                code-input {
+                    --item-spacing: 0px;
+                    --item-height: 83px;
+                    --item-border: none;
+                    --item-border-bottom: none;
+                    --item-border-has-value: none;
+                    --item-border-bottom-has-value: none;
+                    --item-border-focused: none;
+                    --item-border-bottom-focused: none;
+                    --item-shadow-focused: none;
+                    --item-border-radius: 0px;
+                    --item-background: transparent;
+                    --color: #ffffff;
+
+                    background: rgba(255, 255, 255, 0.12);
+                    border: 1px solid #5B868F;
+                    box-sizing: border-box;
+                    border-radius: 10px;
+                }
     
                 input {
                     width: 100%;

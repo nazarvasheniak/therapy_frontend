@@ -577,3 +577,37 @@ input.apple-switch {
 
 //html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+code-input {
+    height: 83px !important;
+
+    > span {
+        height: 83px !important;
+        border-right: 1px solid #567D85;
+
+        &:last-child {
+            border-right: none;
+        }
+
+        input {
+            height: 83px !important;
+            font-family: "Poppins", sans-serif !important;
+            font-style: normal !important;
+            font-weight: normal !important;
+            font-size: 32px !important;
+            line-height: 130.08% !important;
+            letter-spacing: 0.06em !important;
+            color: #FFFFFF !important;
+            
+            &::placeholder {
+                font-family: "Poppins", sans-serif !important;
+                font-style: normal !important;
+                font-weight: normal !important;
+                font-size: 32px !important;
+                line-height: 130.08% !important;
+                letter-spacing: 0.06em !important;
+                color: #547B83 !important;
+            }
+        }
+    }
+}

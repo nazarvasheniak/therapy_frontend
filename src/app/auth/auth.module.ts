@@ -6,6 +6,7 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RouterModule } from '@angular/router';
 import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
+import { CodeInputModule } from 'angular-code-input';
 import { LayoutModule } from '../layout/layout.module';
 
 
@@ -21,7 +22,8 @@ import { LayoutModule } from '../layout/layout.module';
         LayoutModule,
         ReactiveFormsModule,
         RouterModule,
-        RecaptchaModule
+        RecaptchaModule,
+        CodeInputModule
     ],
     providers: [
         {
