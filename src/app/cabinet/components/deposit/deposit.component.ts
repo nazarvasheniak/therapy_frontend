@@ -12,6 +12,8 @@ import { PaymentType } from 'src/app/common/enums';
 })
 export class CabinetDepositComponent implements OnInit {
 
+    public isLoading = false;
+
     public depositForm: FormGroup;
     
     constructor(
@@ -46,11 +48,17 @@ export class CabinetDepositComponent implements OnInit {
     }
 
     submit() {
+        if (this.isLoading) {
+            return;
+        }
+
         if (this.depositForm.invalid) {
             alert('form invalid');
 
             return;
         }
+
+        this.isLoading = true;
 
         const request: CreatePaymentRequest = {
             amount: parseInt(this.depositForm.value['amount']),

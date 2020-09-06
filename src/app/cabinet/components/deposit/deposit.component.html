@@ -35,7 +35,7 @@
                     <div class="deposit-info">
                         <div class="deposit-actions">
                             <div class="pay-button">
-                                <button type="button" class="button-green" (click)="submit()">
+                                <button type="button" *ngIf="!isLoading" class="button-green" (click)="submit()">
                                     Перейти к оплате
 
                                     <div class="icon">
@@ -46,6 +46,10 @@
                                                 stroke="white" stroke-width="0.5" />
                                         </svg>
                                     </div>
+                                </button>
+
+                                <button class="button-green" *ngIf="isLoading" disabled>
+                                    <mat-spinner [diameter]="40"></mat-spinner>
                                 </button>
                             </div>
 

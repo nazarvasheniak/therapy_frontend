@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, UsersService, FilesService, ArticlesService, RouterExtService } from 'src/app/common/services';
 import { UserRole } from 'src/app/common/enums';
@@ -9,14 +9,17 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { from } from 'rxjs';
 import { FroalaEditorDirective } from 'angular-froala-wysiwyg';
 
+import * as $ from 'jquery';
+
 @Component({
     selector: 'app-profile-specialist-create-article',
     templateUrl: './profile-specialist-create-article.component.html',
     styleUrls: ['./profile-specialist-create-article.component.scss']
 })
-export class ProfileSpecialistCreateArticleComponent implements OnInit {
+export class ProfileSpecialistCreateArticleComponent implements OnInit, AfterViewInit {
 
     public articleForm: FormGroup;
+    dragAreaClass: string;
 
     public editor;
 
@@ -57,7 +60,7 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
         private articlesService: ArticlesService,
         private routerService: RouterExtService
     ) {
-        
+
     }
 
     ngOnInit(): void {
@@ -84,9 +87,46 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
             });
     }
 
+    @HostListener("dragover", ["$event"]) onDragOver(event: any) {
+        this.dragAreaClass = "";
+        event.preventDefault();
+    }
+    @HostListener("dragenter", ["$event"]) onDragEnter(event: any) {
+        this.dragAreaClass = "";
+        event.preventDefault();
+    }
+    @HostListener("dragend", ["$event"]) onDragEnd(event: any) {
+        this.dragAreaClass = "dragarea";
+        event.preventDefault();
+    }
+    @HostListener("dragleave", ["$event"]) onDragLeave(event: any) {
+        this.dragAreaClass = "dragarea";
+        event.preventDefault();
+    }
+    @HostListener("drop", ["$event"]) onDrop(event: any) {
+        this.dragAreaClass = "dragarea";
+        event.preventDefault();
+        event.stopPropagation();
+        if (event.dataTransfer.files) {
+            this.setPreviewImage(event.dataTransfer.files);
+        }
+    }
+
+    ngAfterViewInit() {
+        /* const previewImageContainer = $('.article-preview-image');
+
+        $('.article-preview-image').on('drag dragstart dragend dragover dragenter dragleave drop', function (e) {
+            console.log(e)
+            e.preventDefault();
+            e.stopPropagation();
+        }).on('drop', function (e) {
+            console.log(e.originalEvent.dataTransfer.files);
+        }); */
+    }
+
     prevRoute() {
-		this.router.navigate([this.routerService.getPreviousUrl()]);
-	}
+        this.router.navigate([this.routerService.getPreviousUrl()]);
+    }
 
     private initArticleForm() {
         this.articleForm = new FormGroup({
@@ -100,7 +140,7 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
     toBase64(file) {
         return from(new Promise<string | ArrayBuffer>((resolve, reject) => {
             const reader = new FileReader();
-        
+
             reader.readAsDataURL(file);
             reader.onload = () => resolve(reader.result);
             reader.onerror = error => reject(error);
@@ -113,8 +153,8 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
             .setValue(value);
     }
 
-    setPreviewImage(event) {
-        this.toBase64(event.target.files[0])
+    setPreviewImage(files: FileList) {
+        this.toBase64(files[0])
             .subscribe(encodedImg => {
                 this.articleForm
                     .controls['previewImage']
@@ -169,7 +209,7 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
 
                             return;
                         }
-                        
+
                         this.router.navigate(['/profile-specialist/articles']);
                     });
             });

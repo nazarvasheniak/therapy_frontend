@@ -11,6 +11,8 @@ import { PaymentType } from 'src/app/common/enums';
 })
 export class CabinetPaySpecialistComponent implements OnInit {
 
+    public isLoading = false;
+
     public problemID: number;
 
     public specialist: Specialist;
@@ -97,6 +99,8 @@ export class CabinetPaySpecialistComponent implements OnInit {
     }
 
     createPayment() {
+        this.isLoading = true;
+        
         this.paymentsService.createPayment({
             sessionID: this.activeSession.id,
             type: PaymentType.Deposit,

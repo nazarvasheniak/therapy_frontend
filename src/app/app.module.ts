@@ -18,6 +18,7 @@ import { LocationStrategy, registerLocaleData, HashLocationStrategy, APP_BASE_HR
 import localeFr from '@angular/common/locales/fr';
 import localeRu from '@angular/common/locales/ru';
 import { LoaderInterceptor } from './common/interceptors';
+import { DragDropDirective } from './common/directives/drag-drop.directive';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -25,7 +26,8 @@ registerLocaleData(localeRu);
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
+		DragDropDirective
 	],
 	imports: [
 		BrowserModule,

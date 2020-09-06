@@ -59,7 +59,7 @@
                                             </svg>                                                
                                         </div>
 
-                                        <div class="user-name">
+                                        <div class="user-name" [routerLink]="['/profile-specialist/clients', review.session.problem.user.id]">
                                             {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}
                                         </div>
                                     </div>
@@ -74,7 +74,7 @@
                                         </div>
 
                                         <div class="value">
-                                            <img src="../../../../assets/images/star.svg" />
+                                            <app-rating [score]="review.score" [single]="true" [size]="16"></app-rating>
 
                                             {{ review.score }}
                                         </div>
