@@ -220,12 +220,11 @@ header.header-mobile {
 
     .header-expand-nav {
         max-height: 0;
-        transition: max-height 0.3s ease-out;
+        transition: all 0.3s;
         overflow: hidden;
 
         &.expanded {
-            max-height: 375px;
-            transition: max-height 0.3s ease-in;
+            max-height: 400px;
         }
 
         nav {

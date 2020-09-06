@@ -130,7 +130,7 @@ header.header-desktop {
                     a {
                         font-weight: normal;
                         font-size: 14px;
-                        line-height: 17px;
+                        line-height: 121.5%;
                         color: #7EA59E;
                         letter-spacing: 0.05em;
                         text-decoration: none;
@@ -220,12 +220,11 @@ header.header-mobile {
 
     .header-expand-nav {
         max-height: 0;
-        transition: max-height 0.3s ease-out;
+        transition: all 0.3s;
         overflow: hidden;
 
         &.expanded {
             max-height: 375px;
-            transition: max-height 0.3s ease-in;
         }
 
         nav {
