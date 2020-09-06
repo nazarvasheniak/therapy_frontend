@@ -174,11 +174,11 @@
                         margin-left: 16px;
                         display: flex;
                         align-items: center;
-                        font-family: Poppins;
+                        font-family: "Poppins", sans-serif;
                         font-style: normal;
                         font-weight: normal;
                         font-size: 16px;
-                        line-height: 18px;
+                        line-height: 111%;
                         color: #DEBA39;
     
                         .icon-star {
@@ -202,12 +202,13 @@
                 align-items: center;
                 font-weight: bold;
                 font-size: 14px;
-                line-height: 17px;
+                line-height: 121.5%;
                 letter-spacing: 0.135em;
                 color: #32A776;       
                 text-transform: uppercase;
                 outline: none;
                 cursor: pointer;
+                transition: background 1s ease-out; 
                 
                 &:hover {
                     background: linear-gradient(180deg, #32A776 0%, #049A5B 100%);

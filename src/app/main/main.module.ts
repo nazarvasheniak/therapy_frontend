@@ -44,7 +44,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
         ArticlesCarouselItemComponent,
         SafePipe,
         FilterArticlesPipe,
-        ChooseSpecialistDialogComponent
     ],
     imports: [
         CommonModule,
@@ -57,7 +56,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
         NgxSpinnerModule
     ],
     exports: [
-        ChooseSpecialistDialogComponent
+        
     ],
     providers: [
         {

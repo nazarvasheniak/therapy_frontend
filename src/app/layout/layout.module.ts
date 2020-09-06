@@ -12,6 +12,8 @@ import { LoaderComponent } from './loader/loader.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ChooseSpecialistDialogComponent } from '../choose-specialist-dialog/choose-specialist-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -22,11 +24,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
 		LoaderComponent,
 		ReviewScoreComponent,
 		RatingComponent,
-		NotFoundComponent
+		NotFoundComponent,
+		ChooseSpecialistDialogComponent
 	],
 	imports: [
         BrowserModule,
 		RouterModule,
+		FormsModule,
 		MatProgressSpinnerModule,
 		NgxMaskModule.forRoot()
 	],
@@ -40,7 +44,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 		RatingComponent,
 		NotFoundComponent,
 		MatProgressSpinnerModule,
-		NgxMaskModule
+		NgxMaskModule,
+		ChooseSpecialistDialogComponent
 	],
 	providers: [
 		

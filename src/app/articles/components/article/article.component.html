@@ -113,7 +113,7 @@
 
                         <!-- Sign Up Button -->
                         <div class="signup-button">
-                            <button type="button">Записаться</button>
+                            <button type="button" (click)="showSpecialistDialog(article.author)">Записаться</button>
                         </div>
                     </div>
                 </div>
@@ -256,3 +256,5 @@
     <!-- Footer -->
     <app-footer></app-footer>
 </div>
+
+<choose-specialist-dialog class="choose-specialist-dialog hidden"></choose-specialist-dialog>

@@ -3,7 +3,7 @@ header {
     padding-bottom: 12px;
     position: relative;
     z-index: 1;
-    background-image: url(../../../assets/images/main-bg.svg);
+    //background-image: url(../../../assets/images/main-bg.svg);
     background-repeat: repeat;
 
     .logo-wrapper {
@@ -130,7 +130,7 @@ header.header-desktop {
                     a {
                         font-weight: normal;
                         font-size: 14px;
-                        line-height: 17px;
+                        line-height: 121.5%;
                         color: #7EA59E;
                         letter-spacing: 0.05em;
                         text-decoration: none;

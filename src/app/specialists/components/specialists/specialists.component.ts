@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SpecialistsService } from 'src/app/common/services';
+import { SpecialistsService, StorageService } from 'src/app/common/services';
 import { Specialist } from 'src/app/common/models';
 import { SpecialistsSorter } from './specialists-sorter.enum';
 import { SortBy } from 'src/app/common/enums';

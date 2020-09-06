@@ -69,7 +69,7 @@
 
                             <div class="author-rating">
                                 <div class="icon-star">
-                                    <img src="../../../../assets/images/star.svg" />
+                                    <app-rating [score]="article.author.rating" [single]="true" [size]="20"></app-rating>
                                 </div>
 
                                 {{ article.author.rating }}
@@ -80,7 +80,7 @@
 
                 <!-- Sign Up Button -->
                 <div class="signup-button">
-                    <button type="button">Записаться</button>
+                    <button type="button" (click)="showSpecialistDialog(article.author)">Записаться</button>
                 </div>
             </div>
         </div>

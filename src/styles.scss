@@ -116,8 +116,8 @@ html * {
 
 body {
     //background-color: #F4F9F1;
-    background-image: url(./assets/images/bg.svg);
-    background-repeat: repeat;
+    //background-image: url(./assets/images/bg.svg);
+    //background-repeat: repeat;
 }
 .carousel-control-prev,
 .carousel-control-next {
@@ -267,8 +267,42 @@ body {
     }
 
     &:active {
-        transition:.1s;
+        transition: .2s;
         background-position: 90px;
+    }
+}
+
+.button-white {
+    padding-top: 25.5px;
+    padding-bottom: 25.5px;
+    padding-left: 24px;
+    padding-right: 24px;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: #32A776;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #ffffff 0%, #11D26A 50%, #027437 100%);
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
+    background-size: 1px 1500px;
+    background-position: 1px -1px;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    outline: none;
+    cursor: pointer;
+    transition: .3s ease;
+
+    &:hover {
+        background-position: 1px 375px;
+        color: #ffffff;
+    }
+
+    &:active {
+        background-position: 1px 375px;
+        color: #ffffff;
     }
 }
 

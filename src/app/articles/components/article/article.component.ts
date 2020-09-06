@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ArticlesService, RouterExtService } from 'src/app/common/services';
-import { Article, User, ArticleComment } from 'src/app/common/models';
+import { ArticlesService, RouterExtService, StorageService } from 'src/app/common/services';
+import { Article, User, ArticleComment, Specialist } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -38,7 +38,8 @@ export class ArticleComponent implements OnInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private routerService: RouterExtService,
-		private articlesService: ArticlesService
+		private articlesService: ArticlesService,
+		private storageService: StorageService
 	) {
 
 	}
@@ -188,4 +189,12 @@ export class ArticleComponent implements OnInit {
 	prevRoute() {
 		this.router.navigate([this.routerService.getPreviousUrl()]);
 	}
+
+	showSpecialistDialog(specialist: Specialist){
+        let dialog = document.querySelector('.choose-specialist-dialog');
+        dialog.classList.remove('hidden');
+        dialog.classList.add('show');
+        
+        this.storageService.setSpecialist(specialist);
+    }
 }

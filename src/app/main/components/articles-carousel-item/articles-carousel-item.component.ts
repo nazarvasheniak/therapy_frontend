@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { Article } from 'src/app/common/models';
-import { SpecialistsService } from 'src/app/common/services';
+import { Article, Specialist } from 'src/app/common/models';
+import { SpecialistsService, StorageService } from 'src/app/common/services';
 
 @Component({
     selector: 'articles-carousel-item',
@@ -11,9 +11,17 @@ export class ArticlesCarouselItemComponent implements OnChanges {
 
     @Input('article') article: Article;
 
-    constructor() {
+    constructor(private storageService: StorageService) {
 
     }
 
     ngOnChanges() { }
+
+    showSpecialistDialog(specialist: Specialist){
+        let dialog = document.querySelector('.choose-specialist-dialog');
+        dialog.classList.remove('hidden');
+        dialog.classList.add('show');
+        
+        this.storageService.setSpecialist(specialist);
+    }
 }

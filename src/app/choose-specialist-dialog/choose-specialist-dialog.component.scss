@@ -64,7 +64,7 @@
         .mdiv  {
             height: 21px;
             width: 2px;
-            background-color: #DEDEDE;
+            background-color: #9EACA9;
             transition: all .2s;
         }
 
@@ -215,6 +215,8 @@
     padding-top: 24px;
     padding-bottom: 24px;
     border-radius: 16px;
+    letter-spacing: 0.135em;
+    line-height: 121.5%;
 
     &.disabled {
         cursor: not-allowed;
