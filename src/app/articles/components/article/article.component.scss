@@ -448,6 +448,33 @@
                 }
             }
 
+            .textarea {
+                width: 519px;
+                height: 115px;
+                overflow: auto;
+                background: #F6FBF8;
+                border: 1px solid #D1E2DB;
+                box-sizing: border-box;
+                border-radius: 10px;
+                cursor: text;
+                outline: none;
+                padding-top: 23px;
+                padding-left: 16px;
+                padding-right: 16px;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 22px;
+                color: #364D47;
+                
+
+                &:empty:before{
+                    content: attr(placeholder);
+                    color: #BDD2D1;
+                    pointer-events: none;
+                    display: block; /* For Firefox */
+                }
+            }
+
             textarea {
                 min-width: 519px;
                 min-height: 115px;

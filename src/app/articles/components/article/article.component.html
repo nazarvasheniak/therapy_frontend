@@ -160,9 +160,7 @@
                             </div>
 
                             <!-- Comment Text -->
-                            <div class="comment-text" [ngClass]="{'reply': replyID == comment.id}">
-                                {{ comment.text }}
-                            </div>
+                            <div class="comment-text" [ngClass]="{'reply': replyID == comment.id}" [innerHTML]="comment.text"></div>
 
                             <!-- Comment date mobile -->
                             <div class="comment-date comment-date-mobile">
@@ -228,7 +226,7 @@
                                     </div>
 
                                     <!-- Reply Button -->
-                                    <div class="reply-button" (click)="setReply(replie.id)">
+                                    <div class="reply-button" (click)="setReplyToReply(comment.id, replie.id)">
                                         Ответить
                                     </div>
                                 </div>
@@ -240,16 +238,11 @@
                 <!-- Add Comment -->
                 <div class="article-add-comment">
                     <div class="comment-area">
-                        <div class="reply-article" *ngIf="commentForm.value['isReply']">
-                            <a>{{ getParentComment(commentForm.value['parentCommentID']).author.firstName }}</a>
-
-                            <div class="reply-cancel" (click)="cancelReply()">
-                                <span class="line"></span>
-                                <span class="line"></span>
-                            </div>
+                        <div class="textarea"
+                            #commentArea
+                            contenteditable="true" 
+                            placeholder="Ваш комментарий...">
                         </div>
-
-                        <textarea ref-textarea placeholder="Ваш комментарий..." [(ngModel)]='commentText'></textarea>
                     </div>
 
                     <div class="submit-button">

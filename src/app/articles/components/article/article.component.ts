@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticlesService, RouterExtService } from 'src/app/common/services';
 import { Article, User, ArticleComment } from 'src/app/common/models';
@@ -31,7 +31,8 @@ export class ArticleComponent implements OnInit {
 
 	public article: Article;
 	public replyID: number;
-	public commentText: string;
+
+	@ViewChild('commentArea') commentArea: ElementRef;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -129,6 +130,18 @@ export class ArticleComponent implements OnInit {
 		this.replyID = parentCommentID;
 		this.commentForm.controls['isReply'].setValue(true);
 		this.commentForm.controls['parentCommentID'].setValue(parentCommentID);
+
+		this.commentArea.nativeElement.innerHTML = `<a href="" style="color: #364D47; text-decoration: underline">${this.comments.find(x => x.id == parentCommentID).author.firstName},</a>&nbsp;`;
+		this.commentArea.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	}
+
+	setReplyToReply(parentCommentID: number, replyID: number) {
+		this.replyID = replyID;
+		this.commentForm.controls['isReply'].setValue(true);
+		this.commentForm.controls['parentCommentID'].setValue(replyID);
+
+		this.commentArea.nativeElement.innerHTML = `<a href="" style="color: #364D47; text-decoration: underline">${this.getReplies(parentCommentID).find(x => x.id == replyID).author.firstName},</a>&nbsp;`;
+		this.commentArea.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 
 	cancelReply() {
@@ -142,7 +155,15 @@ export class ArticleComponent implements OnInit {
 	}
 
 	submitComment() {
-		this.commentForm.controls['text'].setValue(this.commentText);
+		let value: string = this.commentArea.nativeElement.innerHTML;
+		let endPos = value.indexOf("</a>");
+
+		if (endPos == -1) {
+			this.cancelReply();
+			this.commentForm.controls['text'].setValue(value.replace("&nbsp;", " "));
+		} else {
+			this.commentForm.controls['text'].setValue(value.substr((endPos + 4)).replace("&nbsp;", " "));
+		}
 
 		if (this.commentForm.invalid) {
 			alert('form invalid');
@@ -159,7 +180,7 @@ export class ArticleComponent implements OnInit {
 					return;
 				}
 
-				this.commentText = null;
+				this.commentArea.nativeElement.innerHTML = null;
 				this.loadArticle(this.article.id);
 			});
 	}
