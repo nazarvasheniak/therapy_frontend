@@ -44,8 +44,11 @@ export class FooterComponent {
 	}
 
 	scrollTop(): void {
-		const element = document.querySelector("header");
-		if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		window.scroll({
+			left: 0,
+			top: 0,
+			behavior: "smooth"
+		});
 	}
 
 	getAvatar() {

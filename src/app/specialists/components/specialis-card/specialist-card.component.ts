@@ -30,7 +30,7 @@ export class SpecialistCardComponent implements OnChanges {
 	}
 
 	private loadReviews() {
-        this.positiveReviews = this.specialist.reviews.filter(x => x.score > 4);
+        this.positiveReviews = this.specialist.reviews.filter(x => x.score > 3);
         this.neutralReviews = this.specialist.reviews.filter(x => x.score == 3);
         this.negativeReviews = this.specialist.reviews.filter(x => x.score < 3);
     }
