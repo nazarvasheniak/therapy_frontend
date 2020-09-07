@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService, UsersService, FilesService, ArticlesService, RouterExtService } from 'src/app/common/services';
 import { UserRole } from 'src/app/common/enums';
@@ -19,6 +19,7 @@ export class ProfileSpecialistEditArticleComponent implements OnInit {
 
     public article: Article;
     public articleForm: FormGroup;
+    public dragAreaClass: string;
 
     public editor;
 
@@ -91,6 +92,36 @@ export class ProfileSpecialistEditArticleComponent implements OnInit {
             });
     }
 
+    editPreviewImage() {
+        this.articleForm.controls['previewImage']
+            .setValue(null);
+    }
+
+    @HostListener("dragover", ["$event"]) onDragOver(event: any) {
+        this.dragAreaClass = "";
+        event.preventDefault();
+    }
+    @HostListener("dragenter", ["$event"]) onDragEnter(event: any) {
+        this.dragAreaClass = "";
+        event.preventDefault();
+    }
+    @HostListener("dragend", ["$event"]) onDragEnd(event: any) {
+        this.dragAreaClass = "dragarea";
+        event.preventDefault();
+    }
+    @HostListener("dragleave", ["$event"]) onDragLeave(event: any) {
+        this.dragAreaClass = "dragarea";
+        event.preventDefault();
+    }
+    @HostListener("drop", ["$event"]) onDrop(event: any) {
+        this.dragAreaClass = "dragarea";
+        event.preventDefault();
+        event.stopPropagation();
+        if (event.dataTransfer.files) {
+            this.setPreviewImage(event.dataTransfer.files);
+        }
+    }
+
     private loadArticle() {
         this.route.params
             .subscribe(params => {
@@ -150,8 +181,8 @@ export class ProfileSpecialistEditArticleComponent implements OnInit {
             .setValue(value);
     }
 
-    setPreviewImage(event) {
-        this.toBase64(event.target.files[0])
+    setPreviewImage(files: FileList) {
+        this.toBase64(files[0])
             .subscribe(encodedImg => {
                 this.articleForm
                     .controls['previewImage']

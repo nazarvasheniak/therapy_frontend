@@ -7,9 +7,6 @@ import 'froala-editor/js/plugins/image.min.js';
 import 'froala-editor/js/languages/ru.js';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { from } from 'rxjs';
-import { FroalaEditorDirective } from 'angular-froala-wysiwyg';
-
-import * as $ from 'jquery';
 
 @Component({
     selector: 'app-profile-specialist-create-article',
@@ -19,7 +16,7 @@ import * as $ from 'jquery';
 export class ProfileSpecialistCreateArticleComponent implements OnInit, AfterViewInit {
 
     public articleForm: FormGroup;
-    dragAreaClass: string;
+    public dragAreaClass: string;
 
     public editor;
 
@@ -122,6 +119,11 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit, AfterVie
         }).on('drop', function (e) {
             console.log(e.originalEvent.dataTransfer.files);
         }); */
+    }
+
+    editPreviewImage() {
+        this.articleForm.controls['previewImage']
+            .setValue(null);
     }
 
     prevRoute() {
