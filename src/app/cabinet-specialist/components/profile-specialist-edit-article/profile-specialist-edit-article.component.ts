@@ -24,6 +24,8 @@ export class ProfileSpecialistEditArticleComponent implements OnInit {
     public editor;
 
     public editorOptions = {
+        key: "AV:4~?3xROKLJKYHROLDXDR@d2YYGR_Bc1A8@5@4:1B2D2F2F1?1?2A3@1C1",
+        attribution: false,
         toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'fontSize', 'insertImage'],
         language: 'ru',
         placeholderText: 'Текст статьи',

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, UsersService, FilesService, ArticlesService, RouterExtService } from 'src/app/common/services';
 import { UserRole } from 'src/app/common/enums';
@@ -13,7 +13,7 @@ import { from } from 'rxjs';
     templateUrl: './profile-specialist-create-article.component.html',
     styleUrls: ['./profile-specialist-create-article.component.scss']
 })
-export class ProfileSpecialistCreateArticleComponent implements OnInit, AfterViewInit {
+export class ProfileSpecialistCreateArticleComponent implements OnInit {
 
     public articleForm: FormGroup;
     public dragAreaClass: string;
@@ -21,6 +21,8 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit, AfterVie
     public editor;
 
     public editorOptions = {
+        key: "AV:4~?3xROKLJKYHROLDXDR@d2YYGR_Bc1A8@5@4:1B2D2F2F1?1?2A3@1C1",
+        attribution: false,
         toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'fontSize', 'insertImage'],
         language: 'ru',
         placeholderText: 'Текст статьи',
@@ -107,18 +109,6 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit, AfterVie
         if (event.dataTransfer.files) {
             this.setPreviewImage(event.dataTransfer.files);
         }
-    }
-
-    ngAfterViewInit() {
-        /* const previewImageContainer = $('.article-preview-image');
-
-        $('.article-preview-image').on('drag dragstart dragend dragover dragenter dragleave drop', function (e) {
-            console.log(e)
-            e.preventDefault();
-            e.stopPropagation();
-        }).on('drop', function (e) {
-            console.log(e.originalEvent.dataTransfer.files);
-        }); */
     }
 
     editPreviewImage() {
