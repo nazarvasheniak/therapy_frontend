@@ -4,6 +4,7 @@ import { AuthService, PatientService, RouterExtService } from 'src/app/common/se
 import { Problem } from 'src/app/common/models';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'cabinet-create-problem',
@@ -20,7 +21,7 @@ export class CreateProblemComponent implements OnInit {
         private authService: AuthService,
         private patientService: PatientService,
         private router: Router,
-        private routerService: RouterExtService,
+        private location: Location,
         private spinner: NgxSpinnerService
     ) {
         
@@ -78,6 +79,6 @@ export class CreateProblemComponent implements OnInit {
     }
 
     prevRoute() {
-		this.router.navigate([this.routerService.getPreviousUrl()]);
+		this.location.back();
 	}
 }

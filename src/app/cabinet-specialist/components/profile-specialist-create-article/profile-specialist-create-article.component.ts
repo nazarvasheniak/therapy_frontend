@@ -7,6 +7,7 @@ import 'froala-editor/js/plugins/image.min.js';
 import 'froala-editor/js/languages/ru.js';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { from } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-profile-specialist-create-article',
@@ -57,7 +58,7 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
         private usersService: UsersService,
         private filesService: FilesService,
         private articlesService: ArticlesService,
-        private routerService: RouterExtService
+        private location: Location
     ) {
 
     }
@@ -117,8 +118,8 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
     }
 
     prevRoute() {
-        this.router.navigate([this.routerService.getPreviousUrl()]);
-    }
+		this.location.back();
+	}
 
     private initArticleForm() {
         this.articleForm = new FormGroup({

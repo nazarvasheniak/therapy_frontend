@@ -4,6 +4,7 @@ import { AuthService, PatientService, PaymentsService, RouterExtService } from '
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CreatePaymentRequest } from 'src/app/common/models/request';
 import { PaymentType } from 'src/app/common/enums';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'cabinet-deposit',
@@ -18,10 +19,9 @@ export class CabinetDepositComponent implements OnInit {
     
     constructor(
         private authService: AuthService,
-        private patientService: PatientService,
         private paymentsService: PaymentsService,
         private router: Router,
-        private routerService: RouterExtService
+        private location: Location
     ) {
         
     }
@@ -38,7 +38,7 @@ export class CabinetDepositComponent implements OnInit {
     }
 
     prevRoute() {
-		this.router.navigate([this.routerService.getPreviousUrl()]);
+		this.location.back();
 	}
 
     private initDepositForm() {

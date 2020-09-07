@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SpecialistService, AuthService, RouterExtService } from 'src/app/common/services';
 import { ClientCard, SpecialistSession } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-profile-specialist-client',
@@ -18,7 +19,7 @@ export class ProfileSpecialistClientComponent implements OnInit {
         private specialistService: SpecialistService,
         private router: Router,
         private route: ActivatedRoute,
-        private routerService: RouterExtService
+        private location: Location
     ) {
 
     }
@@ -34,7 +35,7 @@ export class ProfileSpecialistClientComponent implements OnInit {
     }
 
     prevRoute() {
-		this.router.navigate([this.routerService.getPreviousUrl()]);
+		this.location.back();
 	}
 
     private loadClient(clientID: number) {

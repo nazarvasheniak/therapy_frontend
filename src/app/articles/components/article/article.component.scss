@@ -219,15 +219,15 @@
                         margin-left: 16px;
                         display: flex;
                         align-items: center;
-                        font-family: Poppins;
-                        font-style: normal;
-                        font-weight: normal;
-                        font-size: 16px;
-                        line-height: 18px;
-                        color: #DEBA39;
-    
-                        .icon-star {
-                            margin-right: 7px;
+                        
+                        .rating-count {
+                            margin-left: 7px;
+                            font-family: "Poppins", sans-serif;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 16px;
+                            line-height: 111%;
+                            color: #DEBA39;
                         }
                     }
                 }

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService, PatientService, SpecialistsService, UsersWalletsService, PaymentsService, RouterExtService } from 'src/app/common/services';
 import { Problem, Specialist, UserWallet, Session } from 'src/app/common/models';
 import { PaymentType } from 'src/app/common/enums';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'cabinet-pay-specialist',
@@ -27,7 +28,7 @@ export class CabinetPaySpecialistComponent implements OnInit {
         private paymentsService: PaymentsService,
         private router: Router,
         private route: ActivatedRoute,
-        private routerService: RouterExtService
+        private location: Location
     ) {
 
     }
@@ -56,7 +57,7 @@ export class CabinetPaySpecialistComponent implements OnInit {
     }
 
     prevRoute() {
-		this.router.navigate([this.routerService.getPreviousUrl()]);
+		this.location.back();
 	}
 
     private loadSpecialist(specialistID: number) {

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService, PatientService, RouterExtService } from 'src/app/common/services';
 import { Problem, Session, ClientProblemAssets } from 'src/app/common/models';
 import { AssetType } from './asset-type.enum';
+import { Location } from '@angular/common';
 
 type AssetTab = "images" | "resources" | "sessions";
 
@@ -26,13 +27,13 @@ export class ProblemAssetsComponent implements OnInit {
         private patientService: PatientService,
         private router: Router,
         private route: ActivatedRoute,
-        private routerService: RouterExtService
+        private location: Location
     ) {
         
     }
 
     prevRoute() {
-		this.router.navigate([this.routerService.getPreviousUrl()]);
+		this.location.back();
 	}
 
     ngOnInit(): void {

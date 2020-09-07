@@ -5,6 +5,7 @@ import { Article, User, ArticleComment, Specialist } from 'src/app/common/models
 import { StringHelper } from 'src/app/common/helpers';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-article',
@@ -37,6 +38,7 @@ export class ArticleComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
+		private location: Location,
 		private routerService: RouterExtService,
 		private articlesService: ArticlesService,
 		private storageService: StorageService
@@ -187,7 +189,8 @@ export class ArticleComponent implements OnInit {
 	}
 
 	prevRoute() {
-		this.router.navigate([this.routerService.getPreviousUrl()]);
+		console.log(this.location.getState())
+		this.location.back();
 	}
 
 	showSpecialistDialog(specialist: Specialist){

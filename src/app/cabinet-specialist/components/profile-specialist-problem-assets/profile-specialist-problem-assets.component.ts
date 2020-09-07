@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CreateUpdateProblemImageRequest, CreateUpdateProblemResourceTask, CreateUpdateProblemResourceRequest } from 'src/app/common/models/request';
 import { ViewHelper } from 'src/app/common/helpers';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Location } from '@angular/common';
 
 type AssetTab = "images" | "resources" | "sessions";
 
@@ -36,13 +37,13 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
         private specialistService: SpecialistService,
         private router: Router,
         private route: ActivatedRoute,
-        private routerService: RouterExtService
+        private location: Location
     ) {
 
     }
 
     prevRoute() {
-		this.router.navigate([this.routerService.getPreviousUrl()]);
+		this.location.back();
 	}
 
     private initCreateImageForm() {

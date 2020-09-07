@@ -101,11 +101,11 @@
                                     </div>
 
                                     <div class="author-rating">
-                                        <div class="icon-star">
-                                            <img src="../../../../assets/images/star.svg" />
-                                        </div>
+                                        <app-rating [score]="article.author.rating" [single]="true" [size]="20"></app-rating>
 
-                                        4.3
+                                        <div class="rating-count">
+                                            {{ article.author.rating }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -9,6 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { from } from 'rxjs';
 import { Article } from 'src/app/common/models';
 import { CreateUpdateArticleRequest } from 'src/app/common/models/request';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-profile-specialist-edit-article',
@@ -61,13 +62,13 @@ export class ProfileSpecialistEditArticleComponent implements OnInit {
         private usersService: UsersService,
         private filesService: FilesService,
         private articlesService: ArticlesService,
-        private routerService: RouterExtService
+        private location: Location
     ) {
 
     }
     
     prevRoute() {
-		this.router.navigate([this.routerService.getPreviousUrl()]);
+		this.location.back();
 	}
 
     ngOnInit(): void {

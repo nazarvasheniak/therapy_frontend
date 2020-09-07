@@ -5,6 +5,7 @@ import { Problem, Specialist, UserWallet } from 'src/app/common/models';
 import { SpecialistsSorter } from 'src/app/specialists/components/specialists/specialists-sorter.enum';
 import { SortBy } from 'src/app/common/enums';
 import { PaginationComponent } from 'src/app/layout/pagination/pagination.component';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'cabinet-choose-specialist',
@@ -34,7 +35,7 @@ export class ChooseSpecialistComponent implements OnInit {
         private patientService: PatientService,
         private router: Router,
         private route: ActivatedRoute,
-        private routerService: RouterExtService
+        private location: Location
     ) {
         this.route.queryParams
             .subscribe(params => {
@@ -318,6 +319,6 @@ export class ChooseSpecialistComponent implements OnInit {
     }
 
     prevRoute() {
-		this.router.navigate([this.routerService.getPreviousUrl()]);
+		this.location.back();
 	}
 }
