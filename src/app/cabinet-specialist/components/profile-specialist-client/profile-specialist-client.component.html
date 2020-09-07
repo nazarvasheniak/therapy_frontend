@@ -101,7 +101,7 @@
                         }">
                             <div class="session-info">
                                 <div class="session-date">
-                                    <div class="day">{{ session.sessionDate | date: 'dd' }}</div>
+                                    <div class="day">{{ session.sessionDate | date: 'd' }}</div>
                                     <div class="month">{{ normalizeMonth(session.sessionDate | date: 'MMM') }}</div>
                                 </div>
 
@@ -155,7 +155,7 @@
                             </div>
 
                             <div class="session-actions">
-                                <div class="session-action problem-images">
+                                <div class="session-action problem-images" (click)="routeToImages(session)">
                                     <div class="title">
                                         Образов
                                     </div>
@@ -189,7 +189,7 @@
                                     </div>
                                 </div>
 
-                                <div class="session-action problem-resources">
+                                <div class="session-action problem-resources" (click)="routeToResources(session)">
                                     <div class="title">
                                         Ресурсов
                                     </div>

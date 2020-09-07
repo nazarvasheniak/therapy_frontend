@@ -189,7 +189,6 @@ export class ArticleComponent implements OnInit {
 	}
 
 	prevRoute() {
-		console.log(this.location.getState())
 		this.location.back();
 	}
 

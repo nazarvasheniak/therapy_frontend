@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SpecialistService, AuthService, RouterExtService } from 'src/app/common/services';
-import { ClientCard, ProblemAssets, ProblemImage, ProblemResource, ProblemResourceTask } from 'src/app/common/models';
+import { ClientCard, ProblemAssets, ProblemImage, ProblemResource, ProblemResourceTask, Session, SpecialistSession } from 'src/app/common/models';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CreateUpdateProblemImageRequest, CreateUpdateProblemResourceTask, CreateUpdateProblemResourceRequest } from 'src/app/common/models/request';
 import { ViewHelper } from 'src/app/common/helpers';
@@ -363,7 +363,7 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
     }
 
     normalizeMonth(monthStr: string) {
-        return monthStr.replace(".", "");
+        return monthStr.replace(".", "").substr(0, 3);
     }
 
     getImage(imageID: number) {
@@ -376,5 +376,24 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
 
     getResource(resourceID: number) {
         return this.assets.resources.find(x => x.id == resourceID);
+    }
+
+    routeToReview(session: SpecialistSession) {
+        const review = session.specialist.reviews.find(x => x.session.id == session.sessionID);
+
+        if (!review) {
+            return;
+        }
+
+        this.specialistService.getSpecialistInfo()
+            .subscribe(response => {
+                if (response.data.id == review.session.specialist.id) {
+                    this.router.navigateByUrl( `/profile-specialist/reviews?review=${review.id}`);
+
+                    return;
+                }
+
+                this.router.navigateByUrl( `/specialists/${session.specialist.id}?review=${review.id}`);
+            });
     }
 }

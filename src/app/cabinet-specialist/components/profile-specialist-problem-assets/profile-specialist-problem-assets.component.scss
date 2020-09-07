@@ -1234,10 +1234,12 @@
                                                 font-weight: 300;
                                                 font-size: 22px;
                                                 line-height: 100%;
+                                                text-align: center;
                                                 color: #005264;
                                             }
 
                                             .month {
+                                                margin-top: 4px;
                                                 font-weight: normal;
                                                 font-size: 10px;
                                                 line-height: 100%;
@@ -1280,15 +1282,16 @@
 
                                             .specialist-rating {
                                                 margin-left: 10px;
-                                                font-weight: normal;
-                                                font-size: 14px;
-                                                line-height: 111%;
-                                                color: #DEBA39;
                                                 display: flex;
                                                 align-items: center;
 
-                                                svg {
-                                                    margin-right: 3px;
+                                                .rating-score {
+                                                    margin-left: 3px;
+                                                    font-family: "Poppins", sans-serif;
+                                                    font-weight: normal;
+                                                    font-size: 14px;
+                                                    line-height: 111%;
+                                                    color: #DEBA39;
                                                 }
                                             }
                                         }

@@ -34,6 +34,18 @@ export class ProfileSpecialistClientComponent implements OnInit {
             });
     }
 
+    routeToImages(session: SpecialistSession) {
+        const path = `/profile-specialist/clients/${session.client.id}/problems/${session.problem.id}/assets?tab=images`;
+
+        this.router.navigateByUrl(path);
+    }
+
+    routeToResources(session: SpecialistSession) {
+        const path = `/profile-specialist/clients/${session.client.id}/problems/${session.problem.id}/assets?tab=resources`;
+
+        this.router.navigateByUrl(path);
+    }
+
     prevRoute() {
 		this.location.back();
 	}
@@ -70,6 +82,6 @@ export class ProfileSpecialistClientComponent implements OnInit {
     }
     
     normalizeMonth(monthStr: string) {
-        return monthStr.replace(".", "");
+        return monthStr.replace(".", "").substr(0, 3);
     }
 }

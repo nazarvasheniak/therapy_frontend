@@ -56,9 +56,26 @@ export class SpecialistComponent implements OnInit {
 			});
 	}
 
-	changeReviewsTab(tab: ReviewTab) {
+	async changeReviewsTab(tab: ReviewTab) {
 		this.activeReviewsTab = tab;
-		this.loadReviews(tab, this.pageNumber);
+		const reviews = await this.loadReviews(tab, this.pageNumber);
+
+		switch (tab) {
+			case "positive":
+				this.positiveReviews = reviews.data;
+				break;
+
+			case "neutral":
+				this.neutralReviews = reviews.data;
+				break;
+
+			case "negative":
+				this.negativeReviews = reviews.data;
+				break;
+		}
+
+		this.pageNumber = reviews.currentPage;
+		this.totalPages = reviews.totalPages;
 
         const item = this.reviewsTabs.nativeElement.getElementsByTagName('li').namedItem(tab);
         const margin = parseInt(window.getComputedStyle(item).marginLeft);
@@ -71,8 +88,25 @@ export class SpecialistComponent implements OnInit {
         });
     }
 
-	setPageNumber(value: number) {
-		this.loadReviews(this.activeReviewsTab, value);
+	async setPageNumber(value: number) {
+		const reviews = await this.loadReviews(this.activeReviewsTab, value);
+
+		switch (this.activeReviewsTab) {
+			case "positive":
+				this.positiveReviews = reviews.data;
+				break;
+
+			case "neutral":
+				this.neutralReviews = reviews.data;
+				break;
+
+			case "negative":
+				this.negativeReviews = reviews.data;
+				break;
+		}
+
+		this.pageNumber = reviews.currentPage;
+		this.totalPages = reviews.totalPages;
 	}
 
 	private loadSpecialist(id: number) {
@@ -91,47 +125,48 @@ export class SpecialistComponent implements OnInit {
 
 				this.route.queryParams
 					.subscribe(params => {
-						if (!params['reviews']) {
-							this.loadReviews(this.activeReviewsTab, this.pageNumber);
+						const reviewTab: ReviewTab = params['reviews'];
+						const reviewID = params['review'];
 
-							return;
+						if (reviewTab) {
+							//this.loadReviews(this.activeReviewsTab, this.pageNumber);
+							this.changeReviewsTab(params['reviews'] as ReviewTab);
 						}
 
-						this.changeReviewsTab(params['reviews'] as ReviewTab);
+						if (reviewID) {
+							let review = this.specialist.reviews.find(x => x.id == Number(reviewID));
+
+							if (review.score > 3) {
+								this.changeReviewsTab("positive")
+									.then(() => {
+										let element = document.querySelector(`[review-id="${reviewID}"]`) as HTMLElement;
+										element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+									});
+							} else if (review.score == 3) {
+								this.changeReviewsTab("neutral")
+									.then(() => {
+										let element = document.querySelector(`[review-id="${reviewID}"]`) as HTMLElement;
+										element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+									})
+							} else if (review.score < 3) {
+								this.changeReviewsTab("negative")
+									.then(() => {
+										let element = document.querySelector(`[review-id="${reviewID}"]`) as HTMLElement;
+										element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+									});
+							}
+						}
 					});
 			});
 	}
 
 	private loadReviews(type: ReviewTab, pageNumber: number) {
-		this.specialistsService.getSpecialistReviews({
+		return this.specialistsService.getSpecialistReviews({
 			pageNumber: pageNumber,
 			pageSize: this.pageSize,
 			type: this.toTitleCase(type)
 		}, this.specialist.id)
-		.subscribe(res => {
-			if (!res.success) {
-				alert(res.message);
-
-				return;
-			}
-
-			switch (type) {
-				case "positive":
-					this.positiveReviews = res.data;
-					break;
-
-				case "neutral":
-					this.neutralReviews = res.data;
-					break;
-
-				case "negative":
-					this.negativeReviews = res.data;
-					break;
-			}
-
-			this.pageNumber = res.currentPage;
-			this.totalPages = res.totalPages;
-		});
+		.toPromise();
 	}
 
 	showSpecialistDialog(specialist: Specialist){

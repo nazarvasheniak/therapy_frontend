@@ -91,7 +91,7 @@
             <div class="article-container">
 
                 <div class="reviews-list" *ngIf="activeReviewsTab == 'positive'">
-                    <div class="review-block" *ngFor="let review of positiveReviews">
+                    <div class="review-block" *ngFor="let review of positiveReviews" [attr.review-id]="review.id">
                         <div class="review-block-head">
                             <div class="reviewer-name">
                                 {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}
@@ -135,7 +135,7 @@
                 </div>
 
                 <div class="reviews-list" *ngIf="activeReviewsTab == 'neutral'">
-                    <div class="review-block" *ngFor="let review of neutralReviews">
+                    <div class="review-block" *ngFor="let review of neutralReviews" [attr.review-id]="review.id">
                         <div class="review-block-head">
                             <div class="reviewer-name">
                                 {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}
@@ -179,7 +179,7 @@
                 </div>
 
                 <div class="reviews-list" *ngIf="activeReviewsTab == 'negative'">
-                    <div class="review-block" *ngFor="let review of negativeReviews">
+                    <div class="review-block" *ngFor="let review of negativeReviews" [attr.review-id]="review.id">
                         <div class="review-block-head">
                             <div class="reviewer-name">
                                 {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}

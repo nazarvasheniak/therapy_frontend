@@ -251,6 +251,11 @@
                 padding-left: 22px;
                 padding-right: 22px;
                 margin-top: 20px;
+                transition: all .3s;
+
+                &.active {
+                    background: #F8FFFB;
+                }
     
                 &:first-child {
                     margin-top: 0;

@@ -64,6 +64,18 @@ export class ProfileSpecialistSessionsComponent implements OnInit {
         this.router.navigate([`/profile-specialist/clients/${session.client.id}`]);
     }
 
+    routeToImages(session: SpecialistSession) {
+        const path = `/profile-specialist/clients/${session.client.id}/problems/${session.problem.id}/assets?tab=images`;
+
+        this.router.navigateByUrl(path);
+    }
+
+    routeToResources(session: SpecialistSession) {
+        const path = `/profile-specialist/clients/${session.client.id}/problems/${session.problem.id}/assets?tab=resources`;
+
+        this.router.navigateByUrl(path);
+    }
+
     setPageSize(value: number) {
 		this.loadSessions(1, Number(value));
 	}
@@ -74,6 +86,6 @@ export class ProfileSpecialistSessionsComponent implements OnInit {
     }
 
     normalizeMonth(monthStr: string) {
-        return monthStr.replace(".", "");
+        return monthStr.replace(".", "").substr(0, 3);
     }
 }
