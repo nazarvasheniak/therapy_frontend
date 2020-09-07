@@ -1,5 +1,5 @@
 <div class="specialist-block">
-                    
+
     <!-- Specialist Photo -->
     <div class="specialist-photo">
         <div class="author-price">
@@ -20,25 +20,26 @@
         <!-- Specialist Rating -->
         <div class="specialist-rating">
             <div class="rating">
-                <div class="star">
-                    <img src="../../../../assets/images/star.svg">
-                </div>
+                <app-rating [score]="specialist.rating" [single]="true" [size]="20"></app-rating>
 
-                <div class="counter">
+                <div class="rating-score">
                     {{ specialist.rating }}
                 </div>
             </div>
 
             <div class="reviews">
-                <div class="reviews-counter positive" *ngIf="positiveReviews && positiveReviews.length" [routerLink]="['/specialists', specialist.id]" [queryParams]="{reviews: 1}">
+                <div class="reviews-counter positive" *ngIf="positiveReviews && positiveReviews.length"
+                    [routerLink]="['/specialists', specialist.id]" [queryParams]="{reviews: 1}">
                     {{ positiveReviews.length }}
                 </div>
 
-                <div class="reviews-counter neutral" *ngIf="neutralReviews && neutralReviews.length" [routerLink]="['/specialists', specialist.id]" [queryParams]="{reviews: 2}">
+                <div class="reviews-counter neutral" *ngIf="neutralReviews && neutralReviews.length"
+                    [routerLink]="['/specialists', specialist.id]" [queryParams]="{reviews: 2}">
                     {{ neutralReviews.length }}
                 </div>
 
-                <div class="reviews-counter negative" *ngIf="negativeReviews && negativeReviews.length" [routerLink]="['/specialists', specialist.id]" [queryParams]="{reviews: 3}">
+                <div class="reviews-counter negative" *ngIf="negativeReviews && negativeReviews.length"
+                    [routerLink]="['/specialists', specialist.id]" [queryParams]="{reviews: 3}">
                     {{ negativeReviews.length }}
                 </div>
             </div>
