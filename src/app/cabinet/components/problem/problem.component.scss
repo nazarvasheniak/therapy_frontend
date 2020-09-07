@@ -112,6 +112,13 @@
         border-radius: 10px;
         margin-top: 16px;
 
+        &.active-session {
+            .session-block-head {
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+        }
+
         .session-block-head {
             border-bottom: 1px solid #E2F1EA;
             padding-top: 24px;
@@ -314,13 +321,14 @@
                                     margin-left: 10px;
                                     display: flex;
                                     align-items: center;
-                                    font-weight: normal;
-                                    font-size: 14px;
-                                    line-height: 14px;
-                                    color: #DEBA39;
     
-                                    .icon {
-                                        margin-right: 3px;
+                                    .rating-score {
+                                        margin-left: 3px;
+                                        font-family: "Poppins", sans-serif;
+                                        font-weight: normal;
+                                        font-size: 14px;
+                                        line-height: 130%;
+                                        color: #DEBA39;
                                     }
                                 }
                             }
@@ -846,6 +854,12 @@
 
         .session-block {
             //padding-bottom: 16px;
+
+            &.active-session {
+                .session-block-head {
+                    padding-bottom: 16px;
+                }
+            }
 
             &.active-session-final {
                 .session-block-bottom {

@@ -57,7 +57,7 @@
                                         <div class="item-head">
                                             <div class="item-title">
                                                 <div class="item-date">
-                                                    <div class="day">{{ image.session.date | date: 'dd' }}</div>
+                                                    <div class="day">{{ image.session.date | date: 'd' }}</div>
                                                     <div class="month">{{ normalizeMonth(image.session.date | date: 'MMM') }}</div>
                                                 </div>
 
@@ -241,7 +241,7 @@
                                         <div class="item-head">
                                             <div class="item-title">
                                                 <div class="item-date">
-                                                    <div class="day">{{ resource.session.date | date: 'dd' }}</div>
+                                                    <div class="day">{{ resource.session.date | date: 'd' }}</div>
                                                     <div class="month">{{ normalizeMonth(resource.session.date | date: 'MMM') }}</div>
                                                 </div>
 
@@ -372,7 +372,7 @@
 
                                             <div class="item-title">
                                                 <div class="item-date">
-                                                    <div class="day">{{ session.date | date: 'dd' }}</div>
+                                                    <div class="day">{{ session.date | date: 'd' }}</div>
                                                     <div class="month">{{ normalizeMonth(session.date | date: 'MMM') }}</div>
                                                 </div>
 
@@ -388,7 +388,9 @@
                                                     <div class="specialist-rating">
                                                         <app-rating [score]="session.specialist.rating" [single]="true" [size]="18"></app-rating>
 
-                                                        {{ session.specialist.rating }}
+                                                        <div class="rating-score">
+                                                            {{ session.specialist.rating }}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

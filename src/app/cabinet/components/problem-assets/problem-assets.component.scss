@@ -153,6 +153,7 @@
                                     .item-title {
                                         display: flex;
                                         align-items: center;
+                                        width: 100%;
 
                                         .item-date {
                                             width: 54px;
@@ -197,6 +198,10 @@
                                             margin-left: 16px;
 
                                             .name {
+                                                width: 218px;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                                white-space: nowrap;
                                                 font-weight: normal;
                                                 font-size: 20px;
                                                 line-height: 100%;
@@ -232,7 +237,8 @@
                                         }
 
                                         .item-specialist {
-                                            margin-left: 160px;
+                                            margin-left: auto;
+                                            margin-right: 243px;
                                             display: flex;
                                             align-items: center;
 
@@ -275,7 +281,7 @@
 
                                         .item-description-row {
                                             display: flex;
-                                            align-items: center;
+                                            //align-items: center;
                                             padding-left: 16px;
                                             padding-right: 16px;
                                             padding-top: 16px;
@@ -1248,6 +1254,7 @@
                                             }
 
                                             .month {
+                                                margin-top: 4px;
                                                 font-weight: normal;
                                                 font-size: 10px;
                                                 line-height: 100%;
@@ -1290,15 +1297,16 @@
 
                                             .specialist-rating {
                                                 margin-left: 10px;
-                                                font-weight: normal;
-                                                font-size: 14px;
-                                                line-height: 111%;
-                                                color: #DEBA39;
                                                 display: flex;
                                                 align-items: center;
 
-                                                svg {
-                                                    margin-right: 3px;
+                                                .rating-score {
+                                                    margin-left: 3px;
+                                                    font-family: "Poppins", sans-serif;
+                                                    font-weight: normal;
+                                                    font-size: 14px;
+                                                    line-height: 130%;
+                                                    color: #DEBA39;
                                                 }
                                             }
                                         }
@@ -1365,6 +1373,26 @@
             width: 100%;
             margin-left: 0;
             margin-top: 16px;
+
+            .page-content {
+                .tabs {
+                    .tabs-content {
+                        .tab-content {
+                            .images-list {
+                                .images-list-item {
+                                    .item-head {
+                                        .item-title {
+                                            .item-specialist {
+                                                margin-right: 250px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -1414,6 +1442,7 @@
                                         .item-title {
                                             .item-specialist {
                                                 margin-left: 21px;
+                                                margin-right: auto;
                                             }
                                         }
                                     }
@@ -1575,7 +1604,6 @@
                 .tabs {
                     .tabs-content {
                         .tab-content {
-
                             .resources-list {
                                 .resources-list-item {
                                     .item-head {

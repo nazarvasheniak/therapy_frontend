@@ -401,19 +401,17 @@
                                 {{ activeSession.specialist.user.firstName }} {{ activeSession.specialist.user.lastName }}
                                 
                                 <div class="rating">
-                                    <div class="icon">
-                                        <app-rating [score]="activeSession.specialist.rating" [single]="true" [size]="18"></app-rating>
-                                    </div>
+                                    <app-rating [score]="activeSession.specialist.rating" [single]="true" [size]="18"></app-rating>
                                     
-                                    {{ activeSession.specialist.rating }}
+                                    <div class="rating-score">
+                                        {{ activeSession.specialist.rating }}
+                                    </div>
                                 </div>
                             </div>
                             
                             <div class="specialist-price">
                                 <div class="price-badge">
-                                    <span class="price-badge">
-                                        {{ activeSession.specialist.price | number:'':'fr' }} ₽
-                                    </span>
+                                    {{ activeSession.specialist.price | number:'':'fr' }} ₽
                                 </div>
                             </div>
                         </div>
@@ -587,7 +585,7 @@
                 <div class="session-block-title">
 
                     <div class="session-date">
-                        <div class="day">{{ lastSession.date | date: 'dd' }}</div>
+                        <div class="day">{{ lastSession.date | date: 'd' }}</div>
                         <div class="month">{{ normalizeMonth(lastSession.date | date: 'MMM') }}</div>
                     </div>
 
