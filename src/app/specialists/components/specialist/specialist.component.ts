@@ -4,7 +4,7 @@ import { SpecialistsService, StorageService, RouterExtService } from 'src/app/co
 import { Specialist, Review } from 'src/app/common/models';
 import { ReviewType } from 'src/app/common/enums';
 
-type ReviewTab = 'Positive' | 'Neutral' | 'Negative';
+type ReviewTab = 'positive' | 'neutral' | 'negative';
 
 @Component({
 	selector: 'app-specialist',
@@ -14,7 +14,7 @@ type ReviewTab = 'Positive' | 'Neutral' | 'Negative';
 export class SpecialistComponent implements OnInit {
 
 	public specialist: Specialist;
-	public activeReviewsTab: ReviewTab = 'Positive';
+	public activeReviewsTab: ReviewTab = 'positive';
 
 	public positiveReviews: Review[] = [];
     public neutralReviews: Review[] = [];
@@ -105,7 +105,7 @@ export class SpecialistComponent implements OnInit {
 		this.specialistsService.getSpecialistReviews({
 			pageNumber: pageNumber,
 			pageSize: this.pageSize,
-			type: type
+			type: this.toTitleCase(type)
 		}, this.specialist.id)
 		.subscribe(res => {
 			if (!res.success) {
@@ -115,15 +115,15 @@ export class SpecialistComponent implements OnInit {
 			}
 
 			switch (type) {
-				case "Positive":
+				case "positive":
 					this.positiveReviews = res.data;
 					break;
 
-				case "Neutral":
+				case "neutral":
 					this.neutralReviews = res.data;
 					break;
 
-				case "Negative":
+				case "negative":
 					this.negativeReviews = res.data;
 					break;
 			}
@@ -139,5 +139,9 @@ export class SpecialistComponent implements OnInit {
         dialog.classList.add('show');
         
         this.storageService.setSpecialist(specialist);
-    }
+	}
+	
+	toTitleCase(value: string) {
+		return value.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()});
+	}
 }

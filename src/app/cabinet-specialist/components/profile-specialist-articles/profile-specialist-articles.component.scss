@@ -131,7 +131,7 @@
                     box-sizing: border-box;
                     border-radius: 10px;
                     padding-top: 24px;
-                    padding-bottom: 24px;
+                    padding-bottom: 22px;
                     padding-left: 24px;
                     padding-right: 24px;
                     display: flex;
@@ -174,22 +174,15 @@
                             .article-date {
                                 display: flex;
                                 align-items: center;
-                                font-family: 'Poppins', sans-serif;
-                                font-style: normal;
-                                font-weight: normal;
-                                font-size: 14px;
-                                line-height: 140%;
-                                color: #9EACA9;
 
-                                .icon {
-                                    width: 16px;
-                                    height: 16px;
-                                    margin-right: 9px;
-
-                                    > img {
-                                        width: 100%;
-                                        height: 100%;
-                                    }
+                                .date {
+                                    margin-left: 9px;
+                                    font-family: "Poppins", sans-serif;
+                                    font-style: normal;
+                                    font-weight: normal;
+                                    font-size: 14px;
+                                    line-height: 115%;
+                                    color: #9EACA9;
                                 }
                             }
 
@@ -200,38 +193,36 @@
 
                                 > div {
                                     display: flex;
-                                    align-items: center;
-                                    font-family: 'Poppins', sans-serif;
-                                    font-style: normal;
-                                    font-weight: 500;
-                                    font-size: 14px;
-                                    line-height: 140%;
-                                    color: #A9A9A9;                                    
+                                    align-items: center;                                    
 
-                                    .icon {
-                                        width: 16px;
-                                        height: 16px;
-
-                                        > img {
-                                            width: 100%;
-                                            height: 100%;
-                                        }
+                                    > svg {
+                                        margin-left: 8px;
                                     }
                                 }
 
                                 .article-likes {
                                     margin-right: 12px;
 
-                                    .icon {
-                                        margin-left: 8.4px;
+                                    .likes-count {
+                                        font-family: "Poppins", sans-serif;
+                                        font-style: normal;
+                                        font-weight: 500;
+                                        font-size: 14px;
+                                        line-height: 115%;
+                                        color: #A9A9A9;
                                     }
                                 }
 
                                 .article-comments {
                                     margin-left: 12px;
 
-                                    .icon {
-                                        margin-left: 8.8px;
+                                    .comments-count {
+                                        font-family: "Poppins", sans-serif;
+                                        font-style: normal;
+                                        font-weight: 500;
+                                        font-size: 14px;
+                                        line-height: 115%;
+                                        color: #A9A9A9;
                                     }
                                 }
                             }
@@ -242,20 +233,20 @@
                                 align-items: center;
                                 font-weight: normal;
                                 font-size: 16px;
-                                line-height: 140%;
+                                line-height: 100%;
 
                                 .action-edit {
                                     margin-right: 16px;
                                     color: #219653;
                                     cursor: pointer;
-                                    text-decoration-line: underline;
+                                    text-decoration: underline;
                                 }
 
                                 .action-delete {
                                     margin-left: 16px;
                                     color: #9EACA9;
                                     cursor: pointer;
-                                    text-decoration-line: underline;
+                                    text-decoration: underline;
                                 }
                             }
                         }
