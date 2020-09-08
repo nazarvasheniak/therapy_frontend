@@ -217,13 +217,15 @@
                             margin-top: 5px;
                             display: flex;
                             align-items: center;
-                            font-weight: normal;
-                            font-size: 14px;
-                            line-height: 16px;
-                            color: #DEBA39;
     
-                            > .icon {
-                                margin-right: 3px;
+                            .rating-score {
+                                margin-left: 3px;
+                                align-self: flex-end;
+                                font-family: "Poppins", sans-serif;
+                                font-weight: normal;
+                                font-size: 14px;
+                                line-height: 130%;
+                                color: #DEBA39;
                             }
                         }
 
@@ -249,13 +251,15 @@
                             margin-top: 5px;
                             display: flex;
                             align-items: center;
-                            font-weight: normal;
-                            font-size: 14px;
-                            line-height: 16px;
-                            color: #DEBA39;
     
-                            > .icon {
-                                margin-right: 3px;
+                            > .rating-score {
+                                margin-left: 3px;
+                                align-self: flex-end;
+                                font-family: "Poppins", sans-serif;
+                                font-weight: normal;
+                                font-size: 14px;
+                                line-height: 130%;
+                                color: #DEBA39;
                             }
                         }
                     }
@@ -272,13 +276,15 @@
                         margin-left: 10px;
                         display: flex;
                         align-items: center;
-                        font-weight: normal;
-                        font-size: 14px;
-                        line-height: 16px;
-                        color: #DEBA39;
 
-                        > .icon {
-                            margin-right: 3px;
+                        > .rating-score {
+                            margin-left: 3px;
+                            align-self: flex-end;
+                            font-family: "Poppins", sans-serif;
+                            font-weight: normal;
+                            font-size: 14px;
+                            line-height: 130%;
+                            color: #DEBA39;
                         }
                     }
 

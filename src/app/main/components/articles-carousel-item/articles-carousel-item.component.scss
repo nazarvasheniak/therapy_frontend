@@ -23,6 +23,10 @@
             font-size: 32px;
             line-height: 100%;
             color: #162B1E;
+            width: 470px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .article-likes {

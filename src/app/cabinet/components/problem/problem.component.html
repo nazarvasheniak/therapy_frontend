@@ -514,11 +514,11 @@
                         <img [src]="activeSession.specialist.photo.url" />
 
                         <div class="specialist-rating">
-                            <div class="icon">
-                                <app-rating [score]="activeSession.specialist.rating" [single]="true" [size]="18"></app-rating>
+                            <app-rating [score]="activeSession.specialist.rating" [single]="true" [size]="18"></app-rating>
+
+                            <div class="rating-score">
+                                {{ activeSession.specialist.rating }}
                             </div>
-    
-                            {{ activeSession.specialist.rating }}
                         </div>
                     </div>
 
@@ -528,11 +528,11 @@
                         </div>
     
                         <div class="specialist-rating">
-                            <div class="icon">
-                                <app-rating [score]="activeSession.specialist.rating" [single]="true" [size]="18"></app-rating>
+                            <app-rating [score]="activeSession.specialist.rating" [single]="true" [size]="18"></app-rating>
+
+                            <div class="rating-score">
+                                {{ activeSession.specialist.rating }}
                             </div>
-    
-                            {{ activeSession.specialist.rating }}
                         </div>
                     </div>
                 </div>
@@ -598,11 +598,11 @@
                         <img [src]="lastSession.specialist.photo.url" />
 
                         <div class="specialist-rating">
-                            <div class="icon">
-                                <app-rating [score]="lastSession.specialist.rating" [single]="true" [size]="18"></app-rating>
+                            <app-rating [score]="lastSession.specialist.rating" [single]="true" [size]="18"></app-rating>
+
+                            <div class="rating-score">
+                                {{ lastSession.specialist.rating }}
                             </div>
-    
-                            {{ lastSession.specialist.rating }}
                         </div>
                     </div>
 
@@ -612,11 +612,11 @@
                         </div>
     
                         <div class="specialist-rating">
-                            <div class="icon">
-                                <app-rating [score]="lastSession.specialist.rating" [single]="true" [size]="18"></app-rating>
+                            <app-rating [score]="lastSession.specialist.rating" [single]="true" [size]="18"></app-rating>
+
+                            <div class="rating-score">
+                                {{ lastSession.specialist.rating }}
                             </div>
-    
-                            {{ lastSession.specialist.rating }}
                         </div>
                     </div>
                 </div>

@@ -126,4 +126,14 @@ export class ProblemAssetsComponent implements OnInit {
     normalizeMonth(monthStr: string) {
         return monthStr.replace(".", "").substr(0, 3);
     }
+
+    routeToReview(session: Session) {
+        const review = session.specialist.reviews.find(x => x.session.id == session.id);
+
+        if (!review) {
+            return;
+        }
+
+        this.router.navigateByUrl( `/specialists/${session.specialist.id}?review=${review.id}`);
+    }
 }
