@@ -30,11 +30,11 @@
                             </div>
         
                             <div class="specialist-rating">
-                                <div class="icon">
-                                    <img src="../../../../assets/images/star.svg" />
+                                <app-rating [score]="session.specialist.rating" [single]="true" [size]="18"></app-rating>
+    
+                                <div class="rating-score">
+                                    {{ session.specialist.rating }}
                                 </div>
-        
-                                4
                             </div>
                         </div>
                     </div>

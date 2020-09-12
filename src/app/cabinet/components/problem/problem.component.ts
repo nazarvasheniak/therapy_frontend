@@ -158,15 +158,23 @@ export class ProblemComponent implements OnInit {
     }
 
     closeSession() {
-        this.patientService.closeSession(this.problem.id, this.activeSession.id)
-            .subscribe(res => {
-                if (!res.success) {
-                    alert(res.message);
-
+        this.patientService
+            .getSession(this.activeSession.problem.id, this.activeSession.id)
+            .subscribe(response => {
+                if (!response.data.isSpecialistClose) {
                     return;
                 }
 
-                this.router.navigate([`profile/problems/${this.problem.id}/sessions/${this.activeSession.id}/review`]);
+                this.patientService.closeSession(this.problem.id, this.activeSession.id)
+                    .subscribe(res => {
+                        if (!res.success) {
+                            alert(res.message);
+
+                            return;
+                        }
+
+                        this.router.navigate([`profile/problems/${this.problem.id}/sessions/${this.activeSession.id}/review`]);
+                    });
             });
     }
 
@@ -174,15 +182,15 @@ export class ProblemComponent implements OnInit {
         this.patientService
             .getSession(this.activeSession.problem.id, this.activeSession.id)
             .subscribe(response => {
+                if (!response.data.isSpecialistClose) {
+                    return;
+                }
+
                 if (!response.data.isClientClose) {
                     this.router.navigate([`profile/problems/${this.problem.id}/sessions/${this.activeSession.id}/refund`]);
 
                     return;
                 }
-
-                this.loadSessions();
-                this.loadAssets();
-                this.loadWallet();
             });
     }
 

@@ -555,7 +555,7 @@
             </div>
         </div>
 
-        <div class="session-block-bottom">
+        <div class="session-block-bottom" [ngClass]="{'started': !activeSession.isSpecialistClose}">
             <div class="content-wrapper">
                 <div class="session-deposit">
                     В депозите

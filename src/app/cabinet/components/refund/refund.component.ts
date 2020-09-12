@@ -67,4 +67,8 @@ export class RefundComponent implements OnInit {
             console.log(response);
         });
     }
+
+    normalizeMonth(monthStr: string) {
+        return monthStr.replace(".", "").substr(0, 3);
+    }
 }

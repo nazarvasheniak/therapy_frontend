@@ -70,7 +70,7 @@ export class CabinetSessionSuccessComponent implements OnInit {
     }
 
     normalizeMonth(monthStr: string) {
-        return monthStr.replace(".", "");
+        return monthStr.replace(".", "").substr(0, 3);
     }
 
     submit(form: FormGroup) {

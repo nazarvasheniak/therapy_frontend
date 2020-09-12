@@ -223,8 +223,6 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
 
     submitCreateProblemImage(form: FormGroup) {
         if (form.invalid) {
-            alert('form invalid');
-            
             return;
         }
 
@@ -256,8 +254,6 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
 
     submitEditResourceForm(form: FormGroup) {
         if (form.invalid) {
-            alert('form invalid');
-            
             return;
         };
 

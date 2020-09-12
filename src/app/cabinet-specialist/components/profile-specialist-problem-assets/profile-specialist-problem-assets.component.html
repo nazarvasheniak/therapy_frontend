@@ -303,19 +303,28 @@
                                                             <div class="form-block">
                                                                 <div class="form-group">
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" formControlName="title" required />
+                                                                        <input type="text" formControlName="title" required [ngClass]="{
+                                                                            'error': editImageForm.controls['title'].invalid && editImageForm.controls['title'].touched
+                                                                        }" />
+
                                                                         <label (click)="labelClick($event.target.previousSibling)">Название образа</label>
                                                                     </div>
                                                                 </div>
     
                                                                 <div class="form-group form-group-half">
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" formControlName="emotion" required />
+                                                                        <input type="text" formControlName="emotion" required [ngClass]="{
+                                                                            'error': editImageForm.controls['emotion'].invalid && editImageForm.controls['emotion'].touched
+                                                                        }" />
+
                                                                         <label (click)="labelClick($event.target.previousSibling)">Эмоция/чувство</label>
                                                                     </div>
     
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" formControlName="location" required />
+                                                                        <input type="text" formControlName="location" required [ngClass]="{
+                                                                            'error': editImageForm.controls['location'].invalid && editImageForm.controls['location'].touched
+                                                                        }" />
+
                                                                         <label (click)="labelClick($event.target.previousSibling)">Расположение</label>
                                                                     </div>
                                                                 </div>
@@ -352,7 +361,10 @@
     
                                                                 <div class="form-group">
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" formControlName="characteristic" required />
+                                                                        <input type="text" formControlName="characteristic" required [ngClass]="{
+                                                                            'error': editImageForm.controls['characteristic'].invalid && editImageForm.controls['characteristic'].touched
+                                                                        }" />
+
                                                                         <label (click)="labelClick($event.target.previousSibling)">Характеристики</label>
                                                                     </div>
                                                                 </div>
@@ -406,19 +418,28 @@
                                                         <div class="form-block">
                                                             <div class="form-group">
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" formControlName="title" required />
+                                                                    <input type="text" formControlName="title" required [ngClass]="{
+                                                                        'error': createImageForm.controls['title'].invalid && createImageForm.controls['title'].touched
+                                                                    }" />
+
                                                                     <label (click)="labelClick($event.target.previousSibling)">Название образа</label>
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group form-group-half">
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" formControlName="emotion" required />
+                                                                    <input type="text" formControlName="emotion" required [ngClass]="{
+                                                                        'error': createImageForm.controls['emotion'].invalid && createImageForm.controls['emotion'].touched
+                                                                    }" />
+
                                                                     <label (click)="labelClick($event.target.previousSibling)">Эмоция/чувство</label>
                                                                 </div>
 
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" formControlName="location" required />
+                                                                    <input type="text" formControlName="location" required [ngClass]="{
+                                                                        'error': createImageForm.controls['location'].invalid && createImageForm.controls['location'].touched
+                                                                    }" />
+
                                                                     <label (click)="labelClick($event.target.previousSibling)">Расположение</label>
                                                                 </div>
                                                             </div>
@@ -455,7 +476,10 @@
 
                                                             <div class="form-group">
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" formControlName="characteristic" required />
+                                                                    <input type="text" formControlName="characteristic" required [ngClass]="{
+                                                                        'error': createImageForm.controls['characteristic'].invalid && createImageForm.controls['characteristic'].touched
+                                                                    }" />
+
                                                                     <label (click)="labelClick($event.target.previousSibling)">Характеристики</label>
                                                                 </div>
                                                             </div>
@@ -651,33 +675,48 @@
                                                             <div class="form-block">
                                                                 <div class="form-group">
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" formControlName="title" required />
+                                                                        <input type="text" formControlName="title" required [ngClass]="{
+                                                                            'error': editResourceForm.controls['title'].invalid && editResourceForm.controls['title'].touched
+                                                                        }" />
+
                                                                         <label (click)="labelClick($event.target.previousSibling)">Название ресурса</label>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group form-group-half">
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" formControlName="emotion" required />
+                                                                        <input type="text" formControlName="emotion" required [ngClass]="{
+                                                                            'error': editResourceForm.controls['emotion'].invalid && editResourceForm.controls['emotion'].touched
+                                                                        }" />
+
                                                                         <label (click)="labelClick($event.target.previousSibling)">Эмоция/чувство</label>
                                                                     </div>
 
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" formControlName="location" required />
+                                                                        <input type="text" formControlName="location" required [ngClass]="{
+                                                                            'error': editResourceForm.controls['location'].invalid && editResourceForm.controls['location'].touched
+                                                                        }" />
+
                                                                         <label (click)="labelClick($event.target.previousSibling)">Расположение</label>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group">
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" formControlName="characteristic" required />
+                                                                        <input type="text" formControlName="characteristic" required [ngClass]="{
+                                                                            'error': editResourceForm.controls['characteristic'].invalid && editResourceForm.controls['characteristic'].touched
+                                                                        }" />
+
                                                                         <label (click)="labelClick($event.target.previousSibling)">Характеристики</label>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group">
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" formControlName="influence" required />
+                                                                        <input type="text" formControlName="influence" required [ngClass]="{
+                                                                            'error': editResourceForm.controls['influence'].invalid && editResourceForm.controls['influence'].touched
+                                                                        }" />
+
                                                                         <label (click)="labelClick($event.target.previousSibling)">На что влияет</label>
                                                                     </div>
                                                                 </div>
@@ -774,33 +813,48 @@
                                                         <div class="form-block">
                                                             <div class="form-group">
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" formControlName="title" required />
+                                                                    <input type="text" formControlName="title" required [ngClass]="{
+                                                                        'error': createResourceForm.controls['title'].invalid && createResourceForm.controls['title'].touched
+                                                                    }" />
+
                                                                     <label (click)="labelClick($event.target.previousSibling)">Название ресурса</label>
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group form-group-half">
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" formControlName="emotion" required />
+                                                                    <input type="text" formControlName="emotion" required [ngClass]="{
+                                                                        'error': createResourceForm.controls['emotion'].invalid && createResourceForm.controls['emotion'].touched
+                                                                    }" />
+
                                                                     <label (click)="labelClick($event.target.previousSibling)">Эмоция/чувство</label>
                                                                 </div>
 
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" formControlName="location" required />
+                                                                    <input type="text" formControlName="location" required [ngClass]="{
+                                                                        'error': createResourceForm.controls['location'].invalid && createResourceForm.controls['location'].touched
+                                                                    }" />
+
                                                                     <label (click)="labelClick($event.target.previousSibling)">Расположение</label>
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group">
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" formControlName="characteristic" required />
+                                                                    <input type="text" formControlName="characteristic" required [ngClass]="{
+                                                                        'error': createResourceForm.controls['characteristic'].invalid && createResourceForm.controls['characteristic'].touched
+                                                                    }" />
+
                                                                     <label (click)="labelClick($event.target.previousSibling)">Характеристики</label>
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group">
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" formControlName="influence" required />
+                                                                    <input type="text" formControlName="influence" required [ngClass]="{
+                                                                        'error': createResourceForm.controls['influence'].invalid && createResourceForm.controls['influence'].touched
+                                                                    }" />
+
                                                                     <label (click)="labelClick($event.target.previousSibling)">На что влияет</label>
                                                                 </div>
                                                             </div>

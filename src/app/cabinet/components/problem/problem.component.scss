@@ -119,6 +119,22 @@
             }
         }
 
+        &.active-session-final {
+            .session-block-bottom {
+                .content-wrapper {
+                    padding-top: 20px;
+                    padding-bottom: 20px;
+                }
+
+                &.started {
+                    .content-wrapper {
+                        padding-top: 38px;
+                        padding-bottom: 38px;
+                    }
+                }
+            }
+        }
+
         .session-block-head {
             border-bottom: 1px solid #E2F1EA;
             padding-top: 24px;

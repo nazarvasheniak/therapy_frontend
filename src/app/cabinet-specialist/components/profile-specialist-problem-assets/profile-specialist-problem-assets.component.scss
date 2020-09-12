@@ -394,6 +394,14 @@
 
                                     .item-head {
                                         .item-title {
+                                            .item-date {
+                                                border: 1px solid #ECE2D4;
+
+                                                .month {
+                                                    color: #C8B69D;
+                                                }
+                                            }
+
                                             .item-name {
                                                 .title {
                                                     font-weight: normal;
@@ -506,6 +514,20 @@
                                                                 font-size: 16px;
                                                                 line-height: 100%;
                                                                 color: #005264;
+
+                                                                &.error {
+                                                                    background: rgba(255, 147, 147, 0.12);
+                                                                    border: 1px solid rgba(255, 147, 147, 0.12);
+                                                                    color: #FF9494;
+
+                                                                    &::placeholder {
+                                                                        color: #FF9494;
+                                                                    }
+
+                                                                    + label {
+                                                                        color: #FF9494;
+                                                                    }
+                                                                }
 
                                                                 &:focus,
                                                                 &:valid {
@@ -992,6 +1014,20 @@
                                                                 font-size: 16px;
                                                                 line-height: 100%;
                                                                 color: #005264;
+
+                                                                &.error {
+                                                                    background: rgba(255, 147, 147, 0.12);
+                                                                    border: 1px solid rgba(255, 147, 147, 0.12);
+                                                                    color: #FF9494;
+
+                                                                    &::placeholder {
+                                                                        color: #FF9494;
+                                                                    }
+
+                                                                    + label {
+                                                                        color: #FF9494;
+                                                                    }
+                                                                }
 
                                                                 &:focus,
                                                                 &:valid {
