@@ -93,7 +93,7 @@ export class ProblemAssetsComponent implements OnInit {
                     return;
                 }
 
-                this.sessions = res.data;
+                this.sessions = res.data.filter(session => session.isClientClose && session.isSpecialistClose);
             });
     }
 

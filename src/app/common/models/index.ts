@@ -22,3 +22,4 @@ export * from './client-problem-assets.model';
 export * from './specialist-profile-active-session.model';
 export * from './user-verification.model';
 export * from './user-verification-request.model';
+export * from './socket-message.model';

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute, ActivationEnd } from '@angular/router';
+import { AuthService, NotificationsService, UsersService } from './common/services';
 
 @Component({
 	selector: 'app-root',
@@ -10,8 +11,21 @@ export class AppComponent {
 	title = 'therapy-frontend';
 
 	constructor(
+		private notificationsService: NotificationsService,
+		private authService: AuthService,
+		private usersService: UsersService,
 		private router: Router
 	) {
+		this.authService.isLoggedIn
+			.subscribe(logged => {
+				if (logged) {
+					this.usersService.getUserInfo()
+						.subscribe(user => {
+							this.notificationsService.openStream(user.id);
+						});
+				}
+			});
+
 		this.router.events.subscribe(event => {
 			if (event instanceof ActivationEnd) {
 				window.scroll(0, 0);

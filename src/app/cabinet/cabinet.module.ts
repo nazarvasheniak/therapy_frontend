@@ -16,7 +16,8 @@ import { CabinetPaySpecialistComponent } from './components/pay-specialist/pay-s
 import { CabinetSessionSuccessComponent } from './components/session-success/session-success.component';
 import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
 import { RefundComponent } from './components/refund/refund.component';
-
+import { CountdownModule } from '../common/modules';
+ 
 @NgModule({
     declarations: [
         ProfileComponent,
@@ -38,7 +39,8 @@ import { RefundComponent } from './components/refund/refund.component';
         RouterModule,
         LayoutModule,
         SpecialistsModule,
-        NgxSpinnerModule
+        NgxSpinnerModule,
+        CountdownModule
     ],
     providers: [
         

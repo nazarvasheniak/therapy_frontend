@@ -15,6 +15,8 @@ export class SpecialistSession {
     public reward: number;
     public isSpecialistClose: boolean;
     public isClientClose: boolean;
+    public specialistCloseDate: Date;
+    public clientCloseDate: Date;
     public sessionImagesCount: number;
     public totalImagesCount: number;
     public sessionResourcesCount: number;

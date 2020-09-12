@@ -115,6 +115,6 @@ export class SpecialistService extends BaseHttpService {
     }
 
     public closeClientSession(clientID: number, problemID: number, sessionID: number) {
-        return this.post<ResponseModel>(`/specialist/clients/${clientID}/problems/${problemID}/sessions/${sessionID}/close`, {});
+        return this.post<DataResponse<SpecialistProfileActiveSession[]>>(`/specialist/clients/${clientID}/problems/${problemID}/sessions/${sessionID}/close`, {});
     }
 }

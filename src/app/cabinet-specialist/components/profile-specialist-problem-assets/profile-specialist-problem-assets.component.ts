@@ -287,6 +287,10 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
             });
     }
 
+    filterClosedSessions(list: SpecialistSession[]) {
+        return list.filter(session => session.isSpecialistClose && session.isClientClose);
+    }
+
     ngOnInit(): void {
         this.authService.isLoggedIn
             .subscribe(logged => {

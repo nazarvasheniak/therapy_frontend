@@ -3,6 +3,7 @@ import { Problem, Session, UserWallet, ProblemImage, ProblemResource } from 'src
 import { PatientService, UsersWalletsService } from 'src/app/common/services';
 import { SessionStatus } from 'src/app/common/enums';
 import { Router } from '@angular/router';
+import { DateTimeHelper } from 'src/app/common/helpers';
 
 type AssetTab = "images" | "resources" | "sessions";
 
@@ -53,11 +54,16 @@ export class ProblemComponent implements OnInit {
                     return;
                 }
 
-                this.sessions = res.data;
-                this.activeSession = res.data.find(x => !x.isClientClose);
+                this.sessions = res.data.map(session => {
+                    session.date = DateTimeHelper.toLocalDateTime(session.date);
+                    session.specialistCloseDate = DateTimeHelper.toLocalDateTime(session.specialistCloseDate);
+                    return session;
+                });
+
+                this.activeSession = this.sessions.find(x => !x.isClientClose);
                 
-                if (res.data.length && (res.data[0].status == SessionStatus.Success || res.data[0].status == SessionStatus.Refund)) {
-                    this.lastSession = res.data[res.data.length - 1];
+                if (this.sessions.length && (this.sessions[0].status == SessionStatus.Success || this.sessions[0].status == SessionStatus.Refund)) {
+                    this.lastSession = this.sessions[this.sessions.length - 1];
                 }
             });
     }
@@ -68,6 +74,21 @@ export class ProblemComponent implements OnInit {
                 this.images = assets.images;
                 this.resources = assets.resources;
             });
+    }
+
+    get closedSessions() {
+        if (!this.sessions) {
+            return [];
+        }
+
+        return this.sessions.filter(session => session.isClientClose && session.isSpecialistClose);
+    }
+
+    getEndDate(date: Date) {
+        const result = new Date(date);
+        result.setDate(result.getDate() + 1);
+
+        return result;
     }
 
     createNewSession() {
@@ -117,7 +138,7 @@ export class ProblemComponent implements OnInit {
     }
 
     routeToAssets(tab: AssetTab) {
-        if (tab == 'sessions' && !this.sessions.length) {
+        if (tab == 'sessions' && !this.closedSessions.length) {
             return;
         }
 
@@ -150,10 +171,28 @@ export class ProblemComponent implements OnInit {
     }
 
     refundSession() {
-        this.router.navigate([`profile/problems/${this.problem.id}/sessions/${this.activeSession.id}/refund`]);
+        this.patientService
+            .getSession(this.activeSession.problem.id, this.activeSession.id)
+            .subscribe(response => {
+                if (!response.data.isClientClose) {
+                    this.router.navigate([`profile/problems/${this.problem.id}/sessions/${this.activeSession.id}/refund`]);
+
+                    return;
+                }
+
+                this.loadSessions();
+                this.loadAssets();
+                this.loadWallet();
+            });
     }
 
     normalizeMonth(monthStr: string) {
         return monthStr.replace(".", "").substr(0, 3);
+    }
+
+    reloadData(event) {
+        this.loadSessions();
+        this.loadAssets();
+        this.loadWallet();
     }
 }

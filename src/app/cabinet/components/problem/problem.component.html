@@ -326,20 +326,20 @@
             </div>
         </div>
 
-        <div class="problem-asset problem-sessions" *ngIf="sessions" [ngClass]="{ 'empty': !sessions.length }" (click)="routeToAssets('sessions')">
+        <div class="problem-asset problem-sessions" *ngIf="closedSessions" [ngClass]="{ 'empty': !closedSessions.length }" (click)="routeToAssets('sessions')">
             <div class="asset-icon">
-                <img *ngIf="!sessions.length" src="../../../../assets/images/icon-session-empty.svg" />
-                <img *ngIf="sessions.length" src="../../../../assets/images/icon-session.svg" />
+                <img *ngIf="!closedSessions.length" src="../../../../assets/images/icon-session-empty.svg" />
+                <img *ngIf="closedSessions.length" src="../../../../assets/images/icon-session.svg" />
             </div>
 
             <div class="asset-info">
                 <div class="title">Сессий</div>
-                <div class="count">{{ sessions.length }}</div>
+                <div class="count">{{ closedSessions.length }}</div>
             </div>
 
             <div class="asset-button">
-                <img src="../../../../assets/images/icon-arrow-right-2-empty.svg" *ngIf="!sessions.length" />
-                <img src="../../../../assets/images/icon-arrow-right-2.svg" *ngIf="sessions.length" />
+                <img src="../../../../assets/images/icon-arrow-right-2-empty.svg" *ngIf="!closedSessions.length" />
+                <img src="../../../../assets/images/icon-arrow-right-2.svg" *ngIf="closedSessions.length" />
             </div>
         </div>
     </div>
@@ -492,10 +492,26 @@
         <div class="session-block-head">
             <div class="content-wrapper">
 
-                <div class="session-block-title">
+                <div class="session-block-title" *ngIf="!activeSession.isSpecialistClose">
                     Активная сессия
 
-                    <div class="session-deposit session-deposit-mobile" *ngIf="activeSession.status == 1">
+                    <div class="session-deposit session-deposit-mobile">
+                        В депозите
+    
+                        <div class="session-deposit-balance">
+                            <div class="icon">
+                                <img src="../../../../assets/images/icon-lock-2.svg" />
+                            </div>
+    
+                            {{ activeSession.reward | number:'':'fr' }} ₽
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-block-title" *ngIf="activeSession.isSpecialistClose">
+                    Завершенная сессия
+
+                    <div class="session-deposit session-deposit-mobile">
                         В депозите
     
                         <div class="session-deposit-balance">
@@ -541,7 +557,7 @@
 
         <div class="session-block-bottom">
             <div class="content-wrapper">
-                <div class="session-deposit" *ngIf="activeSession.status == 1">
+                <div class="session-deposit">
                     В депозите
 
                     <div class="session-deposit-balance">
@@ -553,24 +569,14 @@
                     </div>
                 </div>
 
-                <div class="session-actions">
-                    <div class="session-action reject" *ngIf="activeSession.status == 1" (click)="refundSession()">
-                        Сессия не помогла, вернуть деньги
+                <div class="session-actions" *ngIf="activeSession.isSpecialistClose">
+                    <div class="session-action reject" (click)="refundSession()">
+                        Сессия не помогла, вернуть деньги (<countdown units="Hours | Minutes | Seconds"  [end]="getEndDate(activeSession.specialistCloseDate)" divider=":" (reached)="reloadData($event)"></countdown>)
                     </div>
 
-                    <div class="session-action resolve" *ngIf="activeSession.status == 1">
+                    <div class="session-action resolve">
                         <button type="button" class="button-green" (click)="closeSession()">Сессия помогла</button>
                         <button type="button" class="button-green button-green-mobile" (click)="closeSession()">Сессия помогла</button>
-                    </div>
-
-                    <div class="session-action info" *ngIf="activeSession.status == 0">
-                        <div class="icon-info">
-                            <img src="../../../../assets/images/icon-info.svg" alt="">
-                        </div>
-
-                        <div class="info-text">
-                            Нужно будет внести средства на счет, которые будут находится в депозите до конца сессии.
-                        </div>
                     </div>
                 </div>
             </div>

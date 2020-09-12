@@ -12,4 +12,6 @@ export class Session {
     public reviewScore: number;
     public isSpecialistClose: boolean;
     public isClientClose: boolean;
+    public specialistCloseDate: Date;
+    public clientCloseDate: Date;
 }

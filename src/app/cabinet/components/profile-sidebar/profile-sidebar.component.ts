@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersWalletsService, AuthService } from 'src/app/common/services';
+import { UsersWalletsService, AuthService, NotificationsService } from 'src/app/common/services';
 import { UserWallet } from 'src/app/common/models';
 
 @Component({
@@ -13,13 +13,19 @@ export class ProfileSidebarComponent implements OnInit {
 
     constructor(
         private authService: AuthService,
-        private usersWalletsService: UsersWalletsService
+        private usersWalletsService: UsersWalletsService,
+        private notificationsService: NotificationsService
     ) {
 
     }
 
     ngOnInit(): void {
         this.loadWallet();
+
+        this.notificationsService.streamMessage
+            .subscribe(msg => {
+                console.log(msg);
+            });
     }
 
     logout() {
