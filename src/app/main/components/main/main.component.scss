@@ -716,8 +716,12 @@ section.articles {
                     font-weight: normal;
                     font-size: 18px;
                     line-height: 22px;
-                    color: #ABB3AF;
                     outline: none;
+                    color: #000000;
+
+                    &::placeholder {
+                        color: #ABB3AF;
+                    }
                 }
             }
 
