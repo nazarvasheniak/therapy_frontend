@@ -1,6 +1,7 @@
 .container {
     position: relative;
     margin-top: 23px;
+    flex: 0 0 auto;
 }
 
 .button-back {
@@ -166,6 +167,8 @@
 }
 
 .reviews {
+    flex: 1 0 auto;
+    
     .reviews-head {
         background: #ffffff;
         padding-top: 20px;

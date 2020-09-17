@@ -60,6 +60,13 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
         });
     }
 
+    private markCreateImageFormAsTouched() {
+        Object.values(this.createImageForm.controls)
+            .forEach(control => {
+                control.markAsTouched();
+            });
+    }
+
     private initCreateResourceForm() {
         this.createResourceForm = new FormGroup({
             title: new FormControl(null, [Validators.required]),
@@ -70,6 +77,13 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
             likeScore: new FormControl(0),
             tasks: new FormControl([])
         });
+    }
+
+    private markCreateResourceFormAsTouched() {
+        Object.values(this.createResourceForm.controls)
+            .forEach(control => {
+                control.markAsTouched();
+            });
     }
 
     private initEditImageForm() {
@@ -87,6 +101,13 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
         });
     }
 
+    private markEditImageFormAsTouched() {
+        Object.values(this.editImageForm.controls)
+            .forEach(control => {
+                control.markAsTouched();
+            });
+    }
+
     private initEditResourceForm() {
         this.editResourceForm = new FormGroup({
             id: new FormControl(null),
@@ -98,6 +119,13 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
             likeScore: new FormControl(0),
             tasks: new FormControl([])
         });
+    }
+
+    private markEditResourceFormAsTouched() {
+        Object.values(this.editResourceForm.controls)
+            .forEach(control => {
+                control.markAsTouched();
+            });
     }
 
     private fillEditImageForm(image: ProblemImage) {
@@ -223,6 +251,8 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
 
     submitCreateProblemImage(form: FormGroup) {
         if (form.invalid) {
+            this.markCreateImageFormAsTouched();
+
             return;
         }
 
@@ -239,7 +269,7 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
 
     submitCreateResourceForm(form: FormGroup) {
         if (form.invalid) {
-            alert('form invalid');
+            this.markCreateResourceFormAsTouched();
             
             return;
         }
@@ -254,6 +284,8 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
 
     submitEditResourceForm(form: FormGroup) {
         if (form.invalid) {
+            this.markEditResourceFormAsTouched();
+
             return;
         };
 
@@ -267,7 +299,7 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
 
     submitEditProblemImage(form: FormGroup) {
         if (form.invalid) {
-            alert('form invalid');
+            this.markEditImageFormAsTouched();
             
             return;
         }
