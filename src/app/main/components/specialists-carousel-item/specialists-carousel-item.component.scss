@@ -1,6 +1,14 @@
 .specialists-carousel-item {
     width: 282px;
 
+    &.is-specialist {
+        .specialist-content {
+            .info {
+                border-bottom: 0;
+            }
+        }
+    }
+
     .specialist-photo {
         border-top-left-radius: 16px;
         border-top-right-radius: 16px;

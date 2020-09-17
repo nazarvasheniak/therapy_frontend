@@ -7,7 +7,6 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { AlertComponent } from './alert/alert.component';
 import { ReviewScoreComponent } from './review-score/review-score.component';
 import { RatingComponent } from './rating/rating.component';
-import { LoaderComponent } from './loader/loader.component';
 
 import { NgxMaskModule } from 'ngx-mask';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -21,7 +20,6 @@ import { FormsModule } from '@angular/forms';
 		FooterComponent,
 		PaginationComponent,
 		AlertComponent,
-		LoaderComponent,
 		ReviewScoreComponent,
 		RatingComponent,
 		NotFoundComponent,
@@ -39,7 +37,6 @@ import { FormsModule } from '@angular/forms';
 		FooterComponent,
 		PaginationComponent,
 		AlertComponent,
-		LoaderComponent,
 		ReviewScoreComponent,
 		RatingComponent,
 		NotFoundComponent,

@@ -10,6 +10,8 @@
         > img {
             border-radius: 10px;
             object-fit: cover;
+            width: 100%;
+            height: 100%;
         }
     }
 
@@ -109,6 +111,12 @@
             border-top-left-radius: 16px;
             border-top-right-radius: 16px;
             border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+
+            &.is-specialist {
+                border-bottom-left-radius: 16px;
+                border-bottom-right-radius: 16px;
+                border-bottom: 0;
+            }
 
             .content-wrapper {
                 padding-top: 16px;

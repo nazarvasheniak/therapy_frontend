@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute, ActivationEnd } from '@angular/router';
-import { AuthService, NotificationsService, UsersService } from './common/services';
+import { UserRole } from './common/enums';
+import { AuthService, StorageService, UsersService } from './common/services';
 
 @Component({
 	selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent {
 	title = 'therapy-frontend';
 
 	constructor(
-		private notificationsService: NotificationsService,
+		private storageService: StorageService,
 		private authService: AuthService,
 		private usersService: UsersService,
 		private router: Router
@@ -21,7 +22,13 @@ export class AppComponent {
 				if (logged) {
 					this.usersService.getUserInfo()
 						.subscribe(user => {
-							this.notificationsService.openStream(user.id);
+							if (user.role == UserRole.Specialist) {
+								this.storageService.setRole(true);
+
+								return;
+							}
+
+							this.storageService.setRole(false);
 						});
 				}
 			});

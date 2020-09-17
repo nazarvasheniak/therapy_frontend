@@ -1,4 +1,4 @@
-<div class="specialist-block">
+<div class="specialist-block" [ngClass]="{'is-specialist': isSpecialist}">
 
     <!-- Specialist Photo -->
     <div class="specialist-photo">
@@ -47,7 +47,7 @@
     </div>
 
     <!-- Choose Button-->
-    <div class="choose-button">
+    <div class="choose-button" *ngIf="!isSpecialist">
         <button type="button" (click)="chooseSpecialist()">Выбрать</button>
     </div>
 </div>

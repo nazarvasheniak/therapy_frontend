@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, Input, OnInit } from "@angular/core";
+import { UserRole } from 'src/app/common/enums';
 import { Specialist, Review } from 'src/app/common/models';
-import { SpecialistsService, StorageService } from 'src/app/common/services';
+import { AuthService, SpecialistsService, StorageService, UsersService } from 'src/app/common/services';
 
 @Component({
     selector: 'specialists-carousel-item',
@@ -9,14 +10,34 @@ import { SpecialistsService, StorageService } from 'src/app/common/services';
 })
 export class SpecialistsCarouselItemComponent implements OnInit {
 
+    public isSpecialist = false;
+
     @Input('specialist') specialist: Specialist;
 
     public positiveReviews: Review[];
     public neutralReviews: Review[];
     public negativeReviews: Review[];
 
-    constructor(private storageService: StorageService) {
+    constructor(
+        private storageService: StorageService,
+        private authService: AuthService,
+        private usersService: UsersService
+    ) {
+        this.authService.isLoggedIn
+            .subscribe(logged => {
+                if(logged) {
+                    this.usersService.getUserInfo()
+                        .subscribe(user => {
+                            if (user.role == UserRole.Specialist) {
+                                this.isSpecialist = true;
 
+                                return;
+                            }
+
+                            this.isSpecialist = false;
+                        });
+                }
+            });
     }
 
     ngOnInit() {

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import {
 	HttpResponse,
 	HttpRequest,
@@ -6,14 +7,14 @@ import {
 	HttpEvent,
 	HttpInterceptor
 } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
-import { LoaderService } from '../services/loader.service';
 
 @Injectable()
 export class LoaderInterceptor implements HttpInterceptor {
 	private requests: HttpRequest<any>[] = [];
 
-	constructor(private loaderService: LoaderService) { }
+	constructor() { }
 
 	removeRequest(req: HttpRequest<any>) {
 		const i = this.requests.indexOf(req);
@@ -21,15 +22,12 @@ export class LoaderInterceptor implements HttpInterceptor {
 		if (i >= 0) {
 			this.requests.splice(i, 1);
 		}
-
-		this.loaderService.next(this.requests.length > 0);
 	}
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
 		this.requests.push(req);
 
-		this.loaderService.next(true);
 		return Observable.create(observer => {
 			const subscription = next.handle(req)
 				.subscribe(

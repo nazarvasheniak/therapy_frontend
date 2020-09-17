@@ -53,8 +53,6 @@ export class SpecialistsCarouselComponent implements AfterViewInit {
 
     nextSlide() {
         if (this.currentSlide == (this.specialists.length - 1)) {
-            this.currentSlide = 0;
-
             return;
         }
 
@@ -63,8 +61,6 @@ export class SpecialistsCarouselComponent implements AfterViewInit {
 
     prevSlide() {
         if (this.currentSlide == 0) {
-            this.currentSlide = this.specialists.length - 1;
-
             return;
         }
 

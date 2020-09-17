@@ -110,6 +110,8 @@ html, body {
 
 html {
     overflow-y: overlay;
+    scroll-behavior: smooth;
+    height: 100%;
 }
 
 html * {
@@ -117,6 +119,7 @@ html * {
     padding: 0;
     font-family: 'Roboto', sans-serif;
     scroll-behavior: smooth;
+    outline: none;
 }
 
 body {
@@ -124,7 +127,8 @@ body {
     //background-image: url(./assets/images/bg.svg);
     //background-repeat: repeat;
     width: 100vw;
-    overflow-x: hidden; 
+    height: 100%;
+    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar-button {
@@ -468,6 +472,23 @@ button.scroll-top {
 .page-wrapper {
     background-image: url(./assets/images/main-bg.svg);
     background-repeat: repeat;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    > app-header,
+    > profile-header,
+    > profile-specialist-header {
+        flex: 0 0 auto;
+    }
+
+    > .container {
+        flex: 1 0 auto;
+    }
+
+    > app-footer {
+        flex: 0 0 auto;
+    }
 }
 
 .swiper-button-prev,

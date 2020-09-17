@@ -1,4 +1,4 @@
-<div class="specialists-carousel-item">
+<div class="specialists-carousel-item" [ngClass]="{'is-specialist': isSpecialist}">
     <div class="specialist-photo">
         <div class="author-price">
             {{ specialist.price | number:'':'fr' }} ₽
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="choose-button">
+        <div class="choose-button"  *ngIf="!isSpecialist">
             <button type="button" (click)="showSpecialistDialog(specialist)">Выбрать</button>
         </div>
     </div>

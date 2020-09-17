@@ -4,6 +4,7 @@ import { Specialist } from '../models';
 @Injectable()
 export class StorageService {
     private selectedSpecialist = new EventEmitter<Specialist>(null);
+    private isSpecialist = new EventEmitter<boolean>(false);
 
     constructor () {
         
@@ -19,5 +20,13 @@ export class StorageService {
     
     resetSpecialist() {
         this.selectedSpecialist.emit(null);
+    }
+
+    setRole(isSpecialist: boolean) {
+        this.isSpecialist.emit(isSpecialist);
+    }
+
+    getRole(){
+        return this.isSpecialist;
     }
 }

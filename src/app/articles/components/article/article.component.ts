@@ -1,11 +1,12 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ArticlesService, RouterExtService, StorageService } from 'src/app/common/services';
+import { ArticlesService, AuthService, RouterExtService, StorageService, UsersService } from 'src/app/common/services';
 import { Article, User, ArticleComment, Specialist } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Location } from '@angular/common';
+import { UserRole } from 'src/app/common/enums';
 
 @Component({
 	selector: 'app-article',
@@ -28,6 +29,8 @@ import { Location } from '@angular/common';
 })
 export class ArticleComponent implements OnInit {
 
+	public isSpecialist = false;
+
 	public commentForm: FormGroup;
 
 	public article: Article;
@@ -39,11 +42,26 @@ export class ArticleComponent implements OnInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private location: Location,
-		private routerService: RouterExtService,
 		private articlesService: ArticlesService,
-		private storageService: StorageService
+		private storageService: StorageService,
+		private authService: AuthService,
+		private usersService: UsersService
 	) {
+		this.authService.isLoggedIn
+			.subscribe(logged => {
+				if (logged) {
+					this.usersService.getUserInfo()
+						.subscribe(user => {
+							if (user.role == UserRole.Specialist) {
+								this.isSpecialist = true;
 
+								return;
+							}
+
+							this.isSpecialist = false;
+						});
+				}
+			});
 	}
 
 	ngOnInit() {

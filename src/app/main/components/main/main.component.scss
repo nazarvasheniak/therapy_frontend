@@ -366,12 +366,17 @@ section.specialists {
             width: 58px;
             height: 58px;
             border-radius: 28px;
-            background: #FFFFFF;
+            background: rgba(255, 255, 255, 1);
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+            transition: all .3s;
+
+            &:hover {
+                background: rgb(247 251 249);
+            }
         }
 
         .swiper-prev {

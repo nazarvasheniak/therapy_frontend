@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
-import { SpecialistsService } from 'src/app/common/services';
+import { AuthService, SpecialistsService, UsersService } from 'src/app/common/services';
 import { Specialist, Review } from 'src/app/common/models';
+import { UserRole } from 'src/app/common/enums';
 
 @Component({
 	selector: 'app-specialist-card',
@@ -8,6 +9,8 @@ import { Specialist, Review } from 'src/app/common/models';
 	styleUrls: ['./specialist-card.component.scss']
 })
 export class SpecialistCardComponent implements OnChanges {
+
+	public isSpecialist = false;
 
 	@Input('specialist') public specialist: Specialist;
 	
@@ -17,8 +20,25 @@ export class SpecialistCardComponent implements OnChanges {
     public neutralReviews: Review[];
 	public negativeReviews: Review[];
 
-	constructor() {
+	constructor(
+		private authService: AuthService,
+		private usersService: UsersService
+	) {
+		this.authService.isLoggedIn
+			.subscribe(logged => {
+				if (logged) {
+					this.usersService.getUserInfo()
+						.subscribe(user => {
+							if (user.role == UserRole.Specialist) {
+								this.isSpecialist = true
 
+								return;
+							}
+
+							this.isSpecialist = false;
+						});
+				}
+			});
 	}
 
 	ngOnChanges() {

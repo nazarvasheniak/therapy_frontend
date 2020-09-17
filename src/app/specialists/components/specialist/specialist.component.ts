@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SpecialistsService, StorageService, RouterExtService } from 'src/app/common/services';
+import { SpecialistsService, StorageService, RouterExtService, AuthService, UsersService } from 'src/app/common/services';
 import { Specialist, Review } from 'src/app/common/models';
-import { ReviewType } from 'src/app/common/enums';
+import { ReviewType, UserRole } from 'src/app/common/enums';
 import { Location } from '@angular/common';
 
 type ReviewTab = 'positive' | 'neutral' | 'negative';
@@ -13,6 +13,8 @@ type ReviewTab = 'positive' | 'neutral' | 'negative';
 	styleUrls: ['./specialist.component.scss']
 })
 export class SpecialistComponent implements OnInit {
+
+	public isSpecialist = false;
 
 	public specialist: Specialist;
 	public activeReviewsTab: ReviewTab = 'positive';
@@ -32,9 +34,25 @@ export class SpecialistComponent implements OnInit {
 		private router: Router,
 		private location: Location,
 		private specialistsService: SpecialistsService,
-		private storageService: StorageService
+		private storageService: StorageService,
+		private authService: AuthService,
+		private usersService: UsersService
 	) {
+		this.authService.isLoggedIn
+			.subscribe(logged => {
+				if (logged) {
+					this.usersService.getUserInfo()
+						.subscribe(user => {
+							if (user.role == UserRole.Specialist) {
+								this.isSpecialist = true;
 
+								return;
+							}
+
+							this.isSpecialist = false;
+						});
+				}
+			});
 	}
 
 	prevRoute() {

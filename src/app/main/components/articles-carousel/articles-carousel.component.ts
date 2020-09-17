@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, ViewChild, AfterViewChecked } from '@angular/core';
 import { Article } from 'src/app/common/models';
 import { SwiperComponent, SwiperConfigInterface } from 'ngx-swiper-wrapper';
-import { LoaderService } from 'src/app/common/services';
+import { AuthService, StorageService, UsersService } from 'src/app/common/services';
+import { UserRole } from 'src/app/common/enums';
 
 @Component({
     selector: 'articles-carousel',
@@ -9,6 +10,8 @@ import { LoaderService } from 'src/app/common/services';
     styleUrls: ['./articles-carousel.component.scss']
 })
 export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
+
+    public isSpecialist = false;
 
     @Input('articles') articles: Article[];
     @ViewChild('articlesSwitcherMobile') articlesSwitcherMobile: SwiperComponent;
@@ -24,16 +27,25 @@ export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
 
     articlesSwitcherCurrentSlide = 0;
 
-    constructor(private loaderService: LoaderService) {
-        
-    }
+    constructor(
+        private authService: AuthService,
+        private usersService: UsersService
+    ) {
+        this.authService.isLoggedIn
+            .subscribe(logged => {
+                if(logged) {
+                    this.usersService.getUserInfo()
+                        .subscribe(user => {
+                            if (user.role == UserRole.Specialist) {
+                                this.isSpecialist = true;
 
-    showLoader() {
-        this.loaderService.next(true);
+                                return;
+                            }
 
-        setTimeout(() => {
-            this.loaderService.next(false);
-        }, 100);
+                            this.isSpecialist = false;
+                        });
+                }
+            });
     }
 
     public setActiveArticle(article: Article) {
@@ -57,8 +69,6 @@ export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
             return;
         }
 
-        this.showLoader();
-
         let timeout = setTimeout(() => {
             this.setActiveArticle(this.articles[activeIndex + 1]);
         }, 100);
@@ -70,8 +80,6 @@ export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
         if (activeIndex == 0) {
             return;
         }
-
-        this.showLoader();
 
         let timeout = setTimeout(() => {
             this.setActiveArticle(this.articles[activeIndex - 1]);
@@ -89,7 +97,6 @@ export class ArticlesCarouselComponent implements OnInit, AfterViewChecked {
         
         this.articlesSwitcherMobile.indexChange
             .subscribe(slide => {
-                this.showLoader();
 
                 let timeout = setTimeout(() => {
                     this.setActiveArticle(this.articles[slide]);

@@ -7,15 +7,19 @@ import { SpecialistsService, StorageService } from 'src/app/common/services';
     templateUrl: './articles-carousel-item.component.html',
     styleUrls: ['./articles-carousel-item.component.scss']
 })
-export class ArticlesCarouselItemComponent implements OnChanges {
+export class ArticlesCarouselItemComponent implements OnInit {
 
+    @Input('isSpecialist') isSpecialist: boolean;
     @Input('article') article: Article;
 
-    constructor(private storageService: StorageService) {
-
+    constructor(
+        private storageService: StorageService
+    ) {
     }
 
-    ngOnChanges() { }
+    ngOnInit() {
+        
+    }
 
     showSpecialistDialog(specialist: Specialist){
         let dialog = document.querySelector('.choose-specialist-dialog');

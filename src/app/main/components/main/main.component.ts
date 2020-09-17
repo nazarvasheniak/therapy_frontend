@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild, AfterViewInit, AfterViewChecked, AfterContentInit, OnChanges, AfterContentChecked } from '@angular/core';
-import { SpecialistsService, ArticlesService, RouterExtService } from 'src/app/common/services';
+import { SpecialistsService, ArticlesService, RouterExtService, AuthService, UsersService } from 'src/app/common/services';
 import { Specialist, Article } from 'src/app/common/models';
 import { Review } from '../../models';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SpecialistsCarouselComponent } from '../specialists-carousel/specialists-carousel.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { UserRole } from 'src/app/common/enums';
 
 @Component({
     selector: 'app-main',
@@ -13,6 +14,8 @@ import { Location } from '@angular/common';
     styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+
+    public isSpecialist = false;
 
     public specialists: Specialist[];
     public reviews: Review[];
@@ -25,9 +28,25 @@ export class MainComponent implements OnInit {
     constructor(
         private specialistsService: SpecialistsService,
         private articlesService: ArticlesService,
+        private authService: AuthService,
+        private usersService: UsersService,
         private domSanitizer: DomSanitizer
     ) {
+        this.authService.isLoggedIn
+            .subscribe(logged => {
+                if (logged) {
+                    this.usersService.getUserInfo()
+                        .subscribe(user => {
+                            if (user.role == UserRole.Specialist) {
+                                this.isSpecialist = true;
 
+                                return;
+                            }
+
+                            this.isSpecialist = false;
+                        });
+                }
+            });
     }
 
     ngOnInit(): void {

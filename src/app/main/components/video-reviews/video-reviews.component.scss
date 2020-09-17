@@ -66,26 +66,34 @@
     position: relative;
 }
 
-.swiper-prev,
-.swiper-next {
-    position: absolute;
-    top: 43%;
-    width: 58px;
-    height: 58px;
-    border-radius: 28px;
-    background: #FFFFFF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
+.swiper-controls {
+    .swiper-prev,
+    .swiper-next {
+        position: absolute;
+        top: 43%;
+        width: 58px;
+        height: 58px;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 1;
+        transition: all .3s;
 
-.swiper-prev {
-    left: 0;
-}
-
-.swiper-next {
-    right: 0;
+        &:hover {
+            background: rgba(255, 255, 255, .5);
+        }
+    }
+    
+    .swiper-prev {
+        left: 0;
+    }
+    
+    .swiper-next {
+        right: 0;
+    }
 }
 
 .slides-indicator {

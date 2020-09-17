@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="choose-button">
-                        <button type="button" (click)="showSpecialistDialog(specialist)">
+                        <button type="button" (click)="showSpecialistDialog(specialist)" *ngIf="!isSpecialist">
                             Выбрать
                             <img src="../../../../assets/images/icon-arrow-right.svg" alt="" />
                         </button>

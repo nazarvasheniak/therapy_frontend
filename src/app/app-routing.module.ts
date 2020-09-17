@@ -25,29 +25,14 @@ import { ProfileSpecialistClientComponent } from './cabinet-specialist/component
 import { ProfileSpecialistSessionsComponent } from './cabinet-specialist/components/profile-specialist-sessions/profile-specialist-sessions.component';
 import { ProfileSpecialistReviewsComponent } from './cabinet-specialist/components/profile-specialist-reviews/profile-specialist-reviews.component';
 import { ProfileSpecialistProblemAssetsComponent } from './cabinet-specialist/components/profile-specialist-problem-assets/profile-specialist-problem-assets.component';
-import { AuthService, LoaderService } from './common/services';
-import { Observable } from 'rxjs';
 import { RefundComponent } from './cabinet/components/refund/refund.component';
 import { NotFoundComponent } from './layout/not-found/not-found.component';
-
-@Injectable()
-export class LoaderGuard implements CanActivate {
-	constructor(private loaderService: LoaderService, private router: Router) { };
-
-	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-		return new Promise<boolean>((resolve, reject) => {
-			this.loaderService.next(true);
-
-			setTimeout(() => resolve(true), 100);
-		});
-	}
-}
 
 const routes: Routes = [
 	{
 		path: '',
 		component: MainComponent,
-		canActivate: [LoaderGuard]
+		
 	},
 
 	{
@@ -73,133 +58,133 @@ const routes: Routes = [
 	{
 		path: 'articles',
 		component: ArticlesComponent,
-		canActivate: [LoaderGuard]
+		
 	},
 
 	{
 		path: 'articles/:id',
 		component: ArticleComponent,
-		canActivate: [LoaderGuard]
+		
 	},
 
 	{
 		path: 'specialists',
 		component: SpecialistsComponent,
-		canActivate: [LoaderGuard]
+		
 	},
 
 	{
 		path: 'specialists/:id',
 		component: SpecialistComponent,
-		canActivate: [LoaderGuard]
+		
 	},
 
 	{
 		path: 'profile',
 		component: ProfileComponent,
-		canActivate: [LoaderGuard]
+		
 	},
 
 	{
 		path: 'profile/deposit', 
 		component: CabinetDepositComponent, 
-		canActivate: [LoaderGuard]
+		
 	},
 
 	{
 		path: 'profile/problems/:id/choose-specialist', 
 		component: ChooseSpecialistComponent, 
-		canActivate: [LoaderGuard]
+		
 	},
 
 	{
 		path: 'profile/problems/:id/choose-specialist/:specialistID/pay', 
 		component: CabinetPaySpecialistComponent, 
-		canActivate: [LoaderGuard] 
+		 
 	},
 	
 	{
 		path: 'profile/problems/:id/assets', 
 		component: ProblemAssetsComponent, 
-		canActivate: [LoaderGuard] 
+		 
 	},
 	
 	{
 		path: 'profile/problems/:id/sessions/:sessionID/review', 
 		component: CabinetSessionSuccessComponent, 
-		canActivate: [LoaderGuard] 
+		 
 	},
 
 	{
 		path: 'profile/problems/:id/sessions/:sessionID/refund',
 		component: RefundComponent,
-		canActivate: [LoaderGuard] 
+		 
 	},
 	
 	{ 
 		path: 'profile/problems/add', 
 		component: CreateProblemComponent, 
-		canActivate: [LoaderGuard] 
+		 
 	},
 
 	{ 
 		path: 'profile-specialist', 
 		component: ProfileSpecialistComponent, 
-		canActivate: [LoaderGuard] 
+		 
 	},
 	
 	{ 
 		path: 'profile-specialist/articles', 
 		component: ProfileSpecialistArticlesComponent, 
-		canActivate: [LoaderGuard] 
+		 
 	},
 	
 	{ 
 		path: 'profile-specialist/articles/create', 
 		component: ProfileSpecialistCreateArticleComponent, 
-		canActivate: [LoaderGuard] 
+		 
 	},
 	
 	{ 
 		path: 'profile-specialist/articles/:id', 
 		component: ProfileSpecialistEditArticleComponent, 
-		canActivate: [LoaderGuard] 
+		 
 	},
 
 	{ 
 		path: 'profile-specialist/clients', 
 		component: ProfileSpecialistClientsComponent, 
-		canActivate: [LoaderGuard] 
+		 
 	},
 
 	{ 
 		path: 'profile-specialist/clients/:id', 
 		component: ProfileSpecialistClientComponent, 
-		canActivate: [LoaderGuard] 
+		 
 	},
 
 	{ 
 		path: 'profile-specialist/sessions', 
 		component: ProfileSpecialistSessionsComponent, 
-		canActivate: [LoaderGuard] 
+		 
 	},
 	
 	{ 
 		path: 'profile-specialist/reviews', 
 		component: ProfileSpecialistReviewsComponent, 
-		canActivate: [LoaderGuard] 
+		 
 	},
 
 	{ 
 		path: 'profile-specialist/clients/:clientID/problems/:problemID/assets', 
 		component: ProfileSpecialistProblemAssetsComponent, 
-		canActivate: [LoaderGuard] 
+		 
 	},
 
 	{
 		path: '404',
 		component: NotFoundComponent,
-		canActivate: [LoaderGuard]
+		
 	},
 
 	{

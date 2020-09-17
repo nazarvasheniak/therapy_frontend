@@ -1,4 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { UserRole } from 'src/app/common/enums';
+import { AuthService, UsersService } from 'src/app/common/services';
 
 @Component({
     selector: 'video-reviews',
@@ -7,12 +9,14 @@ import { Component, AfterViewInit } from '@angular/core';
 })
 export class VideoReviewsComponent implements AfterViewInit {
 
+    public isSpecialist = false;
+
     slidesCount: number;
     slides = [];
     currentSlide: number = 0;
 
-    constructor() {
-        
+    constructor(
+    ) {
     }
 
     ngAfterViewInit() {

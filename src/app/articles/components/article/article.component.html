@@ -82,7 +82,7 @@
                 <div class="article-sidebar">
                     <div class="article-sidebar-inner">
                         <!-- Author -->
-                        <div class="author-block">
+                        <div class="author-block" [ngClass]="{'is-specialist': isSpecialist}">
                             <div class="content-wrapper">
 
                                 <div class="title">Автор</div>
@@ -112,7 +112,7 @@
                         </div>
 
                         <!-- Sign Up Button -->
-                        <div class="signup-button">
+                        <div class="signup-button" *ngIf="!isSpecialist">
                             <button type="button" (click)="showSpecialistDialog(article.author)">Записаться</button>
                         </div>
                     </div>
