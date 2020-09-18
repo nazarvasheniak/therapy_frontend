@@ -19,6 +19,8 @@ import localeFr from '@angular/common/locales/fr';
 import localeRu from '@angular/common/locales/ru';
 import { LoaderInterceptor } from './common/interceptors';
 import { DragDropDirective } from './common/directives/drag-drop.directive';
+import { OfferComponent } from './offer/offer.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -27,6 +29,8 @@ registerLocaleData(localeRu);
 @NgModule({
 	declarations: [
 		AppComponent,
+		OfferComponent,
+		PrivacyComponent,
 		DragDropDirective
 	],
 	imports: [

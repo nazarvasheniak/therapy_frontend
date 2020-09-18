@@ -27,6 +27,8 @@ import { ProfileSpecialistReviewsComponent } from './cabinet-specialist/componen
 import { ProfileSpecialistProblemAssetsComponent } from './cabinet-specialist/components/profile-specialist-problem-assets/profile-specialist-problem-assets.component';
 import { RefundComponent } from './cabinet/components/refund/refund.component';
 import { NotFoundComponent } from './layout/not-found/not-found.component';
+import { PrivacyComponent } from './privacy/privacy.component';
+import { OfferComponent } from './offer/offer.component';
 
 const routes: Routes = [
 	{
@@ -179,6 +181,16 @@ const routes: Routes = [
 		path: 'profile-specialist/clients/:clientID/problems/:problemID/assets', 
 		component: ProfileSpecialistProblemAssetsComponent, 
 		 
+	},
+
+	{
+		path: 'privacy',
+		component: PrivacyComponent
+	},
+
+	{
+		path: 'offer',
+		component: OfferComponent
 	},
 
 	{
