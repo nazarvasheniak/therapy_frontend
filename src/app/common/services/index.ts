@@ -11,3 +11,6 @@ export * from './payments.service';
 export * from './storage.service';
 export * from './specialist.service';
 export * from './router-ext.service';
+export * from './auth-guard.service';
+export * from './logged-guard.service';
+export * from './role-guard.service';

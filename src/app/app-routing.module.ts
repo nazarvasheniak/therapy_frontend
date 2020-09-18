@@ -29,27 +29,32 @@ import { RefundComponent } from './cabinet/components/refund/refund.component';
 import { NotFoundComponent } from './layout/not-found/not-found.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { OfferComponent } from './offer/offer.component';
+import { AuthGuardService as AuthGuard } from './common/services';
+import { LoggedGuardService as LoggedGuard } from './common/services';
+import { RoleGuardService as RoleGuard } from './common/services';
 
 const routes: Routes = [
 	{
 		path: '',
-		component: MainComponent,
-		
+		component: MainComponent
 	},
 
 	{
 		path: 'sign-up',
-		component: SignUpComponent
+		component: SignUpComponent,
+		canActivate: [LoggedGuard]
 	},
 
 	{
 		path: 'sign-in',
-		component: SignInComponent
+		component: SignInComponent,
+		canActivate: [LoggedGuard]
 	},
 
 	{
 		path: 'sign-in/confirm',
-		component: ConfirmationComponent
+		component: ConfirmationComponent,
+		canActivate: [LoggedGuard]
 	},
 
 	{
@@ -59,128 +64,124 @@ const routes: Routes = [
 
 	{
 		path: 'articles',
-		component: ArticlesComponent,
-		
+		component: ArticlesComponent
 	},
 
 	{
 		path: 'articles/:id',
-		component: ArticleComponent,
-		
+		component: ArticleComponent
 	},
 
 	{
 		path: 'specialists',
-		component: SpecialistsComponent,
-		
+		component: SpecialistsComponent
 	},
 
 	{
 		path: 'specialists/:id',
-		component: SpecialistComponent,
-		
+		component: SpecialistComponent
 	},
 
 	{
 		path: 'profile',
 		component: ProfileComponent,
-		
+		canActivate: [AuthGuard]
 	},
 
 	{
 		path: 'profile/deposit', 
 		component: CabinetDepositComponent, 
-		
+		canActivate: [AuthGuard]
 	},
 
 	{
 		path: 'profile/problems/:id/choose-specialist', 
 		component: ChooseSpecialistComponent, 
-		
+		canActivate: [AuthGuard]
 	},
 
 	{
 		path: 'profile/problems/:id/choose-specialist/:specialistID/pay', 
 		component: CabinetPaySpecialistComponent, 
-		 
+		canActivate: [AuthGuard]
 	},
 	
 	{
 		path: 'profile/problems/:id/assets', 
 		component: ProblemAssetsComponent, 
-		 
+		canActivate: [AuthGuard]
 	},
 	
 	{
 		path: 'profile/problems/:id/sessions/:sessionID/review', 
 		component: CabinetSessionSuccessComponent, 
-		 
+		canActivate: [AuthGuard]
 	},
 
 	{
 		path: 'profile/problems/:id/sessions/:sessionID/refund',
 		component: RefundComponent,
-		 
+		canActivate: [AuthGuard]
 	},
 	
 	{ 
 		path: 'profile/problems/add', 
 		component: CreateProblemComponent, 
-		 
+		canActivate: [AuthGuard]
 	},
 
 	{ 
 		path: 'profile-specialist', 
 		component: ProfileSpecialistComponent, 
-		 
+		canActivate: [RoleGuard]
 	},
 	
 	{ 
 		path: 'profile-specialist/articles', 
 		component: ProfileSpecialistArticlesComponent, 
-		 
+		canActivate: [RoleGuard]
 	},
 	
 	{ 
 		path: 'profile-specialist/articles/create', 
 		component: ProfileSpecialistCreateArticleComponent, 
-		 
+		canActivate: [RoleGuard]
 	},
 	
 	{ 
 		path: 'profile-specialist/articles/:id', 
 		component: ProfileSpecialistEditArticleComponent, 
-		 
+		canActivate: [RoleGuard]
 	},
 
 	{ 
 		path: 'profile-specialist/clients', 
 		component: ProfileSpecialistClientsComponent, 
-		 
+		canActivate: [RoleGuard]
 	},
 
 	{ 
 		path: 'profile-specialist/clients/:id', 
 		component: ProfileSpecialistClientComponent, 
-		 
+		canActivate: [RoleGuard]
 	},
 
 	{ 
 		path: 'profile-specialist/sessions', 
 		component: ProfileSpecialistSessionsComponent, 
-		 
+		canActivate: [RoleGuard]
 	},
 	
 	{ 
 		path: 'profile-specialist/reviews', 
 		component: ProfileSpecialistReviewsComponent, 
-		 
+		canActivate: [RoleGuard]
 	},
 
 	{ 
 		path: 'profile-specialist/clients/:clientID/problems/:problemID/assets', 
 		component: ProfileSpecialistProblemAssetsComponent, 
-		 
+		canActivate: [RoleGuard]
 	},
 
 	{
@@ -195,8 +196,7 @@ const routes: Routes = [
 
 	{
 		path: '404',
-		component: NotFoundComponent,
-		
+		component: NotFoundComponent
 	},
 
 	{
@@ -209,7 +209,7 @@ const routes: Routes = [
 	imports: [
 		RouterModule.forRoot(routes, {
 			onSameUrlNavigation: 'reload',
-			scrollPositionRestoration: 'enabled',
+			scrollPositionRestoration: 'disabled',
 			anchorScrolling: 'enabled'
 		})
 	],

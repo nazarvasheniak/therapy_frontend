@@ -29,12 +29,6 @@ export class ProfileSpecialistComponent implements OnInit {
     ngOnInit(): void {
         this.authService.isLoggedIn
             .subscribe(logged => {
-                if (!logged) {
-                    this.router.navigate(['/']);
-
-                    return;
-                }
-
                 this.loadProfile();
                 this.loadActiveSessions();
             });

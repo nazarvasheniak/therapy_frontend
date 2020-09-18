@@ -117,7 +117,7 @@
                 </div>
 
                 <div class="signup-button" *ngIf="!isSpecialist">
-                    <button type="button">Записаться</button>
+                    <button type="button" (click)="showSpecialistDialog(article.author)">Записаться</button>
                 </div>
             </div>
         </div>

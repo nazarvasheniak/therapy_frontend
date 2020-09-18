@@ -131,6 +131,9 @@ export class SignInComponent implements OnInit {
                     this.router.navigate(['/sign-in/confirm'], {
                         queryParams: {
                             id: data.userID
+                        },
+                        state: {
+                            isReg: false
                         }
                     });
 

@@ -35,14 +35,6 @@ export class SignUpComponent implements OnInit {
                     this.router.navigate(['/']);
                 }
             });
-
-        this.route.params
-            .subscribe(params => {
-                if (params['prev'] && params['prev'] == 'sign-in') {
-                    window.location.href = `${window.location.origin}/#/sign-up`;
-                    window.location.reload();
-                }
-            });
     }
 
     ngOnInit(): void {
@@ -156,6 +148,9 @@ export class SignUpComponent implements OnInit {
                 this.router.navigate(['/sign-in/confirm'], {
                     queryParams: {
                         id: data.userID
+                    },
+                    state: {
+                        isReg: true
                     }
                 });
             },

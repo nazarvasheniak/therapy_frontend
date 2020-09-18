@@ -34,12 +34,13 @@ export class AppComponent {
 			});
 
 		this.router.events.subscribe(event => {
-			if (event instanceof ActivationEnd) {
+			/* if (event instanceof ActivationEnd) {
 				window.scroll(0, 0);
-			}
+			} */
 			
 			// filter `NavigationEnd` events
 			if (event instanceof NavigationEnd) {
+				window.scrollTo(0, 0);
 
 				// set bgClass property with the value of the current route
 				if (!event.urlAfterRedirects.includes('sign-in') && !event.urlAfterRedirects.includes('sign-up')) {

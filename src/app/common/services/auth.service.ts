@@ -8,6 +8,7 @@ import { BaseHttpService } from './base-http.service';
 import { LocalStorageHelper } from '../helpers';
 import { SignInRequest, SignInConfirmRequest, SignUpRequest, ResendConfirmCodeRequest } from '../models/request';
 import { ResponseModel, SignInResponse, SignInConfirmResponse } from '../models/response';
+import { UserRole } from '../enums';
 
 @Injectable()
 export class AuthService extends BaseHttpService {
@@ -50,6 +51,10 @@ export class AuthService extends BaseHttpService {
 
                 return true;
             });
+    }
+
+    public get isLoggedInNow(): boolean {
+        return this.loginSubject.value;
     }
 
     // Save token to localStorage

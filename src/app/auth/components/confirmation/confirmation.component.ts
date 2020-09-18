@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, AfterContentChecked, AfterViewChecked, AfterContentInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, AfterContentChecked, AfterViewChecked, AfterContentInit, QueryList, ViewChildren, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/common/services/auth.service';
 import { UserRole } from 'src/app/common/enums';
 import { CodeInputComponent } from 'angular-code-input';
-import { map } from 'rxjs-compat/operator/map';
+import { Specialist } from 'src/app/common/models';
+import { PatientService, SpecialistsService, UsersWalletsService } from 'src/app/common/services';
+import { LocalStorageHelper } from 'src/app/common/helpers';
 
 @Component({
     selector: 'app-auth-confirmation',
@@ -18,6 +20,7 @@ export class ConfirmationComponent implements OnInit, AfterContentChecked {
     public errorText: string;
     public secondsToResend = 30;
     public isResendAllowed = false;
+    public isReg: boolean;
 
     @ViewChildren("codeInput") list: QueryList<CodeInputComponent>
     codeInput: CodeInputComponent;
@@ -28,13 +31,20 @@ export class ConfirmationComponent implements OnInit, AfterContentChecked {
     constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute,
-        private authService: AuthService
+        private authService: AuthService,
+        private patientService: PatientService,
+        private walletsService: UsersWalletsService,
+        private specialistsService: SpecialistsService
     ) {
         this.authService.isLoggedIn
             .subscribe(logged => {
                 if (logged) {
                     this.router.navigate(['/']);
+
+                    return;
                 }
+
+                this.isReg = history.state.isReg;
             });
 
         this.activatedRoute.queryParams
@@ -158,12 +168,48 @@ export class ConfirmationComponent implements OnInit, AfterContentChecked {
                 return;
             }
 
-            this.router.navigate(['/profile']);
+            if (this.isReg) {
+                const specialistID = LocalStorageHelper.getSpecialist();
+                
+                if (specialistID) {
+                    this.specialistsService.getSpecialist(specialistID)
+                        .subscribe(specialistResponse => {
+                            this.createSession(specialistResponse.data);
+                        });
+                }
+            }
+
         }, (fail) => {
             this.errorText = fail.error.message;
             this.isError = true;
             this.isLoading = false;
         });
+    }
+
+    private createSession(specialist: Specialist) {
+        this.patientService.getProblems()
+            .subscribe(problemsResponse => {
+                const problem = problemsResponse.data[0];
+
+                this.patientService.createProblemSession({ specialistID: specialist.id }, problem.id)
+                    .subscribe(createSessionResponse => {
+                        this.walletsService.getMyWallet()
+                            .subscribe(walletResponse => {
+                                if ((walletResponse.data.balance - walletResponse.data.lockedBalance) < specialist.price) {
+                                    this.router.navigate([`/profile/problems/${problem.id}/choose-specialist/${specialist.id}/pay`]);
+                        
+                                    return;
+                                }
+
+                                this.patientService.startSession(problem.id, createSessionResponse.sessionID)
+                                    .subscribe(startSessionResponse => {
+                                        if (startSessionResponse.success) {
+                                            this.router.navigate(['/profile']);
+                                        }
+                                    });
+                            });
+                    });
+            });
     }
 
     public backToAuth() {
