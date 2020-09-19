@@ -52,8 +52,6 @@ export class CreateProblemComponent implements OnInit {
 
     submit(form: FormGroup) {
         if (form.invalid) {
-            alert('error');
-
             return;
         }
 
@@ -63,8 +61,6 @@ export class CreateProblemComponent implements OnInit {
         this.patientService.createProblem(form.value)
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-                    
                     this.isLoading = false;
                     this.spinner.hide();
 

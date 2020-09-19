@@ -83,8 +83,6 @@ export class ProfileSpecialistEditArticleComponent implements OnInit {
                 this.usersService.getUserInfo()
                     .subscribe(user => {
                         if (user.role == UserRole.Client) {
-                            alert('Доступ запрещен');
-
                             this.router.navigate(['/']);
 
                             return;
@@ -129,8 +127,6 @@ export class ProfileSpecialistEditArticleComponent implements OnInit {
         this.route.params
             .subscribe(params => {
                 if (!params['id']) {
-                    alert('ID error');
-
                     return;
                 }
 
@@ -138,8 +134,6 @@ export class ProfileSpecialistEditArticleComponent implements OnInit {
                     .getArticle(Number(params['id']))
                     .subscribe(res => {
                         if (!res.success) {
-                            alert(res.message);
-
                             return;
                         }
 
@@ -195,8 +189,6 @@ export class ProfileSpecialistEditArticleComponent implements OnInit {
 
     uploadPreviewImage() {
         if (!this.articleForm.value['previewImage']) {
-            alert('No preview image');
-
             return;
         }
 
@@ -214,8 +206,6 @@ export class ProfileSpecialistEditArticleComponent implements OnInit {
         console.log(this.articleForm.value);
 
         if (this.articleForm.invalid) {
-            alert('Заполните все поля');
-
             return;
         }
 
@@ -246,8 +236,6 @@ export class ProfileSpecialistEditArticleComponent implements OnInit {
             .updateArticle(request, this.article.id)
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 

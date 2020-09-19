@@ -75,8 +75,6 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
                 this.usersService.getUserInfo()
                     .subscribe(user => {
                         if (user.role == UserRole.Client) {
-                            alert('Доступ запрещен');
-
                             this.router.navigate(['/']);
 
                             return;
@@ -157,8 +155,6 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
 
     uploadPreviewImage() {
         if (!this.articleForm.value['previewImage']) {
-            alert('No preview image');
-
             return;
         }
 
@@ -176,16 +172,12 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
         console.log(this.articleForm.value);
 
         if (this.articleForm.invalid) {
-            alert('Заполните все поля');
-
             return;
         }
 
         this.uploadPreviewImage()
             .subscribe(uploadRes => {
                 if (!uploadRes.success) {
-                    alert(uploadRes.message);
-
                     return;
                 }
 
@@ -197,12 +189,6 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
                         previewImageID: uploadRes.data.id
                     })
                     .subscribe(res => {
-                        if (!res.success) {
-                            alert(res.message);
-
-                            return;
-                        }
-
                         this.router.navigate(['/profile-specialist/articles']);
                     });
             });

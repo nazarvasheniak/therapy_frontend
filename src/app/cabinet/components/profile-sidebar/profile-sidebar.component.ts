@@ -30,8 +30,6 @@ export class ProfileSidebarComponent implements OnInit {
         this.usersWalletsService.getMyWallet()
             .subscribe(res => {
                 if (!res.success) {
-                    alert('load wallet error');
-
                     return;
                 }
 

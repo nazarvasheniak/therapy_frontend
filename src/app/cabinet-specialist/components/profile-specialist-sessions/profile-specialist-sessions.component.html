@@ -37,8 +37,8 @@
                     <div class="sessions-list" *ngIf="sessions">
                         <div class="sessions-list-item session-active" *ngFor="let session of sessions"
                             [ngClass]="{
-                                'session-waiting': session.sessionStatus == 0,
-                                'session-active': session.sessionStatus == 1,
+                                'session-waiting': session.sessionStatus == 1 && session.isSpecialistClose && !session.isClientClose,
+                                'session-active': session.sessionStatus == 1 && !session.isSpecialistClose && !session.isClientClose,
                                 'session-success': session.sessionStatus == 2,
                                 'session-refund': session.sessionStatus == 3
                             }">
@@ -50,7 +50,7 @@
                                 </div>
 
                                 <div class="problem-info">
-                                    <div class="title" *ngIf="session.sessionStatus == 0">
+                                    <div class="title" *ngIf="session.isSpecialistClose && !session.isClientClose && session.sessionStatus == 1">
                                         <div class="title-inner">
                                             <div class="icon">
                                                 <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
@@ -65,7 +65,7 @@
                                             </div>
 
                                             <div class="time">
-                                                23:54:51
+                                                <countdown units="Hours | Minutes | Seconds"  [end]="getEndDate(session.specialistCloseDate)" divider=":" (reached)="reloadData($event)"></countdown>
                                             </div>
 
                                             <div>
@@ -74,7 +74,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="title" *ngIf="session.sessionStatus == 1">
+                                    <div class="title" *ngIf="session.sessionStatus == 1 && !session.isSpecialistClose && !session.isClientClose">
                                         Активная сессия
                                     </div>
 

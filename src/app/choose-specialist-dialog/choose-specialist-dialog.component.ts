@@ -111,8 +111,6 @@ export class ChooseSpecialistDialogComponent implements OnInit {
                         this.patientService.startSession(problemResponse.data.id, sessionResponse.sessionID)
                             .subscribe(res => {
                                 if (!res.success) {
-                                    alert(res.message);
-
                                     return;
                                 }
 
@@ -139,8 +137,6 @@ export class ChooseSpecialistDialogComponent implements OnInit {
                     this.patientService.startSession(this.selectedProblem.id, sessionResponse.sessionID)
                         .subscribe(res => {
                             if (!res.success) {
-                                alert(res.message);
-
                                 return;
                             }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { SpecialistService, AuthService } from 'src/app/common/services';
-import { Session, SpecialistSession } from 'src/app/common/models';
+import { SpecialistSession } from 'src/app/common/models';
 import { PaginationComponent } from 'src/app/layout/pagination/pagination.component';
 
 @Component({
@@ -87,5 +87,16 @@ export class ProfileSpecialistSessionsComponent implements OnInit {
 
     normalizeMonth(monthStr: string) {
         return monthStr.replace(".", "").substr(0, 3);
+    }
+
+    getEndDate(date: Date) {
+        const result = new Date(date);
+        result.setDate(result.getDate() + 1);
+
+        return result;
+    }
+
+    reloadData(event) {
+        this.loadSessions(this.pageNumber, this.pageSize);
     }
 }

@@ -49,8 +49,6 @@ export class ProblemComponent implements OnInit {
         this.patientService.getSessions(this.problem.id)
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 
@@ -95,8 +93,6 @@ export class ProblemComponent implements OnInit {
         this.patientService.createProblemSession({ specialistID: this.lastSession.specialist.id }, this.problem.id)
             .subscribe(createSessionResponse => {
                 if (!createSessionResponse.success) {
-                    alert(createSessionResponse.message);
-
                     return;
                 }
 
@@ -109,8 +105,6 @@ export class ProblemComponent implements OnInit {
                 this.patientService.startSession(this.problem.id, createSessionResponse.sessionID)
                     .subscribe(startSessionResponse => {
                         if (!startSessionResponse.success) {
-                            alert(startSessionResponse.message);
-
                             return;
                         }
 
@@ -146,7 +140,7 @@ export class ProblemComponent implements OnInit {
             return;
         }
 
-        if (tab == 'images' && !this.images.length) {
+        if (tab == 'images' && !this.filterHiddenImages(this.images).length) {
             return;
         }
 
@@ -168,8 +162,6 @@ export class ProblemComponent implements OnInit {
                 this.patientService.closeSession(this.problem.id, this.activeSession.id)
                     .subscribe(res => {
                         if (!res.success) {
-                            alert(res.message);
-
                             return;
                         }
 
@@ -202,5 +194,9 @@ export class ProblemComponent implements OnInit {
         this.loadSessions();
         this.loadAssets();
         this.loadWallet();
+    }
+
+    filterHiddenImages(images: ProblemImage[]) {
+        return images.filter(x => !x.isHidden);
     }
 }

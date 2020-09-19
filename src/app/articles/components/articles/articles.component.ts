@@ -36,12 +36,6 @@ export class ArticlesComponent implements OnInit {
 	private loadArticles(pageNumber: number, pageSize: number) {
 		this.articlesService.getArticles({ pageNumber, pageSize })
 			.subscribe(res => {
-				if (!res.success) {
-					alert(res.message);
-
-					return;
-				}
-
 				this.pageNumber = res.currentPage;
 				this.pageSize = res.pageSize;
 				this.totalPages = res.totalPages;
@@ -143,13 +137,6 @@ export class ArticlesComponent implements OnInit {
 		this.articlesService
 			.likeArticle(id)
 			.subscribe(res => {
-				if (!res.success) {
-					alert(res.message);
-
-					return;
-				}
-
-				
 				this.loadArticles(this.pageNumber, this.pageSize);
 			});
 	}

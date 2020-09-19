@@ -19,19 +19,13 @@ export class ProfileSpecialistComponent implements OnInit {
     public activeSessions: SpecialistProfileActiveSession[];
 
     constructor(
-        private authService: AuthService,
         private specialistService: SpecialistService,
         private router: Router
-    ) {
-        
-    }
+    ) { }
 
     ngOnInit(): void {
-        this.authService.isLoggedIn
-            .subscribe(logged => {
-                this.loadProfile();
-                this.loadActiveSessions();
-            });
+        this.loadProfile();
+        this.loadActiveSessions();
     }
 
     private loadProfile() {

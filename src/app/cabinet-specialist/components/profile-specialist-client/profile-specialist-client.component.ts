@@ -84,4 +84,15 @@ export class ProfileSpecialistClientComponent implements OnInit {
     normalizeMonth(monthStr: string) {
         return monthStr.replace(".", "").substr(0, 3);
     }
+
+    getEndDate(date: Date) {
+        const result = new Date(date);
+        result.setDate(result.getDate() + 1);
+
+        return result;
+    }
+
+    reloadData(event) {
+        this.loadClient(this.client.id);
+    }
 }

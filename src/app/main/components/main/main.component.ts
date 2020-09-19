@@ -94,8 +94,6 @@ export class MainComponent implements OnInit {
         })
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 
@@ -110,8 +108,6 @@ export class MainComponent implements OnInit {
         })
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 

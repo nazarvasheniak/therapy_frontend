@@ -19,6 +19,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { FilterHiddenImagesPipe } from '../common/pipes';
 import { ProfileSpecialistHeaderComponent } from './components/profile-specialist-header/profile-specialist-header.component';
 import { ProfileSpecialistDeleteDialog } from './components/profile-specialist-delete-dialog/profile-specialist-delete-dialog.component';
+import { CountdownModule } from '../common/modules';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { ProfileSpecialistDeleteDialog } from './components/profile-specialist-d
         RouterModule,
         LayoutModule,
         MatSliderModule,
+        CountdownModule,
         FroalaEditorModule.forRoot(),
         FroalaViewModule.forRoot()
     ],

@@ -49,8 +49,6 @@ export class ProfileComponent implements OnInit {
         this.patientService.getProblems()
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 

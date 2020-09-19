@@ -55,8 +55,6 @@ export class RefundComponent implements OnInit {
 
     submitRefundForm(form: FormGroup) {
         if (form.invalid) {
-            alert('form invalid');
-
             return;
         }
 

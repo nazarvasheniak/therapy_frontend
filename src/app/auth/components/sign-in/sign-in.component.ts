@@ -96,7 +96,6 @@ export class SignInComponent implements OnInit {
         const phoneNumber = this.normalizePhoneNumber(form.value['phone']);
 
         if (!this.isValidPhoneNumber(phoneNumber)) {
-            alert('error');
             this.isLoading = false;
             return;
         }

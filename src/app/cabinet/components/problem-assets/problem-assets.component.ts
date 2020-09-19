@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService, PatientService, RouterExtService } from 'src/app/common/services';
-import { Problem, Session, ClientProblemAssets } from 'src/app/common/models';
+import { Problem, Session, ClientProblemAssets, ProblemImage } from 'src/app/common/models';
 import { AssetType } from './asset-type.enum';
 import { Location } from '@angular/common';
 
@@ -73,8 +73,6 @@ export class ProblemAssetsComponent implements OnInit {
         this.patientService.getProblem(problemID)
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 
@@ -88,8 +86,6 @@ export class ProblemAssetsComponent implements OnInit {
         this.patientService.getSessions(this.problem.id)
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 

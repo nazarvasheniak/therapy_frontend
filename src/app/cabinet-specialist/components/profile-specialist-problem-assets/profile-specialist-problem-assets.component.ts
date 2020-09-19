@@ -201,8 +201,6 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
             const tasksArr: CreateUpdateProblemResourceTask[] = this.editResourceForm.value['tasks'];
 
             if (tasksArr.find(x => x.title == this.createTaskInput)) {
-                alert('Задание уже существует');
-
                 return;
             }
 
@@ -216,8 +214,6 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
             const tasksArr: CreateUpdateProblemResourceTask[] = this.createResourceForm.value['tasks'];
 
             if (tasksArr.find(x => x.title == this.createTaskInput)) {
-                alert('Задание уже существует');
-
                 return;
             }
     

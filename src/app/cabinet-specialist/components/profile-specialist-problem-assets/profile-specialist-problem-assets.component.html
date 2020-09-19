@@ -372,6 +372,7 @@
                                                                 <div class="form-group">
                                                                     <div class="input-wrapper">
                                                                         <select required formControlName="parentImageID" [disabled]="!assets.images.length">
+                                                                            <option value></option>
                                                                             <ng-container *ngFor="let image of assets.images | filterHiddenImages">
                                                                                 <option *ngIf="image.id != editImageForm.value['id']" [value]="image.id">
                                                                                     {{ image.title }}
@@ -487,6 +488,7 @@
                                                             <div class="form-group">
                                                                 <div class="input-wrapper">
                                                                     <select required formControlName="parentImageID" [disabled]="!assets.images.length">
+                                                                        <option value></option>
                                                                         <option *ngFor="let image of assets.images | filterHiddenImages" [value]="image.id">
                                                                             {{ image.title }}
                                                                         </option>

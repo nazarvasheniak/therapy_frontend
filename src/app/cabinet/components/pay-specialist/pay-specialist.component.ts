@@ -64,8 +64,6 @@ export class CabinetPaySpecialistComponent implements OnInit {
         this.specialistsService.getSpecialist(specialistID)
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 
@@ -77,8 +75,6 @@ export class CabinetPaySpecialistComponent implements OnInit {
         this.walletsService.getMyWallet()
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 
@@ -90,8 +86,6 @@ export class CabinetPaySpecialistComponent implements OnInit {
         this.patientService.getActiveSession(problemID)
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 
@@ -109,8 +103,6 @@ export class CabinetPaySpecialistComponent implements OnInit {
         })
         .subscribe(res => {
             if (!res.success) {
-                alert(res.message);
-
                 return;
             }
 
@@ -122,8 +114,6 @@ export class CabinetPaySpecialistComponent implements OnInit {
         this.patientService.startSession(this.activeSession.problem.id, this.activeSession.id)
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 

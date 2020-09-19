@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticlesService, AuthService, RouterExtService, StorageService, UsersService } from 'src/app/common/services';
 import { Article, User, ArticleComment, Specialist } from 'src/app/common/models';
-import { StringHelper } from 'src/app/common/helpers';
+import { LocalStorageHelper, StringHelper } from 'src/app/common/helpers';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Location } from '@angular/common';
@@ -29,6 +29,7 @@ import { UserRole } from 'src/app/common/enums';
 })
 export class ArticleComponent implements OnInit {
 
+	public isLoggedIn = false;
 	public isSpecialist = false;
 
 	public commentForm: FormGroup;
@@ -49,6 +50,8 @@ export class ArticleComponent implements OnInit {
 	) {
 		this.authService.isLoggedIn
 			.subscribe(logged => {
+				this.isLoggedIn = logged;
+				
 				if (logged) {
 					this.usersService.getUserInfo()
 						.subscribe(user => {
@@ -90,12 +93,6 @@ export class ArticleComponent implements OnInit {
 	private loadArticle(id: number) {
 		this.articlesService.getArticle(id)
 			.subscribe(res => {
-				if (!res.success) {
-					alert(res.message);
-
-					return;
-				}
-
 				this.article = res.data;
 				this.initCommentForm();
 			});
@@ -105,12 +102,6 @@ export class ArticleComponent implements OnInit {
 		this.articlesService
 			.likeArticle(this.article.id)
 			.subscribe(res => {
-				if (!res.success) {
-					alert(res.message);
-
-					return;
-				}
-
 				this.loadArticle(this.article.id);
 			});
 	}
@@ -187,20 +178,12 @@ export class ArticleComponent implements OnInit {
 		}
 
 		if (this.commentForm.invalid) {
-			alert('form invalid');
-
 			return;
 		}
 
 		this.articlesService
 			.commentArticle(this.commentForm.value, this.article.id)
 			.subscribe(res => {
-				if (!res.success) {
-					alert(res.message);
-
-					return;
-				}
-
 				this.commentArea.nativeElement.innerHTML = null;
 				this.loadArticle(this.article.id);
 			});
@@ -210,7 +193,15 @@ export class ArticleComponent implements OnInit {
 		this.location.back();
 	}
 
-	showSpecialistDialog(specialist: Specialist){
+	showSpecialistDialog(specialist: Specialist) {
+		if (!this.isLoggedIn) {
+            LocalStorageHelper.saveSpecialist(specialist);
+
+            this.router.navigate(['/sign-up']);
+
+            return;
+		}
+		
         let dialog = document.querySelector('.choose-specialist-dialog');
         dialog.classList.remove('hidden');
         dialog.classList.add('show');

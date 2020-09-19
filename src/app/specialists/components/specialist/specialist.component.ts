@@ -4,6 +4,7 @@ import { SpecialistsService, StorageService, RouterExtService, AuthService, User
 import { Specialist, Review } from 'src/app/common/models';
 import { ReviewType, UserRole } from 'src/app/common/enums';
 import { Location } from '@angular/common';
+import { LocalStorageHelper } from 'src/app/common/helpers';
 
 type ReviewTab = 'positive' | 'neutral' | 'negative';
 
@@ -14,6 +15,7 @@ type ReviewTab = 'positive' | 'neutral' | 'negative';
 })
 export class SpecialistComponent implements OnInit {
 
+	public isLoggedIn = false;
 	public isSpecialist = false;
 
 	public specialist: Specialist;
@@ -40,6 +42,8 @@ export class SpecialistComponent implements OnInit {
 	) {
 		this.authService.isLoggedIn
 			.subscribe(logged => {
+				this.isLoggedIn = logged;
+				
 				if (logged) {
 					this.usersService.getUserInfo()
 						.subscribe(user => {
@@ -131,8 +135,6 @@ export class SpecialistComponent implements OnInit {
 		this.specialistsService.getSpecialist(id)
 			.subscribe(res => {
 				if (!res.success) {
-					alert(res.message);
-
 					return;
 				}
 
@@ -187,7 +189,15 @@ export class SpecialistComponent implements OnInit {
 		.toPromise();
 	}
 
-	showSpecialistDialog(specialist: Specialist){
+	showSpecialistDialog(specialist: Specialist) {
+		if (!this.isLoggedIn) {
+			LocalStorageHelper.saveSpecialist(this.specialist);
+
+            this.router.navigate(['/sign-up']);
+
+            return;
+		}
+
         let dialog = document.querySelector('.choose-specialist-dialog');
         dialog.classList.remove('hidden');
         dialog.classList.add('show');

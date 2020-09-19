@@ -53,8 +53,6 @@ export class CabinetDepositComponent implements OnInit {
         }
 
         if (this.depositForm.invalid) {
-            alert('form invalid');
-
             return;
         }
 
@@ -68,8 +66,6 @@ export class CabinetDepositComponent implements OnInit {
         this.paymentsService.createPayment(request)
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 

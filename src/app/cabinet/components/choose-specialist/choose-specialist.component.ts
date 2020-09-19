@@ -73,12 +73,6 @@ export class ChooseSpecialistComponent implements OnInit {
     private loadWallet() {
         this.usersWalletsService.getMyWallet()
             .subscribe(res => {
-                if (!res.success) {
-                    alert(res.message);
-
-                    return;
-                }
-
                 this.wallet = res.data;
             });
     }
@@ -87,8 +81,6 @@ export class ChooseSpecialistComponent implements OnInit {
         this.patientService.createProblemSession({ specialistID: specialist.id }, this.problem.id)
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 
@@ -101,8 +93,6 @@ export class ChooseSpecialistComponent implements OnInit {
                 this.patientService.startSession(this.problem.id, res.sessionID || this.activeSessionID)
                     .subscribe(res => {
                         if (!res.success) {
-                            alert(res.message);
-
                             return;
                         }
 
@@ -117,8 +107,6 @@ export class ChooseSpecialistComponent implements OnInit {
         }, this.problem.id, this.activeSessionID)
         .subscribe(res => {
             if (!res.success) {
-                alert(res.message);
-
                 return;
             }
 
@@ -131,8 +119,6 @@ export class ChooseSpecialistComponent implements OnInit {
             this.patientService.startSession(this.problem.id, this.activeSessionID)
                 .subscribe(res => {
                     if (!res.success) {
-                        alert(res.message);
-
                         return;
                     }
 
@@ -161,8 +147,6 @@ export class ChooseSpecialistComponent implements OnInit {
         this.patientService.getProblem(problemID)
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 
@@ -174,8 +158,6 @@ export class ChooseSpecialistComponent implements OnInit {
 		this.specialistsService.getSpecialists({ pageNumber, pageSize })
 			.subscribe(res => {
 				if (!res.success) {
-					alert(res.message);
-
 					return;
 				}
 

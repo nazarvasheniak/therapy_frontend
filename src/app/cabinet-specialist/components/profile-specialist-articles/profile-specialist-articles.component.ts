@@ -43,8 +43,6 @@ export class ProfileSpecialistArticlesComponent implements OnInit {
                 this.usersService.getUserInfo()
                     .subscribe(user => {
                         if (user.role == UserRole.Client) {
-                            alert('Доступ запрещен');
-
                             this.router.navigate(['/']);
 
                             return;

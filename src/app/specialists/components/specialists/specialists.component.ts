@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SpecialistsService, StorageService } from 'src/app/common/services';
+import { AuthService, SpecialistsService, StorageService } from 'src/app/common/services';
 import { Specialist } from 'src/app/common/models';
 import { SpecialistsSorter } from './specialists-sorter.enum';
 import { SortBy } from 'src/app/common/enums';
 import { PaginationComponent } from 'src/app/layout/pagination/pagination.component';
+import { LocalStorageHelper } from 'src/app/common/helpers';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-specialists',
@@ -12,6 +14,7 @@ import { PaginationComponent } from 'src/app/layout/pagination/pagination.compon
 })
 export class SpecialistsComponent implements OnInit {
 
+	public isLoggedIn = false;
 	public specialists: Specialist[];
 
 	public pageSize = 8;
@@ -24,21 +27,27 @@ export class SpecialistsComponent implements OnInit {
 	@ViewChild(PaginationComponent) pagination: PaginationComponent;
 
 	constructor(
-		private specialistsService: SpecialistsService
+		private authService: AuthService,
+		private storageService: StorageService,
+		private specialistsService: SpecialistsService,
+		private router: Router
 	) {
-
+		
 	}
 
 	ngOnInit(): void {
 		this.loadSpecialists(1, 8);
+
+		this.authService.isLoggedIn
+			.subscribe(logged => {
+				this.isLoggedIn = logged;
+			});
 	}
 
 	private loadSpecialists(pageNumber: number, pageSize: number) {
 		this.specialistsService.getSpecialists({ pageNumber, pageSize })
 			.subscribe(res => {
 				if (!res.success) {
-					alert(res.message);
-
 					return;
 				}
 
@@ -180,4 +189,21 @@ export class SpecialistsComponent implements OnInit {
 
 		return;
 	}
+
+	showSpecialistDialog(specialist: Specialist) {
+        if (!this.isLoggedIn) {
+            LocalStorageHelper.saveSpecialist(specialist);
+
+            this.router.navigate(['/sign-up']);
+
+            return;
+        }
+
+        let dialog = document.querySelector('.choose-specialist-dialog');
+
+        dialog.classList.remove('hidden');
+        dialog.classList.add('show');
+        
+        this.storageService.setSpecialist(specialist);
+    }
 }

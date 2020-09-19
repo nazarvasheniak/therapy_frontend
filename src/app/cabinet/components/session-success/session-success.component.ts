@@ -54,8 +54,6 @@ export class CabinetSessionSuccessComponent implements OnInit {
         this.patientService.getSession(problemID, sessionID)
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 
@@ -75,8 +73,6 @@ export class CabinetSessionSuccessComponent implements OnInit {
 
     submit(form: FormGroup) {
         if (form.invalid) {
-            alert('form invalid');
-
             return;
         }
 
@@ -86,8 +82,6 @@ export class CabinetSessionSuccessComponent implements OnInit {
             .createReview(form.value, this.session.problem.id, this.session.id)
             .subscribe(res => {
                 if (!res.success) {
-                    alert(res.message);
-
                     return;
                 }
 
