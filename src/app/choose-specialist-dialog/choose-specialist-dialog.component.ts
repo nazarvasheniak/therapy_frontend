@@ -120,8 +120,44 @@ export class ChooseSpecialistDialogComponent implements OnInit {
             });
     }
     
-    startSession() {
+    async startSession() {
         if (!this.selectedProblem) {
+            return;
+        }
+
+        const activeSession = await this.patientService.getActiveSession(this.selectedProblem.id).toPromise().then(res => {
+            if (!res.success) {
+                return null;
+            }
+
+            return res.data;
+        });
+
+        if (activeSession) {
+            const changedSpecialist = await this.patientService
+                .changeSessionSpecialist({ specialistID: this.specialist.id }, this.selectedProblem.id, activeSession.id)
+                .toPromise()
+                .then(res => res.success);
+
+            if (!changedSpecialist) {
+                return;
+            }
+
+            if ((this.wallet.balance - this.wallet.lockedBalance) < this.specialist.price) {
+                this.router.navigate([`/profile/problems/${this.selectedProblem.id}/choose-specialist/${this.specialist.id}/pay`]);
+    
+                return;
+            }
+
+            this.patientService.startSession(this.selectedProblem.id, activeSession.id)
+                .subscribe(res => {
+                    if (!res.success) {
+                        return;
+                    }
+
+                    this.router.navigate(['/profile']);
+                });
+
             return;
         }
 
