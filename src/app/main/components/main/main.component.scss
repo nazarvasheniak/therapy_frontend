@@ -3,11 +3,12 @@ section {
     background-repeat: repeat;
 }
 
-.button-green {
-    letter-spacing: 0.135em;
+.button-icon {
+    display: flex;
+    align-items: center;
 
-    .icon {
-        vertical-align: bottom;
+    svg {
+        margin-right: 16px;
     }
 }
 

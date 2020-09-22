@@ -25,12 +25,6 @@
     will-change: auto;
 }
 
-@media screen and (max-width: 575px) {
-    .modal {
-        padding-top: 81px;
-    }
-}
-
 .modal-body {
     width: 479px;
     background: rgba(255, 255, 255, 0.7);
@@ -97,21 +91,40 @@
     .modal-header {
         font-weight: 500;
         font-size: 30px;
-        line-height: 30px;
+        line-height: 100%;
         color: #162B1E;
     }
 }
 
 @media screen and (max-width: 575px) {
-    .modal-body {
-        width: 304px;
-        padding-left: 10px;
-        padding-right: 10px;
+    .modal {
+        padding-top: 81px;
+        padding-left: 8px;
+        padding-right: 8px;
 
-        .close-button {
-            right: auto;
-            left: 124px;
-            top: -68px;
+        .modal-body {
+            width: 100%;
+            padding-top: 39px;
+            padding-bottom: 39px;
+            padding-left: 16px;
+            padding-right: 16px;
+    
+            .close-button {
+                right: auto;
+                left: calc(50% - 28px);
+                top: -68px;
+            }
+
+            .modal-header {
+                line-height: 130.08%;
+            }
+        }
+
+        .specialist-block {
+            margin-top: 16px;
+            width: 100%;
+            padding-left: 16px;
+            padding-right: 0;
         }
     }
 }
@@ -186,7 +199,7 @@
 }
 
 .create-problem-area {
-    margin-bottom: 18px;
+    margin-bottom: 10px;
     
     > textarea {
         width: 100%;
@@ -241,7 +254,7 @@
     .specialist-block-head {
         font-weight: 500;
         font-size: 30px;
-        line-height: 30px;
+        line-height: 100%;
         color: #162B1E;
         padding-bottom: 18px;
         border-bottom: 1px solid #DFDFDF;

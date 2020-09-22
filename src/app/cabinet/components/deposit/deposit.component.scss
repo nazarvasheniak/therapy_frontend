@@ -22,26 +22,19 @@
                 align-items: center;
                 font-weight: 500;
                 font-size: 12px;
-                line-height: 17px;
+                line-height: 140%;
                 text-transform: uppercase;
                 color: #5BAA89;
                 height: 34px;
                 padding-top: 0;
                 padding-bottom: 0;
-                padding-left: 10.5px;
+                padding-left: 8px;
                 padding-right: 12px;
                 cursor: pointer;
                 outline: none;
 
-                > .icon {
-                    width: 20px;
-                    height: 20px;
+                > svg {
                     margin-right: 8px;
-
-                    > img {
-                        width: 100%;
-                        height: 100%;
-                    }
                 }
             }
         }
@@ -49,9 +42,9 @@
         .page-head {
             font-weight: normal;
             font-size: 24px;
-            line-height: 24px;
+            line-height: 140%;
             color: #005264;
-            margin-top: 17px;
+            margin-top: 10px;
             padding-left: 24px;
             padding-right: 24px;
         }
@@ -70,9 +63,8 @@
 
                         input {
                             width: 243px;
-                            height: 52px;
-                            padding-top: 23px;
-                            padding-bottom: 13px;
+                            padding-top: 21px;
+                            padding-bottom: 11px;
                             padding-left: 16px;
                             font-weight: normal;
                             font-size: 16px;
@@ -100,7 +92,9 @@
                             margin-left: 16px;
                             font-weight: normal;
                             font-size: 16px;
-                            line-height: 16px;
+                            line-height: 100%;
+                            align-self: flex-start;
+                            margin-top: 23px;
                             color: #273736;
                         }
                     }
@@ -130,11 +124,9 @@
                             align-items: center;
                             justify-content: center;
                             letter-spacing: 0.135em;
-                            line-height: 1;
+                            line-height: 121.5%;
 
-                            .icon {
-                                width: 16px;
-                                height: 16px;
+                            svg {
                                 margin-left: 16px;
                             }
                         }
@@ -213,6 +205,23 @@
     }
 }
 
+@media screen and (max-width: 991px) {
+    .content-wrapper {
+        content {
+            .page-head {
+                line-height: 100%;
+                margin-top: 16px;
+            }
+
+            .page-content {
+                .deposit-info {
+                    padding-top: 16px;
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 767px) {
     .container {
         width: 100%;
@@ -221,7 +230,7 @@
     }
 }
 
-@media screen and (max-width: 559px) {
+@media screen and (max-width: 575px) {
     .container {
         width: 100%;
         padding-left: 19px;
@@ -231,6 +240,20 @@
     .content-wrapper {
         content {
             .page-content {
+                .deposit-form {
+                    form {
+                        .form-group {
+                            input {
+                                width: 206px;
+                            }
+
+                            label {
+                                align-self: center;
+                                margin-top: 0;
+                            }
+                        }
+                    }
+                }
                 .deposit-info {
                     .deposit-actions {
                         flex-direction: column;
@@ -239,11 +262,11 @@
 
                         .pay-button {
                             > button {
-                                width: auto;
+                                width: 211px;
                                 padding-left: 24px;
                                 padding-right: 24px;
 
-                                .icon {
+                                svg {
                                     display: none;
                                 }
                             }

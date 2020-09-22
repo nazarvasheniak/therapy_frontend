@@ -88,6 +88,12 @@
 
         <!-- Page Content -->
         <div class="page-content">
+            <div class="articles-loader" [ngClass]="{'visible': isLoading}">
+                <div class="loader-wrapper">
+                    <mat-spinner [diameter]="80"></mat-spinner>
+                </div>
+            </div>
+
             <div class="articles-list" *ngIf="articles">
                 <article *ngFor="let article of articles">
                     <div class="article-top">
@@ -122,7 +128,7 @@
                                 </div>
 
                                 <div class="likes-block">
-                                    <div class="article-likes" [ngClass]="{'liked': article.isLiked}" (click)="likeArticle(article.id)">
+                                    <div class="article-likes" [ngClass]="{'liked': article.isLiked}" (click)="likeArticle(article)">
                                         <div class="likes-count">
                                             {{ article.likes.length }}
                                         </div>
@@ -206,7 +212,7 @@
                                     {{ article.author.user.firstName }} {{ article.author.user.lastName }}
                                 </div>
 
-                                <div class="article-likes" [ngClass]="{'liked': article.isLiked}" (click)="likeArticle(article.id)">                                    
+                                <div class="article-likes" [ngClass]="{'liked': article.isLiked}" (click)="likeArticle(article)">                                    
                                     <div class="likes-count">
                                         {{ article.likes.length }}
                                     </div>
@@ -248,7 +254,7 @@
 
                     <div class="article-bottom">
                         <div class="likes-block">
-                            <div class="article-likes" [ngClass]="{'liked': article.isLiked}" (click)="likeArticle(article.id)">
+                            <div class="article-likes" [ngClass]="{'liked': article.isLiked}" (click)="likeArticle(article)">
                                 <div class="likes-count">
                                     {{ article.likes.length }}
                                 </div>

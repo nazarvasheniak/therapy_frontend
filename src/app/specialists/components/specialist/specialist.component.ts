@@ -191,7 +191,7 @@ export class SpecialistComponent implements OnInit {
 
 	showSpecialistDialog(specialist: Specialist) {
 		if (!this.isLoggedIn) {
-			LocalStorageHelper.saveSpecialist(this.specialist);
+			LocalStorageHelper.saveSpecialist(specialist);
 
             this.router.navigate(['/sign-up']);
 

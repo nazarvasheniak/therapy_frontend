@@ -15,6 +15,10 @@ export class PatientService extends BaseHttpService {
         return this.get<DataResponse<Problem[]>>(`/patient/problems`);
     }
 
+    public getAvailableProblems() {
+        return this.get<DataResponse<Problem[]>>(`/patient/problems/available`);
+    }
+
     public getProblem(problemID: number) {
         return this.get<DataResponse<Problem>>(`/patient/problems/${problemID}`);
     }

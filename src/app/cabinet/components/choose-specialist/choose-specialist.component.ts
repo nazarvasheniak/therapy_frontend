@@ -1,35 +1,41 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService, PatientService, SpecialistsService, UsersWalletsService, RouterExtService } from 'src/app/common/services';
+import { AuthService, PatientService, SpecialistsService, UsersWalletsService } from 'src/app/common/services';
 import { Problem, Specialist, UserWallet } from 'src/app/common/models';
 import { SpecialistsSorter } from 'src/app/specialists/components/specialists/specialists-sorter.enum';
 import { SortBy } from 'src/app/common/enums';
 import { PaginationComponent } from 'src/app/layout/pagination/pagination.component';
 import { Location } from '@angular/common';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
-	selector: 'cabinet-choose-specialist',
-	templateUrl: './choose-specialist.component.html',
-	styleUrls: ['./choose-specialist.component.scss']
+    selector: 'cabinet-choose-specialist',
+    templateUrl: './choose-specialist.component.html',
+    styleUrls: ['./choose-specialist.component.scss']
 })
 export class ChooseSpecialistComponent implements OnInit {
-    
+
+    private isLoadingSubject = new BehaviorSubject(false);
+
+    public get isLoading() {
+        return this.isLoadingSubject.value;
+    }
+
     public wallet: UserWallet;
     public specialists: Specialist[];
     public problem: Problem;
     public activeSessionID: number;
 
     public pageSize = 6;
-	public pageNumber = 1;
-	public totalPages = 1;
+    public pageNumber = 1;
+    public totalPages = 1;
 
-	public sorter: SpecialistsSorter;
-	public sortBy: SortBy;
+    public sorter = SpecialistsSorter.Price;
+    public sortBy = SortBy.DESC;
 
-	@ViewChild(PaginationComponent) pagination: PaginationComponent;
+    @ViewChild(PaginationComponent) pagination: PaginationComponent;
 
     constructor(
-        private authService: AuthService,
         private specialistsService: SpecialistsService,
         private usersWalletsService: UsersWalletsService,
         private patientService: PatientService,
@@ -46,30 +52,42 @@ export class ChooseSpecialistComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.authService.isLoggedIn
-            .subscribe(logged => {
-                if (!logged) {
-                    this.router.navigate(['/sign-in']);
+        this.isLoadingSubject.next(true);
+		
+		this.isLoadingSubject
+			.subscribe(
+				(isLoading) => {
+					if (isLoading) {
+						return;
+					}
+
+					if (!isLoading) {
+						window.scroll(0, 0);
+					}
+				},
+				(error) => {
+					console.log(error);
+				},
+				() => {
+					this.isLoadingSubject.unsubscribe();
+				}
+            );
+            
+        this.route.params
+            .subscribe(params => {
+                if (!params['id']) {
+                    this.router.navigate(['/profile']);
 
                     return;
                 }
 
-                this.route.params
-                    .subscribe(params => {
-                        if (!params['id']) {
-                            this.router.navigate(['/profile']);
-
-                            return;
-                        }
-
-                        this.loadProblem(params['id']);
-                    });
-
-                this.loadWallet();
-                this.loadSpecialists(1, 6);
+                this.loadProblem(params['id']);
             });
+
+        this.loadWallet();
+        this.loadSpecialists(this.pageNumber, this.pageSize, this.sorter, this.sortBy);
     }
-    
+
     private loadWallet() {
         this.usersWalletsService.getMyWallet()
             .subscribe(res => {
@@ -86,7 +104,7 @@ export class ChooseSpecialistComponent implements OnInit {
 
                 if ((this.wallet.balance - this.wallet.lockedBalance) < specialist.price) {
                     this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist/${specialist.id}/pay`]);
-        
+
                     return;
                 }
 
@@ -105,31 +123,31 @@ export class ChooseSpecialistComponent implements OnInit {
         this.patientService.changeSessionSpecialist({
             specialistID: specialist.id
         }, this.problem.id, this.activeSessionID)
-        .subscribe(res => {
-            if (!res.success) {
-                return;
-            }
+            .subscribe(res => {
+                if (!res.success) {
+                    return;
+                }
 
-            if ((this.wallet.balance - this.wallet.lockedBalance) < specialist.price) {
-                this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist/${specialist.id}/pay`]);
-    
-                return;
-            }
+                if ((this.wallet.balance - this.wallet.lockedBalance) < specialist.price) {
+                    this.router.navigate([`/profile/problems/${this.problem.id}/choose-specialist/${specialist.id}/pay`]);
 
-            this.patientService.startSession(this.problem.id, this.activeSessionID)
-                .subscribe(res => {
-                    if (!res.success) {
-                        return;
-                    }
+                    return;
+                }
 
-                    this.router.navigate(['/profile']);
-                });
-        });
+                this.patientService.startSession(this.problem.id, this.activeSessionID)
+                    .subscribe(res => {
+                        if (!res.success) {
+                            return;
+                        }
+
+                        this.router.navigate(['/profile']);
+                    });
+            });
     }
 
     chooseSpecialist(specialistID: number) {
         const specialist = this.specialists.find(x => x.id == specialistID);
-        
+
         if (!specialist) {
             return;
         }
@@ -154,153 +172,132 @@ export class ChooseSpecialistComponent implements OnInit {
             });
     }
 
-    private loadSpecialists(pageNumber: number, pageSize: number) {
-		this.specialistsService.getSpecialists({ pageNumber, pageSize })
-			.subscribe(res => {
-				if (!res.success) {
-					return;
-				}
+    private loadSpecialists(pageNumber: number, pageSize: number, sortBy: SpecialistsSorter, orderBy: SortBy) {
+        this.specialistsService.getSpecialistsSorted({ pageNumber, pageSize, sortBy, orderBy })
+            .subscribe(res => {
+                if (!res.success) {
+                    this.isLoadingSubject.next(false);
+                    return;
+                }
 
-				this.pageNumber = res.currentPage;
-				this.pageSize = res.pageSize;
-				this.totalPages = res.totalPages;
+                this.specialists = res.data;
 
-				if (!this.sorter) {
-					this.sorter = SpecialistsSorter.Price;
-					this.sortBy = SortBy.ASC;
+                this.pageNumber = res.currentPage;
+                this.pageSize = res.pageSize;
+                this.totalPages = res.totalPages;
 
-					this.specialists = res.data.sort((a, b) => {
-						return a.price - b.price;
-					});
+                this.sorter = res.sortBy;
+                this.sortBy = res.orderBy;
 
-					//window.scroll(0,0);
-
-					return;
-				}
-
-				this.sortSpecialists(res.data);
-			});
+                this.isLoadingSubject.next(false);
+            });
     }
-    
-    private sortSpecialists(specialists: Specialist[]) {
-		if (this.sorter == SpecialistsSorter.Price) {
-			if (this.sortBy == SortBy.ASC) {
-				this.specialists = specialists.sort((a, b) => {
-					return a.price - b.price;
-				});
 
-				//window.scroll(0,0);
+    setPageSize(value: number) {
+        this.isLoadingSubject.next(true);
+		
+		this.isLoadingSubject
+			.subscribe(
+				(isLoading) => {
+					if (isLoading) {
+						return;
+					}
 
-				return;
-			}
-			
-			if (this.sortBy == SortBy.DESC) {
-				this.specialists = specialists.sort((a, b) => {
-					return b.price - a.price;
-				});
+					if (!isLoading) {
+						window.scroll(0, 0);
+					}
+				},
+				(error) => {
+					console.log(error);
+				},
+				() => {
+					this.isLoadingSubject.unsubscribe();
+				}
+            );
 
-				//window.scroll(0,0);
+        this.loadSpecialists(1, Number(value), this.sorter, this.sortBy);
+    }
 
-				return;
-			}
+    setPageNumber(value: number) {
+        this.isLoadingSubject.next(true);
+		
+		this.isLoadingSubject
+			.subscribe(
+				(isLoading) => {
+					if (isLoading) {
+						return;
+					}
 
-			return;
-		}
+					if (!isLoading) {
+						window.scroll(0, 0);
+					}
+				},
+				(error) => {
+					console.log(error);
+				},
+				() => {
+					this.isLoadingSubject.unsubscribe();
+				}
+            );
 
-		if (this.sorter == SpecialistsSorter.Rating) {
-			if (this.sortBy == SortBy.ASC) {
-				this.specialists = specialists.sort((a, b) => {
-					return a.rating - b.rating;
-				});
+        this.loadSpecialists(value, this.pageSize, this.sorter, this.sortBy);
+    }
 
-				//window.scroll(0,0);
+    setSorter(sorter: SpecialistsSorter) {
+        this.isLoadingSubject.next(true);
+		
+		this.isLoadingSubject
+			.subscribe(
+				(isLoading) => {
+					if (isLoading) {
+						return;
+					}
 
-				return;
-			}
-			
-			if (this.sortBy == SortBy.DESC) {
-				this.specialists = specialists.sort((a, b) => {
-					return b.rating - a.rating;
-				});
+					if (!isLoading) {
+						window.scroll(0, 0);
+					}
+				},
+				(error) => {
+					console.log(error);
+				},
+				() => {
+					this.isLoadingSubject.unsubscribe();
+				}
+            );
 
-				//window.scroll(0,0);
+        if (sorter == this.sorter) {
+            this.toggleSortDirection();
 
-				return;
-			}
+            return;
+        }
 
-			return;
-		}
+        this.sorter = sorter;
+        this.sortBy = SortBy.DESC;
 
-		if (this.sorter == SpecialistsSorter.Reviews) {
-			if (this.sortBy == SortBy.ASC) {
-				this.specialists = specialists.sort((a, b) => {
-					return a.reviews.length - b.reviews.length;
-				});
+        this.loadSpecialists(1, this.pageSize, sorter, SortBy.DESC);
+    }
 
-				//window.scroll(0,0);
+    toggleSortDirection() {
+        if (this.sortBy == SortBy.ASC) {
+            this.sortBy = SortBy.DESC;
 
-				return;
-			}
-			
-			if (this.sortBy == SortBy.DESC) {
-				this.specialists = specialists.sort((a, b) => {
-					return b.reviews.length - a.reviews.length;
-				});
+            this.loadSpecialists(1, this.pageSize, this.sorter, SortBy.DESC);
 
-				//window.scroll(0,0);
+            return;
+        }
 
-				return;
-			}
+        if (this.sortBy == SortBy.DESC) {
+            this.sortBy = SortBy.ASC;
 
-			return;
-		}
+            this.loadSpecialists(1, this.pageSize, this.sorter, SortBy.ASC);
 
-		return;
-	}
+            return;
+        }
 
-	setPageSize(value: number) {
-		this.loadSpecialists(1, Number(value));
-	}
-
-	setPageNumber(value: number) {
-		window.scroll(0,0);
-		this.loadSpecialists(value, this.pageSize);
-	}
-
-	setSorter(sorter: SpecialistsSorter) {
-		if (sorter == this.sorter) {
-			this.toggleSortDirection();
-
-			return;
-		}
-
-		this.sorter = sorter;
-		this.sortBy = SortBy.ASC;
-
-		this.sortSpecialists(this.specialists);
-	}
-
-	toggleSortDirection() {
-		if (this.sortBy == SortBy.ASC) {
-			this.sortBy = SortBy.DESC;
-
-			this.sortSpecialists(this.specialists);
-
-			return;
-		}
-
-		if (this.sortBy == SortBy.DESC) {
-			this.sortBy = SortBy.ASC;
-
-			this.sortSpecialists(this.specialists);
-
-			return;
-		}
-
-		return;
+        return;
     }
 
     prevRoute() {
-		this.location.back();
-	}
+        this.location.back();
+    }
 }

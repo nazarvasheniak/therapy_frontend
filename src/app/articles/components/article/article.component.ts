@@ -34,6 +34,8 @@ export class ArticleComponent implements OnInit {
 
 	public commentForm: FormGroup;
 
+	public user: User;
+
 	public article: Article;
 	public replyID: number;
 
@@ -55,6 +57,8 @@ export class ArticleComponent implements OnInit {
 				if (logged) {
 					this.usersService.getUserInfo()
 						.subscribe(user => {
+							this.user = user;
+
 							if (user.role == UserRole.Specialist) {
 								this.isSpecialist = true;
 
@@ -99,11 +103,24 @@ export class ArticleComponent implements OnInit {
 	}
 
 	likeArticle() {
+		if (!this.user) {
+			return;
+		}
+
+		if (!this.article.isLiked) {
+			this.article.isLiked = true;
+			this.article.likes.push({
+				id: 0,
+				author: this.user
+			});
+		} else {
+			this.article.isLiked = false;
+			this.article.likes = this.article.likes.filter(x => x.author.id != this.user.id);
+		}
+
 		this.articlesService
 			.likeArticle(this.article.id)
-			.subscribe(res => {
-				this.loadArticle(this.article.id);
-			});
+			.subscribe();
 	}
 
 	get comments() {

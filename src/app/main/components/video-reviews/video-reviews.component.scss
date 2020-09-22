@@ -66,7 +66,8 @@
     position: relative;
 }
 
-.swiper-controls {
+.swiper-controls,
+.swiper-controls-mobile {
     .swiper-prev,
     .swiper-next {
         position: absolute;
@@ -136,12 +137,14 @@
         }
     }
 
-    .swiper-prev {
-        left: -71px;
-    }
-    
-    .swiper-next {
-        right: -71px;
+    .swiper-controls {
+        .swiper-prev {
+            left: -71px;
+        }
+        
+        .swiper-next {
+            right: -71px;
+        }
     }
 }
 
@@ -150,17 +153,19 @@
         position: static;
     }
 
-    .swiper-prev,
-    .swiper-next {
-        top: 50%;
-    }
-
-    .swiper-prev {
-        left: 35px;
-    }
+    .swiper-controls {
+        .swiper-prev,
+        .swiper-next {
+            top: 50%;
+        }
     
-    .swiper-next {
-        right: 35px;
+        .swiper-prev {
+            left: 35px;
+        }
+        
+        .swiper-next {
+            right: 35px;
+        }
     }
 
     .reviews-slider {
@@ -206,9 +211,11 @@
 }
 
 @media screen and (min-width: 711px) {
-    .swiper-prev,
-    .swiper-next {
-        display: flex;
+    .swiper-controls {
+        .swiper-prev,
+        .swiper-next {
+            display: flex;
+        }
     }
 
     .swiper-controls-mobile {
@@ -221,9 +228,11 @@
         display: none;
     }
 
-    .swiper-prev,
-    .swiper-next {
-        display: none;
+    .swiper-controls {
+        .swiper-prev,
+        .swiper-next {
+            display: none;
+        }
     }
 
     .swiper-controls-mobile {

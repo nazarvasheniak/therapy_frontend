@@ -9,6 +9,10 @@
 
             <content>
                 <div class="content-wrapper" *ngIf="user">
+                    <div class="page-head-mobile">
+                        Настройки
+                    </div>
+
                     <div class="avatar-block">
                         <div class="avatar-block-inner avatar-empty" *ngIf="!settingsForm.value['avatar']" draggable="true" ngClass="{{dragAreaClass}}">
                             <div class="upload-button-block" (click)="avatar.click()">

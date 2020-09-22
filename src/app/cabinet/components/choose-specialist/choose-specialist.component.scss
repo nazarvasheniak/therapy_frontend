@@ -23,26 +23,19 @@
                 align-items: center;
                 font-weight: 500;
                 font-size: 12px;
-                line-height: 17px;
+                line-height: 140%;
                 text-transform: uppercase;
                 color: #5BAA89;
                 height: 34px;
                 padding-top: 0;
                 padding-bottom: 0;
-                padding-left: 10.5px;
+                padding-left: 8px;
                 padding-right: 12px;
                 cursor: pointer;
                 outline: none;
 
-                > .icon {
-                    width: 20px;
-                    height: 20px;
+                > svg {
                     margin-right: 8px;
-
-                    > img {
-                        width: 100%;
-                        height: 100%;
-                    }
                 }
             }
         }
@@ -136,6 +129,38 @@
         }
         
         .page-content {
+            position: relative;
+            min-height: 880px;
+
+            .specialists-loader {
+                width: 100%;
+                height: 900px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: flex;
+                justify-content: center;
+                background: #ffffff;
+                backdrop-filter: blur(60px);
+                z-index: -1;
+                border-radius: 16px;
+                transition: visibility 0s, opacity 0.3s linear;
+                opacity: 0;
+                visibility: hidden;
+        
+                &.visible {
+                    opacity: 1;
+                    z-index: 2;
+                    visibility: visible;
+                }
+        
+                .loader-wrapper {
+                    margin-top: 150px;
+                }
+            }
+
             .specialists-list {
                 .flex-row {
                     flex-wrap: wrap;
@@ -166,6 +191,14 @@
             width: 100%;
             margin-left: 0;
             margin-top: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .container {
+        > .content-wrapper {
+            margin-top: 24px;
         }
     }
 }

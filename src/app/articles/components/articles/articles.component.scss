@@ -49,7 +49,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 33px;
+    padding-top: 26px;
     padding-bottom: 36px;
 
     .page-title {
@@ -132,6 +132,37 @@
 }
 
 .page-content {
+    position: relative;
+
+    .articles-loader {
+        width: 100%;
+        height: 800px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        background: rgb(240 246 243);
+        backdrop-filter: blur(60px);
+        z-index: -1;
+        border-radius: 10px;
+        transition: visibility 0s, opacity 0.3s linear;
+        opacity: 0;
+        visibility: hidden;
+
+        &.visible {
+            opacity: 1;
+            z-index: 2;
+            visibility: visible;
+        }
+
+        .loader-wrapper {
+            margin-top: 150px;
+        }
+    }
+
     .articles-list {
         article {
             margin-top: 40px;
@@ -292,6 +323,7 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
+        padding-top: 48px;
         padding-bottom: 24px;
 
         .page-filters {
@@ -456,6 +488,8 @@
     }
     
     .page-head {
+        padding-top: 4px;
+        
         .page-filters {
             flex-direction: column;
 

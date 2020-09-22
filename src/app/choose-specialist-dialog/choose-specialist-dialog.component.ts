@@ -30,7 +30,19 @@ export class ChooseSpecialistDialogComponent implements OnInit {
 
     ngOnInit(): void {
         document.body.onclick = (event: any) => {
+            if (!event) {
+                return;
+            }
+            
+            if (!event.target) {
+                return;
+            }
+
             if (!event.target.classList.contains('modal-button')) {
+                if (!event.target.parentNode) {
+                    return;
+                }
+
                 if (event.target.parentNode.classList.contains('show')) {
                     this.close();
                 }
@@ -68,7 +80,7 @@ export class ChooseSpecialistDialogComponent implements OnInit {
     }
 
     private loadProblems() {
-        this.patientService.getProblems()
+        this.patientService.getAvailableProblems()
             .subscribe(res => {
                 this.problems = res.data;
                 this.selectProblem(this.problems[0]);

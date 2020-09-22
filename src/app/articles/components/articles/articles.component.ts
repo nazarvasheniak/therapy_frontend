@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ArticlesService } from 'src/app/common/services';
-import { Article } from 'src/app/common/models';
+import { ArticlesService, AuthService, UsersService } from 'src/app/common/services';
+import { Article, User } from 'src/app/common/models';
 import { PaginationComponent } from 'src/app/layout/pagination/pagination.component';
 import { ArticlesSorter } from './articles-sorter.enum';
 import { SortBy } from 'src/app/common/enums';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
 	selector: 'app-articles',
@@ -12,145 +13,174 @@ import { SortBy } from 'src/app/common/enums';
 })
 export class ArticlesComponent implements OnInit {
 
+	private isLoadingSubject = new BehaviorSubject(false);
+
+    public get isLoading() {
+        return this.isLoadingSubject.value;
+    }
+
+	public user: User;
 	public articles: Article[];
 	
 	public pageSize = 5;
 	public pageNumber = 1;
 	public totalPages = 1;
 
-	public sorter: ArticlesSorter;
-	public sortBy: SortBy;
+	public sorter = ArticlesSorter.Date;
+	public sortBy = SortBy.DESC;
 
 	@ViewChild(PaginationComponent) pagination: PaginationComponent;
 
 	constructor(
+		private authService: AuthService,
+		private usersService: UsersService,
 		private articlesService: ArticlesService
 	) {
 
 	}
 
 	ngOnInit() {
-		this.loadArticles(1, 5);
+		this.authService.isLoggedIn
+			.subscribe(logged => {
+				if (logged) {
+					this.usersService.getUserInfo()
+						.subscribe(user => this.user = user);
+				}
+			})
+
+		this.isLoadingSubject.next(true);
+		
+		this.isLoadingSubject
+			.subscribe(
+				(isLoading) => {
+					if (isLoading) {
+						return;
+					}
+
+					if (!isLoading) {
+						window.scroll(0, 0);
+					}
+				},
+				(error) => {
+					console.log(error);
+				},
+				() => {
+					this.isLoadingSubject.unsubscribe();
+				}
+			);
+
+		this.loadArticles(this.pageNumber, this.pageSize, this.sorter, this.sortBy);
 	}
 
-	private loadArticles(pageNumber: number, pageSize: number) {
-		this.articlesService.getArticles({ pageNumber, pageSize })
+	private loadArticles(pageNumber: number, pageSize: number, sortBy: ArticlesSorter, orderBy: SortBy) {
+		this.articlesService.getSortedArticles({ pageNumber, pageSize, sortBy, orderBy })
 			.subscribe(res => {
+				this.articles = res.data;
+
 				this.pageNumber = res.currentPage;
 				this.pageSize = res.pageSize;
 				this.totalPages = res.totalPages;
 
-				if (!this.sorter) {
-					this.sorter = ArticlesSorter.Date;
-					this.sortBy = SortBy.ASC;
+				this.sorter = res.sortBy;
+				this.sortBy = res.orderBy;
 
-					this.articles = res.data.sort((a, b) => {
-						return new Date(a.date).getTime() - new Date(b.date).getTime();
-					});
-
-					//window.scroll(0,0);
-
-					return;
-				}
-
-				this.sortArticles(res.data);
+				this.isLoadingSubject.next(false);
 			});
 	}
 
-	private sortByLikes(articles: Article[], sortBy: SortBy) {
-		if (sortBy == SortBy.ASC) {
-			return articles.sort((a, b) => {
-				return a.likes.length - b.likes.length
-			});
-		}
-
-		if (sortBy == SortBy.DESC) {
-			return articles.sort((a, b) => {
-				return b.likes.length - a.likes.length
-			});
-		}
-
-		return articles;
-	}
-
-	private sortByComments(articles: Article[], sortBy: SortBy) {
-		if (sortBy == SortBy.ASC) {
-			return articles.sort((a, b) => {
-				return a.comments.length - b.comments.length
-			});
-		}
-
-		if (sortBy == SortBy.DESC) {
-			return articles.sort((a, b) => {
-				return b.comments.length - a.comments.length
-			});
-		}
-
-		return articles;
-	}
-
-	private sortArticles(articles: Article[]) {
-		if (this.sorter == ArticlesSorter.Date) {
-			if (this.sortBy == SortBy.ASC) {
-				this.articles = articles.sort((a, b) => {
-					return new Date(a.date).getTime() - new Date(b.date).getTime();
-				});
-
-				//window.scroll(0,0);
-
-				return;
-			}
-			
-			if (this.sortBy == SortBy.DESC) {
-				this.articles = articles.sort((a, b) => {
-					return new Date(b.date).getTime() - new Date(a.date).getTime();
-				});
-
-				//window.scroll(0,0);
-
-				return;
-			}
-
+	likeArticle(article: Article) {
+		if (!this.user) {
 			return;
 		}
 
-		if (this.sorter == ArticlesSorter.Likes) {
-			this.articles = this.sortByLikes(articles, this.sortBy);
-
-			//window.scroll(0,0);
-
-			return;
+		if (!article.isLiked) {
+			article.isLiked = true;
+			article.likes.push({
+				id: 0,
+				author: this.user
+			});
+		} else {
+			article.isLiked = false;
+			article.likes = article.likes.filter(x => x.author.id != this.user.id);
 		}
 
-		if (this.sorter == ArticlesSorter.Comments) {
-			this.articles = this.sortByComments(articles, this.sortBy);
-
-			//window.scroll(0,0);
-
-			return;
-		}
-
-		return;
-	}
-
-	likeArticle(id: number) {
 		this.articlesService
-			.likeArticle(id)
-			.subscribe(res => {
-				this.loadArticles(this.pageNumber, this.pageSize);
-			});
+			.likeArticle(article.id)
+			.subscribe();
 	}
 
 	setPageSize(value: number) {
-		this.loadArticles(1, Number(value));
+		this.isLoadingSubject.next(true);
+		
+		this.isLoadingSubject
+			.subscribe(
+				(isLoading) => {
+					if (isLoading) {
+						return;
+					}
+
+					if (!isLoading) {
+						window.scroll(0, 0);
+					}
+				},
+				(error) => {
+					console.log(error);
+				},
+				() => {
+					this.isLoadingSubject.unsubscribe();
+				}
+			);
+
+		this.loadArticles(1, Number(value), this.sorter, this.sortBy);
 	}
 
 	setPageNumber(value: number) {
-		window.scroll(0,0);
-		this.loadArticles(value, this.pageSize);
+		this.isLoadingSubject.next(true);
+		
+		this.isLoadingSubject
+			.subscribe(
+				(isLoading) => {
+					if (isLoading) {
+						return;
+					}
+
+					if (!isLoading) {
+						window.scroll(0, 0);
+					}
+				},
+				(error) => {
+					console.log(error);
+				},
+				() => {
+					this.isLoadingSubject.unsubscribe();
+				}
+			);
+			
+		this.loadArticles(value, this.pageSize, this.sorter, this.sortBy);
 	}
 
 	setSorter(sorter: ArticlesSorter) {
+		this.isLoadingSubject.next(true);
+		
+		this.isLoadingSubject
+			.subscribe(
+				(isLoading) => {
+					if (isLoading) {
+						return;
+					}
+
+					if (!isLoading) {
+						window.scroll(0, 0);
+					}
+				},
+				(error) => {
+					console.log(error);
+				},
+				() => {
+					this.isLoadingSubject.unsubscribe();
+				}
+			);
+
 		if (sorter == this.sorter) {
 			this.toggleSortDirection();
 
@@ -158,16 +188,16 @@ export class ArticlesComponent implements OnInit {
 		}
 
 		this.sorter = sorter;
-		this.sortBy = SortBy.ASC;
+		this.sortBy = SortBy.DESC;
 
-		this.sortArticles(this.articles);
+		this.loadArticles(1, this.pageSize, sorter, SortBy.DESC);
 	}
 
 	toggleSortDirection() {
 		if (this.sortBy == SortBy.ASC) {
 			this.sortBy = SortBy.DESC;
 
-			this.sortArticles(this.articles);
+			this.loadArticles(1, this.pageSize, this.sorter, SortBy.DESC);
 
 			return;
 		}
@@ -175,7 +205,7 @@ export class ArticlesComponent implements OnInit {
 		if (this.sortBy == SortBy.DESC) {
 			this.sortBy = SortBy.ASC;
 
-			this.sortArticles(this.articles);
+			this.loadArticles(1, this.pageSize, this.sorter, SortBy.ASC);
 
 			return;
 		}

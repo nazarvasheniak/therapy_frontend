@@ -114,15 +114,20 @@
 
         &.active-session {
             .session-block-head {
-                padding-top: 20px;
-                padding-bottom: 20px;
+                padding-top: 21px;
+                padding-bottom: 19  px;
             }
         }
 
         &.active-session-final {
+            .session-block-head {
+                padding-top: 21px;
+                padding-bottom: 19px;
+            }
+
             .session-block-bottom {
                 .content-wrapper {
-                    padding-top: 20px;
+                    padding-top: 21px;
                     padding-bottom: 20px;
                 }
 
@@ -152,7 +157,7 @@
                     align-items: center;
                     font-weight: normal;
                     font-size: 24px;
-                    line-height: 24px;
+                    line-height: 100%;
                     color: #005264;
 
                     .session-deposit-mobile {
@@ -161,21 +166,21 @@
                         align-items: center;
                         font-weight: normal;
                         font-size: 16px;
-                        line-height: 16px;
+                        line-height: 100%;
                         color: #BED4CB;
                         
                         .session-deposit-balance {
                             margin-left: 6px;
                             display: flex;
-                            align-items: center;
-                            font-family: Poppins;
+                            align-items: flex-end;
+                            font-family: "Poppins", sans-serif;
                             font-style: normal;
                             font-weight: normal;
                             font-size: 16px;
-                            line-height: 16px;
+                            line-height: 100%;
                             color: #BED4CB;
 
-                            .icon {
+                            svg {
                                 margin-right: 6px;
                             }
                         }
@@ -381,21 +386,21 @@
                     align-items: center;
                     font-weight: normal;
                     font-size: 16px;
-                    line-height: 16px;
+                    line-height: 100%;
                     color: #BED4CB;
                     
                     .session-deposit-balance {
                         margin-left: 6px;
                         display: flex;
-                        align-items: center;
-                        font-family: Poppins;
+                        align-items: flex-end;
+                        font-family: "Poppins", sans-serif;
                         font-style: normal;
                         font-weight: normal;
                         font-size: 16px;
-                        line-height: 16px;
+                        line-height: 100%;
                         color: #BED4CB;
 
-                        .icon {
+                        svg {
                             margin-right: 6px;
                         }
                     }

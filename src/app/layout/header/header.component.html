@@ -58,7 +58,11 @@
 
                 <li *ngIf="isLoggedIn && user">
                     <div class="profile-badge-wrapper" *ngIf="user.role == 1" [routerLink]="['/profile']">
-                        <div class="avatar">
+                        <div class="avatar" *ngIf="user.photo && user.photo.url">
+                            <img [src]="user.photo.url" />
+                        </div>
+
+                        <div class="avatar" *ngIf="!user.photo || !user.photo.url">
                             {{ getAvatar() }}
                         </div>
 
@@ -101,7 +105,11 @@
             </div>
 
             <div class="profile-badge-wrapper" *ngIf="isLoggedIn && user && user.role == 1" [routerLink]="['/profile']">
-                <div class="avatar">
+                <div class="avatar" *ngIf="user.photo && user.photo.url">
+                    <img [src]="user.photo.url" />
+                </div>
+
+                <div class="avatar" *ngIf="!user.photo || !user.photo.url">
                     {{ getAvatar() }}
                 </div>
 

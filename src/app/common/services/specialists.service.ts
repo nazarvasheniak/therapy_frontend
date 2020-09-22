@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BaseHttpService } from './base-http.service';
 import { HttpClient } from '@angular/common/http';
-import { DataResponse, ListResponse } from '../models/response';
+import { DataResponse, ListResponse, SpecialistsListResponse } from '../models/response';
 import { Specialist, Review } from '../models';
-import { GetList, GetReviews } from '../models/request';
+import { GetList, GetReviews, GetSpecialistsList } from '../models/request';
 
 @Injectable()
 export class SpecialistsService extends BaseHttpService {
@@ -13,6 +13,10 @@ export class SpecialistsService extends BaseHttpService {
 
     public getSpecialists(query: GetList) {
         return this.get<ListResponse<Specialist>>(`/specialists?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}`);
+    }
+
+    public getSpecialistsSorted(query: GetSpecialistsList) {
+        return this.get<SpecialistsListResponse>(`/specialists/sorted?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}&sortBy=${query.sortBy}&orderBy=${query.orderBy}`);
     }
 
     public getSpecialist(specialistID: number) {

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BaseHttpService } from './base-http.service';
 import { HttpClient } from '@angular/common/http';
-import { DataResponse, ListResponse, ResponseModel } from '../models/response';
+import { ArticlesListResponse, DataResponse, ListResponse, ResponseModel } from '../models/response';
 import { Article, ArticleComment } from '../models';
-import { CreateUpdateArticleRequest, GetList, CreateArticleCommentRequest } from '../models/request';
+import { CreateUpdateArticleRequest, GetList, CreateArticleCommentRequest, GetArticlesList } from '../models/request';
 
 @Injectable()
 export class ArticlesService extends BaseHttpService {
@@ -13,6 +13,10 @@ export class ArticlesService extends BaseHttpService {
 
     public getArticles(query: GetList) {
         return this.get<ListResponse<Article>>(`/articles?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}`);
+    }
+
+    public getSortedArticles(query: GetArticlesList) {
+        return this.get<ArticlesListResponse>(`/articles/sorted?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}&sortBy=${query.sortBy}&orderBy=${query.orderBy}`);
     }
 
     public getArticle(id: number) {

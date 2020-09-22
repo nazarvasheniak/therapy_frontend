@@ -88,8 +88,14 @@
 
         <!-- Page Content -->
         <div class="page-content">
+            <div class="specialists-loader" [ngClass]="{'visible': isLoading}">
+                <div class="loader-wrapper">
+                    <mat-spinner [diameter]="80"></mat-spinner>
+                </div>
+            </div>
+
             <div class="uk-child-width-auto" uk-grid *ngIf="specialists">
-                <app-specialist-card *ngFor="let specialist of specialists" [specialist]="specialist"></app-specialist-card>
+                <app-specialist-card *ngFor="let specialist of specialists" [specialist]="specialist" (choosed)="showSpecialistDialog($event)"></app-specialist-card>
             </div>
 
             <!-- <div class="specialists-list" *ngIf="specialists">
@@ -109,3 +115,5 @@
     <!-- Footer -->
     <app-footer></app-footer>
 </div>
+
+<choose-specialist-dialog class="choose-specialist-dialog hidden"></choose-specialist-dialog>
