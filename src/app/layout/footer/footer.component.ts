@@ -1,18 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UsersService, AuthService, SpecialistService } from 'src/app/common/services';
 import { User, Specialist } from 'src/app/common/models';
 import { UserRole } from 'src/app/common/enums';
 import { StringHelper } from 'src/app/common/helpers';
+import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-footer',
 	templateUrl: './footer.component.html',
 	styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
 
 	public user: User;
 	public specialist: Specialist;
+
+	@Input()
+    public userChanged: Subject<User>;
 
 	constructor(
 		private authService: AuthService,
@@ -25,6 +29,14 @@ export class FooterComponent {
 					this.loadUserInfo();
 				}
 			});
+	}
+
+	ngOnInit(): void {
+		if (this.userChanged) {
+            this.userChanged.subscribe(user => {
+                this.user = user;
+            });
+        }
 	}
 
 	private loadUserInfo() {

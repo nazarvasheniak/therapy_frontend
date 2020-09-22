@@ -43,7 +43,7 @@ export class ProfileSpecialistHeaderComponent implements OnInit, OnDestroy {
             
         if (this.avatarChanged) {
             this.avatarChanged.subscribe(avatar => {
-                this.specialist.photo = avatar;
+                this.user.photo = avatar;
             });
         }
     }

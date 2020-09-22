@@ -3,11 +3,13 @@ import { BaseHttpService } from './base-http.service';
 import { HttpClient } from '@angular/common/http';
 import { UploadFileRequest, UploadFileFormRequest } from '../models/request';
 import { DataResponse } from '../models/response';
-import { File, RequestOptions } from '../models';
+import { File } from '../models';
+import { LocalStorageHelper } from '../helpers';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable()
 export class FilesService extends BaseHttpService {
-    constructor (http: HttpClient) {
+    constructor (http: HttpClient, private sanitizer: DomSanitizer) {
         super(http);
     }
 
@@ -24,5 +26,9 @@ export class FilesService extends BaseHttpService {
         formData.append('file', request.file);
 
         return this.post<DataResponse<File>>('/files/form', formData);
+    }
+
+    public getFileFromUrl(url: string) {
+        return this.getFileByUrl(url);
     }
 }

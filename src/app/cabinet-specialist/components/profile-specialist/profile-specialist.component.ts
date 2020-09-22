@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { SpecialistService, AuthService, FilesService } from 'src/app/common/services';
+import { SpecialistService, AuthService, FilesService, UsersService } from 'src/app/common/services';
 import { SpecialistProfile, Problem, SpecialistProfileActiveSession, File, Session, SpecialistSession } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
 import { Subject } from 'rxjs';
@@ -19,6 +19,7 @@ export class ProfileSpecialistComponent implements OnInit {
     public activeSessions: SpecialistProfileActiveSession[];
 
     constructor(
+        private usersService: UsersService,
         private specialistService: SpecialistService,
         private router: Router
     ) { }
@@ -109,7 +110,7 @@ export class ProfileSpecialistComponent implements OnInit {
     uploadFile(files: FileList) {
         const file = files.item(0);
 
-        this.specialistService.uploadAvatarImage(file)
+        this.usersService.uploadAvatarImage(file)
             .subscribe(response => {
                 this.profile.photoUrl = response.url;
                 this.uploadAvatarSubject.next(response);

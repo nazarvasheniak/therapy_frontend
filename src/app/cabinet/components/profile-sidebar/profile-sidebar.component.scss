@@ -16,6 +16,55 @@ aside {
     
                     &:first-child {
                         margin-top: 0;
+
+                        a {
+                            > svg {
+                                circle,
+                                path {
+                                    stroke: #005264;
+                                }
+                            }
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        a {
+                            > svg {
+                                path {
+                                    fill: #005264;
+                                }
+                            }
+
+                            &.active,
+                            &:hover {
+                                > svg {
+                                    path {
+                                        stroke: none;
+                                        fill: #32A776;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &:last-child {
+                        a {
+                            > svg {
+                                path {
+                                    fill: #005264;
+                                }
+                            }
+
+                            &.active,
+                            &:hover {
+                                > svg {
+                                    path {
+                                        stroke: none;
+                                        fill: #32A776;
+                                    }
+                                }
+                            }
+                        }
                     }
     
                     a {
@@ -27,12 +76,20 @@ aside {
                         color: #005264;
                         text-decoration: none;
                         cursor: pointer;
+                        transition: all .3s;
     
                         > svg {
+                            transition: all .3s;
                             margin-right: 12px;
+
+                            circle,
+                            path {
+                                transition: all .3s;
+                            }
                         }
     
-                        &.active {
+                        &.active,
+                        &:hover {
                             color: #32A776;
     
                             > svg {

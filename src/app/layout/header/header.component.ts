@@ -4,7 +4,6 @@ import { User, Specialist } from 'src/app/common/models';
 import { StringHelper } from 'src/app/common/helpers';
 import { Router, NavigationEnd } from '@angular/router';
 import { UserRole } from 'src/app/common/enums';
-import { element } from 'protractor';
 
 @Component({
 	selector: 'app-header',

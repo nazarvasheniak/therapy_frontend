@@ -17,6 +17,9 @@ export class ProfileHeaderComponent implements OnInit {
     public isMobileNavExpanden = false;
     
 	public user: User;
+
+	@Input()
+    public userChanged: Subject<User>;
 	
     constructor(
 		private authService: AuthService,
@@ -34,7 +37,13 @@ export class ProfileHeaderComponent implements OnInit {
 				if (logged) {
 					this.loadUserInfo();
 				}
+			});
+			
+		if (this.userChanged) {
+            this.userChanged.subscribe(user => {
+                this.user = user;
             });
+        }
     }
 	
 	logout() {

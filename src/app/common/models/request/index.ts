@@ -17,3 +17,4 @@ export * from './create-update-problem-resource-request.model';
 export * from './create-update-problem-resource-task-request.model';
 export * from './upload-file-form-request.model';
 export * from './verification-request.model';
+export * from './change-settings-request.model';

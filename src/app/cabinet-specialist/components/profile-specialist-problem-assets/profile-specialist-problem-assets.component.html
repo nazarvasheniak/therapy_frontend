@@ -108,7 +108,7 @@
     
                                                     <div class="item-specialist">
                                                         <div class="specialist-photo">
-                                                            <img [src]="image.session.specialist.photo.url" />
+                                                            <img [src]="image.session.specialist.user.photo.url" />
                                                         </div>
     
                                                         <div class="specialist-name">
@@ -548,7 +548,7 @@
     
                                                     <div class="item-specialist">
                                                         <div class="specialist-photo">
-                                                            <img [src]="resource.session.specialist.photo.url" />
+                                                            <img [src]="resource.session.specialist.user.photo.url" />
                                                         </div>
     
                                                         <div class="specialist-name">
@@ -949,7 +949,7 @@
 
                                                 <div class="item-specialist">
                                                     <div class="specialist-photo">
-                                                        <img [src]="session.specialist.photo.url" />
+                                                        <img [src]="session.specialist.user.photo.url" />
                                                     </div>
 
                                                     <div class="specialist-name" [routerLink]="['/specialists', session.specialist.id]">

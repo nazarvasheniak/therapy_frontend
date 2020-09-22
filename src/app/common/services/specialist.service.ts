@@ -26,8 +26,7 @@ import {
     SpecialistSession, 
     ProblemAssets, 
     ProblemImage, 
-    ProblemResource,
-    File
+    ProblemResource
 } from '../models';
 
 @Injectable()
@@ -69,14 +68,6 @@ export class SpecialistService extends BaseHttpService {
 
     public getReviews() {
         return this.get<ReviewsResponse>(`/specialist/reviews`);
-    }
-
-    public uploadAvatarImage(file: globalThis.File) {
-        const formData = new FormData();
-        formData.append('file', file);
-
-        return this.put<DataResponse<File>>(`/specialist/avatar`, formData)
-            .map(response => response.data);
     }
 
     public getClientAssets(clientID: number, problemID: number) {

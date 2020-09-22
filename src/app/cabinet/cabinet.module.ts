@@ -17,10 +17,12 @@ import { CabinetSessionSuccessComponent } from './components/session-success/ses
 import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
 import { RefundComponent } from './components/refund/refund.component';
 import { CountdownModule } from '../common/modules';
+import { SettingsComponent } from './components/settings/settings.component';
  
 @NgModule({
     declarations: [
         ProfileComponent,
+        SettingsComponent,
         ProfileHeaderComponent,
         ProfileSidebarComponent,
         ProblemComponent,

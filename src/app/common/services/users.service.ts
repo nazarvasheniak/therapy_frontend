@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BaseHttpService } from './base-http.service';
 import { HttpClient } from '@angular/common/http';
 import { DataResponse, ResponseModel, GetVerificationResponse } from '../models/response';
-import { User, UserVerificationRequest } from '../models';
-import { VerificationRequest } from '../models/request';
+import { User, UserVerificationRequest, File } from '../models';
+import { ChangeSettingsRequest, VerificationRequest } from '../models/request';
 
 @Injectable()
 export class UsersService extends BaseHttpService {
@@ -32,5 +32,23 @@ export class UsersService extends BaseHttpService {
         formData.append('selfie', request.selfie);
 
         return this.post<ResponseModel>('/users/verification/request', formData);
+    }
+
+    public uploadAvatarImage(file: globalThis.File) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        return this.put<DataResponse<File>>(`/users/avatar`, formData)
+            .map(response => response.data);
+    }
+
+    public changeUserSettings(request: ChangeSettingsRequest) {
+        const formData = new FormData();
+        formData.append('firstName', request.firstName);
+        formData.append('lastName', request.lastName);
+        formData.append('avatar', request.avatar);
+
+        return this.put<DataResponse<User>>('/users/settings', formData)
+            .map(response => response.data);
     }
 }

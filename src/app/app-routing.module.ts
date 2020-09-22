@@ -32,6 +32,7 @@ import { OfferComponent } from './offer/offer.component';
 import { AuthGuardService as AuthGuard } from './common/services';
 import { LoggedGuardService as LoggedGuard } from './common/services';
 import { RoleGuardService as RoleGuard } from './common/services';
+import { SettingsComponent } from './cabinet/components/settings/settings.component';
 
 const routes: Routes = [
 	{
@@ -85,6 +86,12 @@ const routes: Routes = [
 	{
 		path: 'profile',
 		component: ProfileComponent,
+		canActivate: [AuthGuard]
+	},
+
+	{
+		path: 'profile/settings',
+		component: SettingsComponent,
 		canActivate: [AuthGuard]
 	},
 

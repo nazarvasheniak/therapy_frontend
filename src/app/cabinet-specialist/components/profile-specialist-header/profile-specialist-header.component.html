@@ -82,13 +82,13 @@
                     </span>
                 </li>
 
-                <li *ngIf="user && specialist">
+                <li *ngIf="user">
                     <div class="profile-badge-wrapper" [routerLink]="['/profile-specialist']">
-                        <div class="avatar" *ngIf="specialist.photo && specialist.photo.url">
-                            <img [src]="specialist.photo.url" />
+                        <div class="avatar" *ngIf="user.photo && user.photo.url">
+                            <img [src]="user.photo.url" />
                         </div>
 
-                        <div class="avatar" *ngIf="!specialist.photo || !specialist.photo.url">
+                        <div class="avatar" *ngIf="!user.photo || !user.photo.url">
                             {{ getAvatar() }}
                         </div>
 
@@ -108,13 +108,13 @@
             <img src="../../../assets/images/logo-color.svg" alt="Корневая террапия" />
         </div>
 
-        <div class="nav-wrapper" *ngIf="user && specialist">
+        <div class="nav-wrapper" *ngIf="user">
             <div class="profile-badge-wrapper" [routerLink]="['/profile-specialist']">
-                <div class="avatar" *ngIf="specialist.photo && specialist.photo.url">
-                    <img [src]="specialist.photo.url" />
+                <div class="avatar" *ngIf="user.photo && user.photo.url">
+                    <img [src]="user.photo.url" />
                 </div>
 
-                <div class="avatar" *ngIf="!specialist.photo || !specialist.photo.url">
+                <div class="avatar" *ngIf="!user.photo || !user.photo.url">
                     {{ getAvatar() }}
                 </div>
 

@@ -9,5 +9,4 @@ export class Specialist {
     public description: string;
     public reviews: Review[];
     public user: User;
-    public photo: File;
 }

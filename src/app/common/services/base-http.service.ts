@@ -14,6 +14,10 @@ export abstract class BaseHttpService {
         return this.http.get<T>(this.apiUrl + url, options);
     }
 
+    protected getFileByUrl(url: string, options?: RequestOptions) {
+        return this.http.get(url, { responseType: 'blob' });
+    }
+
     protected post<T>(url: string, body: Object, options?: RequestOptions): Observable<T> {
         options = this.buildBaseRequest(options);
         return this.http.post<T>(this.apiUrl + url, body, options);

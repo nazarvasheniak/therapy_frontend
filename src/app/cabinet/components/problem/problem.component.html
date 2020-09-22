@@ -393,7 +393,7 @@
 
                     <div class="specialist-info">
                         <div class="specialist-photo">
-                            <img [src]="activeSession.specialist.photo.url" />
+                            <img [src]="activeSession.specialist.user.photo.url" />
                         </div>
 
                         <div class="specialist-content">
@@ -527,7 +527,7 @@
                 <div class="session-specialist" [routerLink]="['/specialists', activeSession.specialist.id]">
 
                     <div class="specialist-photo">
-                        <img [src]="activeSession.specialist.photo.url" />
+                        <img [src]="activeSession.specialist.user.photo.url" />
 
                         <div class="specialist-rating">
                             <app-rating [score]="activeSession.specialist.rating" [single]="true" [size]="18"></app-rating>
@@ -601,7 +601,7 @@
                 <div class="session-specialist" [routerLink]="['/specialists', lastSession.specialist.id]">
 
                     <div class="specialist-photo">
-                        <img [src]="lastSession.specialist.photo.url" />
+                        <img [src]="lastSession.specialist.user.photo.url" />
 
                         <div class="specialist-rating">
                             <app-rating [score]="lastSession.specialist.rating" [single]="true" [size]="18"></app-rating>
