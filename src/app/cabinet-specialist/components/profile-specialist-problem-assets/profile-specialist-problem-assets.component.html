@@ -674,12 +674,12 @@
 
                                             <div class="item-body">
                                                 <div class="create-item-form">
-                                                    <form [formGroup]="editResourceForm" (ngSubmit)="submitEditResourceForm(editResourceForm)">
+                                                    <form [formGroup]="editResourceForm">
                                                         <div class="form-inner">
                                                             <div class="form-block">
                                                                 <div class="form-group">
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" formControlName="title" required [ngClass]="{
+                                                                        <input type="text" formControlName="title" (keypress)="keyPressSubmitEditResource($event.keyCode, editResourceForm)" required [ngClass]="{
                                                                             'error': editResourceForm.controls['title'].invalid && editResourceForm.controls['title'].touched
                                                                         }" />
 
@@ -689,7 +689,7 @@
 
                                                                 <div class="form-group form-group-half">
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" formControlName="emotion" required [ngClass]="{
+                                                                        <input type="text" formControlName="emotion" required (keypress)="keyPressSubmitEditResource($event.keyCode, editResourceForm)" [ngClass]="{
                                                                             'error': editResourceForm.controls['emotion'].invalid && editResourceForm.controls['emotion'].touched
                                                                         }" />
 
@@ -697,7 +697,7 @@
                                                                     </div>
 
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" formControlName="location" required [ngClass]="{
+                                                                        <input type="text" formControlName="location" required (keypress)="keyPressSubmitEditResource($event.keyCode, editResourceForm)" [ngClass]="{
                                                                             'error': editResourceForm.controls['location'].invalid && editResourceForm.controls['location'].touched
                                                                         }" />
 
@@ -707,7 +707,7 @@
 
                                                                 <div class="form-group">
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" formControlName="characteristic" required [ngClass]="{
+                                                                        <input type="text" formControlName="characteristic" required (keypress)="keyPressSubmitEditResource($event.keyCode, editResourceForm)" [ngClass]="{
                                                                             'error': editResourceForm.controls['characteristic'].invalid && editResourceForm.controls['characteristic'].touched
                                                                         }" />
 
@@ -717,7 +717,7 @@
 
                                                                 <div class="form-group">
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" formControlName="influence" required [ngClass]="{
+                                                                        <input type="text" formControlName="influence" (keypress)="keyPressSubmitEditResource($event.keyCode, editResourceForm)" required [ngClass]="{
                                                                             'error': editResourceForm.controls['influence'].invalid && editResourceForm.controls['influence'].touched
                                                                         }" />
 
@@ -740,7 +740,7 @@
                                                             <div class="form-block">
                                                                 <div class="form-group form-group-inline">
                                                                     <div class="input-wrapper">
-                                                                        <input type="text" [(ngModel)]="createTaskInput" [ngModelOptions]="{standalone: true}" required />
+                                                                        <input type="text" [(ngModel)]="createTaskInput" [ngModelOptions]="{standalone: true}" (keypress)="createResourceTask(true, $event.keyCode)" required />
                                                                         <label (click)="labelClick($event.target.previousSibling)">Что хочется сделать</label>
                                                                         
                                                                         <button type="button" class="inline-button" (click)="createResourceTask(true)">
@@ -785,7 +785,7 @@
                                                         </div>
 
                                                         <div class="submit-block">
-                                                            <button type="submit">Сохранить</button>
+                                                            <button type="button" (click)="submitEditResourceForm(editResourceForm)">Сохранить</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -812,12 +812,12 @@
 
                                         <div class="item-body">
                                             <div class="create-item-form">
-                                                <form [formGroup]="createResourceForm" (ngSubmit)="submitCreateResourceForm(createResourceForm)">
+                                                <form [formGroup]="createResourceForm">
                                                     <div class="form-inner">
                                                         <div class="form-block">
                                                             <div class="form-group">
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" formControlName="title" required [ngClass]="{
+                                                                    <input type="text" formControlName="title" (keypress)="keyPressSubmitCreateResource($event.keyCode, createResourceForm)" required [ngClass]="{
                                                                         'error': createResourceForm.controls['title'].invalid && createResourceForm.controls['title'].touched
                                                                     }" />
 
@@ -827,7 +827,7 @@
 
                                                             <div class="form-group form-group-half">
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" formControlName="emotion" required [ngClass]="{
+                                                                    <input type="text" formControlName="emotion" (keypress)="keyPressSubmitCreateResource($event.keyCode, createResourceForm)" required [ngClass]="{
                                                                         'error': createResourceForm.controls['emotion'].invalid && createResourceForm.controls['emotion'].touched
                                                                     }" />
 
@@ -835,7 +835,7 @@
                                                                 </div>
 
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" formControlName="location" required [ngClass]="{
+                                                                    <input type="text" formControlName="location" (keypress)="keyPressSubmitCreateResource($event.keyCode, createResourceForm)" required [ngClass]="{
                                                                         'error': createResourceForm.controls['location'].invalid && createResourceForm.controls['location'].touched
                                                                     }" />
 
@@ -845,7 +845,7 @@
 
                                                             <div class="form-group">
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" formControlName="characteristic" required [ngClass]="{
+                                                                    <input type="text" formControlName="characteristic" (keypress)="keyPressSubmitCreateResource($event.keyCode, createResourceForm)" required [ngClass]="{
                                                                         'error': createResourceForm.controls['characteristic'].invalid && createResourceForm.controls['characteristic'].touched
                                                                     }" />
 
@@ -855,7 +855,7 @@
 
                                                             <div class="form-group">
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" formControlName="influence" required [ngClass]="{
+                                                                    <input type="text" formControlName="influence" (keypress)="keyPressSubmitCreateResource($event.keyCode, createResourceForm)" required [ngClass]="{
                                                                         'error': createResourceForm.controls['influence'].invalid && createResourceForm.controls['influence'].touched
                                                                     }" />
 
@@ -878,7 +878,7 @@
                                                         <div class="form-block">
                                                             <div class="form-group form-group-inline">
                                                                 <div class="input-wrapper">
-                                                                    <input type="text" [(ngModel)]="createTaskInput" [ngModelOptions]="{standalone: true}" required />
+                                                                    <input type="text" [(ngModel)]="createTaskInput" [ngModelOptions]="{standalone: true}" (keypress)="createResourceTask(false, $event.keyCode)" required />
                                                                     <label (click)="labelClick($event.target.previousSibling)">Что хочется сделать</label>
                                                                     
                                                                     <button type="button" class="inline-button" (click)="createResourceTask()">
@@ -923,7 +923,7 @@
                                                     </div>
 
                                                     <div class="submit-block">
-                                                        <button type="submit">Добавить</button>
+                                                        <button type="button" (click)="submitCreateResourceForm(createResourceForm)">Добавить</button>
                                                     </div>
                                                 </form>
                                             </div>

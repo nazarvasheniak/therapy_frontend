@@ -7,6 +7,7 @@ import { CreateUpdateProblemImageRequest, CreateUpdateProblemResourceTask, Creat
 import { ViewHelper } from 'src/app/common/helpers';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Location } from '@angular/common';
+import { ClassMethod } from '@angular/compiler';
 
 type AssetTab = "images" | "resources" | "sessions";
 
@@ -40,6 +41,22 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
         private location: Location
     ) {
 
+    }
+    
+    keyPressSubmitCreateResource(keyCode: number, form: FormGroup) {
+        if (keyCode != 13)  {
+            return;
+        }
+
+        this.submitCreateResourceForm(form);
+    }
+
+    keyPressSubmitEditResource(keyCode: number, form: FormGroup) {
+        if (keyCode != 13)  {
+            return;
+        }
+
+        this.submitEditResourceForm(form);
     }
 
     prevRoute() {
@@ -230,7 +247,11 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
         this.fillEditResourceForm(resource);
     }
 
-    createResourceTask(isEdit = false) {
+    createResourceTask(isEdit = false, keyCode?: number) {
+        if (keyCode && keyCode != 13) {
+            return;
+        }
+
         if (!this.createTaskInput) {
             return;
         }
