@@ -1,5 +1,5 @@
 <div class="specialists-carousel-item" [ngClass]="{'is-specialist': isSpecialist}">
-    <div class="specialist-photo">
+    <div class="specialist-photo" [routerLink]="['/specialists', specialist.id]">
         <div class="author-price">
             {{ specialist.price | number:'':'fr' }} ₽
         </div>
@@ -8,8 +8,8 @@
     </div>
 
     <div class="specialist-content">
-        <div class="info">
-            <div class="name" [routerLink]="['/specialists', specialist.id]">
+        <div class="info" [routerLink]="['/specialists', specialist.id]">
+            <div class="name">
                 {{ specialist.user.firstName }} {{ specialist.user.lastName }}
             </div>
 

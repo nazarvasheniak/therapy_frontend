@@ -105,7 +105,7 @@
                                             </svg>                                                
                                         </div>
 
-                                        <div class="user-name">
+                                        <div class="user-name" [routerLink]="['/profile-specialist/clients', review.session.problem.user.id]">
                                             {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}
                                         </div>
                                     </div>
@@ -151,7 +151,7 @@
                                             </svg>                                                
                                         </div>
 
-                                        <div class="user-name">
+                                        <div class="user-name" [routerLink]="['/profile-specialist/clients', review.session.problem.user.id]">
                                             {{ review.session.problem.user.firstName }} {{ review.session.problem.user.lastName }}
                                         </div>
                                     </div>

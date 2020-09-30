@@ -5,6 +5,7 @@ import { ClientCard } from 'src/app/common/models';
 import { PaginationComponent } from 'src/app/layout/pagination/pagination.component';
 import { ClientsSorter } from './clients-sorter.enum';
 import { SortBy } from 'src/app/common/enums';
+import { DateTimeHelper } from 'src/app/common/helpers';
 
 @Component({
 	selector: 'app-profile-specialist-clients',
@@ -39,7 +40,17 @@ export class ProfileSpecialistClientsComponent implements OnInit {
                 this.pageNumber = clientsResponse.currentPage;
                 this.totalPages = clientsResponse.totalPages;
 
-                this.sortClients(clientsResponse.data);
+				const clients = clientsResponse.data.map(client => {
+					client.sessions.map(session => {
+						session.sessionDate = DateTimeHelper.toLocalDateTime(session.sessionDate);
+						session.specialistCloseDate = DateTimeHelper.toLocalDateTime(session.specialistCloseDate);
+						return session;
+					});
+
+                    return client;
+                });
+
+                this.sortClients(clients);
             });
     }
 
@@ -66,7 +77,6 @@ export class ProfileSpecialistClientsComponent implements OnInit {
     }
     
     private sortClients(clients: ClientCard[]) {
-        console.log(clients)
 		if (this.sorter == ClientsSorter.Paid) {
 			if (this.sortBy == SortBy.ASC) {
 				this.clients = clients.sort((a, b) => {

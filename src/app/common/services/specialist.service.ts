@@ -66,6 +66,11 @@ export class SpecialistService extends BaseHttpService {
         return this.get<ListResponse<SpecialistSession>>(`/specialist/sessions?pageNumber=${query.pageNumber}&pageSize=${query.pageSize}`);
     }
 
+    public getSession(sessionID: number) {
+        return this.get<DataResponse<SpecialistSession>>(`/specialist/sessions/${sessionID}`)
+            .map(response => response.data);
+    }
+
     public getReviews() {
         return this.get<ReviewsResponse>(`/specialist/reviews`);
     }

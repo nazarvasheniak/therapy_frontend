@@ -44,7 +44,43 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
 
     prevRoute() {
 		this.location.back();
-	}
+    }
+    
+    getActiveImages() {
+        return this.assets.images.filter(image => !image.isHidden);
+    }
+
+    isImageHaveRelations(image: ProblemImage) {
+        return !!this.assets.images
+            .filter(x => !x.isHidden && x.parentImage && x.parentImage.id == image.id)
+            .length;
+    }
+
+    getImageRelation(image: ProblemImage) {
+        return this.assets.images.find(x => !x.isHidden && x.parentImage && x.parentImage.id == image.id);
+    }
+
+    getAllowedImages(imageID: number, images?: ProblemImage[]) {
+        if (!images) {
+            images = this.assets.images;
+        }
+
+        images = images.filter(x => !x.isHidden);
+
+        const image = images.find(x => x.id == imageID);
+        
+        return this.filterRelations(image, images);
+    }
+
+    filterRelations(image: ProblemImage, images: ProblemImage[]) {
+        const relation = images.find(x => x.parentImage && x.parentImage.id == image.id);
+
+        if (!relation) {
+            return images;
+        }
+
+        return this.filterRelations(relation, images.filter(x => x.id != relation.id));
+    }
 
     private initCreateImageForm() {
         this.createImageForm = new FormGroup({
@@ -56,7 +92,7 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
             isIDo: new FormControl(false),
             isForever: new FormControl(false),
             likeScore: new FormControl(0),
-            parentImageID: new FormControl(0)
+            parentImageID: new FormControl({ value: 0, disabled: !this.assets.images.filter(image => !image.isHidden).length })
         });
     }
 
@@ -97,7 +133,7 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
             isIDo: new FormControl(false),
             isForever: new FormControl(false),
             likeScore: new FormControl(0),
-            parentImageID: new FormControl(0)
+            parentImageID: new FormControl({ value: 0, disabled: !this.assets.images.filter(image => !image.isHidden).length })
         });
     }
 
@@ -139,7 +175,7 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
             isIDo: new FormControl(image.isIDo),
             isForever: new FormControl(image.isForever),
             likeScore: new FormControl(image.likeScore),
-            parentImageID: new FormControl(image.parentImage ? image.parentImage.id : 0)
+            parentImageID: new FormControl({ value: image.parentImage ? image.parentImage.id : 0, disabled: !this.assets.images.filter(x => !x.isHidden && x.id != image.id).length })
         });
     }
 
@@ -175,6 +211,8 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
                         }
 
                         this.setActiveTab(tab);
+                        this.initEditImageForm();
+                        this.initEditResourceForm();
                     });
             });
     }
@@ -253,7 +291,9 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
         }
 
         const request: CreateUpdateProblemImageRequest = {...form.value};
-        request.parentImageID = Number(request.parentImageID);
+        if (request.parentImageID) {
+            request.parentImageID = Number(request.parentImageID);
+        }
 
         this.specialistService
             .createClientProblemImage(request, this.client.user.id, this.assets.problem.id)
@@ -294,6 +334,10 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
     }
 
     submitEditProblemImage(form: FormGroup) {
+        if (form.value['parentImageID'] == '') {
+            form.controls['parentImageID'].setValue(0);
+        }
+
         if (form.invalid) {
             this.markEditImageFormAsTouched();
             
@@ -301,7 +345,9 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
         }
 
         const request: CreateUpdateProblemImageRequest = {...form.value};
-        request.parentImageID = Number(request.parentImageID);
+        if (request.parentImageID) {
+            request.parentImageID = Number(request.parentImageID);
+        }
 
         this.specialistService
             .updateClientProblemImage(request, this.client.user.id, this.assets.problem.id, form.value['id'])
@@ -329,9 +375,6 @@ export class ProfileSpecialistProblemAssetsComponent implements OnInit {
                         this.loadClient(params['clientID']);
                         this.loadAssets(params['clientID'], params['problemID']);
                     });
-
-                this.initEditImageForm();
-                this.initEditResourceForm();
             });
     }
 

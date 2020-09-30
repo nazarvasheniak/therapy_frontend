@@ -1,7 +1,7 @@
 <div class="specialist-block" [ngClass]="{'is-specialist': isSpecialist}">
 
     <!-- Specialist Photo -->
-    <div class="specialist-photo">
+    <div class="specialist-photo" [routerLink]="['/specialists', specialist.id]">
         <div class="author-price">
             {{ specialist.price | number:'':'fr' }} ₽
         </div>
@@ -10,10 +10,10 @@
     </div>
 
     <!-- Specialist Info -->
-    <div class="specialist-info">
+    <div class="specialist-info" [routerLink]="['/specialists', specialist.id]">
 
         <!-- Specialist Name -->
-        <div class="specialist-name" [routerLink]="['/specialists', specialist.id]">
+        <div class="specialist-name">
             {{ specialist.user.firstName }} {{ specialist.user.lastName }}
         </div>
 

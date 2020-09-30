@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SpecialistService, AuthService } from 'src/app/common/services';
 import { SpecialistSession } from 'src/app/common/models';
 import { PaginationComponent } from 'src/app/layout/pagination/pagination.component';
+import { DateTimeHelper } from 'src/app/common/helpers';
 
 @Component({
 	selector: 'app-profile-specialist-sessions',
@@ -33,7 +34,12 @@ export class ProfileSpecialistSessionsComponent implements OnInit {
                 this.pageSize = sessionsResponse.pageSize;
                 this.pageNumber = sessionsResponse.currentPage;
                 this.totalPages = sessionsResponse.totalPages;
-                this.sessions = sessionsResponse.data;
+
+                this.sessions = sessionsResponse.data.map(session => {
+                    session.sessionDate = DateTimeHelper.toLocalDateTime(session.sessionDate);
+                    session.specialistCloseDate = DateTimeHelper.toLocalDateTime(session.specialistCloseDate);
+                    return session;
+                });
             });
     }
 
@@ -97,6 +103,6 @@ export class ProfileSpecialistSessionsComponent implements OnInit {
     }
 
     reloadData(event) {
-        this.loadSessions(this.pageNumber, this.pageSize);
+        console.log(event)
     }
 }

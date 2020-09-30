@@ -10,7 +10,7 @@ export class FilterHiddenImagesPipe implements PipeTransform {
         if (!items) {
             return items;
         }
-        
-        return items.filter(item => !item.isHidden);
+
+        return items.filter((item) => !item.isHidden);
     }
 }

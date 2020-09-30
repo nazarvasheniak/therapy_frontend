@@ -247,13 +247,13 @@
                                                             </div>
                                                         </div>
     
-                                                        <div class="item-description-column button-column" *ngIf="!image.parentImage || image.parentImage.isHidden">
+                                                        <div class="item-description-column button-column" *ngIf="!isImageHaveRelations(image)">
                                                             <div class="column-value">
                                                                 <button class="button-green" (click)="hideProblemImage(image)">Убрать образ</button>
                                                             </div>
                                                         </div>
     
-                                                        <div class="item-description-column relation-column" *ngIf="image.parentImage && !image.parentImage.isHidden">
+                                                        <div class="item-description-column relation-column" *ngIf="isImageHaveRelations(image)">
                                                             <div class="column-title">
                                                                 Убрать
                                                             </div>
@@ -265,7 +265,7 @@
                                                                 
                                                                 <div class="related-image">
                                                                     <div class="text">
-                                                                        Зависит от образа “{{ image.parentImage.title }}”
+                                                                        Зависит от образа “{{ getImageRelation(image).title }}”
                                                                     </div>
     
                                                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -371,16 +371,18 @@
     
                                                                 <div class="form-group">
                                                                     <div class="input-wrapper">
-                                                                        <select required formControlName="parentImageID" [disabled]="!assets.images.length">
+                                                                        <select required formControlName="parentImageID">
                                                                             <option value></option>
-                                                                            <ng-container *ngFor="let image of assets.images | filterHiddenImages">
-                                                                                <option *ngIf="image.id != editImageForm.value['id']" [value]="image.id">
-                                                                                    {{ image.title }}
-                                                                                </option>
+                                                                            <ng-container *ngFor="let image of getAllowedImages(editImageForm.value['id'])">
+                                                                                <ng-container *ngIf="image.id != editImageForm.value['id']">
+                                                                                    <option [value]="image.id">
+                                                                                        {{ image.title }}
+                                                                                    </option>
+                                                                                </ng-container>
                                                                             </ng-container>
                                                                         </select>
                                                                         
-                                                                        <label>Зависимость</label>
+                                                                        <label>Влияет на</label>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -487,14 +489,14 @@
 
                                                             <div class="form-group">
                                                                 <div class="input-wrapper">
-                                                                    <select required formControlName="parentImageID" [disabled]="!assets.images.length">
+                                                                    <select required formControlName="parentImageID">
                                                                         <option value></option>
                                                                         <option *ngFor="let image of assets.images | filterHiddenImages" [value]="image.id">
                                                                             {{ image.title }}
                                                                         </option>
                                                                     </select>
                                                                     
-                                                                    <label>Зависимость</label>
+                                                                    <label>Влияет на</label>
                                                                 </div>
                                                             </div>
                                                         </div>
