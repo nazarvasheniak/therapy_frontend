@@ -207,7 +207,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="item-description-column relation-column" *ngIf="image.parentImage && !image.parentImage.isHidden">
+                                                    <div class="item-description-column relation-column" *ngIf="getImageRelation(image)">
                                                         <div class="column-title">
                                                             Убрать
                                                         </div>
@@ -219,7 +219,29 @@
                                                             
                                                             <div class="related-image">
                                                                 <div class="text">
-                                                                    Зависит от образа “{{ image.parentImage.title }}”
+                                                                    Зависит от “{{ getImageRelation(image).title }}”
+                                                                </div>
+
+                                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.9389 5.85205L7.81395 2.72706C7.73257 2.64567 7.60073 2.64567 7.51936 2.72706C7.43798 2.80844 7.43798 2.94028 7.51936 3.02164L10.2887 5.79102H1.20834C1.09318 5.79102 1 5.8842 1 5.99936C1 6.11451 1.09318 6.20769 1.20834 6.20769H10.2887L7.51936 8.97705C7.43798 9.05843 7.43798 9.19027 7.51936 9.27163C7.56005 9.31232 7.61337 9.33267 7.66667 9.33267C7.71997 9.33267 7.77327 9.31232 7.81397 9.27163L10.939 6.14664C11.0203 6.06527 11.0203 5.93344 10.9389 5.85205Z" fill="#B6C5BC" stroke="#B6C5BC" stroke-width="0.5"/>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="item-description-column relation-column" *ngIf="!getImageRelation(image) && image.parentImage && !image.parentImage.isHidden">
+                                                        <div class="column-title">
+                                                            Убрать
+                                                        </div>
+                                                        
+                                                        <div class="column-value">
+                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M8 0C3.58887 0 0 3.58887 0 8C0 12.4111 3.58887 16 8 16C12.4111 16 16 12.4111 16 8C16 3.58887 12.4111 0 8 0ZM8 14C4.69172 14 2 11.3083 2 8C2 6.73731 2.38281 5.54362 3.11069 4.52506L11.4749 12.8893C10.4564 13.6172 9.26269 14 8 14ZM12.8893 11.4749L4.52506 3.11069C5.54362 2.38281 6.73731 2 8 2C11.3083 2 14 4.69172 14 8C14 9.26269 13.6172 10.4564 12.8893 11.4749Z" fill="#B6C5BC"/>
+                                                            </svg>
+                                                            
+                                                            <div class="related-image">
+                                                                <div class="text">
+                                                                    Влияет на “{{ image.parentImage.title }}”
                                                                 </div>
 
                                                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">

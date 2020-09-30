@@ -132,4 +132,8 @@ export class ProblemAssetsComponent implements OnInit {
 
         this.router.navigateByUrl( `/specialists/${session.specialist.id}?review=${review.id}`);
     }
+
+    getImageRelation(image: ProblemImage) {
+        return this.assets.images.find(x => !x.isHidden && x.parentImage && x.parentImage.id == image.id);
+    }
 }
