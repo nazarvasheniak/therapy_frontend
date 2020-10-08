@@ -14,3 +14,4 @@ export * from './router-ext.service';
 export * from './auth-guard.service';
 export * from './logged-guard.service';
 export * from './role-guard.service';
+export * from './superadmin-guard.service';

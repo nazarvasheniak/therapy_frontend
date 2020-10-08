@@ -10,6 +10,7 @@ export class ListResponse<T> extends ResponseModel {
     public pageSize: number;
     public currentPage: number;
     public totalPages: number;
+    public totalItems: number;
 }
 
 export class SpecialistsListResponse extends ListResponse<Specialist> {

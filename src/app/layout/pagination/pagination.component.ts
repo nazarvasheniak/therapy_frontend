@@ -24,7 +24,7 @@ export class PaginationComponent implements OnChanges {
     }
 
 	constructor() {
-
+		
 	}
 
 	ngOnChanges() {

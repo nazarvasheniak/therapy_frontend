@@ -33,6 +33,9 @@ import { AuthGuardService as AuthGuard } from './common/services';
 import { LoggedGuardService as LoggedGuard } from './common/services';
 import { RoleGuardService as RoleGuard } from './common/services';
 import { SettingsComponent } from './cabinet/components/settings/settings.component';
+import { DashboardComponent } from './superadmin/components/dashboard/dashboard.component';
+import { SuperadminGuardService as SuperadminGuard } from './common/services';
+import { CustomersComponent } from './superadmin/components/customers/customers.component';
 
 const routes: Routes = [
 	{
@@ -199,6 +202,17 @@ const routes: Routes = [
 	{
 		path: 'offer',
 		component: OfferComponent
+	},
+
+	{ 
+		path: 'superadmin', 
+		redirectTo: '/superadmin/customers'
+	},
+
+	{ 
+		path: 'superadmin/customers', 
+		component: CustomersComponent, 
+		canActivate: [SuperadminGuard]
 	},
 
 	{
