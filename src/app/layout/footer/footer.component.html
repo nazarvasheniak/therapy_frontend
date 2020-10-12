@@ -91,7 +91,7 @@
                                 </button>
                             </div>
 
-                            <div class="profile-badge-wrapper" *ngIf="user && user.role == 1" [routerLink]="['/profile']">
+                            <div class="profile-badge-wrapper" *ngIf="user" [routerLink]="[getCabinetRoute(user)]">
                                 <div class="avatar" *ngIf="user.photo && user.photo.url">
                                     <img [src]="user.photo.url" />
                                 </div>
@@ -100,20 +100,6 @@
                                     {{ getAvatar() }}
                                 </div>
                     
-                                <div class="username">
-                                    {{ user.firstName }}
-                                </div>
-                            </div>
-
-                            <div class="profile-badge-wrapper" *ngIf="user && (user.role == 2 || user.role == 3)" [routerLink]="['/profile-specialist']">
-                                <div class="avatar" *ngIf="user.photo && user.photo.url">
-                                    <img [src]="user.photo.url" />
-                                </div>
-        
-                                <div class="avatar" *ngIf="!user.photo || !user.photo.url">
-                                    {{ getAvatar() }}
-                                </div>
-                
                                 <div class="username">
                                     {{ user.firstName }}
                                 </div>

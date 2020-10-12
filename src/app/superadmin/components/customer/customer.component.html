@@ -118,11 +118,11 @@
                             </button>
 
                             <div class="roles-expanded" [ngClass]="{'expanded': isRoleListExpanded}">
-                                <div class="item selected">
+                                <div class="item selected" (click)="changeCustomerRole(customer.role)">
                                     {{ convertCustomerRole(customer.role) }}
                                 </div>
 
-                                <div class="item" *ngFor="let role of getRolesList()">
+                                <div class="item" *ngFor="let role of getRolesList()" (click)="changeCustomerRole(convertCustomerRoleReverse(role))">
                                     {{ role }}
                                 </div>
                             </div>

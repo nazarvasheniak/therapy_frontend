@@ -11,6 +11,7 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { CountdownModule } from '../common/modules';
 import { SuperadminReviewsComponent } from './components/reviews/reviews.component';
 import { SuperadminVideoReviewsComponent } from './components/video-reviews/video-reviews.component';
+import { SuperadminVideoReviewsCreateComponent } from './components/video-reviews-create/video-reviews-create.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { SuperadminVideoReviewsComponent } from './components/video-reviews/vide
         CustomersComponent,
         CustomerComponent,
         SuperadminReviewsComponent,
-        SuperadminVideoReviewsComponent
+        SuperadminVideoReviewsComponent,
+        SuperadminVideoReviewsCreateComponent
     ],
     imports: [
         CommonModule,

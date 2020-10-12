@@ -57,6 +57,20 @@ export class ProfileHeaderComponent implements OnInit {
 			});
 	}
 
+	getCabinetRoute(user: User) {
+		if (user.role == UserRole.Client) {
+			return '/cabinet';
+		}
+
+		if (user.role == UserRole.Specialist) {
+			return '/cabinet-specialist';
+		}
+
+		if (user.role == UserRole.Administrator) {
+			return '/superadmin/customers';
+		}
+	}
+
 	getAvatar() {
 		return StringHelper.getFirstLetter(this.user.lastName);
 	}

@@ -47,7 +47,18 @@ export class CustomerComponent implements OnInit {
     }
 
     changeCustomerRole(role: UserRole) {
+        if (role == this.customer.role) {
+            return;
+        }
+
         this.customer.role = role;
+
+        this.superAdminService
+            .changeCustomerRole({ role }, this.customer.userID)
+            .subscribe(customer => {
+                this.customer = customer;
+                this.isRoleListExpanded = false;
+            });
     }
 
     convertCustomerRole(role: UserRole) {
@@ -60,6 +71,19 @@ export class CustomerComponent implements OnInit {
 
 			case UserRole.Administrator:
 				return 'Админ';
+		}
+    }
+
+    convertCustomerRoleReverse(role: string) {
+		switch (role) {
+			case 'Пациент':
+				return UserRole.Client;
+
+			case 'Специалист':
+				return UserRole.Specialist;
+
+			case 'Админ':
+				return UserRole.Administrator;
 		}
     }
     

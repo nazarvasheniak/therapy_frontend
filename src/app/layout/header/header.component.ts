@@ -34,6 +34,20 @@ export class HeaderComponent {
 			});
 	}
 
+	getCabinetRoute(user: User) {
+		if (user.role == UserRole.Client) {
+			return '/cabinet';
+		}
+
+		if (user.role == UserRole.Specialist) {
+			return '/cabinet-specialist';
+		}
+
+		if (user.role == UserRole.Administrator) {
+			return '/superadmin/customers';
+		}
+	}
+
 	private loadUserInfo() {
 		this.usersService.getUserInfo()
 			.subscribe(user => {

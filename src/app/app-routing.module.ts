@@ -39,6 +39,7 @@ import { CustomersComponent } from './superadmin/components/customers/customers.
 import { CustomerComponent } from './superadmin/components/customer/customer.component';
 import { SuperadminReviewsComponent } from './superadmin/components/reviews/reviews.component';
 import { SuperadminVideoReviewsComponent } from './superadmin/components/video-reviews/video-reviews.component';
+import { SuperadminVideoReviewsCreateComponent } from './superadmin/components/video-reviews-create/video-reviews-create.component';
 
 const routes: Routes = [
 	{
@@ -228,6 +229,12 @@ const routes: Routes = [
 	{ 
 		path: 'superadmin/reviews/video', 
 		component: SuperadminVideoReviewsComponent, 
+		canActivate: [SuperadminGuard]
+	},
+
+	{ 
+		path: 'superadmin/reviews/video/create', 
+		component: SuperadminVideoReviewsCreateComponent, 
 		canActivate: [SuperadminGuard]
 	},
 

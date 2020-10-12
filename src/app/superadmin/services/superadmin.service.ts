@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseHttpService } from 'src/app/common/services';
-import { ChangeCustomerRoleRequest, GetAdministratorsListRequest, GetPatientsListRequest, GetSpecialistsListRequest } from '../models/request';
+import { ChangeCustomerRoleRequest, CreateVideoReviewRequest, GetAdministratorsListRequest, GetPatientsListRequest, GetSpecialistsListRequest } from '../models/request';
 import { GetAdministratorsListResponse, GetPatientListResponse, GetSpecialistsListResponse } from '../models/response';
-import { DataResponse } from 'src/app/common/models/response';
+import { DataResponse, ListResponse } from 'src/app/common/models/response';
 import { SuperadminCustomerCard } from '../models';
+import { ClientVideoReview } from 'src/app/common/models';
+import { GetList } from 'src/app/common/models/request';
 
 @Injectable()
 export class SuperadminService extends BaseHttpService {
@@ -34,6 +36,15 @@ export class SuperadminService extends BaseHttpService {
 
     public changeCustomerRole(request: ChangeCustomerRoleRequest, customerID: number) {
         return this.put<DataResponse<SuperadminCustomerCard>>(`/superadmin/customers/${customerID}/role`, request)
+            .map(response => response.data);
+    }
+
+    public getVideoReviews(query: GetList) {
+        return this.get<ListResponse<ClientVideoReview>>('/superadmin/reviews/video');
+    }
+
+    public createVideoReview(request: CreateVideoReviewRequest) {
+        return this.post<DataResponse<ClientVideoReview>>('/superadmin/reviews/video', request)
             .map(response => response.data);
     }
 }
