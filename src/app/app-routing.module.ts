@@ -36,6 +36,9 @@ import { SettingsComponent } from './cabinet/components/settings/settings.compon
 import { DashboardComponent } from './superadmin/components/dashboard/dashboard.component';
 import { SuperadminGuardService as SuperadminGuard } from './common/services';
 import { CustomersComponent } from './superadmin/components/customers/customers.component';
+import { CustomerComponent } from './superadmin/components/customer/customer.component';
+import { SuperadminReviewsComponent } from './superadmin/components/reviews/reviews.component';
+import { SuperadminVideoReviewsComponent } from './superadmin/components/video-reviews/video-reviews.component';
 
 const routes: Routes = [
 	{
@@ -205,13 +208,26 @@ const routes: Routes = [
 	},
 
 	{ 
-		path: 'superadmin', 
-		redirectTo: '/superadmin/customers'
+		path: 'superadmin/customers', 
+		component: CustomersComponent, 
+		canActivate: [SuperadminGuard]
 	},
 
 	{ 
-		path: 'superadmin/customers', 
-		component: CustomersComponent, 
+		path: 'superadmin/customers/:customerID', 
+		component: CustomerComponent, 
+		canActivate: [SuperadminGuard]
+	},
+
+	{ 
+		path: 'superadmin/reviews', 
+		component: SuperadminReviewsComponent, 
+		canActivate: [SuperadminGuard]
+	},
+
+	{ 
+		path: 'superadmin/reviews/video', 
+		component: SuperadminVideoReviewsComponent, 
 		canActivate: [SuperadminGuard]
 	},
 

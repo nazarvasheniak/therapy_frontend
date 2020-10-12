@@ -38,6 +38,10 @@ export class RoleGuardService implements CanActivate {
             return true;
         }
 
+        if (role == UserRole.Administrator) {
+            return true;
+        }
+
         return false;
     }
 

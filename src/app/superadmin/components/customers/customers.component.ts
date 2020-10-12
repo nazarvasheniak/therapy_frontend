@@ -4,6 +4,7 @@ import { SortBy, UserRole } from 'src/app/common/enums';
 import { SuperadminService } from '../../services';
 import { Superadmin, SuperadminPatient, SuperadminSpecialist } from '../../models';
 import { PatientsSorter, SpecialistsSorter } from './customers.sorters';
+import { Router } from '@angular/router';
 
 interface ICustomersList<CType, SType = null> {
 	customers: CType[],
@@ -66,10 +67,15 @@ export class CustomersComponent implements OnInit {
 	};
 
     constructor(
-        private superadminService: SuperadminService
+		private superadminService: SuperadminService,
+		private router: Router
     ) {
 
 	}
+
+	routeToCustomer(customerID: number) {
+		this.router.navigateByUrl(`/superadmin/customers/${customerID}`);
+    }
 
 	ngOnInit(): void {
 		
@@ -178,6 +184,19 @@ export class CustomersComponent implements OnInit {
 					this.administrators.searchQuery
 				);
 			}
+		}
+	}
+
+	convertCustomerRole(role: UserRole) {
+		switch (role) {
+			case UserRole.Client:
+				return 'Пациент';
+
+			case UserRole.Specialist:
+				return 'Специалист';
+
+			case UserRole.Administrator:
+				return 'Админ';
 		}
 	}
 

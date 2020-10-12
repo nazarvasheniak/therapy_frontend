@@ -58,22 +58,13 @@ export class ProfileSpecialistClientComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.authService.isLoggedIn
-            .subscribe(logged => {
-                if (!logged) {
-                    this.router.navigate(['/']);
-
+        this.route.params
+            .subscribe(params => {
+                if (!params['id']) {
                     return;
                 }
 
-                this.route.params
-                    .subscribe(params => {
-                        if (!params['id']) {
-                            return;
-                        }
-
-                        this.loadClient(params['id']);
-                    });
+                this.loadClient(params['id']);
             });
     }
 

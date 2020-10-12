@@ -252,7 +252,7 @@
                         <div class="tabs-content">
                             <div class="tab-content" *ngIf="activeTab == 'Patients'">
                                 <div class="clients-list-item" *ngFor="let patient of patients.customers">
-                                    <div class="client-name" [routerLink]="['/superadmin/customers', patient.user.id]">
+                                    <div class="client-name" (click)="routeToCustomer(patient.user.id)">
                                         <div class="avatar">
                                             <div class="avatar-inner">
                                                 <img *ngIf="patient.user.photo && patient.user.photo.url" [src]="patient.user.photo.url" />
@@ -336,7 +336,7 @@
 
                             <div class="tab-content" *ngIf="activeTab == 'Specialists'">
                                 <div class="clients-list-item" *ngFor="let specialist of specialists.customers">
-                                    <div class="client-name" [routerLink]="['/superadmin/customers', specialist.user.id]">
+                                    <div class="client-name" (click)="routeToCustomer(specialist.user.id)">
                                         <div class="avatar">
                                             <div class="avatar-inner">
                                                 <img *ngIf="specialist.user.photo && specialist.user.photo.url" [src]="specialist.user.photo.url" />
@@ -410,7 +410,7 @@
 
                             <div class="tab-content" *ngIf="activeTab == 'Administrators'">
                                 <div class="clients-list-item" *ngFor="let administrator of administrators.customers">
-                                    <div class="client-name" [routerLink]="['/superadmin/customers', administrator.user.id]">
+                                    <div class="client-name" (click)="routeToCustomer(administrator.user.id)">
                                         <div class="avatar">
                                             <div class="avatar-inner">
                                                 <img *ngIf="administrator.user.photo && administrator.user.photo.url" [src]="administrator.user.photo.url" />
@@ -434,7 +434,7 @@
                                             </div>
         
                                             <div class="value">
-                                                {{ administrator.user.role }}
+                                                {{ convertCustomerRole(administrator.user.role) }}
                                             </div>
                                         </div>
                                     </div>

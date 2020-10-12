@@ -7,19 +7,27 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { SuperadminService } from './services';
+import { CustomerComponent } from './components/customer/customer.component';
+import { CountdownModule } from '../common/modules';
+import { SuperadminReviewsComponent } from './components/reviews/reviews.component';
+import { SuperadminVideoReviewsComponent } from './components/video-reviews/video-reviews.component';
 
 @NgModule({
     declarations: [
         DashboardComponent,
         SidebarComponent,
-        CustomersComponent
+        CustomersComponent,
+        CustomerComponent,
+        SuperadminReviewsComponent,
+        SuperadminVideoReviewsComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        LayoutModule
+        LayoutModule,
+        CountdownModule
     ],
     providers: [
         SuperadminService

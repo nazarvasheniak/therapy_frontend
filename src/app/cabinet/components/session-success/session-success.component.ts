@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService, PatientService } from 'src/app/common/services';
 import { Session } from 'src/app/common/models';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SessionStatus } from 'src/app/common/enums';
 
 @Component({
 	selector: 'cabinet-session-success',
