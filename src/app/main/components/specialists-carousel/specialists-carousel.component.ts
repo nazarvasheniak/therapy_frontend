@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, Input } from "@angular/core";
-import { Specialist } from 'src/app/common/models';
+import { ClientVideoReview, Specialist } from 'src/app/common/models';
 
 @Component({
     selector: 'specialists-carousel',

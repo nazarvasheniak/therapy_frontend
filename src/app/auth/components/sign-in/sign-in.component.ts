@@ -100,7 +100,7 @@ export class SignInComponent implements OnInit {
             return;
         }
 
-        if (phoneNumber == '+78888888888' || phoneNumber == '+79999999999') {
+        if (phoneNumber == '+78888888888' || phoneNumber == '+79999999999' || phoneNumber == '+70000000000') {
             this.authService.signInTest({ phoneNumber })
                 .subscribe(
                     (data) => {

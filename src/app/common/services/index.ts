@@ -15,3 +15,4 @@ export * from './auth-guard.service';
 export * from './logged-guard.service';
 export * from './role-guard.service';
 export * from './superadmin-guard.service';
+export * from './reviews.service';
