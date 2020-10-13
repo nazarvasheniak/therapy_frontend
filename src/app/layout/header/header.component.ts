@@ -36,11 +36,11 @@ export class HeaderComponent {
 
 	getCabinetRoute(user: User) {
 		if (user.role == UserRole.Client) {
-			return '/cabinet';
+			return '/profile';
 		}
 
 		if (user.role == UserRole.Specialist) {
-			return '/cabinet-specialist';
+			return '/profile-specialist';
 		}
 
 		if (user.role == UserRole.Administrator) {

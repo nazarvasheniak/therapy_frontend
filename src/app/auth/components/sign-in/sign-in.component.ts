@@ -112,6 +112,12 @@ export class SignInComponent implements OnInit {
 
                             return;
                         }
+
+                        if (data.role == UserRole.Administrator) {
+                            this.router.navigate(['/superadmin/customers']);
+
+                            return;
+                        }
                         
                         this.router.navigate(['/profile']);
                     },
