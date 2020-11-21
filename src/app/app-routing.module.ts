@@ -40,6 +40,8 @@ import { CustomerComponent } from './superadmin/components/customer/customer.com
 import { SuperadminReviewsComponent } from './superadmin/components/reviews/reviews.component';
 import { SuperadminVideoReviewsComponent } from './superadmin/components/video-reviews/video-reviews.component';
 import { SuperadminVideoReviewsCreateComponent } from './superadmin/components/video-reviews-create/video-reviews-create.component';
+import { SignUpSpecialistComponent } from './auth/components/sign-up-specialist/sign-up-specialist.component';
+import { FilesComponent } from './superadmin/components/files/components/files/files.component';
 
 const routes: Routes = [
 	{
@@ -50,6 +52,12 @@ const routes: Routes = [
 	{
 		path: 'sign-up',
 		component: SignUpComponent,
+		canActivate: [LoggedGuard]
+	},
+
+	{
+		path: 'sign-up/specialist',
+		component: SignUpSpecialistComponent,
 		canActivate: [LoggedGuard]
 	},
 
@@ -221,6 +229,12 @@ const routes: Routes = [
 	},
 
 	{ 
+		path: 'superadmin/files', 
+		component: FilesComponent, 
+		canActivate: [SuperadminGuard]
+	},
+
+	{ 
 		path: 'superadmin/reviews', 
 		component: SuperadminReviewsComponent, 
 		canActivate: [SuperadminGuard]
@@ -229,6 +243,12 @@ const routes: Routes = [
 	{ 
 		path: 'superadmin/reviews/video', 
 		component: SuperadminVideoReviewsComponent, 
+		canActivate: [SuperadminGuard]
+	},
+
+	{ 
+		path: 'superadmin/reviews/video/:id', 
+		component: SuperadminVideoReviewsCreateComponent, 
 		canActivate: [SuperadminGuard]
 	},
 

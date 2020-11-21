@@ -12,23 +12,24 @@
         border-radius: 10px;
         padding-top: 26px;
         padding-bottom: 26px;
-        padding-left: 50px;
         padding-right: 26px;
         display: flex;
         justify-content: space-between;
         align-items: center;
     
         .review-content {
-            max-width: 281px;
+            padding-left: 50px;
+            padding-right: 50px;
     
             .reviewer {
                 display: flex;
                 align-items: center;
     
-                .reviewer-photo {
+                /* .reviewer-photo {
                     margin-right: 19px;
                     width: 48px;
                     height: 48px;
+                    flex: 0 0 48px;
                     border-radius: 100px;
 
                     >img {
@@ -37,14 +38,14 @@
                         object-fit: cover;
                         border-radius: 100px;
                     }
-                }
+                } */
     
                 .reviewer-name {
                     font-weight: bold;
                     font-size: 18px;
                     line-height: 25px;
                     color: #000000;
-                    max-width: 123px;
+                    padding-right: 75px;
                 }
             }
     
@@ -56,9 +57,9 @@
                 color: #000000;
             }
     
-            .social {
+            /* .social {
                 margin-top: 35px;
-            }
+            } */
         }
     
         .review-video {

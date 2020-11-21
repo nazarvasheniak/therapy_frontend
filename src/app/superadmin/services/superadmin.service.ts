@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseHttpService } from 'src/app/common/services';
-import { ChangeCustomerRoleRequest, CreateVideoReviewRequest, GetAdministratorsListRequest, GetPatientsListRequest, GetSpecialistsListRequest } from '../models/request';
-import { GetAdministratorsListResponse, GetPatientListResponse, GetSpecialistsListResponse } from '../models/response';
-import { DataResponse, ListResponse } from 'src/app/common/models/response';
+import { ChangeCustomerRoleRequest, CreateVideoReviewRequest, GetAdministratorsListRequest, GetPatientsListRequest, GetSearchListRequest, GetSpecialistsListRequest } from '../models/request';
+import { GetAdministratorsListResponse, GetPatientListResponse, GetSearchListResponse, GetSpecialistsListResponse } from '../models/response';
+import { DataResponse, ListResponse, ResponseModel } from 'src/app/common/models/response';
 import { SuperadminCustomerCard } from '../models';
-import { ClientVideoReview } from 'src/app/common/models';
+import { ClientVideoReview, File } from 'src/app/common/models';
 import { GetList } from 'src/app/common/models/request';
 
 @Injectable()
@@ -46,5 +46,26 @@ export class SuperadminService extends BaseHttpService {
     public createVideoReview(request: CreateVideoReviewRequest) {
         return this.post<DataResponse<ClientVideoReview>>('/superadmin/reviews/video', request)
             .map(response => response.data);
+    }
+
+    public editVideoReview(request: CreateVideoReviewRequest, reviewID: number) {
+        return this.put<DataResponse<ClientVideoReview>>(`/superadmin/reviews/video/${reviewID}`, request)
+            .map(response => response.data);
+    }
+
+    public deleteVideoReview(reviewID: number) {
+        return this.delete<ResponseModel>(`/superadmin/reviews/video/${reviewID}`);
+    }
+
+    public getVideoFiles(query: GetSearchListRequest) {
+        return this.get<GetSearchListResponse<File>>(`/superadmin/files/video?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}&searchQuery=${query.searchQuery}`);
+    }
+
+    public getImageFiles(query: GetSearchListRequest) {
+        return this.get<GetSearchListResponse<File>>(`/superadmin/files/image?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}&searchQuery=${query.searchQuery}`);
+    }
+
+    public deleteFile(fileID: number) {
+        return this.delete<ResponseModel>(`/superadmin/files/${fileID}`);
     }
 }

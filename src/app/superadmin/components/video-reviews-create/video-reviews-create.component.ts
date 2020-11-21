@@ -1,68 +1,57 @@
 import { Location } from '@angular/common';
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { from } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { ClientVideoReview } from 'src/app/common/models';
-import { AuthService, FilesService } from 'src/app/common/services';
-import { PaginationComponent } from 'src/app/layout/pagination/pagination.component';
 import { SuperadminService } from '../../services';
 
 
 @Component({
-	selector: 'superadmin-video-reviews-create',
-	templateUrl: './video-reviews-create.component.html',
-	styleUrls: ['./video-reviews-create.component.scss']
+    selector: 'superadmin-video-reviews-create',
+    templateUrl: './video-reviews-create.component.html',
+    styleUrls: ['./video-reviews-create.component.scss']
 })
 export class SuperadminVideoReviewsCreateComponent implements OnInit {
 
+    public review: ClientVideoReview;
     public createVideoReviewForm: FormGroup;
-    public dragAreaClass: string;
-    
-    public imagePreviewStr: string | ArrayBuffer;
-    public imagePreviewFile: globalThis.File;
-
-    @HostListener("dragover", ["$event"]) onDragOver(event: any) {
-        this.dragAreaClass = "";
-        event.preventDefault();
-    }
-    @HostListener("dragenter", ["$event"]) onDragEnter(event: any) {
-        this.dragAreaClass = "";
-        event.preventDefault();
-    }
-    @HostListener("dragend", ["$event"]) onDragEnd(event: any) {
-        this.dragAreaClass = "dragarea";
-        event.preventDefault();
-    }
-    @HostListener("dragleave", ["$event"]) onDragLeave(event: any) {
-        this.dragAreaClass = "dragarea";
-        event.preventDefault();
-    }
-    @HostListener("drop", ["$event"]) onDrop(event: any) {
-        this.dragAreaClass = "dragarea";
-        event.preventDefault();
-        event.stopPropagation();
-        if (event.dataTransfer.files) {
-            this.setPreviewImage(event.dataTransfer.files);
-        }
-    }
 
     constructor(
         private superAdminService: SuperadminService,
-        private filesService: FilesService,
+        private route: ActivatedRoute,
         private location: Location
     ) {
-        
+
     }
 
     private initCreateVideoReviewForm(): void {
         this.createVideoReviewForm = new FormGroup({
             fullName: new FormControl(null, [Validators.required]),
-            photoID: new FormControl(0, [Validators.required]),
-            text: new FormControl(null, [Validators.required, Validators.maxLength(120)]),
-            linkVK: new FormControl(null, [Validators.required]),
+            text: new FormControl(null, [Validators.required, Validators.maxLength(150)]),
             linkYouTube: new FormControl(null, [Validators.required])
         });
+
+        const editingReviewID = this.route.snapshot.params['id'];
+
+        if (editingReviewID) {
+            this.review = window.history.state;
+            this.fillCreateVideoReviewForm();
+        }
+    }
+
+    private fillCreateVideoReviewForm() {
+        this.createVideoReviewForm
+            .controls['fullName']
+            .setValue(this.review.fullName);
+
+        this.createVideoReviewForm
+            .controls['text']
+            .setValue(this.review.text);
+
+        this.createVideoReviewForm
+            .controls['linkYouTube']
+            .setValue(this.review.linkYouTube);
     }
 
     ngOnInit(): void {
@@ -70,64 +59,50 @@ export class SuperadminVideoReviewsCreateComponent implements OnInit {
     }
 
     prevRoute() {
-		this.location.back();
-    }
-    
-    editPreviewImage() {
-        this.createVideoReviewForm
-            .controls['photoID']
-            .setValue(null);
-
-        this.imagePreviewFile = null;
-        this.imagePreviewStr = null;
-    }
-
-    toBase64(file) {
-        return from(new Promise<string | ArrayBuffer>((resolve, reject) => {
-            const reader = new FileReader();
-
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-        }));
-    }
-
-    setPreviewImage(files: FileList) {
-        this.imagePreviewFile = files[0];
-
-        this.toBase64(files[0])
-            .subscribe(encodedImg => {
-                this.imagePreviewStr = encodedImg;
-            });
+        this.location.back();
     }
 
     submit(form: FormGroup) {
-        if (form.invalid) {
+        if (form.controls['fullName'].invalid) {
+            alert('Заполните имя!')
+
             return;
         }
 
-        if (!this.imagePreviewFile) {
+        if (form.controls['text'].hasError('required')) {
+            alert('Заполните текст отзыва!');
+
             return;
         }
 
-        this.filesService
-            .uploadFileForm({ file: this.imagePreviewFile })
-            .subscribe(photoResponse => {
-                if (!photoResponse.success) {
-                    return;
-                }
+        if (form.controls['text'].hasError('maxlength')) {
+            alert('Максимальная длина текста отзыва - 150 символов!');
 
-                this.superAdminService
-                    .createVideoReview({
-                        fullName: form.value['fullName'],
-                        text: form.value['text'],
-                        photoID: photoResponse.data.id,
-                        linkVK: form.value['linkVK'],
-                        linkYouTube: form.value['linkYouTube']
-                    })
-                    .subscribe(reviewResponse => {
-                        this.prevRoute();
-                    });
+            return;
+        }
+
+        if (!this.review) {
+            this.superAdminService
+                .createVideoReview({
+                    fullName: form.value['fullName'],
+                    text: form.value['text'],
+                    linkYouTube: form.value['linkYouTube']
+                })
+                .subscribe(reviewResponse => {
+                    this.prevRoute();
+                });
+
+            return;
+        }
+
+        this.superAdminService
+            .editVideoReview({
+                fullName: form.value['fullName'],
+                text: form.value['text'],
+                linkYouTube: form.value['linkYouTube']
+            }, this.review.id)
+            .subscribe(reviewResponse => {
+                this.prevRoute();
             });
-    } 
+    }
 }

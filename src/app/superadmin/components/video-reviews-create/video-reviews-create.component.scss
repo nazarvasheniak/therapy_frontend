@@ -89,9 +89,13 @@
                             &.form-group-double {
                                 display: flex;
 
+                                .review-text {
+                                    flex: 0 1 100%;
+                                }
+
                                 .review-social {
                                     margin-left: 16px;
-                                    flex: 0 1 100%;
+                                    flex: 0 0 40%;
 
                                     .social-item {
                                         margin-top: 16px;
@@ -131,7 +135,6 @@
                             }
 
                             textarea {
-                                width: 281px;
                                 resize: none;
                                 height: 150px;
                             }

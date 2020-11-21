@@ -92,20 +92,20 @@
                                     </div>
 
                                     <div class="article-edit-actions">
-                                        <div class="action-edit">
+                                        <div class="action-edit" (click)="routeToEdit(review)">
                                             Редактировать
                                         </div>
 
-                                        <div class="action-delete">
+                                        <div class="action-delete" (click)="deleteReview(review)">
                                             Удалить
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="article-photo">
+                            <!-- <div class="article-photo">
                                 <img [src]="review.photoUrl" />
-                            </div>
+                            </div> -->
                         </article>
                     </div>
 

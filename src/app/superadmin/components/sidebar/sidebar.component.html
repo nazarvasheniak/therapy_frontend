@@ -16,6 +16,19 @@
                 </li>
 
                 <li>
+                    <a [routerLink]="['/superadmin/files']" [routerLinkActive]="['active']">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="6" r="3" />
+                            <path
+                                d="M3 16C3 13.2386 5.23858 11 8 11H12C14.7614 11 17 13.2386 17 16V16C17 16.5523 16.5523 17 16 17H4C3.44772 17 3 16.5523 3 16V16Z"
+                                />
+                        </svg>
+    
+                        Файлы
+                    </a>
+                </li>
+
+                <li>
                     <a [routerLink]="['/superadmin/reviews']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="10" cy="6" r="3" />
@@ -72,7 +85,7 @@
         </nav>
     </div>
 
-    <div class="sidebar-finances" *ngIf="wallet">
+    <!-- <div class="sidebar-finances" *ngIf="wallet">
         <div class="finances-head">
             Баланс
         </div>
@@ -92,9 +105,9 @@
         <div class="pay-button">
             <button type="button" class="button-green" [routerLink]="['/profile/deposit']">Пополнить</button>
         </div>
-    </div>
+    </div> -->
 
-    <div class="sidebar-finances sidebar-finances-mobile" *ngIf="wallet">
+    <!-- <div class="sidebar-finances sidebar-finances-mobile" *ngIf="wallet">
         <div class="balance-block">
             <div class="finances-head">
                 Баланс
@@ -118,5 +131,5 @@
                 <button type="button" class="button-green" [routerLink]="['/profile/deposit']">Пополнить</button>
             </div>
         </div>
-    </div>
+    </div> -->
 </aside>

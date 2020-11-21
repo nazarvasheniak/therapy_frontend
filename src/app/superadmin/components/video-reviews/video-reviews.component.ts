@@ -22,7 +22,8 @@ export class SuperadminVideoReviewsComponent implements OnInit {
     @ViewChild(PaginationComponent) pagination: PaginationComponent;
 
     constructor(
-        private superAdminService: SuperadminService
+        private superAdminService: SuperadminService,
+        private router: Router
     ) {
         
     }
@@ -38,6 +39,27 @@ export class SuperadminVideoReviewsComponent implements OnInit {
                 this.pageSize = response.pageSize;
                 this.pageNumber = response.currentPage;
                 this.totalPages = response.totalPages;
+            });
+    }
+
+    routeToEdit(review: ClientVideoReview) {
+        this.router.navigate(['superadmin/reviews/video', review.id], {
+            state: review
+        });
+    }
+
+    deleteReview(review: ClientVideoReview) {
+        const isConfirm = confirm(`Вы уверенны что хотите удалить отзыв?`);
+
+        if (!isConfirm) {
+            return;
+        }
+
+        this.superAdminService.deleteVideoReview(review.id)
+            .subscribe(result => {
+                if (result.success) {
+                    this.reviews = this.reviews.filter(r => r.id != review.id);
+                }
             });
     }
 

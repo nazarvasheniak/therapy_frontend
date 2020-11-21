@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 import { BaseHttpService } from './base-http.service';
 import { LocalStorageHelper } from '../helpers';
-import { SignInRequest, SignInConfirmRequest, SignUpRequest, ResendConfirmCodeRequest } from '../models/request';
+import { SignInRequest, SignInConfirmRequest, SignUpRequest, ResendConfirmCodeRequest, SignUpSpecialistRequest } from '../models/request';
 import { ResponseModel, SignInResponse, SignInConfirmResponse } from '../models/response';
 import { UserRole } from '../enums';
 
@@ -73,13 +73,12 @@ export class AuthService extends BaseHttpService {
         return this.post<SignInResponse>(`/auth/sign-up`, request);
     }
 
-    public signIn(request: SignInRequest) {
-        return this.post<SignInResponse>(`/auth/sign-in`, request);
+    public signUpSpecialist(request: SignUpSpecialistRequest) {
+        return this.post<SignInResponse>(`/auth/sign-up/specialist`, request);
     }
 
-    public signInTest(request: SignInRequest) {
-        return this.post<SignInConfirmResponse>(`/auth/test/sign-in`, request)
-            .map(response => this.saveToken(response));
+    public signIn(request: SignInRequest) {
+        return this.post<SignInResponse>(`/auth/sign-in`, request);
     }
 
     public signInConfirm(request: SignInConfirmRequest) {

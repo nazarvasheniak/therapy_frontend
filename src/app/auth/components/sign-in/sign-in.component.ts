@@ -100,36 +100,6 @@ export class SignInComponent implements OnInit {
             return;
         }
 
-        if (phoneNumber == '+78888888888' || phoneNumber == '+79999999999' || phoneNumber == '+70000000000') {
-            this.authService.signInTest({ phoneNumber })
-                .subscribe(
-                    (data) => {
-                        this.isError = false;
-                        this.isLoading = false;
-                        
-                        if (data.role == UserRole.Specialist) {
-                            this.router.navigate(['/profile-specialist']);
-
-                            return;
-                        }
-
-                        if (data.role == UserRole.Administrator) {
-                            this.router.navigate(['/superadmin/customers']);
-
-                            return;
-                        }
-                        
-                        this.router.navigate(['/profile']);
-                    },
-                    (fail) => {
-                        this.errorText = fail.error.message;
-                        this.isError = true;
-                        this.isLoading = false;
-                    });
-
-            return;
-        }
-
         this.authService.signIn({ phoneNumber })
             .subscribe(
                 (data) => {

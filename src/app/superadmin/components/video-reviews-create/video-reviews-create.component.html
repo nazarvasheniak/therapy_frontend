@@ -20,42 +20,16 @@
                     </div>
 
                     <div class="page-head">
-                        <h2>Новый видеоотзыв</h2>
+                        <h2 *ngIf="!review">Новый видеоотзыв</h2>
+                        <h2 *ngIf="review">Отзыв от {{ review.fullName }}</h2>
                     </div>
                 </div>
 
                 <div class="page-content" *ngIf="createVideoReviewForm">
                     <div class="create-review-form">
                         <form [formGroup]="createVideoReviewForm" (ngSubmit)="submit(createVideoReviewForm)">
-                            <input hidden type="file" #previewImage (change)="setPreviewImage($event.target.files)" />
 
                             <div class="form-inner">
-                                <div class="form-block">
-                                    <div class="form-group">
-                                        <div class="preview-image" draggable="true" ngClass="{{dragAreaClass}}" *ngIf="!imagePreviewStr">
-                                            <div class="preview-image-caption">
-                                                Добавьте фото автора отзыва
-                                            </div>
-                    
-                                            <div class="preview-image-button">
-                                                <button type="button" (click)="previewImage.click()">+  Добавить фото</button> 
-                                            </div>
-                                        </div>
-                    
-                                        <div class="preview-image-uploaded" *ngIf="imagePreviewStr">
-                                            <div class="preview-image">
-                                                <img [src]="imagePreviewStr" />
-                                            </div>
-                    
-                                            <div class="edit-button" (click)="editPreviewImage()">
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.3191 7.62235L12.3776 5.68091L4.17137 13.8872L3.29083 16.7092L6.11281 15.8286L14.3191 7.62235ZM15.0262 6.91525L13.0848 4.97381L15.0375 3.02107L16.9789 4.96251L15.0262 6.91525ZM17.722 5.63364C18.0927 5.26299 18.0927 4.66204 17.722 4.29138L15.7086 2.27799C15.338 1.90734 14.737 1.90734 14.3664 2.27799L3.35662 13.2877C3.27812 13.3662 3.22962 13.4698 3.21957 13.5803L2.002 17.4824C1.97517 17.7776 2.22243 18.0248 2.51757 17.998L6.41967 16.7804C6.53023 16.7704 6.63377 16.7219 6.71227 16.6434L17.722 5.63364Z" fill="#19A067"/>
-                                                </svg>                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="form-block">
                                     <div class="form-group">
                                         <input placeholder="Имя и Фамилия" type="text" name="fullName" formControlName="fullName" required />
@@ -69,14 +43,6 @@
                                         </div>
 
                                         <div class="review-social">
-                                            <div class="social-item vk">
-                                                <input placeholder="Вставьте ссылку на VK..." type="text" name="linkVK" formControlName="linkVK" required />
-                                                
-                                                <svg width="24" height="14" viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M19.915 8.028C19.527 7.538 19.638 7.32 19.915 6.882C19.92 6.877 23.123 2.451 23.453 0.95L23.455 0.949C23.619 0.402 23.455 0 22.662 0H20.038C19.37 0 19.062 0.345 18.897 0.731C18.897 0.731 17.561 3.929 15.671 6.002C15.061 6.601 14.779 6.793 14.446 6.793C14.282 6.793 14.027 6.601 14.027 6.054V0.949C14.027 0.293 13.84 0 13.287 0H9.16099C8.74199 0 8.49299 0.306 8.49299 0.591C8.49299 1.213 9.43799 1.356 9.53599 3.106V6.903C9.53599 7.735 9.38499 7.888 9.04999 7.888C8.15799 7.888 5.99299 4.677 4.70999 1.002C4.45099 0.289 4.19799 0.000999928 3.52499 0.000999928H0.899992C0.150992 0.000999928 -7.62939e-06 0.346 -7.62939e-06 0.732C-7.62939e-06 1.414 0.891992 4.805 4.14799 9.285C6.31799 12.343 9.37399 14 12.154 14C13.825 14 14.029 13.632 14.029 12.999C14.029 10.077 13.878 9.801 14.715 9.801C15.103 9.801 15.771 9.993 17.331 11.468C19.114 13.217 19.407 14 20.405 14H23.029C23.777 14 24.156 13.632 23.938 12.906C23.439 11.379 20.067 8.238 19.915 8.028Z" fill="#C2D0C9"/>
-                                                </svg>
-                                            </div>
-
                                             <div class="social-item tg">
                                                 <input placeholder="Вставьте ссылку на видео..." type="text" name="linkYouTube" formControlName="linkYouTube" required />
                                                 

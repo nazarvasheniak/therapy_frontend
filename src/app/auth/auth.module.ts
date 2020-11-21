@@ -8,13 +8,15 @@ import { RouterModule } from '@angular/router';
 import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
 import { CodeInputModule } from 'angular-code-input';
 import { LayoutModule } from '../layout/layout.module';
+import { SignUpSpecialistComponent } from './components/sign-up-specialist/sign-up-specialist.component';
 
 
 @NgModule({
     declarations: [
         SignUpComponent,
         SignInComponent,
-        ConfirmationComponent
+        ConfirmationComponent,
+        SignUpSpecialistComponent
     ],
     imports: [
         CommonModule,
