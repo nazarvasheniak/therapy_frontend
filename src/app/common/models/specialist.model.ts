@@ -1,5 +1,4 @@
 import { User } from './user.model';
-import { File } from './file.model';
 import { Review } from './review.model';
 
 export class Specialist {
@@ -9,4 +8,10 @@ export class Specialist {
     public description: string;
     public reviews: Review[];
     public user: User;
+}
+
+export class SpecialistView extends Specialist {
+    public positiveReviews: Review[];
+    public neutralReviews: Review[];
+    public negativeReviews: Review[];
 }

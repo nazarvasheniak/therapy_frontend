@@ -1,8 +1,7 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { UserRole } from 'src/app/common/enums';
 import { ClientVideoReview } from 'src/app/common/models';
-import { AuthService, ReviewsService, UsersService } from 'src/app/common/services';
+import { ReviewsService } from 'src/app/common/services';
 
 @Component({
     selector: 'video-reviews',
@@ -12,12 +11,9 @@ import { AuthService, ReviewsService, UsersService } from 'src/app/common/servic
 export class VideoReviewsComponent implements AfterViewInit {
 
     public isSpecialist = false;
+    public currentSlide = 0;
 
     public reviews: ClientVideoReview[];
-
-    slidesCount: number;
-    slides = [];
-    currentSlide: number = 0;
 
     constructor(
         private reviewsService: ReviewsService,
@@ -28,23 +24,6 @@ export class VideoReviewsComponent implements AfterViewInit {
         this.reviewsService.getAllVideoReviews()
             .subscribe(reviews => {
                 this.reviews = reviews;
-
-                const wrapper = document.querySelector(".swiper-wrapper");
-
-                if (!wrapper) {
-                    return;
-                }
-
-                this.slidesCount = wrapper.childElementCount;
-                document.querySelector(".swiper-wrapper").childNodes.forEach(item => this.slides.push(item));
-
-                document.querySelector(".swiper-button-prev").addEventListener('click', () => {
-                    this.prevSlide();
-                });
-
-                document.querySelector(".swiper-button-next").addEventListener('click', () => {
-                    this.nextSlide();
-                });
             });
     }
 
@@ -61,7 +40,7 @@ export class VideoReviewsComponent implements AfterViewInit {
     }
 
     nextSlide() {
-        if (this.currentSlide == (this.slidesCount - 1)) {
+        if (this.currentSlide == (this.reviews.length - 1)) {
             this.currentSlide = 0;
 
             return;
@@ -72,7 +51,7 @@ export class VideoReviewsComponent implements AfterViewInit {
 
     prevSlide() {
         if (this.currentSlide == 0) {
-            this.currentSlide = this.slidesCount - 1;
+            this.currentSlide = this.reviews.length - 1;
 
             return;
         }

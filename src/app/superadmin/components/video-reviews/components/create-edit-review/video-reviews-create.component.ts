@@ -1,10 +1,11 @@
 import { Location } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { ClientVideoReview } from 'src/app/common/models';
-import { SuperadminService } from '../../services';
+import { ClientVideoReview, File } from 'src/app/common/models';
+import { FilesService } from 'src/app/common/services';
+import { SuperadminService } from 'src/app/superadmin/services';
+import { ChooseReviewDialogComponent } from '../choose-review-dialog/choose-review-dialog.component';
 
 
 @Component({
@@ -14,11 +15,17 @@ import { SuperadminService } from '../../services';
 })
 export class SuperadminVideoReviewsCreateComponent implements OnInit {
 
+    public editingReviewID: number;
     public review: ClientVideoReview;
+
+    public reviewVideo: File;
     public createVideoReviewForm: FormGroup;
+
+    @ViewChild(ChooseReviewDialogComponent) chooseDialog: ChooseReviewDialogComponent;
 
     constructor(
         private superAdminService: SuperadminService,
+        private filesService: FilesService,
         private route: ActivatedRoute,
         private location: Location
     ) {
@@ -29,18 +36,11 @@ export class SuperadminVideoReviewsCreateComponent implements OnInit {
         this.createVideoReviewForm = new FormGroup({
             fullName: new FormControl(null, [Validators.required]),
             text: new FormControl(null, [Validators.required, Validators.maxLength(150)]),
-            linkYouTube: new FormControl(null, [Validators.required])
+            videoID: new FormControl(null, [Validators.required])
         });
-
-        const editingReviewID = this.route.snapshot.params['id'];
-
-        if (editingReviewID) {
-            this.review = window.history.state;
-            this.fillCreateVideoReviewForm();
-        }
     }
 
-    private fillCreateVideoReviewForm() {
+    private async fillCreateVideoReviewForm() {
         this.createVideoReviewForm
             .controls['fullName']
             .setValue(this.review.fullName);
@@ -49,13 +49,52 @@ export class SuperadminVideoReviewsCreateComponent implements OnInit {
             .controls['text']
             .setValue(this.review.text);
 
+        const video = await this.getVideoByUrl(this.review.linkYouTube);
+
+        this.reviewVideo = video;
+
         this.createVideoReviewForm
-            .controls['linkYouTube']
-            .setValue(this.review.linkYouTube);
+            .controls['videoID']
+            .setValue(video.id);
+    }
+
+    private async getVideoByUrl(url: string) {
+        return await this.filesService
+            .getInternalFileByUrl(url)
+            .toPromise();
+    }
+
+    openChooseDialog() {
+        this.chooseDialog.open((file) => {
+            this.reviewVideo = file;
+
+            this.createVideoReviewForm
+                .controls['videoID']
+                .setValue(file.id);
+        });
+    }
+
+    cancelChoosedVideo() {
+        this.reviewVideo = null;
+
+        this.createVideoReviewForm
+                .controls['videoID']
+                .setValue(null);
     }
 
     ngOnInit(): void {
         this.initCreateVideoReviewForm();
+
+        this.route.params
+            .subscribe(params => {
+                const editingReviewID = parseInt(params['id']);
+
+                if (editingReviewID) {
+                    this.editingReviewID = editingReviewID;
+                    this.review = window.history.state;
+                    this.fillCreateVideoReviewForm();
+                }
+            });
     }
 
     prevRoute() {
@@ -76,17 +115,23 @@ export class SuperadminVideoReviewsCreateComponent implements OnInit {
         }
 
         if (form.controls['text'].hasError('maxlength')) {
-            alert('Максимальная длина текста отзыва - 150 символов!');
+            alert('Максимальная длина текста отзыва 150 символов!');
 
             return;
         }
 
-        if (!this.review) {
+        if (form.controls['videoID'].hasError('required')) {
+            alert('Выберите видео!');
+
+            return;
+        }
+
+        if (!this.editingReviewID) {
             this.superAdminService
                 .createVideoReview({
                     fullName: form.value['fullName'],
                     text: form.value['text'],
-                    linkYouTube: form.value['linkYouTube']
+                    videoID: form.value['videoID']
                 })
                 .subscribe(reviewResponse => {
                     this.prevRoute();
@@ -99,7 +144,7 @@ export class SuperadminVideoReviewsCreateComponent implements OnInit {
             .editVideoReview({
                 fullName: form.value['fullName'],
                 text: form.value['text'],
-                linkYouTube: form.value['linkYouTube']
+                videoID: form.value['videoID']
             }, this.review.id)
             .subscribe(reviewResponse => {
                 this.prevRoute();

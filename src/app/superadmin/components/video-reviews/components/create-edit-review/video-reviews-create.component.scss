@@ -93,22 +93,49 @@
                                     flex: 0 1 100%;
                                 }
 
-                                .review-social {
+                                .review-video {
                                     margin-left: 16px;
                                     flex: 0 0 40%;
 
-                                    .social-item {
-                                        margin-top: 16px;
-                                        display: flex;
-                                        align-items: center;
+                                    .choose-review-button {
+                                        &.choosed {
+                                            background: none;
+                                            border: 0.5px dashed #25A46E;
+                                            box-sizing: border-box;
+                                            border-radius: 10px;
+                                            display: inline-flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            padding-left: 24px;
+                                            padding-right: 24px;
+                                            height: 42px;
+                                            font-weight: normal;
+                                            font-size: 14px;
+                                            line-height: 100%;
+                                            color: #25A46E;
 
-                                        &:first-child {
-                                            margin-top: 0;
+                                            >svg {
+                                                margin-left: 10px;
+                                                cursor: pointer;
+                                            }
                                         }
 
-                                        > svg {
-                                            flex: 0 0 24px;
-                                            margin-left: 10px;
+                                        >button {
+                                            cursor: pointer;
+                                            background: none;
+                                            border: 0.5px dashed #25A46E;
+                                            box-sizing: border-box;
+                                            border-radius: 10px;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            padding-left: 24px;
+                                            padding-right: 24px;
+                                            height: 42px;
+                                            font-weight: normal;
+                                            font-size: 14px;
+                                            line-height: 100%;
+                                            color: #25A46E;                                            
                                         }
                                     }
                                 }
@@ -126,7 +153,7 @@
                                 box-sizing: border-box;
                                 border-radius: 10px;
                                 font-size: 16px;
-                                line-height: 100%;
+                                line-height: 140%;
                                 color: #364D47;
                                 
                                 &::placeholder {

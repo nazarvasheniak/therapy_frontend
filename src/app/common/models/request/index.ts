@@ -19,3 +19,4 @@ export * from './upload-file-form-request.model';
 export * from './verification-request.model';
 export * from './change-settings-request.model';
 export * from './signup-specialist-request.model';
+export * from './get-file-byurl-request.model';

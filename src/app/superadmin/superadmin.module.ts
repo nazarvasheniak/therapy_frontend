@@ -10,10 +10,11 @@ import { SuperadminService } from './services';
 import { CustomerComponent } from './components/customer/customer.component';
 import { CountdownModule } from '../common/modules';
 import { SuperadminReviewsComponent } from './components/reviews/reviews.component';
-import { SuperadminVideoReviewsComponent } from './components/video-reviews/video-reviews.component';
-import { SuperadminVideoReviewsCreateComponent } from './components/video-reviews-create/video-reviews-create.component';
 import { FilesComponent } from './components/files/components/files/files.component';
 import { UploadFileDialogComponent } from './components/files/components/upload-file-dialog/upload-file-dialog.component';
+import { SuperadminVideoReviewsCreateComponent } from './components/video-reviews/components/create-edit-review/video-reviews-create.component';
+import { SuperadminVideoReviewsComponent } from './components/video-reviews/components/reviews-list/video-reviews.component';
+import { ChooseReviewDialogComponent } from './components/video-reviews/components/choose-review-dialog/choose-review-dialog.component';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,7 @@ import { UploadFileDialogComponent } from './components/files/components/upload-
         CustomerComponent,
         FilesComponent,
         UploadFileDialogComponent,
+        ChooseReviewDialogComponent,
         SuperadminReviewsComponent,
         SuperadminVideoReviewsComponent,
         SuperadminVideoReviewsCreateComponent

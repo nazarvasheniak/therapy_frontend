@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ClientVideoReview } from 'src/app/common/models';
 import { AuthService } from 'src/app/common/services';
 import { PaginationComponent } from 'src/app/layout/pagination/pagination.component';
-import { SuperadminService } from '../../services';
+import { SuperadminService } from 'src/app/superadmin/services';
 
 
 @Component({

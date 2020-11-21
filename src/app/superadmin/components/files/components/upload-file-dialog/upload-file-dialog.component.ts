@@ -73,6 +73,10 @@ export class UploadFileDialogComponent implements OnInit {
             this.filePreview = null;
         }
 
+        if (this.resultCall) {
+            this.resultCall = null;
+        }
+
         this.isOpen = false;
     }
 

@@ -836,7 +836,7 @@ section.articles {
     }
 
     section.specialists {
-        padding-bottom: 0 !important;
+        padding-bottom: 60px !important;
 
         .container {
             width: 100%;
@@ -973,6 +973,8 @@ section.articles {
     }
 
     section.specialists {
+        padding-bottom: 30px !important;
+
         .video-reviews {
             .video-review-player {
                 height: 290px;

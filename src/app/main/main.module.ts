@@ -18,7 +18,6 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { SpecialistsCarouselComponent } from './components/specialists-carousel/specialists-carousel.component';
-import { SpecialistsCarouselItemComponent } from './components/specialists-carousel-item/specialists-carousel-item.component';
 import { ArticlesCarouselComponent } from './components/articles-carousel/articles-carousel.component';
 import { ArticlesCarouselItemComponent } from './components/articles-carousel-item/articles-carousel-item.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -39,7 +38,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
         WebinarModalComponent,
         VideoReviewsComponent,
         SpecialistsCarouselComponent,
-        SpecialistsCarouselItemComponent,
         ArticlesCarouselComponent,
         ArticlesCarouselItemComponent,
         SafePipe,

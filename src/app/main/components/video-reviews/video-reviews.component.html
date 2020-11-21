@@ -4,10 +4,6 @@
             <div class="slide-wrapper">
                 <div class="review-content">
                     <div class="reviewer">
-                        <!-- <div class="reviewer-photo">
-                            <img [src]="review.photoUrl" />
-                        </div> -->
-
                         <div class="reviewer-name">
                             {{ review.fullName }}
                         </div>
@@ -16,20 +12,10 @@
                     <div class="review-text">
                         {{ review.text }}
                     </div>
-
-                    <!-- <div class="social">
-                        <a [href]="review.linkVK" target="_blank">
-                            <img src="../../../../assets/images/vk-filled.svg" />
-                        </a>
-                    </div> -->
                 </div>
 
                 <div class="review-video">
                     <div class="video-wrapper">
-                        <!-- <iframe [src]="_sanitizer.bypassSecurityTrustResourceUrl(review.linkYouTube)" 
-                            style="width: 100%; height: 100%; border-radius: 6px;"
-                            frameborder="0" allowfullscreen>
-                        </iframe> -->
                         <video style="width: 100%; height: 100%; border-radius: 6px; background: #000000;" controls="controls" preload="metadata">
                             <source [src]="getVideoSourceStr(review.linkYouTube)"
                                 type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
@@ -68,10 +54,10 @@
         </div>
     </div>
 
-    <div class="slides-indicator" *ngIf="slides">
+    <div class="slides-indicator" *ngIf="reviews">
         <div class="slides-indicator-inner">
-            <div class="slide-indicator" *ngFor="let slide of slides; let i = index"
-                [ngClass]="{ 'active': currentSlide == i }" (click)="setSlide(i)"></div>
+            <div class="slide-indicator" *ngFor="let slide of reviews; let i = index"
+                [ngClass]="{'active': currentSlide == i}" (click)="setSlide(i)"></div>
         </div>
     </div>
 </div>

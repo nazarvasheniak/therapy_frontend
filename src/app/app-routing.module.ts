@@ -38,10 +38,10 @@ import { SuperadminGuardService as SuperadminGuard } from './common/services';
 import { CustomersComponent } from './superadmin/components/customers/customers.component';
 import { CustomerComponent } from './superadmin/components/customer/customer.component';
 import { SuperadminReviewsComponent } from './superadmin/components/reviews/reviews.component';
-import { SuperadminVideoReviewsComponent } from './superadmin/components/video-reviews/video-reviews.component';
-import { SuperadminVideoReviewsCreateComponent } from './superadmin/components/video-reviews-create/video-reviews-create.component';
 import { SignUpSpecialistComponent } from './auth/components/sign-up-specialist/sign-up-specialist.component';
 import { FilesComponent } from './superadmin/components/files/components/files/files.component';
+import { SuperadminVideoReviewsCreateComponent } from './superadmin/components/video-reviews/components/create-edit-review/video-reviews-create.component';
+import { SuperadminVideoReviewsComponent } from './superadmin/components/video-reviews/components/reviews-list/video-reviews.component';
 
 const routes: Routes = [
 	{

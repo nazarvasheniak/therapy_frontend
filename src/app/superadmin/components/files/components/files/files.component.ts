@@ -23,15 +23,15 @@ type FilesTab = 'Videos' | 'Images';
 	styleUrls: ['./files.component.scss']
 })
 export class FilesComponent implements OnInit {
-	
+
 	public activeTab: FilesTab = 'Videos';
-	
+
 	@ViewChild('filesTabs') filesTabs: ElementRef<HTMLUListElement>;
 
 	@ViewChild('videosPagination') videosPagination: PaginationComponent;
 	@ViewChild('imagesPagination') imagesPagination: PaginationComponent;
 
-	@ViewChild(UploadFileDialogComponent) uploadModal: UploadFileDialogComponent; 
+	@ViewChild(UploadFileDialogComponent) uploadModal: UploadFileDialogComponent;
 
 	public videos: IFilesList = {
 		files: [],
@@ -51,18 +51,18 @@ export class FilesComponent implements OnInit {
 		searchQuery: ""
 	};
 
-    constructor(
+	constructor(
 		private superadminService: SuperadminService,
 		private router: Router
-    ) {
+	) {
 
 	}
 
 	ngOnInit(): void {
 		this.loadVideos(this.videos.currentPage, this.videos.pageSize, this.videos.searchQuery);
-        this.loadImages(this.images.currentPage, this.images.pageSize, this.images.searchQuery);
+		this.loadImages(this.images.currentPage, this.images.pageSize, this.images.searchQuery);
 	}
-	
+
 	private loadVideos(pageNumber: number, pageSize: number, searchQuery: string) {
 		this.superadminService
 			.getVideoFiles({ pageNumber, pageSize, searchQuery })
@@ -74,9 +74,9 @@ export class FilesComponent implements OnInit {
 				this.videos.totalItems = response.totalItems;
 				this.videos.searchQuery = response.searchQuery ? response.searchQuery : "";
 			});
-    }
-    
-    private loadImages(pageNumber: number, pageSize: number, searchQuery: string) {
+	}
+
+	private loadImages(pageNumber: number, pageSize: number, searchQuery: string) {
 		this.superadminService
 			.getImageFiles({ pageNumber, pageSize, searchQuery })
 			.subscribe(response => {
@@ -88,68 +88,71 @@ export class FilesComponent implements OnInit {
 				this.images.searchQuery = response.searchQuery ? response.searchQuery : "";
 			});
 	}
-	
+
 	openUploadFileDialog(file: globalThis.File) {
 		this.uploadModal.open(file, (file) => {
 			if (file.type == FileType.PNG ||
 				file.type == FileType.JPEG ||
 				file.type == FileType.GIF ||
 				file.type == FileType.SVG) {
-					this.images.files.unshift(file);
-					this.images.totalItems++;
+				this.images.files.unshift(file);
+				this.images.totalItems++;
 
-					return;
-				}
+				return;
+			}
 
 			if (file.type == FileType.MP4 ||
 				file.type == FileType.MOV ||
 				file.type == FileType.AVI) {
-					this.videos.files.unshift(file);
-					this.videos.totalItems++;
+				this.videos.files.unshift(file);
+				this.videos.totalItems++;
 
-					return;
-				}
+				return;
+			}
 		});
 	}
-    
-    getFileTypeStr(file: File) {
-        return FileType[file.type];
-    }
 
-    uploadFileHandler(fileList: FileList) {
-        this.openUploadFileDialog(fileList.item(0));
-    }
+	getFileTypeStr(file: File) {
+		return FileType[file.type];
+	}
 
-    deleteFile(file: File) {
-        const isConfirm = confirm(`Вы уверены что хотите удалить файл ${file.name}?`);
+	uploadFileHandler(fileList: FileList) {
+		this.openUploadFileDialog(fileList.item(0));
+	}
 
-        if (!isConfirm) {
-            return;
-        }
+	deleteFile(file: File) {
+		const isConfirm = confirm(`Вы уверены что хотите удалить файл ${file.name}?`);
 
-        this.superadminService.deleteFile(file.id)
-            .subscribe(result => {
-                if (result.success) {
-                    switch (this.activeTab) {
-                        case 'Videos': {
-                            return this.loadVideos(
-                                this.videos.currentPage,
-                                this.videos.pageSize,
-                                this.videos.searchQuery
-                            );
-                        }
-            
-                        case 'Images': {
-                            return this.loadImages(
-                                this.images.currentPage,
-                                this.images.pageSize,
-                                this.images.searchQuery
-                            );
-                        }
-                    }
-                }
-            });
-    }
+		if (!isConfirm) {
+			return;
+		}
+
+		this.superadminService.deleteFile(file.id)
+			.subscribe(result => {
+				if (result.success) {
+					if (file.type == FileType.MP4 ||
+						file.type == FileType.MOV ||
+						file.type == FileType.AVI) {
+						return this.loadVideos(
+							this.videos.currentPage,
+							this.videos.pageSize,
+							this.videos.searchQuery
+						);
+					}
+
+					if (file.type == FileType.PNG ||
+						file.type == FileType.JPEG ||
+						file.type == FileType.GIF ||
+						file.type == FileType.SVG) {
+						return this.loadImages(
+							this.images.currentPage,
+							this.images.pageSize,
+							this.images.searchQuery
+						);
+					}
+				}
+			});
+	}
 
 	setSearchQuery(tab: FilesTab) {
 		switch (tab) {
@@ -171,7 +174,7 @@ export class FilesComponent implements OnInit {
 		}
 	}
 
-    setPageSize(tab: FilesTab, value: number) {
+	setPageSize(tab: FilesTab, value: number) {
 		if (tab == 'Videos') {
 			this.videos.pageSize = Number(value);
 
@@ -186,13 +189,13 @@ export class FilesComponent implements OnInit {
 			this.loadImages(1, Number(value), this.images.searchQuery);
 
 			return;
-        }
-        
+		}
+
 		return;
 	}
 
 	setPageNumber(tab: FilesTab, value: number) {
-		window.scroll(0,0);
+		window.scroll(0, 0);
 
 		if (tab == 'Videos') {
 			this.loadVideos(value, this.videos.pageSize, this.videos.searchQuery);
@@ -212,17 +215,17 @@ export class FilesComponent implements OnInit {
 	setActiveTab(tab: FilesTab) {
 		this.activeTab = tab;
 
-        if (!this.filesTabs) {
-            return;
-        }
+		if (!this.filesTabs) {
+			return;
+		}
 
-        const item = this.filesTabs.nativeElement.getElementsByTagName('li').namedItem(tab);
-        const margin = parseInt(window.getComputedStyle(item).marginLeft);
-        const scrollTo = (margin / 2) + (item.offsetLeft - item.offsetWidth);
+		const item = this.filesTabs.nativeElement.getElementsByTagName('li').namedItem(tab);
+		const margin = parseInt(window.getComputedStyle(item).marginLeft);
+		const scrollTo = (margin / 2) + (item.offsetLeft - item.offsetWidth);
 
-        this.filesTabs.nativeElement.scrollTo({
-            left: scrollTo,
-            behavior: 'smooth'
-        });
-    }
+		this.filesTabs.nativeElement.scrollTo({
+			left: scrollTo,
+			behavior: 'smooth'
+		});
+	}
 }
