@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+	apiEndpoint: "https://api.kornevaya.ru/api",
+	wsEndpoint: "wss://api.kornevaya.ru/notifications",
+	production: true
 };
