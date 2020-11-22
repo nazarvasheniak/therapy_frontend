@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ArticlesService } from 'src/app/common/services';
@@ -43,7 +43,7 @@ export class ProfileSpecialistDeleteDialog implements OnInit {
     deleteArticle() {
         this.articlesService.deleteArticle(this.article.id)
             .subscribe((response) => {
-                this.close()
+                this.close();
                 this.router.navigate(['/profile-specialist/articles']);
             });
     }

@@ -15,6 +15,9 @@ import { UploadFileDialogComponent } from './components/files/components/upload-
 import { SuperadminVideoReviewsCreateComponent } from './components/video-reviews/components/create-edit-review/video-reviews-create.component';
 import { SuperadminVideoReviewsComponent } from './components/video-reviews/components/reviews-list/video-reviews.component';
 import { ChooseReviewDialogComponent } from './components/video-reviews/components/choose-review-dialog/choose-review-dialog.component';
+import { ArticlesListComponent } from './components/articles/components/articles-list/articles-list.component';
+import { ArticleViewComponent } from './components/articles/components/article-view/article-view.component';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
     declarations: [
@@ -27,7 +30,9 @@ import { ChooseReviewDialogComponent } from './components/video-reviews/componen
         ChooseReviewDialogComponent,
         SuperadminReviewsComponent,
         SuperadminVideoReviewsComponent,
-        SuperadminVideoReviewsCreateComponent
+        SuperadminVideoReviewsCreateComponent,
+        ArticlesListComponent,
+        ArticleViewComponent
     ],
     imports: [
         CommonModule,
@@ -35,7 +40,9 @@ import { ChooseReviewDialogComponent } from './components/video-reviews/componen
         ReactiveFormsModule,
         RouterModule,
         LayoutModule,
-        CountdownModule
+        CountdownModule,
+        FroalaEditorModule.forRoot(),
+        FroalaViewModule.forRoot()
     ],
     providers: [
         SuperadminService

@@ -5,8 +5,8 @@ import { ChangeCustomerRoleRequest, CreateVideoReviewRequest, GetAdministratorsL
 import { GetAdministratorsListResponse, GetPatientListResponse, GetSearchListResponse, GetSpecialistsListResponse } from '../models/response';
 import { DataResponse, ListResponse, ResponseModel } from 'src/app/common/models/response';
 import { SuperadminCustomerCard } from '../models';
-import { ClientVideoReview, File } from 'src/app/common/models';
-import { GetList } from 'src/app/common/models/request';
+import { Article, ArticlePublish, ClientVideoReview, File } from 'src/app/common/models';
+import { GetList, UpdateArticlePublishRequest } from 'src/app/common/models/request';
 
 @Injectable()
 export class SuperadminService extends BaseHttpService {
@@ -67,5 +67,17 @@ export class SuperadminService extends BaseHttpService {
 
     public deleteFile(fileID: number) {
         return this.delete<ResponseModel>(`/superadmin/files/${fileID}`);
+    }
+
+    public getArticles(query: GetList) {
+        return this.get<ListResponse<ArticlePublish>>(`/superadmin/articles/publish?pageSize=${query.pageSize}&pageNumber=${query.pageNumber}`);
+    }
+
+    public getArticle(publishID: number) {
+        return this.get<DataResponse<ArticlePublish>>(`/superadmin/articles/publish/${publishID}`);
+    }
+
+    public updateArticlePublish(request: UpdateArticlePublishRequest, publishID: number) {
+        return this.patch<DataResponse<ArticlePublish>>(`/superadmin/articles/publish/${publishID}`, request);
     }
 }

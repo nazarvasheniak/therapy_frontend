@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { WebinarModalComponent } from '../webinar-modal/webinar-modal.component';
-import { Review } from '../../models';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -19,8 +18,8 @@ export class LandingComponent implements OnInit {
     public webinarForm: FormGroup;
     public isShowMainBannerPresent = false;
 
-    public reviews: Review[];
-    public activeReview: Review;
+    public reviews: any[];
+    public activeReview: any;
 
     constructor(private domSanitizer: DomSanitizer) { }
 
@@ -70,7 +69,7 @@ export class LandingComponent implements OnInit {
         this.isShowMainBannerPresent = false;
     }
 
-    switchReview(review: Review) {
+    switchReview(review: any) {
         this.activeReview = review;
     }
 

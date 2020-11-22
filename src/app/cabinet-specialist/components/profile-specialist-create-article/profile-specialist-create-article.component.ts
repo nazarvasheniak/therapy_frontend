@@ -169,8 +169,6 @@ export class ProfileSpecialistCreateArticleComponent implements OnInit {
             .controls['text']
             .setValue(this.editorContent);
 
-        console.log(this.articleForm.value);
-
         if (this.articleForm.invalid) {
             return;
         }

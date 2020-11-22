@@ -149,34 +149,11 @@
                             line-height: 100%;
                             color: #162B1E;
                             text-decoration: underline;
-                        }
-
-                        .article-publish {
-                            margin-top: 8px;
-                            font-weight: normal;
-                            font-size: 14px;
-                            display: flex;
-                            align-items: center;
-
-                            &.new {
-                                color: #005264;
-                            }
-
-                            &.accepted {
-                                color: #389A71;
-                            }
-
-                            &.declined {
-                                color: #AE2424;
-                            }
-
-                            .message {
-                                margin-left: 12px;
-                            }
+                            cursor: pointer;
                         }
 
                         .article-short-text {
-                            margin-top: 12px;
+                            margin-top: 20px;
                             padding-right: 70px;
                             height: 44px;
                             font-weight: normal;
@@ -258,6 +235,28 @@
                                 font-weight: normal;
                                 font-size: 16px;
                                 line-height: 100%;
+
+                                .article-edit-action {
+                                    margin-left: 16px;
+
+                                    &:first-child {
+                                        margin-left: 0;
+                                    }
+
+                                    .article-status {
+                                        &.new {
+                                            color: #005264;
+                                        }
+
+                                        &.accepted {
+                                            color: #389A71;
+                                        }
+
+                                        &.declined {
+                                            color: #AE2424;
+                                        }
+                                    }
+                                }
 
                                 .action-edit {
                                     margin-right: 16px;

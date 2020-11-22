@@ -20,3 +20,4 @@ export * from './verification-request.model';
 export * from './change-settings-request.model';
 export * from './signup-specialist-request.model';
 export * from './get-file-byurl-request.model';
+export * from './update-article-publish.request.model';

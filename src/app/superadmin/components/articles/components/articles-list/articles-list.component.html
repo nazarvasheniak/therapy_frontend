@@ -1,22 +1,22 @@
 <div class="page-wrapper">
 
     <!-- Header -->
-    <profile-specialist-header></profile-specialist-header>
+    <app-header></app-header>
 
     <div class="container">
         <div class="content-wrapper">
-            <profile-specialist-sidebar></profile-specialist-sidebar>
+            <superadmin-sidebar></superadmin-sidebar>
 
-            <content *ngIf="publishes">
+            <content *ngIf="articles">
                 <div class="page-top">
                     <div class="page-head">
                         <h2>Статьи</h2>
 
-                        <div class="new-article">
+                        <!-- <div class="new-article">
                             <div class="new-article-button" [routerLink]="['create']">
-                                <img src="../../../../assets/images/icon-plus.svg" />
+                                <img src="../../../../../../assets/images/icon-plus.svg" />
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="page-filters">
@@ -27,20 +27,20 @@
 
                             <div class="filter-values">
                                 <div class="filter-value" (click)="setPageSize(5)"
-                                    [ngClass]="{'active': pageSize == 5, 'disabled': !publishes.length}">5</div>
+                                    [ngClass]="{'active': pageSize == 5, 'disabled': !articles.length}">5</div>
                                 <div class="filter-value" (click)="setPageSize(10)"
-                                    [ngClass]="{'active': pageSize == 10, 'disabled': !publishes.length}">10</div>
+                                    [ngClass]="{'active': pageSize == 10, 'disabled': !articles.length}">10</div>
                                 <div class="filter-value" (click)="setPageSize(15)"
-                                    [ngClass]="{'active': pageSize == 15, 'disabled': !publishes.length}">15</div>
+                                    [ngClass]="{'active': pageSize == 15, 'disabled': !articles.length}">15</div>
                                 <div class="filter-value" (click)="setPageSize(30)"
-                                    [ngClass]="{'active': pageSize == 30, 'disabled': !publishes.length}">30</div>
+                                    [ngClass]="{'active': pageSize == 30, 'disabled': !articles.length}">30</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="page-content">
-                    <div class="articles-empty" *ngIf="!publishes.length">
+                    <div class="articles-empty" *ngIf="!articles.length">
                         <div class="icon">
                             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0001 38.0001C28.8366 38.0001 36.0001 30.8366 36.0001 22.0001C36.0001 13.1635 28.8366 6.00008 20.0001 6.00008C11.1635 6.00008 4.00008 13.1635 4.00008 22.0001C4.00008 30.8366 11.1635 38.0001 20.0001 38.0001ZM20.0001 40.0001C29.9412 40.0001 38.0001 31.9412 38.0001 22.0001C38.0001 12.059 29.9412 4.00008 20.0001 4.00008C10.059 4.00008 2.00008 12.059 2.00008 22.0001C2.00008 31.9412 10.059 40.0001 20.0001 40.0001Z" fill="#D4E1DC"/>
@@ -51,29 +51,15 @@
                         </div>
 
                         <div class="text">
-                            Вы ещё не писали статей
+                            Список статей пуст
                         </div>
                     </div>
 
-                    <div class="articles-list" *ngIf="publishes">
-                        <article *ngFor="let item of publishes">
+                    <div class="articles-list" *ngIf="articles">
+                        <article *ngFor="let item of articles">
                             <div class="article-content">
-                                <div class="article-title">
+                                <div class="article-title" [routerLink]="['/superadmin/articles', item.id]">
                                     {{ item.article.title }}
-                                </div>
-
-                                <div class="article-publish" [ngClass]="{
-                                    'new': item.status == 1,
-                                    'accepted': item.status == 2,
-                                    'declined': item.status == 3
-                                }">
-                                    <div class="status">
-                                        {{ getPublishStatus(item) }}
-                                    </div>
-
-                                    <div class="message">
-                                        {{ item.message }}
-                                    </div>
                                 </div>
 
                                 <div class="article-short-text">
@@ -129,13 +115,23 @@
                                     </div>
 
                                     <div class="article-edit-actions">
-                                        <div class="action-edit" [routerLink]="['/profile-specialist/articles', item.article.id]">
-                                            Редактировать
+                                        <div class="article-edit-action">
+                                            <div class="article-status" [ngClass]="{
+                                                'new': item.status == 1,
+                                                'accepted': item.status == 2,
+                                                'declined': item.status == 3
+                                            }">
+                                                {{ getModerationStatus(item) }}
+                                            </div>
                                         </div>
 
-                                        <div class="action-delete" (click)="showDeleteArticleDialog(item.article.id)">
+                                        <!-- <div class="action-edit" [routerLink]="['/profile-specialist/articles', article.id]">
+                                            Редактировать
+                                        </div> -->
+
+                                        <!-- <div class="action-delete" (click)="showDeleteArticleDialog(article.id)">
                                             Удалить
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +142,7 @@
                         </article>
                     </div>
 
-                    <div class="articles-pagination" *ngIf="publishes.length">
+                    <div class="articles-pagination" *ngIf="articles.length">
                         <app-pagination [currentPage]="pageNumber" [totalPages]="totalPages"
                             (onChanged)="setPageNumber($event)"></app-pagination>
                     </div>
@@ -158,5 +154,3 @@
     <!-- Footer -->
     <app-footer></app-footer>
 </div>
-
-<profile-specialist-delete-dialog #deleteDialog class="delete-article-dialog"></profile-specialist-delete-dialog>

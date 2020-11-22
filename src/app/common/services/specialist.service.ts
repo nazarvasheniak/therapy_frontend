@@ -7,8 +7,7 @@ import {
     ChangeSpecialistPriceRequest,
     GetList, 
     CreateUpdateProblemImageRequest, 
-    CreateUpdateProblemResourceRequest, 
-    CreateUpdateProblemResourceTask
+    CreateUpdateProblemResourceRequest
 } from '../models/request';
 
 import { 
@@ -26,7 +25,8 @@ import {
     SpecialistSession, 
     ProblemAssets, 
     ProblemImage, 
-    ProblemResource
+    ProblemResource,
+    ArticlePublish
 } from '../models';
 
 @Injectable()
@@ -73,6 +73,10 @@ export class SpecialistService extends BaseHttpService {
 
     public getReviews() {
         return this.get<ReviewsResponse>(`/specialist/reviews`);
+    }
+
+    public getArticles(query: GetList) {
+        return this.get<ListResponse<ArticlePublish>>(`/specialist/articles?pageNumber=${query.pageNumber}&pageSize=${query.pageSize}`);
     }
 
     public getClientAssets(clientID: number, problemID: number) {

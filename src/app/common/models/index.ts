@@ -25,3 +25,4 @@ export * from './user-verification-request.model';
 export * from './socket-message.model';
 export * from './client-video-review.model';
 export * from './function.model';
+export * from './article-publish.model';

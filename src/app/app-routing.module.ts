@@ -42,6 +42,8 @@ import { SignUpSpecialistComponent } from './auth/components/sign-up-specialist/
 import { FilesComponent } from './superadmin/components/files/components/files/files.component';
 import { SuperadminVideoReviewsCreateComponent } from './superadmin/components/video-reviews/components/create-edit-review/video-reviews-create.component';
 import { SuperadminVideoReviewsComponent } from './superadmin/components/video-reviews/components/reviews-list/video-reviews.component';
+import { ArticlesListComponent } from './superadmin/components/articles/components/articles-list/articles-list.component';
+import { ArticleViewComponent } from './superadmin/components/articles/components/article-view/article-view.component';
 
 const routes: Routes = [
 	{
@@ -235,8 +237,14 @@ const routes: Routes = [
 	},
 
 	{ 
-		path: 'superadmin/reviews', 
-		component: SuperadminReviewsComponent, 
+		path: 'superadmin/articles', 
+		component: ArticlesListComponent, 
+		canActivate: [SuperadminGuard]
+	},
+
+	{ 
+		path: 'superadmin/articles/:id', 
+		component: ArticleViewComponent, 
 		canActivate: [SuperadminGuard]
 	},
 
