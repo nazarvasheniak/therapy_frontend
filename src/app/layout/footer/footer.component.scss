@@ -1,6 +1,6 @@
 footer {
     padding-top: 51px;
-    padding-bottom: 68px;
+    padding-bottom: 36px;
     //background-image: url(../../../assets/images/main-bg.svg);
     background-repeat: repeat;
 
@@ -11,6 +11,17 @@ footer {
     > .container {
         > .flex-row {
             justify-content: space-between;
+        }
+    }
+
+    .footer-company {
+        margin-top: 50px;
+        text-align: center;
+
+        > p {
+            font-size: 12px;
+            line-height: 140%;
+            color: #C2D0C9;
         }
     }
 
@@ -37,16 +48,8 @@ footer {
                 }
             }
 
-            .footer-requisites {
-                margin-top: 40px;
-                font-weight: normal;
-                font-size: 14px;
-                line-height: 20px;
-                color: #C2D0C9;
-            }
-
             .footer-copyright {
-                margin-top: 23px;
+                margin-top: 24px;
                 font-weight: normal;
                 font-size: 12px;
                 line-height: 15px;
@@ -476,16 +479,11 @@ footer {
             }
 
             .footer-company {
-                margin-top: 16px;
-                text-align: center;
-                font-weight: normal;
-                font-size: 14px;
-                line-height: 140%;
-                color: #C2D0C9;             
+                margin-top: 32px;
             }
 
             .footer-copyright {
-                margin-top: 16px;
+                margin-top: 32px;
                 font-weight: normal;
                 font-size: 12px;
                 line-height: 121.5%;

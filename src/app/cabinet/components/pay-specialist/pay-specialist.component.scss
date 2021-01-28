@@ -51,6 +51,7 @@
 
         .page-content {
             margin-top: 12px;
+            padding-bottom: 32px;
 
             .deposit-text {
                 font-weight: normal;
@@ -67,7 +68,6 @@
                 padding-left: 24px;
                 padding-right: 24px;
                 padding-top: 29px;
-                padding-bottom: 34px;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -93,10 +93,6 @@
                                 margin-left: 16px;
                             }
                         }
-                    }
-
-                    .bank-logo {
-                        margin-left: 29px;
                     }
                 }
 
@@ -158,6 +154,42 @@
                     }
                 }
             }
+
+            .paysystems-links {
+                margin-top: 32px;
+                padding-left: 24px;
+                padding-right: 24px;
+
+                .paysystem-links-list {
+                    display: flex;
+                    align-items: center;
+
+                    .paysystems-list-item {
+                        margin-left: 16px;
+
+                        &:first-child {
+                            margin-left: 0;
+                        }
+
+                        > span {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+            .paysystem-text {
+                margin-top: 32px;
+                padding-left: 24px;
+                padding-right: 24px;
+                max-width: 588px;
+
+                > p {
+                    font-size: 12px;
+                    line-height: 140%;
+                    color: #C2D0C9;
+                }
+            }
         }
     }
 }
@@ -201,7 +233,7 @@
 
                 .deposit-info {
                     padding-top: 0;
-                    padding-bottom: 24px;
+                    //padding-bottom: 24px;
                     margin-top: 20px;
                     flex-direction: column;
                     justify-content: flex-start;
@@ -248,6 +280,7 @@
 
             .page-content {
                 margin-top: 16px;
+                padding-bottom: 24px;
 
                 .deposit-text {
                     padding-left: 8px;
@@ -266,7 +299,7 @@
 
                         .pay-button {
                             > button {
-                                width: 211px;
+                                //width: 211px;
 
                                 .icon {
                                     display: none;
@@ -283,6 +316,16 @@
                     .specialist-info {
                         margin-top: 29px;
                     }
+                }
+
+                .paysystems-links {
+                    padding-left: 8px;
+                    padding-right: 8px;
+                }
+
+                .paysystem-text {
+                    padding-left: 8px;
+                    padding-right: 8px;
                 }
             }
         }

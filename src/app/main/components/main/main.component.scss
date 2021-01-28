@@ -54,7 +54,8 @@ section {
         color: #364D47;
     }
 
-    .main-banner-button  {
+    .main-banner-button,
+    .main-banner-button-mobile {
         display: flex;
         justify-content: center;
         margin-top: 24px;
@@ -772,6 +773,12 @@ section.articles {
 }
 
 @media screen and (min-width: 992px) {
+    .main-banner {
+        .main-banner-button-mobile {
+            display: none;
+        }
+    }
+
     section.how-it-works-mobile {
         display: none;
     }
@@ -817,6 +824,10 @@ section.articles {
                 font-size: 38px;
                 line-height: 46px;
             }
+        }
+
+        .main-banner-button {
+            display: none;
         }
     }
 
