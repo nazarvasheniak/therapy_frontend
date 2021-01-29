@@ -131,9 +131,39 @@ export class ChooseSpecialistDialogComponent implements OnInit {
                     });
             });
     }
+
+    private createSession() {
+        this.patientService.createProblemSession({ specialistID: this.specialist.id }, this.selectedProblem.id)
+            .subscribe(sessionResponse => {
+                if (sessionResponse.success) {
+                    if ((this.wallet.balance - this.wallet.lockedBalance) < this.specialist.price) {
+                        this.router.navigate([`/profile/problems/${this.selectedProblem.id}/choose-specialist/${this.specialist.id}/pay`]);
+            
+                        return;
+                    }
+
+                    this.patientService.startSession(this.selectedProblem.id, sessionResponse.sessionID)
+                        .subscribe(res => {
+                            if (!res.success) {
+                                return;
+                            }
+
+                            this.router.navigate(['/profile']);
+                        });
+                }
+            });
+    }
     
     async startSession() {
         if (!this.selectedProblem) {
+            return;
+        }
+
+        const problemSessions = await this.patientService.getSessions(this.selectedProblem.id).toPromise().then(res => res.data);
+
+        if (!problemSessions.length) {
+            this.createSession();
+
             return;
         }
 
@@ -173,25 +203,7 @@ export class ChooseSpecialistDialogComponent implements OnInit {
             return;
         }
 
-        this.patientService.createProblemSession({ specialistID: this.specialist.id }, this.selectedProblem.id)
-            .subscribe(sessionResponse => {
-                if (sessionResponse.success) {
-                    if ((this.wallet.balance - this.wallet.lockedBalance) < this.specialist.price) {
-                        this.router.navigate([`/profile/problems/${this.selectedProblem.id}/choose-specialist/${this.specialist.id}/pay`]);
-            
-                        return;
-                    }
-
-                    this.patientService.startSession(this.selectedProblem.id, sessionResponse.sessionID)
-                        .subscribe(res => {
-                            if (!res.success) {
-                                return;
-                            }
-
-                            this.router.navigate(['/profile']);
-                        });
-                }
-            });
+        this.createSession();
     }
 
     submit() {
