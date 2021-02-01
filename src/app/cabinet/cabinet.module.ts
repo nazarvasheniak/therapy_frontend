@@ -18,6 +18,7 @@ import { ProfileHeaderComponent } from './components/profile-header/profile-head
 import { RefundComponent } from './components/refund/refund.component';
 import { CountdownModule } from '../common/modules';
 import { SettingsComponent } from './components/settings/settings.component';
+import { CabinetSessionVerificationComponent } from './components/session-verification/session-verification.component';
  
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { SettingsComponent } from './components/settings/settings.component';
         CabinetPaySpecialistComponent,
         ProblemAssetsComponent,
         CabinetSessionSuccessComponent,
+        CabinetSessionVerificationComponent,
         RefundComponent
     ],
     imports: [

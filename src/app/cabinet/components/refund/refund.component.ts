@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, UsersService } from 'src/app/common/services';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Session } from 'src/app/common/models';
 
 @Component({
 	selector: 'app-refund',
@@ -10,6 +11,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RefundComponent implements OnInit {
     
+    public problemID: number;
+    public sessionID: number;
+
     public refundForm: FormGroup;
     
     public documentFile: File;
@@ -18,6 +22,7 @@ export class RefundComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private usersService: UsersService,
+        private route: ActivatedRoute,
         private router: Router
     ) {
         
@@ -39,7 +44,13 @@ export class RefundComponent implements OnInit {
                     return;
                 }
 
-                this.initRefundForm();
+                this.route.params
+                    .subscribe(params => {
+                        this.problemID = params['problemID'];
+                        this.sessionID = params['sessionID'];
+
+                        this.initRefundForm();
+                    });
             });
     }
 
@@ -62,8 +73,14 @@ export class RefundComponent implements OnInit {
             document: this.documentFile,
             selfie: this.selfieFile
         }).subscribe(response => {
-            console.log(response);
+            if (response.success) {
+                this.router.navigate([`profile/problems/${this.problemID}/sessions/${this.sessionID}/refund/review`]);
+            }
         });
+    }
+
+    cancelRefund() {
+        this.router.navigate(['/profile']);
     }
 
     normalizeMonth(monthStr: string) {

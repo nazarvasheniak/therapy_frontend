@@ -6,7 +6,8 @@
                     {{ specialist.price | number:'':'fr' }} ₽
                 </div>
                 
-                <img [src]="specialist.user.photo.url" />
+                <img *ngIf="specialist.user.photo && specialist.user.photo.url" [src]="specialist.user.photo.url" onerror="this.src = '../../../../assets/images/avatar-placeholder.png'" />
+                <img *ngIf="!specialist.user.photo || !specialist.user.photo.url" src="../../../../assets/images/avatar-placeholder.png" />
             </div>
         
             <div class="specialist-content">

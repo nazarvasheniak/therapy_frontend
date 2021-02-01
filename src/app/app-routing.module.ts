@@ -44,6 +44,7 @@ import { SuperadminVideoReviewsCreateComponent } from './superadmin/components/v
 import { SuperadminVideoReviewsComponent } from './superadmin/components/video-reviews/components/reviews-list/video-reviews.component';
 import { ArticlesListComponent } from './superadmin/components/articles/components/articles-list/articles-list.component';
 import { ArticleViewComponent } from './superadmin/components/articles/components/article-view/article-view.component';
+import { CabinetSessionVerificationComponent } from './cabinet/components/session-verification/session-verification.component';
 
 const routes: Routes = [
 	{
@@ -143,8 +144,14 @@ const routes: Routes = [
 	},
 
 	{
-		path: 'profile/problems/:id/sessions/:sessionID/refund',
+		path: 'profile/problems/:problemID/sessions/:sessionID/refund',
 		component: RefundComponent,
+		canActivate: [AuthGuard]
+	},
+
+	{
+		path: 'profile/problems/:id/sessions/:sessionID/refund/review',
+		component: CabinetSessionVerificationComponent,
 		canActivate: [AuthGuard]
 	},
 	
