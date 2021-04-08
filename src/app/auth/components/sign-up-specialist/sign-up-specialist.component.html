@@ -13,12 +13,12 @@
                 </div>
     
                 <div class="form-group">
-                    <input type="text" formControlName="firstName" #firstName required />
+                    <input type="text" formControlName="firstName" pattern="^[А-Яа-яЁё\s]+$" maxlength="12" #firstName required />
                     <label (click)="labelClick('firstName')">Имя</label>
                 </div>
     
                 <div class="form-group">
-                    <input type="text" formControlName="lastName" #lastName required />
+                    <input type="text" formControlName="lastName" pattern="^[А-Яа-яЁё\s]+$" maxlength="12" #lastName required />
                     <label (click)="labelClick('lastName')">Фамилия</label>
                 </div>
     
@@ -28,7 +28,7 @@
                 </div>
     
                 <div class="form-group">
-                    <input type="text" formControlName="email" #email required />
+                    <input type="email" formControlName="email" #email required />
                     <label (click)="labelClick('email')">E-Mail</label>
                 </div>
     

@@ -13,12 +13,32 @@
                 </div>
     
                 <div class="form-group">
-                    <input type="text" formControlName="firstName" #firstName required />
+                    <input type="text"
+                        formControlName="firstName" 
+                        pattern="^[А-Яа-яЁё\s]+$"
+                        maxlength="12"
+                        #firstName 
+                        required
+                        [ngClass]="{
+                            'invalid': signUpForm.controls.firstName.invalid && signUpForm.controls.firstName.touched && signUpForm.controls.firstName.dirty
+                        }"
+                    />
+                    
                     <label (click)="labelClick('firstName')">Имя</label>
                 </div>
     
                 <div class="form-group">
-                    <input type="text" formControlName="lastName" #lastName required />
+                    <input type="text"
+                        formControlName="lastName"
+                        pattern="^[А-Яа-яЁё\s]+$"
+                        maxlength="12"
+                        #lastName
+                        required
+                        [ngClass]="{
+                            'invalid': signUpForm.controls.lastName.invalid && signUpForm.controls.lastName.touched && signUpForm.controls.lastName.dirty
+                        }"
+                    />
+                    
                     <label (click)="labelClick('lastName')">Фамилия</label>
                 </div>
     
@@ -28,7 +48,7 @@
                 </div>
     
                 <div class="form-group">
-                    <input type="text" formControlName="email" #email required />
+                    <input type="email" formControlName="email" #email required />
                     <label (click)="labelClick('email')">E-Mail</label>
                 </div>
     

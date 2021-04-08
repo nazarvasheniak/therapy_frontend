@@ -65,11 +65,29 @@ export class SignUpComponent implements OnInit {
             privacy: new FormControl(false, [Validators.required]),
             captchaValid: new FormControl(false)
         });
+
+        this.signUpForm.controls["firstName"]
+            .valueChanges
+            .subscribe(value => {
+                if (!value || value == "") {
+                    this.signUpForm.controls["firstName"].reset();
+                }
+            });
+
+        this.signUpForm.controls["lastName"]
+            .valueChanges
+            .subscribe(value => {
+                if (!value || value == "") {
+                    this.signUpForm.controls["lastName"].reset();
+                }
+            });
     }
 
     public inputEvent(control: string ,event) {
         if (control == "phoneNumber") {
             this.signUpForm.controls['phoneNumber'].setValue(event.target.value);
+            
+            const phone = this.normalizePhoneNumber(this.signUpForm.value['phoneNumber']);
         }
 
         this.isError = false;
